@@ -1,0 +1,1064 @@
+{
+  "sources": [
+    {
+      "id": "group-a-src-fai-march-squad",
+      "title": "Hallgrímsson names 25-man squad for the March play-off matches",
+      "publisher": "FAI",
+      "url": "https://www.fai.ie/latest/hallgrimsson-names-25-man-squad-march-play-matches/",
+      "kind": "governing-body",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-a-src-fai-may-squad",
+      "title": "Ireland squad updated for the Qatar and Canada fixtures",
+      "publisher": "FAI",
+      "url": "https://www.fai.ie/latest/ireland-squad-updated-qatar-and-canada-fixtures/",
+      "kind": "governing-body",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-a-src-espn-kelleher-brentford",
+      "title": "Brentford sign Caoimhín Kelleher from Liverpool in £18m deal",
+      "publisher": "ESPN",
+      "url": "https://www.espn.com/soccer/story/_/id/45432759/brentford-sign-caoimhin-kelleher-liverpool-18m-deal",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Details obtained via search snippet only; direct WebFetch of this page was not permitted in this session."
+    },
+    {
+      "id": "group-a-src-statmuse-kelleher",
+      "title": "Caoimhin Kelleher Stats With Brentford",
+      "publisher": "StatMuse",
+      "url": "https://www.statmuse.com/fc/ask/caoimhin-kelleher-stats-with-brentford",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-yahoo-everton-gk-review",
+      "title": "Everton 2025-2026 Season Review: Goalkeepers Report Card",
+      "publisher": "Yahoo Sports",
+      "url": "https://sports.yahoo.com/articles/everton-2025-2026-season-review-090000656.html",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-givemesport-travers",
+      "title": "Wrexham and Coventry Eyeing Move to Sign Everton's Mark Travers",
+      "publisher": "GiveMeSport",
+      "url": "https://www.givemesport.com/wrexham-coventry-eyeing-everton-goalkeeper-mark-travers/",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-luton-keeley",
+      "title": "Josh Keeley - First Team",
+      "publisher": "Luton Town FC",
+      "url": "https://www.lutontown.co.uk/en/teams/luton-town/josh-keeley",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-rte-keeley",
+      "title": "Ireland call-up a career pinnacle for goalkeeper Keeley",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0323/1564749-ireland-call-up-a-career-pinnacle-for-keeper-keely/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-a-src-rte-coleman-retire",
+      "title": "Coleman announces an end to Everton playing career",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0515/1573499-coleman-announces-an-end-to-everton-playing-career/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-the42-collins-captain",
+      "title": "Ireland defender Nathan Collins named as new Brentford club captain",
+      "publisher": "The42",
+      "url": "https://www.the42.ie/nathan-collins-brentford-captain-6781134-Aug2025/",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-transfermarkt-collins",
+      "title": "Nathan Collins - National team",
+      "publisher": "Transfermarkt",
+      "url": "https://www.transfermarkt.us/nathan-collins/nationalmannschaft/spieler/469050",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-espn-hull-promotion",
+      "title": "Hull City promoted to the Premier League after beating Middlesbrough in Championship playoff final",
+      "publisher": "ESPN",
+      "url": "https://www.espn.com/soccer/story/_/id/48852636/hull-city-promoted-premier-league-beating-middlesbrough-championship-playoff-final",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-the72-egan-contract",
+      "title": "Hull City: John Egan to be offered new deal",
+      "publisher": "The72",
+      "url": "https://the72.co.uk/2026/06/10/hull-city-to-offer-john-egan-new-contract/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-theanalyst-obrien",
+      "title": "Jake O'Brien",
+      "publisher": "Opta Analyst",
+      "url": "https://theanalyst.com/players/3989/jake-obrien",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-footystats-oshea",
+      "title": "Dara O'Shea Stats - Goals, Blocks, xG & Career Stats",
+      "publisher": "FootyStats",
+      "url": "https://footystats.org/players/republic-of-ireland/dara-oshea",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-premierleague-ipswich-promo",
+      "title": "All you need to know as Ipswich Town are promoted to Premier League",
+      "publisher": "Premier League",
+      "url": "https://www.premierleague.com/en/news/4644752/all-you-need-to-know-as-ipswich-town-are-promoted-to-the-premier-league",
+      "kind": "league-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-fotmob-scales",
+      "title": "Liam Scales - stats, career and market value",
+      "publisher": "FotMob",
+      "url": "https://www.fotmob.com/en-GB/players/782705/liam-scales",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-irishtimes-bazunu-injury",
+      "title": "Knee injury ends Gavin Bazunu's loan spell at Standard Liège",
+      "publisher": "The Irish Times",
+      "url": "https://www.irishtimes.com/sport/soccer/2025/04/24/knee-injury-ends-gavin-bazunus-loan-spell-at-standard-liege/",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-the72-bazunu-zagreb",
+      "title": "Southampton: Dinamo Zagreb keen on Gavin Bazunu",
+      "publisher": "The72",
+      "url": "https://the72.co.uk/2026/08/19/southampton-dinamo-zagreb-eyeing-gavin-bazunu/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-ligue1-omobamidele",
+      "title": "Andrew Omobamidele's Strasbourg rebirth: how Ligue 1 restored Ireland's forgotten defender",
+      "publisher": "Ligue1.com",
+      "url": "https://ligue1.com/en/articles/l1_article_5004-andrew-omobamidele-s-strasbourg-rebirth-how-ligue-1-restored-ireland-s-forgotten-defender",
+      "kind": "league-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-bbc-omobamidele-strasbourg",
+      "title": "Omobamidele makes permanent switch to Strasbourg",
+      "publisher": "BBC Sport",
+      "url": "https://feeds.bbci.co.uk/sport/football/articles/c5ypekyyd2eo",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-harrogate-heffernan",
+      "title": "Centre Back Cathal Heffernan signs from Newcastle",
+      "publisher": "Harrogate Town AFC",
+      "url": "https://www.harrogatetownafc.com/news/2026/january/15/centre-back-cathal-heffernan-signs-from-newcastle/",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-a-src-newcastle-heffernan-depart",
+      "title": "Cathal Heffernan signs for Harrogate Town",
+      "publisher": "Newcastle United FC",
+      "url": "https://www.newcastleunited.com/en/news/cathal-heffernan-signs-for-harrogate-town",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Obtained via search snippet, not a direct page fetch."
+    },
+    {
+      "id": "group-b-the42-azaz-manning-withdraw",
+      "title": "Finn Azaz and Ryan Manning to miss Ireland's end-of-season friendlies",
+      "publisher": "The42.ie",
+      "url": "https://www.the42.ie/ireland-mnt-squad-update-qatar-canada-7050997-May2026/",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary; not independently fetched in full."
+    },
+    {
+      "id": "group-b-yahoo-saints-withdraw",
+      "title": "Saints duo withdraw from Ireland squad ahead of summer friendlies",
+      "publisher": "Yahoo Sports UK",
+      "url": "https://uk.sports.yahoo.com/news/saints-duo-withdraw-ireland-squad-135500443.html",
+      "kind": "major-broadcaster",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary; not independently fetched in full."
+    },
+    {
+      "id": "group-b-playmakerstats-manning",
+      "title": "Ryan Manning :: 2025/2026 - Southampton - Player Profile & Stats",
+      "publisher": "PlaymakerStats",
+      "url": "https://www.playmakerstats.com/player/ryan-manning/434544",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-espn-molumby",
+      "title": "Jayson Molumby Career Stats",
+      "publisher": "ESPN",
+      "url": "https://www.espn.com/soccer/player/stats/_/id/243465/jayson-molumby",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-footballleagueworld-browne",
+      "title": "How Sunderland feel about selling Alan Browne as big Boro decision looms",
+      "publisher": "Football League World",
+      "url": "https://footballleagueworld.co.uk/how-sunderland-feel-about-selling-alan-browne-as-big-boro-decision-looms/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-bbc-taylor-contract",
+      "title": "Taylor signs new Ipswich deal until 2028",
+      "publisher": "BBC Sport",
+      "url": "https://feeds.bbci.co.uk/sport/football/articles/c75q2kw2kd3o",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-espn-knight",
+      "title": "Jason Knight (footballer) profile and stats",
+      "publisher": "ESPN / footystats",
+      "url": "https://footystats.org/players/republic-of-ireland/jason-knight",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-southampton-azaz-signing",
+      "title": "Saints swoop for Azaz",
+      "publisher": "Southampton FC (official)",
+      "url": "https://www.southamptonfc.com/en/news/article/saints-swoop-for-azaz",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-rte-brady-released",
+      "title": "Robbie Brady on lookout for new club after Preston release",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0519/1574189-brady-on-lookout-for-new-club-after-preston-release/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-irishexaminer-brady",
+      "title": "Robbie Brady searching for new club after Preston exit",
+      "publisher": "Irish Examiner",
+      "url": "https://www.irishexaminer.com/sport/soccer/arid-41847690.html",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-edinburgh-reporter-mcgrath-poty",
+      "title": "Jamie McGrath named Hibs Player of the Year",
+      "publisher": "The Edinburgh Reporter",
+      "url": "https://theedinburghreporter.co.uk/2026/05/jamie-mcgrath-named-hibs-player-of-the-year/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-stmirren-phillips-poty",
+      "title": "Killian Phillips double gives Saints opening day victory / SPFL Team of the Week",
+      "publisher": "St Mirren FC (official)",
+      "url": "https://www.stmirren.com/news/match-report-falkirk-st-mirren-1st-aug",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-rte-hodge-motherwell",
+      "title": "Transfers: Republic of Ireland's Joe Hodge joins Motherwell from Tondela",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0812/1587598-transfers-irelands-hodge-joins-motherwell-from-tondela/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-charlton-coventry-squad",
+      "title": "Conor Coventry named in Republic of Ireland squad",
+      "publisher": "Charlton Athletic FC (official)",
+      "url": "https://www.charltonafc.com/news/conor-coventry-named-republic-ireland-squad",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-espn-coventry",
+      "title": "Conor Coventry stats",
+      "publisher": "ESPN",
+      "url": "https://www.espn.com/soccer/player/matches/_/id/243543/conor-coventry",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-bohemians-devoy-canada",
+      "title": "Dawson Devoy to join Ireland squad ahead of friendly away to Canada",
+      "publisher": "Bohemian Football Club (official)",
+      "url": "https://bohemians.ie/dawson-devoy-to-join-ireland-squad-ahead-of-friendly-away-to-canada/",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-sportsjoe-ndaba-debut",
+      "title": "Corrie Ndaba makes impressive debut as he becomes seventh Irish player to play Serie A",
+      "publisher": "SportsJOE",
+      "url": "https://www.sportsjoe.ie/sport/football/corrie-ndaba-serie-a-lecce-debut-351162",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-getfootballnewsfrance-omobamidele",
+      "title": "Strasbourg's Andrew Omobamidele sustains ankle injury",
+      "publisher": "Get French Football News",
+      "url": "https://www.getfootballnewsfrance.com/2025/strasbourgs-andrew-omobamidele-sustains-ankle-injury/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-wikipedia-omobamidele",
+      "title": "Andrew Omobamidele",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Andrew_Omobamidele",
+      "kind": "reference",
+      "reliability": "low",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Used only to locate/corroborate; not relied upon as sole source."
+    },
+    {
+      "id": "group-b-rte-curtis-chesterfield",
+      "title": "Curtis wastes no time in making mark at Chesterfield",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0104/1551421-curtis-wastes-no-time-in-making-mark-at-chesterfield/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-rte-moran-consistency",
+      "title": "Attack-minded Andrew Moran striving for consistency",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0514/1573414-attack-minded-moran-striving-for-consistency/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Fetched in full; the article's reference to a 'Grenada' friendly squad call-up could not be corroborated against official FAI squad lists and is flagged as unverified."
+    },
+    {
+      "id": "group-b-watfordfc-vata",
+      "title": "Rocco Vata player profile",
+      "publisher": "Watford FC (official)",
+      "url": "https://www.watfordfc.com/teams/men/roccovata",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-b-cardiffcityfc-mcguinness",
+      "title": "M. McGuinness player profile",
+      "publisher": "Cardiff City FC (official)",
+      "url": "https://www.cardiffcityfc.co.uk/player/229",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search-result summary."
+    },
+    {
+      "id": "group-c-src-balls-march-squad",
+      "title": "Heimir Names His 25-Man Ireland Squad To Face Czechia",
+      "publisher": "Balls.ie",
+      "url": "https://www.balls.ie/football/ireland-squad-czechia-world-cup-playoff-651859",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary, not directly fetched."
+    },
+    {
+      "id": "group-c-src-rte-may-squad",
+      "title": "Melia and four LOI players included in Ireland squad",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0517/1573799-melia-and-four-loi-players-included-in-ireland-squad/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary, not directly fetched."
+    },
+    {
+      "id": "group-c-src-bbc-idah-swansea",
+      "title": "Swansea complete deal for Celtic striker Idah",
+      "publisher": "BBC Sport",
+      "url": "https://feeds.bbci.co.uk/sport/football/articles/cd0d1993gx8o",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary; direct fetch attempt was blocked by tool permissions."
+    },
+    {
+      "id": "group-c-src-search-idah-swansea",
+      "title": "Adam Idah joins Swansea City from Celtic (search aggregation)",
+      "publisher": "Multiple (Swansea City official site, BBC, beIN Sports)",
+      "url": "https://www.swanseacity.com/news/adam-idah-joins-swansea-city-celtic",
+      "kind": "club-official",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary; direct fetch attempt was blocked by tool permissions."
+    },
+    {
+      "id": "group-c-src-rte-szmodics-loan",
+      "title": "Sammie Szmodics secures season-long loan move back to Derby",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0801/1586107-szmodics-secures-season-long-loan-move-back-to-derby/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-dcfc-szmodics",
+      "title": "Transfer News: Reintroducing... Sam Szmodics",
+      "publisher": "Derby County FC (official)",
+      "url": "https://www.dcfc.co.uk/news/2026/08/transfer-news-reintroducingsam-szmodics",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-search-ogbene-stats",
+      "title": "Chiedozie Ogbene | Football Stats | 2025/2026 season",
+      "publisher": "Soccerbase",
+      "url": "https://www.soccerbase.com/players/player.sd?player_id=92936&season_id=158",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-search-kenny-bolton",
+      "title": "A Kenny Bit Of Business",
+      "publisher": "Bolton Wanderers FC (official)",
+      "url": "https://www.bwfc.co.uk/news/kenny-bit-business",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-footballtransfers-kenny",
+      "title": "Celtic transfer news: Johnny Kenny plan confirmed after Kasper Hogh signing",
+      "publisher": "FootballTransfers",
+      "url": "https://www.footballtransfers.com/en/transfer-news/gb-sct-premier-league/2026/08/celtic-transfer-news-johnny-kenny-shaun-maloney-kasper-hogh-summer-2026",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-irishtimes-melia-loan",
+      "title": "Mason Melia signs for Lincoln City on season-long loan",
+      "publisher": "The Irish Times",
+      "url": "https://www.irishtimes.com/sport/soccer/2026/08/05/mason-melia-signs-for-lincoln-city-on-season-long-loan/",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-rte-melia-debut",
+      "title": "Ireland international Melia makes Spurs debut",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0729/1585610-ireland-international-melia-makes-spurs-debut/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-stpatsfc-melia",
+      "title": "Melia To Join Tottenham In 2026",
+      "publisher": "St Patrick's Athletic FC (official)",
+      "url": "https://www.stpatsfc.com/news.php?id=9730",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-rte-ferguson-injury",
+      "title": "Ferguson ruled out of Czech play-off as he awaits surgery",
+      "publisher": "RTÉ Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0307/1562144-ferguson-ruled-out-of-czech-playoff-as-he-awaits-surgery/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-footballitalia-ferguson",
+      "title": "Evan Ferguson's Roma career likely over after surgery decision",
+      "publisher": "Football Italia",
+      "url": "https://football-italia.net/ferguson-roma-career-likely-over-after-surgery/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-search-ebosele-erzurumspor",
+      "title": "Erzurumspor FK announce Festy Ebosele transfer",
+      "publisher": "Aggregated Turkish sports press (Sabah, Fotomaç and others)",
+      "url": "https://www.sabah.com.tr/spor/futbol/2026/08/09/festy-ebosele-erzurumspor-fkda",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary; multiple Turkish outlets corroborate the same transfer."
+    },
+    {
+      "id": "group-c-src-bbc-ebosele-basaksehir",
+      "title": "Republic of Ireland's Ebosele joins Turkish club",
+      "publisher": "BBC Sport",
+      "url": "https://feeds.bbci.co.uk/sport/football/articles/clynxzj1552o",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-search-johnston-wba",
+      "title": "Mikey Johnston | West Bromwich Albion (profile/news aggregation)",
+      "publisher": "West Bromwich Albion (official) / Celticnewsnow",
+      "url": "https://www.wba.co.uk/player/304",
+      "kind": "club-official",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-irishtimes-mcateer-transfer",
+      "title": "Kasey McAteer signs for Ipswich Town from Leicester City",
+      "publisher": "The Irish Times",
+      "url": "https://www.irishtimes.com/sport/soccer/2025/08/22/kasey-mcateer-signs-for-ipswich-town-from-leicester-city/",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-irishexaminer-mcateer-callup",
+      "title": "Kasey McAteer earns maiden Ireland call-up, Shane Duffy misses out",
+      "publisher": "Irish Examiner",
+      "url": "https://www.irishexaminer.com/sport/soccer/arid-41465341.html",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-search-cannon-sheffield",
+      "title": "Sheffield United told to make £3m Tom Cannon transfer decision (aggregated Cannon reporting)",
+      "publisher": "Football League World / Yorkshire Post / the72.co.uk",
+      "url": "https://footballleagueworld.co.uk/sheffield-united-told-3m-transfer-decision-tom-cannon-have-to/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary; figures on fee and stats vary slightly between outlets aggregated together."
+    },
+    {
+      "id": "group-c-src-irishtimes-cannon-commitment",
+      "title": "Tom Cannon 'always committed' to Ireland despite England approach from Lee Carsley",
+      "publisher": "The Irish Times",
+      "url": "https://www.irishtimes.com/sport/soccer/2024/06/02/tom-cannon-always-committed-to-ireland-despite-england-approach-from-lee-carsley/",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-sligorovers-zefi",
+      "title": "Kevin Zefi signs for Sligo Rovers",
+      "publisher": "Sligo Rovers FC (official)",
+      "url": "https://www.sligorovers.com/kevin-zefi-signs-for-sligo-rovers/",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-the42-zefi",
+      "title": "Former Inter Milan and Roma player Kevin Zefi joins Sligo Rovers until end of season",
+      "publisher": "The42.ie",
+      "url": "https://www.the42.ie/kevin-zefi-sligo-7054797-May2026/",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-wiki-oneill",
+      "title": "Ollie O'Neill",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ollie_O'Neill",
+      "kind": "reference",
+      "reliability": "low",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Used only to locate/corroborate basic biographical facts (U21 caps, club history); not used as sole source for any statistical claim requiring higher reliability."
+    },
+    {
+      "id": "group-c-src-southwarknews-emakhu",
+      "title": "Oxford United sign Millwall winger Aidomo Emakhu",
+      "publisher": "Southwark News",
+      "url": "https://southwarknews.co.uk/sport/football/millwall/oxford-united-sign-millwall-winger-aidomo-emakhu/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-bcfc-armstrong",
+      "title": "Armstrong joins Göztepe",
+      "publisher": "Bristol City FC (official)",
+      "url": "https://www.bcfc.co.uk/city-men-news/armstrong-joins-goztepe/",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-bbc-armstrong-recall",
+      "title": "Republic of Ireland recall Armstrong for play-off",
+      "publisher": "BBC Sport",
+      "url": "https://feeds.bbci.co.uk/sport/football/articles/cn0jy9j5dnzo",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "This article relates to a March 2025 Nations League play-off recall (v Bulgaria), not the 2026 World Cup play-off window; dated correctly in evidence notes to avoid confusion."
+    },
+    {
+      "id": "group-c-src-search-robinson-callup",
+      "title": "Callum Robinson club and international profile (aggregated)",
+      "publisher": "Multiple (Transfermarkt, Sky Sports, ESPN, extratime.com)",
+      "url": "https://www.skysports.com/football/player/124872/callum-robinson",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary combining several profile pages."
+    },
+    {
+      "id": "group-c-src-wba-robinson-departure",
+      "title": "Callum Robinson departs for Cardiff City",
+      "publisher": "West Bromwich Albion FC (official)",
+      "url": "https://www.wba.co.uk/news/callum-robinson-departs-cardiff-city",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Historical departure announcement (2022), used only for background career context."
+    },
+    {
+      "id": "group-c-src-wiki-johansson",
+      "title": "Ryan Johansson",
+      "publisher": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ryan_Johansson",
+      "kind": "reference",
+      "reliability": "low",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Used only to locate/corroborate biographical and eligibility facts; not used as sole source for statistical claims."
+    },
+    {
+      "id": "group-c-src-kicker-johansson",
+      "title": "Ryan Johansson | SV Wehen Wiesbaden | 3. Liga | 2025/26 | Spielerprofil",
+      "publisher": "Kicker.de",
+      "url": "https://www.kicker.de/ryan-johansson/spieler",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary."
+    },
+    {
+      "id": "group-c-src-search-parrott-stats",
+      "title": "Troy Parrott 2025-26 season statistics (aggregated)",
+      "publisher": "Multiple (SpursHub, 365Scores, ESPN)",
+      "url": "https://www.espn.com/soccer/player/stats/_/id/279790/Troy-Parrott",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Accessed via search summary; a direct WebFetch of Transfermarkt was blocked by tool permissions, so this figure could not be cross-checked against a primary statistics provider."
+    },
+    {
+      "id": "group-d-src-fai-u21-june2026",
+      "title": "Ireland MU21 squad confirmed for Croatia and Qatar friendlies",
+      "publisher": "Football Association of Ireland",
+      "url": "https://www.fai.ie/latest/ireland-mu21-squad-confirmed-croatia-and-qatar-friendlies/",
+      "kind": "governing-body",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-d-src-fai-u21-march2026",
+      "title": "Under-21s squad names for March EURO qualifiers",
+      "publisher": "Football Association of Ireland",
+      "url": "https://www.fai.ie/latest/under-21s-squad-names-march-euro-qualifiers/",
+      "kind": "governing-body",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search; not independently re-fetched in full."
+    },
+    {
+      "id": "group-d-src-fai-u21-moldova-andorra",
+      "title": "Under-21 squad named for Moldova & Andorra qualifiers",
+      "publisher": "Football Association of Ireland",
+      "url": "https://www.fai.ie/latest/under-21-squad-named-moldova-and-andorra-qualifiers/",
+      "kind": "governing-body",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-d-src-fai-grenada",
+      "title": "Hallgrímsson names 21-player squad for Grenada international friendly",
+      "publisher": "Football Association of Ireland",
+      "url": "https://www.fai.ie/latest/hallgrimsson-names-21-player-squad-grenada-international-friendly/",
+      "kind": "governing-body",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-d-src-balls-vata-abankwah",
+      "title": "High Praise From Hallgrímsson As \"Game-Changer\" Rocco Vata Earns Ireland Call-Up",
+      "publisher": "Balls.ie",
+      "url": "https://www.balls.ie/football/rocco-vata-james-abankwah-ireland-625738",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-waterford-abankwah",
+      "title": "Abankwah receives first senior call-up",
+      "publisher": "Waterford News & Star",
+      "url": "https://www.waterford-news.ie/sport/soccer/abankwah-receives-first-senior-call-up_arid-51220.html",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-rte-umeh-debut",
+      "title": "Debut boy Jaden Umeh: On that first dribble I had the whole crowd with me",
+      "publisher": "RTE Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0528/1575815-umeh-on-that-first-dribble-i-had-the-whole-crowd-with-me/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-d-src-irishexaminer-umeh",
+      "title": "Cork teenager Jaden Umeh called up to Benfica first team by Mourinho",
+      "publisher": "Irish Examiner",
+      "url": "https://www.irishexaminer.com/sport/soccer/arid-41832839.html",
+      "kind": "national-press",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Page could not be fetched directly in this session (access denied); claim based on search-result headline/summary only."
+    },
+    {
+      "id": "group-d-src-bbc-vata-watford",
+      "title": "Watford sign Celtic prospect Vata",
+      "publisher": "BBC Sport",
+      "url": "https://feeds.bbci.co.uk/sport/football/articles/cgr5d69z68lo",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-rte-konedoherty",
+      "title": "Ireland's Kone-Doherty joins Molde from Liverpool",
+      "publisher": "RTE Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0227/1560889-irelands-kone-doherty-joins-molde-from-liverpool/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-liverpool-konedoherty",
+      "title": "Trent Kone-Doherty",
+      "publisher": "Liverpool FC",
+      "url": "https://www.liverpoolfc.com/info/trent-kone-doherty",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-rte-melia-loan",
+      "title": "Melia loaned out to Lincoln City as Moylan joins Cardiff",
+      "publisher": "RTE Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0805/1586662-melia-joins-lincoln-city-on-season-long-loan-from-spurs/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-d-src-odd-melia",
+      "title": "Mason Melia: The Irish Teenage Sensation Breaking Records with Spurs Move",
+      "publisher": "Odd.ie",
+      "url": "https://www.odd.ie/news/who-is-record-breaking-spurs-signing-mason-melia/",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-burton-arubi",
+      "title": "BREWERS BRING IN GBEMI ARUBI",
+      "publisher": "Burton Albion FC",
+      "url": "https://www.burtonalbionfc.co.uk/news/2026/july/18/brewers-bring-in-gbemi-arubi/",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-allnigeriasoccer-arubi",
+      "title": "Irish-born forward on Nigeria's radar continues impressive season with winner for Dundalk",
+      "publisher": "AllNigeriaSoccer",
+      "url": "https://allnigeriasoccer.com/irish-born-forward-on-nigerias-radar-continues-impressive-season-with-winner-for-dundalk",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-rte-noonan",
+      "title": "Comfort key as Ajax and Forest circle for Noonan - Treacy",
+      "publisher": "RTE Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0622/1579757-comfort-key-as-ajax-and-forest-circle-for-noonan-treacy/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": null
+    },
+    {
+      "id": "group-d-src-wlrfm-lonergan-potm",
+      "title": "Waterford FC's Tommy Lonergan Named SSE Airtricity/Soccer Writers Ireland Player of the Month",
+      "publisher": "WLR FM",
+      "url": "https://wlrfm.com/sport/tommy-longergan-4475867/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Page could not be fetched directly in this session (access denied); claim based on search-result headline/summary only."
+    },
+    {
+      "id": "group-d-src-balls-jauny",
+      "title": "Promising Irish Goalkeeper Front And Centre Of Brest Champions League Celebrations",
+      "publisher": "Balls.ie",
+      "url": "https://www.balls.ie/football/noah-jauny-brest-celebrations-612106",
+      "kind": "national-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-rotowire-jauny",
+      "title": "Noah Jauny News: Departs Brest",
+      "publisher": "RotoWire",
+      "url": "https://www.rotowire.com/soccer/headlines/noah-jauny-news-departs-brest-526325",
+      "kind": "statistics",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-extratime-umehchibueze",
+      "title": "Portsmouth sign former Cork City youth Franco Umeh from Crystal Palace",
+      "publisher": "extratime.com",
+      "url": "https://www.extratime.com/articles/36528/portsmouth-sign-former-cork-city-youth-franco-umeh-from-crystal-palace/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-extratime-grehan",
+      "title": "Doncaster sign former Bohs defender Sean Grehan from Crystal Palace",
+      "publisher": "extratime.com",
+      "url": "https://www.extratime.com/articles/36086/doncaster-sign-former-bohs-defender-sean-grehan-from-crystal-palace/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-rte-umeh-brennan-u21",
+      "title": "Jaden Umeh and Adam Brennan among new faces for Republic of Ireland Under-21s' double-header",
+      "publisher": "RTE Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0319/1564199-umeh-and-brennan-among-new-faces-for-ireland-under-21s/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-malaga-ochoa",
+      "title": "Aaron Ochoa, called up to the Ireland U-21 squad",
+      "publisher": "Málaga CF",
+      "url": "https://www.malagacf.com/en/news/aaron-ochoa-citado-con-la-sub-21-irlandesa",
+      "kind": "club-official",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-donegallive-patton",
+      "title": "First league start for Sean Patton as Reading move into the play-offs",
+      "publisher": "Donegal Live",
+      "url": "https://www.donegallive.ie/sport/soccer/first-league-start-for-sean-patton-as-reading-move-into-the-play-offs-6602051",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-extratime-corysosullivan",
+      "title": "Cory O'Sullivan player profile",
+      "publisher": "extratime.com",
+      "url": "https://www.extratime.com/player/11141832/cory_osullivan/",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-rte-nationsleague-draw",
+      "title": "Ireland drawn with Israel in Nations League - recap",
+      "publisher": "RTE Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0212/1558195-republic-of-irelands-uefa-nations-league-draw/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-rte-nationsleague-dates",
+      "title": "Dates for Ireland's Nations League fixtures revealed",
+      "publisher": "RTE Sport",
+      "url": "https://www.rte.ie/sport/soccer/2026/0213/1558292-dates-for-irelands-nations-league-fixtures-revealed/",
+      "kind": "major-broadcaster",
+      "reliability": "high",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    },
+    {
+      "id": "group-d-src-burton-arubi-details",
+      "title": "Huddersfield Town-linked forward 'decides' on Burton Albion move",
+      "publisher": "Yorkshire Post",
+      "url": "https://www.yorkshirepost.co.uk/sport/football/huddersfield-town-dundalk-gbemi-arubi-burton-albion-8808730",
+      "kind": "regional-press",
+      "reliability": "medium",
+      "accessedDate": "2026-08-20",
+      "accessNote": "Found via search summary, not independently re-fetched."
+    }
+  ]
+}

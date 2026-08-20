@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 215 40% 8%;
+    --foreground: 210 20% 94%;
+    --card: 217 33% 11%;
+    --card-foreground: 210 20% 94%;
+    --popover: 217 33% 12%;
+    --popover-foreground: 210 20% 94%;
+    --primary: 154 54% 39%;
+    --primary-foreground: 155 60% 97%;
+    --secondary: 217 26% 18%;
+    --secondary-foreground: 210 20% 94%;
+    --muted: 217 26% 16%;
+    --muted-foreground: 215 16% 65%;
+    --accent: 217 26% 20%;
+    --accent-foreground: 210 20% 94%;
+    --destructive: 3 72% 55%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 217 25% 20%;
+    --input: 217 25% 22%;
+    --ring: 154 54% 45%;
+    --radius: 0.6rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
+  }
+
+  /* Tabular figures keep dense stat tables from shifting column to column. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .diagonal-hatch {
+    background-image: repeating-linear-gradient(
+      45deg,
+      hsl(var(--muted-foreground) / 0.28) 0,
+      hsl(var(--muted-foreground) / 0.28) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  }
+}
