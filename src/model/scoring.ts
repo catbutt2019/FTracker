@@ -202,7 +202,11 @@ export function scoreSeason(
   }
 }
 
-export function playingTimeStatus(minutesPercentage: number): PlayingTimeStatus {
+export function playingTimeStatus(minutesPercentage: number | null): PlayingTimeStatus {
+  // Unknown, not minimal. Most seasons in this dataset carry appearances with
+  // no minutes total, and grading those as "minimal minutes" libelled players
+  // who were in fact regular starters.
+  if (minutesPercentage === null) return 'unknown'
   if (minutesPercentage >= 0.7) return 'nailed-on'
   if (minutesPercentage >= 0.4) return 'rotation'
   if (minutesPercentage >= 0.18) return 'fringe'
@@ -224,14 +228,21 @@ export function playingTimeStatus(minutesPercentage: number): PlayingTimeStatus 
  * the pitch, and would silently override every other metric with the
  * regression-to-the-mean fallback. Falling back to appearances keeps that
  * distinction honest without inventing a specific minutes total.
+ *
+ * `null` and `0` are both routed to that fallback but mean different things:
+ * `null` is "minutes were never published", which is the common case in this
+ * dataset, while `0` is the genuine "named in the squad, never played". The
+ * fallback is right for both — with no minutes to weigh, appearances are the
+ * only available measure of sample size — but only `null` should ever be
+ * *displayed* as unknown. See `SeasonRecord.minutes` in types/domain.ts.
  */
 export function reliability(
-  weightedMinutes: number,
+  weightedMinutes: number | null,
   coverage: number,
   weightedAppearances = 0,
 ): number {
   const minutesFactor =
-    weightedMinutes > 0
+    weightedMinutes !== null && weightedMinutes > 0
       ? weightedMinutes / (weightedMinutes + MODEL_CONFIG.reliabilityMinutes)
       : weightedAppearances / (weightedAppearances + MODEL_CONFIG.reliabilityAppearances)
   const coverageFactor = 0.6 + 0.4 * clamp(coverage, 0, 1)

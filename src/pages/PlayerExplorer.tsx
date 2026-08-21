@@ -81,7 +81,9 @@ function compareBySortKey(a: Player, b: Player, key: SortKey): number {
     case 'age':
       return a.exactAge - b.exactAge
     case 'minutes':
-      return a.minutes - b.minutes
+      // Unknown minutes sort to the bottom rather than tying with a genuine
+      // zero, so ordering by minutes never implies a player did not play.
+      return (a.minutes ?? -1) - (b.minutes ?? -1)
     case 'improve':
       return a.forecast.improvementProbability - b.forecast.improvementProbability
     case 'change':
@@ -630,16 +632,31 @@ function PlayerTable({
                   <TableCell className="text-xs text-muted-foreground">
                     {NATIONAL_TEAM_LEVEL_LABELS[player.nationalTeamLevel]}
                     {player.internationalCaps > 0 && (
-                      <span className="block">{player.internationalCaps} caps</span>
+                      <span className="block">
+                        {player.internationalCaps} {player.internationalCaps === 1 ? 'cap' : 'caps'}
+                      </span>
                     )}
                   </TableCell>
                   <TableCell className="tabular text-right">
-                    {player.minutes.toLocaleString()}
-                    <span className="block text-xs text-muted-foreground">
-                      {Math.round(player.minutesPercentage * 100)}%
-                    </span>
+                    {player.minutes === null ? (
+                      <span
+                        className="text-muted-foreground"
+                        title="No minutes total was published for this season. Not the same as zero minutes."
+                      >
+                        —
+                      </span>
+                    ) : (
+                      <>
+                        {player.minutes.toLocaleString()}
+                        <span className="block text-xs text-muted-foreground">
+                          {player.minutesPercentage === null
+                            ? ''
+                            : `${Math.round(player.minutesPercentage * 100)}%`}
+                        </span>
+                      </>
+                    )}
                   </TableCell>
-                  <TableCell className="tabular text-right">{player.starts}</TableCell>
+                  <TableCell className="tabular text-right">{player.starts ?? '—'}</TableCell>
                   <TableCell className="tabular text-right font-medium">
                     {player.forecast.currentPerformanceScore.toFixed(1)}
                   </TableCell>
@@ -714,11 +731,17 @@ function PlayerGrid({ players }: { players: Player[] }) {
             <div className="grid grid-cols-3 gap-2 border-t border-border/60 pt-3 text-xs">
               <div>
                 <p className="text-muted-foreground">Minutes</p>
-                <p className="tabular">{player.minutes.toLocaleString()}</p>
+                <p className="tabular">
+                  {player.minutes === null ? (
+                    <span title="No minutes total was published for this season.">—</span>
+                  ) : (
+                    player.minutes.toLocaleString()
+                  )}
+                </p>
               </div>
               <div>
                 <p className="text-muted-foreground">Starts</p>
-                <p className="tabular">{player.starts}</p>
+                <p className="tabular">{player.starts ?? '—'}</p>
               </div>
               <div>
                 <p className="text-muted-foreground">vs last</p>

@@ -78,7 +78,8 @@ export function confidenceLevel(score: number): ConfidenceLevel {
  * ------------------------------------------------------------------ */
 
 export interface ConfidenceInputs {
-  weightedMinutes: number
+  /** `null` when no season in the window published a minutes total. */
+  weightedMinutes: number | null
   coverage: number
   seasonCount: number
   hasInjuryData: boolean
@@ -86,7 +87,7 @@ export interface ConfidenceInputs {
   /**
    * Fallback playing-time signal for seasons where a source reports
    * appearances but never published minutes. Only consulted when
-   * `weightedMinutes` is zero, so it never displaces a real minutes figure.
+   * `weightedMinutes` is null or zero, so it never displaces a real figure.
    */
   weightedAppearances?: number
 }
@@ -99,7 +100,7 @@ export interface ConfidenceInputs {
  */
 export function computeConfidence(inputs: ConfidenceInputs): number {
   const minutesFactor =
-    inputs.weightedMinutes > 0
+    inputs.weightedMinutes !== null && inputs.weightedMinutes > 0
       ? clamp(inputs.weightedMinutes / 2600, 0, 1)
       : clamp((inputs.weightedAppearances ?? 0) / (2600 / 90), 0, 1)
   const coverageFactor = clamp(inputs.coverage, 0, 1)
@@ -128,7 +129,7 @@ interface ExplanationInputs {
   momentum: number
   exactAge: number
   coverage: number
-  weightedMinutes: number
+  weightedMinutes: number | null
   regressionAdjustment: number
   confidence: number
 }
@@ -169,9 +170,24 @@ function buildForecastReasons(input: ExplanationInputs): string[] {
     )
   }
 
-  if (latest.minutesPercentage >= MODEL_CONFIG.regularMinutesThreshold) {
+  // Two branches because minutes are unpublished for most seasons in this
+  // dataset. Without the appearances fallback, the great majority of players
+  // would silently lose this line — not because their sample is thin, but
+  // because the source never printed a minutes column.
+  if (
+    latest.minutesPercentage !== null &&
+    latest.minutesPercentage >= MODEL_CONFIG.regularMinutesThreshold
+  ) {
+    const startsClause = latest.starts !== null ? ` and ${latest.starts} starts` : ''
     reasons.push(
-      `Regular playing time at ${latest.club} — ${latest.minutes.toLocaleString()} minutes and ${latest.starts} starts — means the underlying numbers rest on a reasonable sample.`,
+      `Regular playing time at ${latest.club} — ${(latest.minutes ?? 0).toLocaleString()} minutes${startsClause} — means the underlying numbers rest on a reasonable sample.`,
+    )
+  } else if (
+    latest.minutesPercentage === null &&
+    (player.seasons[0]?.appearances ?? 0) >= MODEL_CONFIG.regularAppearancesThreshold
+  ) {
+    reasons.push(
+      `${player.seasons[0].appearances} appearances at ${latest.club} in ${latest.season} point to a reasonable sample, though no minutes total was published for the season, so involvement cannot be graded precisely.`,
     )
   }
 
@@ -218,7 +234,11 @@ function buildUncertaintyReasons(input: ExplanationInputs): string[] {
     )
   }
 
-  if (weightedMinutes < 1200) {
+  if (weightedMinutes === null) {
+    reasons.push(
+      `No minutes total was published for any recent season, so the sample size behind this projection is inferred from appearances alone. An appearance may be ninety minutes or five, which widens the range.`,
+    )
+  } else if (weightedMinutes < 1200) {
     reasons.push(
       `Only around ${Math.round(weightedMinutes).toLocaleString()} recency-weighted minutes are available. Small samples move a lot from season to season, so the projection is deliberately wide.`,
     )
@@ -324,6 +344,12 @@ export function forecastPlayer(
   let scoreSum = 0
   let weightSum = 0
   let minutesSum = 0
+  // Tracked separately from `weightSum` so that seasons with no published
+  // minutes are excluded from the average rather than averaged in as zeros.
+  // Diluting a real 3,000-minute season with two unpublished ones would
+  // report a 1,000-minute sample and collapse the player's confidence on the
+  // strength of data that was never missing in the first place.
+  let minutesWeightSum = 0
   let appearancesSum = 0
   let coverageSum = 0
   seasonScores.forEach((season, index) => {
@@ -331,13 +357,16 @@ export function forecastPlayer(
     if (weight === 0) return
     scoreSum += season.adjustedScore * weight
     coverageSum += season.metricCoverage * weight
-    minutesSum += season.minutes * weight
+    if (season.minutes !== null) {
+      minutesSum += season.minutes * weight
+      minutesWeightSum += weight
+    }
     appearancesSum += (player.seasons[index]?.appearances ?? 0) * weight
     weightSum += weight
   })
   const observedScore = weightSum > 0 ? scoreSum / weightSum : 50
   const coverage = weightSum > 0 ? coverageSum / weightSum : 0
-  const weightedMinutes = weightSum > 0 ? minutesSum / weightSum : 0
+  const weightedMinutes = minutesWeightSum > 0 ? minutesSum / minutesWeightSum : null
   const weightedAppearances = weightSum > 0 ? appearancesSum / weightSum : 0
 
   // 3. Regression to the mean.

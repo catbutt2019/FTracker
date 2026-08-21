@@ -1,22 +1,26 @@
 import { describe, expect, it } from 'vitest'
 import type { Player, Position, SeniorStatus } from '@/types/domain'
 import { POSITIONS } from '@/types/domain'
-import { REQUIRED_STARTING_SLOTS } from '../config'
+import { MATCHDAY_INVOLVEMENT, REQUIRED_STARTING_SLOTS } from '../config'
 import { buildMatchdaySelection } from '../matchdayXI'
 
-function seniorStatus(availabilityStatus: SeniorStatus['availabilityStatus'] = null): SeniorStatus {
+function seniorStatus(overrides: Partial<SeniorStatus> = {}): SeniorStatus {
   return {
     seniorCaps: 0,
     seniorStarts: null,
     competitiveSeniorStarts: null,
     seniorMinutes: null,
+    // Null by default, so a fixture that says nothing about internationals
+    // gets the neutral involvement factor and these tests stay about whatever
+    // they are actually testing.
     seniorMinutesLast12Months: null,
     lastSeniorAppearanceDate: null,
     lastSeniorStartDate: null,
     recentSquadCallups: null,
     clubMinutesLast12Months: null,
     clubCompetitionLevel: 60,
-    availabilityStatus,
+    availabilityStatus: null,
+    ...overrides,
   }
 }
 
@@ -28,6 +32,8 @@ function player(options: {
   score: number
   secondaryPositions?: Position[]
   availabilityStatus?: SeniorStatus['availabilityStatus']
+  seniorMinutesLast12Months?: number | null
+  lastSeniorAppearanceDate?: string | null
 }): Player {
   idCounter += 1
   const {
@@ -36,6 +42,8 @@ function player(options: {
     score,
     secondaryPositions = [],
     availabilityStatus = null,
+    seniorMinutesLast12Months = null,
+    lastSeniorAppearanceDate = null,
   } = options
   return {
     id,
@@ -44,7 +52,11 @@ function player(options: {
     minutes: 2200,
     primaryPosition: position,
     secondaryPositions,
-    seniorStatus: seniorStatus(availabilityStatus),
+    seniorStatus: seniorStatus({
+      availabilityStatus,
+      seniorMinutesLast12Months,
+      lastSeniorAppearanceDate,
+    }),
     forecast: {
       currentPerformanceScore: score,
       trajectory: 'stable',
@@ -67,9 +79,15 @@ function completeSquad(score = 60): Player[] {
 
 const TOTAL_SLOTS = POSITIONS.reduce((sum, p) => sum + REQUIRED_STARTING_SLOTS[p], 0)
 
+/**
+ * Fixed so the international-involvement adjustment is deterministic. Every
+ * date in these fixtures is expressed relative to this, not to "now".
+ */
+const AS_OF = '2026-08-21'
+
 describe('buildMatchdaySelection', () => {
   it('selects exactly the number of players the formation requires', () => {
-    const selection = buildMatchdaySelection(completeSquad(), [])
+    const selection = buildMatchdaySelection(completeSquad(), [], AS_OF)
     expect(selection.slots).toHaveLength(TOTAL_SLOTS)
     expect(TOTAL_SLOTS).toBe(11)
     expect(selection.unfilled).toEqual([])
@@ -84,7 +102,7 @@ describe('buildMatchdaySelection', () => {
       score: 99,
       secondaryPositions: POSITIONS.filter((p) => p !== 'CM'),
     })
-    const selection = buildMatchdaySelection([...completeSquad(), versatile], [])
+    const selection = buildMatchdaySelection([...completeSquad(), versatile], [], AS_OF)
     const ids = selection.slots.map((slot) => slot.player.id)
     expect(new Set(ids).size).toBe(ids.length)
     expect(ids.filter((id) => id === 'versatile')).toHaveLength(1)
@@ -95,12 +113,12 @@ describe('buildMatchdaySelection', () => {
     const striker = player({ id: 'star-striker', position: 'ST', score: 95 })
     const players = [...squad, striker]
 
-    const withStriker = buildMatchdaySelection(players, [])
+    const withStriker = buildMatchdaySelection(players, [], AS_OF)
     expect(withStriker.slots.some((s) => s.player.id === 'star-striker')).toBe(true)
 
     const withoutStriker = buildMatchdaySelection(players, [
       { playerId: 'star-striker', reason: 'Injured', recordedOn: '2026-08-21' },
-    ])
+    ], AS_OF)
     expect(withoutStriker.slots.some((s) => s.player.id === 'star-striker')).toBe(false)
     expect(withoutStriker.unavailable.map((u) => u.player.id)).toEqual(['star-striker'])
   })
@@ -110,7 +128,7 @@ describe('buildMatchdaySelection', () => {
     const players = [...squad, player({ id: 'star-striker', position: 'ST', score: 95 })]
     const selection = buildMatchdaySelection(players, [
       { playerId: 'star-striker', reason: 'Injured', recordedOn: '2026-08-21' },
-    ])
+    ], AS_OF)
 
     expect(selection.strengthAtFullAvailability).toBeGreaterThan(selection.strength)
     expect(selection.strengthCostOfAbsences).toBeLessThan(0)
@@ -122,7 +140,7 @@ describe('buildMatchdaySelection', () => {
     const players = [...completeSquad(60), player({ id: 'fringe', position: 'ST', score: 20 })]
     const selection = buildMatchdaySelection(players, [
       { playerId: 'fringe', reason: 'Injured', recordedOn: '2026-08-21' },
-    ])
+    ], AS_OF)
 
     expect(selection.strengthCostOfAbsences).toBe(0)
     expect(selection.unavailable).toHaveLength(1)
@@ -133,14 +151,14 @@ describe('buildMatchdaySelection', () => {
     // typo has to be visible.
     const selection = buildMatchdaySelection(completeSquad(), [
       { playerId: 'nobody-by-this-id', reason: 'Injured', recordedOn: '2026-08-21' },
-    ])
+    ], AS_OF)
     expect(selection.unmatchedUnavailableIds).toEqual(['nobody-by-this-id'])
     expect(selection.unavailable).toHaveLength(0)
   })
 
   it('reports a slot as unfilled rather than quietly fielding ten players', () => {
     const withoutKeeper = completeSquad().filter((p) => p.primaryPosition !== 'GK')
-    const selection = buildMatchdaySelection(withoutKeeper, [])
+    const selection = buildMatchdaySelection(withoutKeeper, [], AS_OF)
     expect(selection.unfilled).toEqual(['GK'])
     expect(selection.slots).toHaveLength(TOTAL_SLOTS - 1)
   })
@@ -151,7 +169,7 @@ describe('buildMatchdaySelection', () => {
     // positions, rather than counted at face value.
     const squad = completeSquad().filter((p) => p.primaryPosition !== 'LB')
     const cover = player({ id: 'cover', position: 'CB', score: 70, secondaryPositions: ['LB'] })
-    const selection = buildMatchdaySelection([...squad, cover], [])
+    const selection = buildMatchdaySelection([...squad, cover], [], AS_OF)
 
     const leftBack = selection.slots.find((slot) => slot.position === 'LB')
     expect(leftBack?.player.id).toBe('cover')
@@ -165,7 +183,7 @@ describe('buildMatchdaySelection', () => {
     // rather than being consumed by the position that already has cover.
     const squad = completeSquad().filter((p) => p.primaryPosition !== 'LB')
     const dual = player({ id: 'dual', position: 'CB', score: 70, secondaryPositions: ['LB'] })
-    const selection = buildMatchdaySelection([...squad, dual], [])
+    const selection = buildMatchdaySelection([...squad, dual], [], AS_OF)
 
     expect(selection.slots.find((slot) => slot.position === 'LB')?.player.id).toBe('dual')
     expect(selection.unfilled).toEqual([])
@@ -180,7 +198,7 @@ describe('buildMatchdaySelection', () => {
       score: 95,
       availabilityStatus: 'injured',
     })
-    const selection = buildMatchdaySelection([...completeSquad(), striker], [])
+    const selection = buildMatchdaySelection([...completeSquad(), striker], [], AS_OF)
 
     expect(selection.slots.some((s) => s.player.id === 'crocked')).toBe(false)
     expect(selection.unavailable.map((u) => [u.player.id, u.source])).toEqual([
@@ -200,7 +218,7 @@ describe('buildMatchdaySelection', () => {
     })
     const selection = buildMatchdaySelection([...completeSquad(), striker], [
       { playerId: 'crocked', reason: 'Injured', recordedOn: '2026-08-21' },
-    ])
+    ], AS_OF)
 
     expect(selection.unavailable).toHaveLength(1)
     expect(selection.unavailable[0].source).toBe('researched')
@@ -213,17 +231,105 @@ describe('buildMatchdaySelection', () => {
     const striker = player({ id: 'hand-entered', position: 'ST', score: 95 })
     const selection = buildMatchdaySelection([...completeSquad(), striker], [
       { playerId: 'hand-entered', reason: 'Injured', recordedOn: '2026-08-21' },
-    ])
+    ], AS_OF)
 
     expect(selection.slots.some((s) => s.player.id === 'hand-entered')).toBe(false)
     expect(selection.unavailable[0].source).toBe('manual')
     expect(selection.redundantManualIds).toEqual([])
   })
 
+  it('prefers the more recently capped of two near-equal candidates', () => {
+    // The Doherty/Coleman case that prompted this. Two right-backs within two
+    // points of each other on club form: one played a full year of
+    // internationals and was capped ten weeks ago, the other has 69 minutes
+    // and has not featured since the previous September. Club form alone
+    // cannot separate them, and picked the peripheral one.
+    const squad = completeSquad().filter((p) => p.primaryPosition !== 'RB')
+    const current = player({
+      id: 'current',
+      position: 'RB',
+      score: 53,
+      seniorMinutesLast12Months: 656,
+      lastSeniorAppearanceDate: '2026-06-06',
+    })
+    const peripheral = player({
+      id: 'peripheral',
+      position: 'RB',
+      score: 55,
+      seniorMinutesLast12Months: 69,
+      lastSeniorAppearanceDate: '2025-09-06',
+    })
+    const selection = buildMatchdaySelection([...squad, current, peripheral], [], AS_OF)
+
+    expect(selection.slots.find((s) => s.position === 'RB')?.player.id).toBe('current')
+  })
+
+  it('does not let involvement overturn a genuine gap in ability', () => {
+    // The guard that keeps this an ability model with a selection nudge rather
+    // than a model of who the manager happens to favour. A 40-point gap must
+    // survive maximal involvement on one side and none at all on the other.
+    const squad = completeSquad().filter((p) => p.primaryPosition !== 'ST')
+    const better = player({ id: 'better', position: 'ST', score: 90 })
+    const favoured = player({
+      id: 'favoured',
+      position: 'ST',
+      score: 50,
+      seniorMinutesLast12Months: 2000,
+      lastSeniorAppearanceDate: AS_OF,
+    })
+    const selection = buildMatchdaySelection([...squad, better, favoured], [], AS_OF)
+
+    expect(selection.slots.find((s) => s.position === 'ST')?.player.id).toBe('better')
+  })
+
+  it('treats a player with no international record as neutral, not as a negative', () => {
+    // Otherwise the XI becomes a model of the status quo, structurally unable
+    // to surface a player nobody has picked yet — which is most of the point.
+    const uncapped = player({ id: 'uncapped', position: 'ST', score: 70 })
+    const selection = buildMatchdaySelection([...completeSquad(), uncapped], [], AS_OF)
+
+    const slot = selection.slots.find((s) => s.player.id === 'uncapped')
+    expect(slot).toBeDefined()
+    expect(slot!.involvement.hasEvidence).toBe(false)
+    expect(slot!.involvement.factor).toBe(1)
+    expect(slot!.effectiveScore).toBe(slot!.rawScore)
+  })
+
+  it('bounds the involvement adjustment by the configured swing', () => {
+    const maxed = player({
+      id: 'maxed',
+      position: 'ST',
+      score: 60,
+      seniorMinutesLast12Months: 99999,
+      lastSeniorAppearanceDate: AS_OF,
+    })
+    const stale = player({
+      id: 'stale',
+      position: 'GK',
+      score: 60,
+      seniorMinutesLast12Months: 0,
+      lastSeniorAppearanceDate: '2000-01-01',
+    })
+    const selection = buildMatchdaySelection([maxed, stale], [], AS_OF)
+
+    for (const slot of selection.slots) {
+      expect(slot.involvement.factor).toBeGreaterThanOrEqual(1 - MATCHDAY_INVOLVEMENT.maxSwing)
+      expect(slot.involvement.factor).toBeLessThanOrEqual(1 + MATCHDAY_INVOLVEMENT.maxSwing)
+    }
+    expect(selection.slots.find((s) => s.player.id === 'maxed')?.involvement.factor).toBeCloseTo(
+      1 + MATCHDAY_INVOLVEMENT.maxSwing,
+      4,
+    )
+    expect(selection.slots.find((s) => s.player.id === 'stale')?.involvement.factor).toBeCloseTo(
+      1 - MATCHDAY_INVOLVEMENT.maxSwing,
+      4,
+    )
+  })
+
   it('is deterministic across repeated calls', () => {
     const players = completeSquad()
-    const a = buildMatchdaySelection(players, [])
-    const b = buildMatchdaySelection(players, [])
+    const a = buildMatchdaySelection(players, [], AS_OF)
+    const b = buildMatchdaySelection(players, [], AS_OF)
     expect(a.slots.map((s) => `${s.position}:${s.player.id}`)).toEqual(
       b.slots.map((s) => `${s.position}:${s.player.id}`),
     )

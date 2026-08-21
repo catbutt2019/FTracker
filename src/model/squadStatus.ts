@@ -72,7 +72,19 @@ export function isFutureContenderEligible(player: Player): boolean {
   if (hasSeniorAppearance(player.seniorStatus)) return false
   if (player.age > RISK_CONFIG.futureContenderMaxAge) return false
   if (player.forecast.trajectory === 'declining') return false
-  if (player.minutes < RISK_CONFIG.futureContenderMinClubMinutes) return false
+
+  // Club workload, in order of preference: the researched 12-month figure,
+  // then last season's total. If neither was published, fall back to
+  // appearances rather than disqualifying the player — an unpublished minutes
+  // column is not evidence that he does not play, and treating it as such
+  // excluded genuine prospects from the pipeline.
+  const clubMinutes = player.seniorStatus.clubMinutesLast12Months ?? player.minutes
+  if (clubMinutes !== null) {
+    if (clubMinutes < RISK_CONFIG.futureContenderMinClubMinutes) return false
+  } else if (player.appearances < RISK_CONFIG.futureContenderMinClubAppearances) {
+    return false
+  }
+
   if (player.forecast.projections[24].median < RISK_CONFIG.futureContenderProjectionThreshold) {
     return false
   }

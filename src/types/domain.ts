@@ -167,12 +167,15 @@ export type PlayingTimeStatus =
   | 'rotation'
   | 'fringe'
   | 'minimal'
+  /** Appearances are known but minutes are not, so involvement can't be graded. */
+  | 'unknown'
 
 export const PLAYING_TIME_LABELS: Record<PlayingTimeStatus, string> = {
   'nailed-on': 'Regular starter',
   rotation: 'Rotation',
   fringe: 'Fringe',
   minimal: 'Minimal minutes',
+  unknown: 'Minutes not published',
 }
 
 export type Trajectory = 'improving' | 'stable' | 'declining'
@@ -197,10 +200,25 @@ export interface SeasonRecord {
   /** 0-100. Standing of the club within its own league. */
   clubStrength: number
   appearances: number
-  starts: number
-  minutes: number
-  /** Share of available league minutes played, 0-1. */
-  minutesPercentage: number
+  /**
+   * `null`, not 0, when the source published appearances but never starts.
+   * Sources routinely omit both starts and minutes while publishing
+   * appearances; encoding that as zero asserts a bench season that may not
+   * have happened.
+   */
+  starts: number | null
+  /**
+   * `null`, not 0, when the source never published a minutes total.
+   *
+   * The distinction matters: 0 means "was in the squad and did not play",
+   * `null` means "we do not know how much he played". Collapsing the second
+   * into the first made a 35-appearance Premier League season read as a player
+   * who never got on the pitch. Consumers must handle `null` — `reliability()`
+   * in model/scoring.ts falls back to appearances for exactly this case.
+   */
+  minutes: number | null
+  /** Share of available league minutes played, 0-1. `null` when minutes are unknown. */
+  minutesPercentage: number | null
   goals: number
   assists: number
   /** Position-specific, per-90 where rate-based. Sparse by design. */
@@ -317,9 +335,9 @@ export interface SeasonScore {
   season: string
   club: string
   league: string
-  minutes: number
-  starts: number
-  minutesPercentage: number
+  minutes: number | null
+  starts: number | null
+  minutesPercentage: number | null
   /** 0-100 weighted blend of available metric percentiles. */
   rawScore: number
   /** rawScore after league and club context adjustment. */
@@ -394,9 +412,9 @@ export interface Player extends PlayerRaw {
   leagueStrength: number
   clubStrength: number
   appearances: number
-  starts: number
-  minutes: number
-  minutesPercentage: number
+  starts: number | null
+  minutes: number | null
+  minutesPercentage: number | null
   goals: number
   assists: number
   injuryDays: number | null
@@ -512,7 +530,10 @@ export interface SquadOutlook {
   previousSeasonStrength: number
   changeFromPreviousSeason: number
   averageSquadAge: number
+  /** Counted over `minutesKnownCount`, not `poolSize`. */
   regularMinutesCount: number
+  /** Players whose league minutes were actually published by a source. */
+  minutesKnownCount: number
   strongLeagueCount: number
   emergingPipelineCount: number
   poolSize: number

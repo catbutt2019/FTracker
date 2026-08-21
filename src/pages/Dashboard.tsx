@@ -25,7 +25,7 @@ import type {
 } from '@/types/domain'
 
 export function Dashboard() {
-  const { outlook, players } = useDataset()
+  const { outlook, players, asOfDate } = useDataset()
 
   return (
     <div className="space-y-10">
@@ -98,8 +98,13 @@ export function Dashboard() {
 
           <StatCard
             label="Regular club minutes"
-            value={`${outlook.regularMinutesCount} of ${outlook.poolSize}`}
+            value={`${outlook.regularMinutesCount} of ${outlook.minutesKnownCount}`}
             hint={`Players who played at least ${Math.round(MODEL_CONFIG.regularMinutesThreshold * 100)}% of available league minutes last season. Playing time is the single strongest driver of confidence in this model.`}
+            footnote={
+              outlook.minutesKnownCount < outlook.poolSize
+                ? `Out of the ${outlook.minutesKnownCount} players whose minutes were published. No minutes total exists for the other ${outlook.poolSize - outlook.minutesKnownCount}, so they are neither counted nor assumed to be low.`
+                : undefined
+            }
           />
 
           <StatCard
@@ -127,7 +132,7 @@ export function Dashboard() {
           title={`Projected XI vs ${NEXT_FIXTURE.opponent}`}
           description="The strongest available eleven on current form, using each player's score today rather than a projection. A label for a fixture, not a forecast of it — this model has no opponent data."
         />
-        <MatchdayCard players={players} />
+        <MatchdayCard players={players} asOfDate={asOfDate} />
       </section>
 
       <section>
@@ -229,8 +234,8 @@ const POSITION_LABELS: Record<Position, string> = {
   ST: 'Striker',
 }
 
-function MatchdayCard({ players }: { players: Player[] }) {
-  const selection = buildMatchdaySelection(players, MANUAL_UNAVAILABILITY)
+function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: string }) {
+  const selection = buildMatchdaySelection(players, MANUAL_UNAVAILABILITY, asOfDate)
   const { kickoff, competition, venue } = NEXT_FIXTURE
 
   // Counted rather than stated, so the caveat below cannot go stale the way it

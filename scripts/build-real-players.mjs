@@ -193,10 +193,28 @@ function firstDefined(...values) {
   return null
 }
 
-function sumOrEither(a, b) {
+/**
+ * Add two per-90 rates only when both are known, and return `null` otherwise.
+ *
+ * The tempting version of this returns whichever addend exists. Don't: it puts
+ * two different quantities into one distribution. A composite metric is ranked
+ * against every other player's value for the same metric, so a player with only
+ * one addend published is compared, on the same scale, against players whose
+ * value is a sum of two. Missing data then reads as poor performance.
+ *
+ * This is not hypothetical. Jake O'Brien's 2025-26 interceptions and blocks
+ * were summed to 0.43 (interceptions only, blocks unpublished) while Nathan
+ * Collins's summed to 2.45 (1.15 + 1.30), which put O'Brien in the 4th
+ * percentile of a metric he had not actually underperformed on and dropped a
+ * 3,124-minute Premier League centre-back below squad members with no recorded
+ * minutes at all.
+ *
+ * Returning `null` hands the season to the scoring model's missing-metric path,
+ * which drops the metric and renormalises the remaining weights, rather than
+ * inventing a comparison that the data cannot support.
+ */
+function sumIfBoth(a, b) {
   if (a != null && b != null) return round2(a + b)
-  if (a != null) return a
-  if (b != null) return b
   return null
 }
 
@@ -261,14 +279,25 @@ function deriveLatestMetrics(player) {
     derived = {
       duelSuccess: numOrNull(m.groundDuelWinPercentage),
       aerialSuccess: numOrNull(m.aerialDuelWinPercentage),
-      interceptions90: sumOrEither(numOrNull(m.interceptionsPer90), numOrNull(m.blocksPer90)),
+      // Interceptions only. Blocks used to be added in here, but they are
+      // published for just 3 of the 26 defenders in the research file, so the
+      // sum described 3 players on one scale and 8 on another. `interceptions90`
+      // now means what its name says. Blocks are dropped rather than promoted to
+      // their own metric: a 3-value distribution cannot produce a percentile
+      // that means anything.
+      interceptions90: numOrNull(m.interceptionsPer90),
+      tackles90: numOrNull(m.tacklesPer90),
+      clearances90: numOrNull(m.clearancesPer90),
     }
   } else if (group === 'midfielder') {
     derived = {
       passCompletion: numOrNull(m.passCompletionPercentage),
+      // Prefer the provider's own combined figure; fall back to adding the parts
+      // only when both parts exist. Half a composite is not a smaller composite,
+      // it is an unknown one.
       defensiveActions90: firstDefined(
         numOrNull(m.tacklesPlusInterceptionsPer90),
-        sumOrEither(numOrNull(m.tacklesPer90), numOrNull(m.interceptionsPer90)),
+        sumIfBoth(numOrNull(m.tacklesPer90), numOrNull(m.interceptionsPer90)),
       ),
     }
   } else if (group === 'creator') {
@@ -378,7 +407,8 @@ function buildSeasonRecord(record, batchStats, batchMetrics, includeGoalInvolvem
   }
 
   const denom = assumedSeasonMinutes(league)
-  const minutesPercentage = minutes != null ? Math.min(1, Math.round((minutes / denom) * 1000) / 1000) : 0
+  const minutesPercentage =
+    minutes != null ? Math.min(1, Math.round((minutes / denom) * 1000) / 1000) : null
 
   // Every outfield season gets a goalInvolvement90 figure computed directly
   // from this season's own appearances/minutes/goals/assists — real,
@@ -405,8 +435,16 @@ function buildSeasonRecord(record, batchStats, batchMetrics, includeGoalInvolvem
     leagueStrength: leagueStrength(league) ?? NEUTRAL_LEAGUE_STRENGTH,
     clubStrength: NEUTRAL_CLUB_STRENGTH,
     appearances: appearances ?? 0,
-    starts: starts ?? 0,
-    minutes: minutes ?? 0,
+    // `null`, not 0, when the source published appearances but no starts or
+    // minutes. This is the overwhelmingly common case in the research file:
+    // most seasons carry `"minutes": null` alongside a real appearance count.
+    // Coercing that to 0 asserted a fact the research pass never found, and
+    // made a 35-appearance Premier League season indistinguishable from a
+    // player who never came off the bench — see SeasonRecord in
+    // src/types/domain.ts, and `reliability()` in src/model/scoring.ts, whose
+    // appearances fallback exists precisely to handle the honest `null`.
+    starts,
+    minutes,
     minutesPercentage,
     goals: goals ?? 0,
     assists: assists ?? 0,

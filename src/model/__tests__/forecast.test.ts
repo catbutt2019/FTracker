@@ -311,7 +311,12 @@ describe('forecastPlayer across the whole real-player dataset', () => {
   })
 
   it('shrinks low-minute players toward the positional average', () => {
-    const fringe = results.filter((r) => r.seasonScores[0].minutesPercentage < 0.15)
+    // A null share means minutes were never published, which is not evidence
+    // of a low minutes share — see SeasonRecord.minutes in types/domain.ts.
+    const fringe = results.filter((r) => {
+      const share = r.seasonScores[0].minutesPercentage
+      return share !== null && share < 0.15
+    })
     expect(fringe.length).toBeGreaterThan(0)
     for (const { forecast } of fringe) {
       expect(Math.abs(forecast.regressionAdjustment)).toBeGreaterThan(0)
@@ -324,15 +329,15 @@ describe('forecastPlayer across the whole real-player dataset', () => {
   })
 
   it('assigns low confidence to players with minimal minutes', () => {
-    // minutesPercentage alone is not a safe proxy for "barely played": some
-    // sources report a season's appearances and goals/assists but never
-    // publish a minutes figure, which reads as 0% minutes despite real
-    // playing-time evidence (see the appearances fallback in reliability()
-    // and computeConfidence()). Restrict this check to players who were
-    // genuinely fringe on both counts.
-    const fringe = results.filter(
-      (r) => r.seasonScores[0].minutesPercentage < 0.1 && r.player.seasons[0].appearances < 5,
-    )
+    // Both conditions are still required. A published 0% minutes share is now
+    // distinguishable from an unpublished one, but a genuine 0% alongside a
+    // real appearance count can still mean the source recorded substitute
+    // outings without minutes, so appearances remain part of the test of
+    // whether a player was truly fringe.
+    const fringe = results.filter((r) => {
+      const share = r.seasonScores[0].minutesPercentage
+      return share !== null && share < 0.1 && r.player.seasons[0].appearances < 5
+    })
     expect(fringe.length).toBeGreaterThan(0)
     for (const { forecast, player } of fringe) {
       expect(forecast.predictionConfidence, player.name).not.toBe('high')

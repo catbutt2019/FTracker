@@ -1,9 +1,9 @@
 import type { Player, Position } from '@/types/domain'
 import { POSITIONS } from '@/types/domain'
-import { REQUIRED_STARTING_SLOTS } from './config'
+import { MATCHDAY_INVOLVEMENT, REQUIRED_STARTING_SLOTS } from './config'
 import { buildPositionPool } from './positionStrength'
 import { squadStrengthFrom } from './squad'
-import { round } from './math'
+import { clamp, mean, round } from './math'
 
 /**
  * Strongest available XI for a single fixture.
@@ -14,6 +14,14 @@ import { round } from './math'
  * score rather than any projection, because a fixture weeks away is far inside
  * the shortest projection horizon (12 months) and a projection would only add
  * noise.
+ *
+ * Selection is ranked on club form *and* recent international involvement —
+ * see `MATCHDAY_INVOLVEMENT` in config.ts. This is the one place in the model
+ * where selection history is an input, because this is the one question where
+ * it is evidence rather than circular reasoning: who a manager picks next is
+ * genuinely predicted by who he has been picking. The ability and projection
+ * models remain deliberately blind to it, so they can still say a player is
+ * better than his cap count implies.
  *
  * What this deliberately does **not** do: model the opponent. There is no
  * opponent dataset, so the XI is Ireland's strength in isolation. Naming a
@@ -28,8 +36,91 @@ export interface MatchdaySlot {
   weight: number
   /** The player's own score, before the out-of-position discount. */
   rawScore: number
-  /** `rawScore * weight` — what the XI is actually scored on. */
+  /** `rawScore * weight * involvement.factor` — what the XI is scored on. */
   effectiveScore: number
+  /** Recent international involvement, and how much it moved this player. */
+  involvement: Involvement
+}
+
+/**
+ * How current a player's international record is, and the resulting nudge to
+ * his selection odds. See `MATCHDAY_INVOLVEMENT` in config.ts for why this
+ * applies to matchday selection only and never to the ability model.
+ */
+export interface Involvement {
+  /**
+   * Multiplier applied to the player's score for selection purposes, within
+   * `1 ± MATCHDAY_INVOLVEMENT.maxSwing`. Exactly 1 when there is no evidence
+   * either way.
+   */
+  factor: number
+  /** Months since his last senior cap. `null` when he has never been capped. */
+  monthsSinceLastCap: number | null
+  /** International minutes in the last 12 months. `null` when unpublished. */
+  minutesLast12Months: number | null
+  /**
+   * False when neither field was available, meaning `factor` is 1 because
+   * nothing is known — not because the player is averagely involved.
+   */
+  hasEvidence: boolean
+}
+
+function monthsBetween(from: Date, to: Date): number {
+  return (to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24 * 30.4375)
+}
+
+/**
+ * Score a player's current standing in the international picture, 0-1, and
+ * turn it into a bounded multiplier.
+ *
+ * Two independent signals, averaged over whichever are available: how recently
+ * he was last capped, and how many international minutes he played in the last
+ * year. Recency alone would rate a player who came on for two minutes last
+ * month as fully involved; volume alone would rate a player who was a regular
+ * ten months ago and has since been dropped. Together they are a reasonable
+ * read on whether a manager currently regards him as a starter.
+ *
+ * Both are sourced fields from research round 2, so this adds no new
+ * hand-entered input. A player with neither is returned as neutral.
+ */
+function involvementOf(player: Player, asOf: Date): Involvement {
+  const { lastSeniorAppearanceDate, seniorMinutesLast12Months } = player.seniorStatus
+
+  const parsed = lastSeniorAppearanceDate ? new Date(lastSeniorAppearanceDate) : null
+  const monthsSince =
+    parsed && !Number.isNaN(parsed.getTime()) ? round(monthsBetween(parsed, asOf), 1) : null
+
+  // A future-dated appearance would otherwise produce a currency above 1; a
+  // clamp is cheaper than trusting every date in the file to be in the past.
+  const currency =
+    monthsSince === null
+      ? null
+      : clamp(1 - monthsSince / MATCHDAY_INVOLVEMENT.staleAfterMonths, 0, 1)
+
+  const load =
+    seniorMinutesLast12Months === null
+      ? null
+      : clamp(seniorMinutesLast12Months / MATCHDAY_INVOLVEMENT.fullInvolvementMinutes, 0, 1)
+
+  const signals = [currency, load].filter((value): value is number => value !== null)
+  if (signals.length === 0) {
+    return {
+      factor: 1,
+      monthsSinceLastCap: monthsSince,
+      minutesLast12Months: seniorMinutesLast12Months,
+      hasEvidence: false,
+    }
+  }
+
+  // mean(signals) is 0-1; centre it on 0.5 so an averagely involved player is
+  // unchanged, and scale to the permitted swing.
+  const involvement = mean(signals)
+  return {
+    factor: round(1 + MATCHDAY_INVOLVEMENT.maxSwing * (2 * involvement - 1), 4),
+    monthsSinceLastCap: monthsSince,
+    minutesLast12Months: seniorMinutesLast12Months,
+    hasEvidence: true,
+  }
 }
 
 export interface MatchdaySelection {
@@ -81,12 +172,25 @@ export interface MatchdayAbsence {
  * with only one candidate claims him before a position with six candidates can
  * consume him as cover.
  */
-function selectSlots(available: Player[]): { slots: MatchdaySlot[]; unfilled: Position[] } {
+function selectSlots(
+  available: Player[],
+  asOf: Date,
+): { slots: MatchdaySlot[]; unfilled: Position[] } {
+  // Computed once per player rather than once per (player, position) pair: a
+  // player's international standing does not depend on which slot is being
+  // filled, and recomputing it per position would parse the same date up to
+  // three times for a versatile player.
+  const involvementById = new Map(
+    available.map((player) => [player.id, involvementOf(player, asOf)] as const),
+  )
+  const rank = (entry: { player: Player; score: number; weight: number }) =>
+    entry.score * entry.weight * (involvementById.get(entry.player.id)?.factor ?? 1)
+
   const candidatesByPosition = new Map(
     POSITIONS.map((position) => {
       const pool = buildPositionPool(available, position)
         .slice()
-        .sort((a, b) => b.score * b.weight - a.score * a.weight)
+        .sort((a, b) => rank(b) - rank(a))
       return [position, pool] as const
     }),
   )
@@ -113,12 +217,19 @@ function selectSlots(available: Player[]): { slots: MatchdaySlot[]; unfilled: Po
       if (filled >= required) break
       if (used.has(candidate.player.id)) continue
       used.add(candidate.player.id)
+      const involvement = involvementById.get(candidate.player.id) ?? {
+        factor: 1,
+        monthsSinceLastCap: null,
+        minutesLast12Months: null,
+        hasEvidence: false,
+      }
       slots.push({
         position,
         player: candidate.player,
         weight: candidate.weight,
         rawScore: round(candidate.score, 1),
-        effectiveScore: round(candidate.score * candidate.weight, 1),
+        effectiveScore: round(candidate.score * candidate.weight * involvement.factor, 1),
+        involvement,
       })
       filled += 1
     }
@@ -148,7 +259,9 @@ function strengthOf(slots: MatchdaySlot[]): number {
 export function buildMatchdaySelection(
   players: Player[],
   unavailability: { playerId: string; reason: string; recordedOn: string }[],
+  asOfDate: string,
 ): MatchdaySelection {
+  const asOf = new Date(asOfDate)
   const byId = new Map(players.map((p) => [p.id, p]))
 
   // Researched availability first. Round 2 populated
@@ -193,9 +306,9 @@ export function buildMatchdaySelection(
   const unavailableIds = new Set(unavailable.map((u) => u.player.id))
   const available = players.filter((p) => !unavailableIds.has(p.id))
 
-  const { slots, unfilled } = selectSlots(available)
+  const { slots, unfilled } = selectSlots(available, asOf)
   const strength = strengthOf(slots)
-  const strengthAtFullAvailability = strengthOf(selectSlots(players).slots)
+  const strengthAtFullAvailability = strengthOf(selectSlots(players, asOf).slots)
 
   return {
     slots,

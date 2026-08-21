@@ -72,6 +72,57 @@ function badgeClasses(score: number): string {
   return 'bg-orange-500 text-white'
 }
 
+/**
+ * Below this, the involvement adjustment is not worth drawing attention to.
+ *
+ * The badge always shows `effectiveScore`, which already has the adjustment
+ * baked in, so without a marker a lifted or docked score is indistinguishable
+ * from an unadjusted one. Marking every player would be noise — a factor of
+ * 0.995 changes nothing a reader should act on — so only a swing of at least a
+ * point on a 100-point scale is flagged.
+ */
+const INVOLVEMENT_NOTICE_THRESHOLD = 0.01
+
+/**
+ * Explain the badge number in full, since it is a product of three things and
+ * only one of them is the player's own ability.
+ *
+ * Written out longhand rather than as a formula: the reader of a line-up
+ * graphic wants to know why a name is on the pitch, and "recently involved with
+ * Ireland" is the answer the arithmetic is standing in for.
+ */
+function slotTooltip(slot: MatchdaySlot): string {
+  const lines = [`${slot.player.name} — ${slot.position}`]
+  lines.push(`Score ${slot.effectiveScore.toFixed(1)}`)
+  lines.push(`  Ability ${slot.rawScore.toFixed(1)}`)
+  if (slot.weight < 1) {
+    lines.push(`  ×${slot.weight} out of position`)
+  }
+
+  const { involvement } = slot
+  if (!involvement.hasEvidence) {
+    lines.push('  No international record — no adjustment')
+  } else if (Math.abs(involvement.factor - 1) >= INVOLVEMENT_NOTICE_THRESHOLD) {
+    // Phrased so the reason matches the direction. "Docked for recent
+    // involvement" would read as though being involved was the penalty.
+    const reason =
+      involvement.factor > 1
+        ? 'Lifted'
+        : 'Docked'
+    const cause = involvement.factor > 1 ? 'recent' : 'little recent'
+    const percent = Math.abs(Math.round((involvement.factor - 1) * 1000) / 10)
+    lines.push(`  ${reason} ${percent}% — ${cause} Ireland involvement`)
+    if (involvement.monthsSinceLastCap !== null) {
+      lines.push(`    Last cap ${involvement.monthsSinceLastCap} months ago`)
+    }
+    if (involvement.minutesLast12Months !== null) {
+      lines.push(`    ${involvement.minutesLast12Months} international minutes in 12 months`)
+    }
+  }
+
+  return lines.join('\n')
+}
+
 function PitchMarkings() {
   return (
     <svg
@@ -100,13 +151,14 @@ function PitchMarkings() {
 }
 
 function SlotFigure({ slot }: { slot: MatchdaySlot }) {
+  const swing = slot.involvement.hasEvidence ? slot.involvement.factor - 1 : 0
+  const flagged = Math.abs(swing) >= INVOLVEMENT_NOTICE_THRESHOLD
+
   return (
     <Link
       to={`/players/${slot.player.id}`}
       className="group flex w-[5.5rem] flex-col items-center gap-1 sm:w-24"
-      title={`${slot.player.name} — ${slot.position}, score ${slot.effectiveScore.toFixed(1)}${
-        slot.weight < 1 ? ' (out of position)' : ''
-      }`}
+      title={slotTooltip(slot)}
     >
       <span className="relative">
         <PlayerAvatar
@@ -132,6 +184,20 @@ function SlotFigure({ slot }: { slot: MatchdaySlot }) {
             title="Out of position — score discounted"
           >
             !
+          </span>
+        )}
+        {flagged && (
+          // Sits opposite the out-of-position marker so a player carrying both
+          // shows both. Like that marker, this exists because the adjustment is
+          // already inside the badge number and would otherwise be invisible.
+          <span
+            className={cn(
+              'absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-white text-[9px] font-bold shadow-sm',
+              swing > 0 ? 'text-shamrock-700' : 'text-orange-600',
+            )}
+            aria-hidden="true"
+          >
+            {swing > 0 ? '▲' : '▼'}
           </span>
         )}
       </span>
@@ -201,6 +267,13 @@ export function MatchdayPitch({
     }),
   )
 
+  const anyOutOfPosition = slots.some((slot) => slot.weight < 1)
+  const anyInvolvementFlagged = slots.some(
+    (slot) =>
+      slot.involvement.hasEvidence &&
+      Math.abs(slot.involvement.factor - 1) >= INVOLVEMENT_NOTICE_THRESHOLD,
+  )
+
   // Anything the layout above failed to place. Should always be empty; if a
   // formation slot is ever added to config without a matching cell here, this
   // reports it rather than silently dropping a selected player from the XI.
@@ -241,6 +314,29 @@ export function MatchdayPitch({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* The badge is a product, not a measurement, and two of its three
+          factors are drawn as small symbols on the avatar. Without a key those
+          symbols are decoration. Each item appears only when the pitch above
+          actually uses it, so the key never explains something absent. */}
+      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] leading-relaxed text-muted-foreground">
+        <span>Badge: score used to pick the XI</span>
+        {anyOutOfPosition && (
+          <span className="flex items-center gap-1">
+            <span className="flex size-3.5 items-center justify-center rounded-full bg-muted text-[8px] font-bold text-orange-600">
+              !
+            </span>
+            out of position
+          </span>
+        )}
+        {anyInvolvementFlagged && (
+          <span className="flex items-center gap-1">
+            <span className="text-shamrock-700">▲</span>
+            <span className="text-orange-600">▼</span>
+            recent Ireland involvement
+          </span>
+        )}
       </div>
 
       {leftover.length > 0 && (

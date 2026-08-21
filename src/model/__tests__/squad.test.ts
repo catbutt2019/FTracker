@@ -210,18 +210,30 @@ describe('buildSquadOutlook', () => {
     expect(vale).toBeDefined()
   })
 
-  it('flags midfield among the weaker positional groups in the real dataset', () => {
-    // Regression guard for "midfield not identified as an area of concern
-    // despite being weaker than other positional groups" — assert midfield's
-    // current strength sits at or below the squad median, and that it is not
-    // reported as the cleanest group, rather than pinning an exact risk
-    // level that would make this test brittle against calibration tweaks.
-    const midfield = outlook.positionalGroups.find((g) => g.group === 'midfield')!
-    expect(midfield.currentStrength).toBeLessThanOrEqual(midfield.squadMedianStrength)
+  it('does not report the weakest positional group as low risk', () => {
+    // This began life as "flags midfield among the weaker positional groups",
+    // guarding a real bug where midfield was measurably the weakest group and
+    // the risk model said nothing about it.
+    //
+    // Midfield is no longer that group. Mapping tackles and clearances into
+    // the defender metric set (see METRIC_DEFINITIONS in model/metrics.ts)
+    // spread defender scores out instead of clustering them near the group
+    // mean, and full-back dropped clearly below midfield as a result. Pinning
+    // this test to midfield would now assert an obsolete finding, so it is
+    // expressed as the invariant the original bug actually violated: whichever
+    // group is weakest must be visible as a concern. That survives calibration
+    // changes, which the specific claim did not.
+    const groups = [...outlook.positionalGroups].sort(
+      (a, b) => a.currentStrength - b.currentStrength,
+    )
+    const weakest = groups[0]
     const allLow = outlook.positionalGroups.every((g) => g.risk.overallRisk === 'low')
     if (!allLow) {
-      expect(midfield.risk.overallRisk).not.toBe('low')
+      expect(weakest.risk.overallRisk, `weakest group is ${weakest.group}`).not.toBe('low')
     }
+    // And it must genuinely be below the squad median, or "weakest" is a
+    // ranking artefact of a uniformly strong pool rather than a weakness.
+    expect(weakest.currentStrength).toBeLessThanOrEqual(weakest.squadMedianStrength)
   })
 
   it('never places a player in more than one squad-status category within a position', () => {

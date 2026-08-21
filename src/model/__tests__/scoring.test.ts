@@ -150,6 +150,8 @@ describe('scoreSeason', () => {
           duelSuccess: 60,
           aerialSuccess: null,
           interceptions90: 3.1,
+          tackles90: 1.9,
+          clearances90: null,
           progressiveDistance90: null,
           errors90: 0.12,
           goalInvolvement90: 0.2,
@@ -158,7 +160,11 @@ describe('scoreSeason', () => {
       'defender',
       cohort,
     )
-    expect(result.missingMetrics).toEqual(['aerialSuccess', 'progressiveDistance90'])
+    expect(result.missingMetrics).toEqual([
+      'aerialSuccess',
+      'clearances90',
+      'progressiveDistance90',
+    ])
     expect(result.metricCoverage).toBeLessThan(1)
     expect(result.metricCoverage).toBeGreaterThan(0)
   })

@@ -66,6 +66,13 @@ export const MODEL_CONFIG = {
 
   /** Minutes share at or above which a player counts as regularly playing. */
   regularMinutesThreshold: 0.6,
+  /**
+   * Appearances at or above which a season counts as a reasonable sample when
+   * no minutes total was published. Roughly 0.6 of a 38-game league season, to
+   * match `regularMinutesThreshold` — a coarser measure of the same idea, used
+   * only because most seasons in this dataset have appearances but no minutes.
+   */
+  regularAppearancesThreshold: 22,
 
   /** Monte Carlo settings for the squad forecast. */
   simulations: 2000,
@@ -182,10 +189,64 @@ export const RISK_CONFIG = {
   /** Future-contender eligibility (see `squadStatus.ts`). */
   futureContenderMaxAge: 23,
   futureContenderMinClubMinutes: 900,
+  /**
+   * Stand-in for the above when no minutes total was published. Twelve
+   * appearances is roughly 900 minutes for a player getting regular but not
+   * always full games; it is a coarser test of the same idea, used only
+   * because most seasons in this dataset report appearances and nothing else.
+   */
+  futureContenderMinClubAppearances: 12,
   futureContenderProjectionThreshold: 52,
 
   /** Emerging-prospect age ceiling. */
   emergingProspectMaxAge: 21,
+} as const
+
+/**
+ * How recent international involvement nudges matchday XI selection.
+ *
+ * Used **only** by `matchdayXI.ts`, and deliberately not by the pool-strength
+ * or projection models. The distinction is the whole point:
+ *
+ *  - "How good is this player, and how good will he be?" should be answered
+ *    from performance evidence alone. Feeding selection history into it would
+ *    make the model circular — it would conclude that whoever gets picked is
+ *    good *because* he gets picked, and could never identify a player the
+ *    current manager is overlooking. That is the most useful thing this tool
+ *    does, so it must stay uncontaminated.
+ *  - "Who plays this week?" is a different question, and for that, selection
+ *    history is legitimate evidence rather than circular reasoning. A player
+ *    who has started the last five internationals is more likely to start the
+ *    next one, and a full-back who has not been capped in a year is less
+ *    likely to, whatever his club numbers say.
+ *
+ * The adjustment is capped at `maxSwing` precisely because it is evidence of
+ * *likely selection*, not of ability. It can reorder near-equal candidates; it
+ * cannot manufacture a starter out of a poor player with a lot of caps.
+ *
+ * Absence of evidence is treated as neutral, never as a negative. An uncapped
+ * 19-year-old has no international record because nobody has picked him yet,
+ * and penalising him for that would turn this into a model of the status quo.
+ */
+export const MATCHDAY_INVOLVEMENT = {
+  /**
+   * Months after which a last senior appearance carries no currency at all.
+   * Two years is roughly one full qualification cycle: a player uninvolved for
+   * that long is, on the evidence, out of the picture.
+   */
+  staleAfterMonths: 24,
+  /**
+   * International minutes in 12 months treated as a full workload — about nine
+   * competitive 90s, a realistic full year of involvement for a regular.
+   */
+  fullInvolvementMinutes: 810,
+  /**
+   * Largest proportional adjustment, up or down. At 0.15 a maximally involved
+   * player gains 15% and a maximally peripheral one loses 15%, so involvement
+   * can settle a close call between two candidates without overturning a
+   * genuine gap in ability.
+   */
+  maxSwing: 0.15,
 } as const
 
 /**

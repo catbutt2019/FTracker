@@ -371,9 +371,16 @@ export function buildSquadOutlook(players: Player[], asOfIso: string): SquadOutl
       mean(players.filter((p) => p.nationalTeamLevel === 'senior').map((p) => p.exactAge)),
       1,
     ),
+    // Counted only over players whose minutes were actually published. A null
+    // share means "not reported", and rolling those into the denominator would
+    // present a data gap as evidence that most of the pool barely plays.
+    // `minutesUnknownCount` carries the gap so the UI can state it.
     regularMinutesCount: players.filter(
-      (p) => p.minutesPercentage >= MODEL_CONFIG.regularMinutesThreshold,
+      (p) =>
+        p.minutesPercentage !== null &&
+        p.minutesPercentage >= MODEL_CONFIG.regularMinutesThreshold,
     ).length,
+    minutesKnownCount: players.filter((p) => p.minutesPercentage !== null).length,
     strongLeagueCount: players.filter(
       (p) => p.leagueStrength >= MODEL_CONFIG.strongLeagueThreshold,
     ).length,

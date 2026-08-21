@@ -187,7 +187,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Share of ground duels won.',
       unit: '%',
       higherIsBetter: true,
-      weight: 0.22,
+      weight: 0.18,
     },
     {
       key: 'aerialSuccess',
@@ -195,7 +195,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Share of aerial duels won.',
       unit: '%',
       higherIsBetter: true,
-      weight: 0.18,
+      weight: 0.14,
     },
     {
       key: 'interceptions90',
@@ -203,7 +203,36 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Combined interceptions and blocks per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.18,
+      weight: 0.16,
+    },
+    {
+      // Added because the research file publishes tackles per 90 for every
+      // defender it publishes interceptions for, and leaving it unmapped meant
+      // interceptions alone carried roughly 69% of the weighted score for
+      // those players — the same renormalisation pathology described above
+      // GOAL_INVOLVEMENT_SUPPLEMENTARY_ONLY in model/scoring.ts, one step out.
+      // Three independent defensive-action rates are a far more stable read
+      // than one.
+      key: 'tackles90',
+      label: 'Tackles',
+      description: 'Tackles attempted per 90 minutes.',
+      unit: 'per 90',
+      higherIsBetter: true,
+      weight: 0.14,
+    },
+    {
+      // Weighted lowest of the three action rates, deliberately. Clearance
+      // volume is partly a property of the team: a defender in a side that
+      // sits deep will clear more without defending better. It is still a real
+      // defensive action and it is genuinely available, so it earns a small
+      // weight rather than being discarded for being imperfect.
+      key: 'clearances90',
+      label: 'Clearances',
+      description:
+        'Clearances per 90 minutes. Partly reflects how deep the team defends, so it is weighted lightly.',
+      unit: 'per 90',
+      higherIsBetter: true,
+      weight: 0.1,
     },
     {
       key: 'progressiveDistance90',
@@ -212,7 +241,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Metres of forward progress created by carries and passes per 90 minutes, scaled to hundreds of metres.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.18,
+      weight: 0.12,
     },
     {
       key: 'errors90',
@@ -221,7 +250,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Mistakes that directly concede a shooting opportunity, per 90 minutes. Lower is better, so this metric is inverted before scoring.',
       unit: 'per 90',
       higherIsBetter: false,
-      weight: 0.16,
+      weight: 0.12,
     },
     {
       key: 'goalInvolvement90',
@@ -230,7 +259,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Goals plus assists per 90 minutes (or per appearance when minutes are unavailable). A small productivity signal — defenders rarely score or assist, but the occasional set-piece threat or overlapping full-back should count for something, and it is always available even when advanced data is missing.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.08,
+      weight: 0.04,
     },
   ],
   goalkeeper: [

@@ -303,12 +303,20 @@ export function PlayerDetail() {
                           {season.leagueStrength}
                         </TableCell>
                         <TableCell className="tabular text-right">{season.appearances}</TableCell>
-                        <TableCell className="tabular text-right">{season.starts}</TableCell>
                         <TableCell className="tabular text-right">
-                          {season.minutes.toLocaleString()}
+                          {season.starts ?? '—'}
                         </TableCell>
                         <TableCell className="tabular text-right">
-                          {Math.round(season.minutesPercentage * 100)}%
+                          {season.minutes === null ? (
+                            <NotSupplied reason="No source consulted for this season published a minutes total. Sample size is inferred from appearances instead, which widens the projection." />
+                          ) : (
+                            season.minutes.toLocaleString()
+                          )}
+                        </TableCell>
+                        <TableCell className="tabular text-right">
+                          {season.minutesPercentage === null
+                            ? '—'
+                            : `${Math.round(season.minutesPercentage * 100)}%`}
                         </TableCell>
                         <TableCell className="text-right">
                           {season.injuryDays === null ? (

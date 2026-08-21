@@ -3,6 +3,7 @@ import type { PlayerRaw } from '@/types/domain'
 import { assembleDataset } from '../pipeline'
 import { isFutureContenderEligible } from '@/model/squadStatus'
 import realPlayersFile from '../../../research/real-players.json'
+import researchFile from '../../../research/irish-players-research-round-2.json'
 
 /**
  * Integrity checks on the researched dataset itself, as distinct from the
@@ -129,6 +130,86 @@ describe('dataset integrity — senior standing vs recorded caps', () => {
       .map((p) => p.id)
 
     expect(impossible).toEqual([])
+  })
+})
+
+/**
+ * Guards the composite-metric scale invariant.
+ *
+ * A metric is ranked against every other player's value for the *same* metric,
+ * so every value in a distribution has to measure the same thing. Building one
+ * player's value from two source fields and another's from one silently breaks
+ * that: the second player is compared, on the same axis, against a quantity
+ * roughly twice the size of his own, and missing data reads as poor
+ * performance.
+ *
+ * `scripts/build-real-players.mjs` did exactly this. `interceptions90` was
+ * `interceptionsPer90 + blocksPer90`, falling back to whichever existed. Blocks
+ * are published for 3 of the 26 defenders in the research file, so 3 players
+ * got a two-part sum and 8 got a one-part value. Jake O'Brien's 0.43
+ * (interceptions only) was ranked against Nathan Collins's 2.45 (1.15 + 1.30),
+ * putting a 3,124-minute Premier League centre-back in the 4th percentile of a
+ * metric he had not underperformed on, and dropping him below squad members
+ * with no recorded minutes at all.
+ *
+ * These assertions are written against the research file rather than a
+ * hardcoded expectation so they keep working as the data grows.
+ */
+describe('dataset integrity — composite metric scales', () => {
+  type ResearchPlayer = {
+    id: string
+    positionGroup?: string
+    latestPositionMetrics?: {
+      season?: string
+      metrics?: Record<string, number | null>
+    } | null
+  }
+
+  const researchById = new Map(
+    (researchFile as unknown as { players: ResearchPlayer[] }).players.map((p) => [p.id, p]),
+  )
+
+  it('never folds blocks into a defender interceptions figure', () => {
+    const mismatched: string[] = []
+
+    for (const player of raw) {
+      const research = researchById.get(player.id)
+      const source = research?.latestPositionMetrics
+      if (research?.positionGroup !== 'defender' || !source?.metrics) continue
+
+      const season = player.seasons.find((s) => s.season === source.season)
+      const built = season?.positionSpecificMetrics?.interceptions90 ?? null
+      const expected = source.metrics.interceptionsPer90 ?? null
+      if (built !== expected) mismatched.push(player.id)
+    }
+
+    expect(mismatched).toEqual([])
+  })
+
+  it('leaves a midfielder defensive-actions figure unset unless it can be built on one scale', () => {
+    // Either the provider published a combined tackles+interceptions rate, or
+    // both parts are present and can be added. One part alone is not a smaller
+    // composite, it is an unknown one, and must stay null so the scoring model
+    // drops it and renormalises the remaining weight.
+    const unsupported: string[] = []
+
+    for (const player of raw) {
+      const research = researchById.get(player.id)
+      const source = research?.latestPositionMetrics
+      if (research?.positionGroup !== 'midfielder' || !source?.metrics) continue
+
+      const season = player.seasons.find((s) => s.season === source.season)
+      const built = season?.positionSpecificMetrics?.defensiveActions90 ?? null
+      if (built === null) continue
+
+      const { tacklesPlusInterceptionsPer90, tacklesPer90, interceptionsPer90 } = source.metrics
+      const buildable =
+        tacklesPlusInterceptionsPer90 != null ||
+        (tacklesPer90 != null && interceptionsPer90 != null)
+      if (!buildable) unsupported.push(player.id)
+    }
+
+    expect(unsupported).toEqual([])
   })
 })
 
