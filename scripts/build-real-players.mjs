@@ -24,7 +24,7 @@
  * logged.
  */
 
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
@@ -32,7 +32,19 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
 const RESEARCH_DIR = path.join(ROOT, 'research')
 
-const BATCH_FILES = [1, 2, 3, 4].map((n) => path.join(RESEARCH_DIR, `player-metrics-batch-${n}.json`))
+// Discovered rather than listed, so adding a research batch is a matter of
+// dropping the file in `research/`. The previous hardcoded [1, 2, 3, 4] meant a
+// new batch was silently ignored until someone remembered to extend the array —
+// a failure that looks exactly like the research finding nothing.
+//
+// Sorted numerically, not lexically, so batch-10 lands after batch-9 rather
+// than after batch-1. Order decides precedence in `mergeBatchEntries`: earlier
+// files win a genuine conflict, so this needs to stay stable and obvious.
+const BATCH_FILES = readdirSync(RESEARCH_DIR)
+  .map((name) => name.match(/^player-metrics-batch-(\d+)\.json$/))
+  .filter((match) => match !== null)
+  .sort((a, b) => Number(a[1]) - Number(b[1]))
+  .map((match) => path.join(RESEARCH_DIR, match[0]))
 // Round 2 is a strict superset of round 1: identical in all 31 original
 // player fields, plus a sourced `seniorStatus` block per player, plus 20
 // backfilled dates of birth and corrected `caps`. Round 1 is kept on disk as
@@ -218,6 +230,65 @@ function sumIfBoth(a, b) {
   return null
 }
 
+/**
+ * Combine two metrics-batch entries for the same player, field by field.
+ *
+ * This used to be `keeping the first` — a later batch mentioning a player
+ * already seen was discarded whole. That looks harmless while each batch covers
+ * a distinct set of players, which was true of batches 1-4, and it quietly
+ * destroys a later research pass the moment one revisits a player. 63 of the 89
+ * players in the research file already appear in batches 1-4, and 59 of those
+ * carry at most one non-null metric, so a follow-up batch aimed at exactly that
+ * gap would have been thrown away for two thirds of the squad.
+ *
+ * Filling a gap and contradicting a sourced figure are different events and are
+ * treated differently:
+ *
+ *  - A field the earlier entry left null or absent is filled from the later one.
+ *  - A field both entries supply, with different values, keeps the earlier value
+ *    and warns. Later is not automatically better, and silently replacing a
+ *    cited number is how a dataset stops being auditable. The warning is the
+ *    prompt to go and reconcile the two sources by hand.
+ *
+ * Sources are unioned so provenance survives the merge.
+ */
+function mergeBatchEntries(existing, incoming, file) {
+  const label = path.basename(file)
+  const merged = { ...existing }
+
+  for (const [key, value] of Object.entries(incoming)) {
+    if (key === 'metrics' || key === 'seasonStats' || key === 'sources') continue
+    if (merged[key] === null || merged[key] === undefined) merged[key] = value
+  }
+
+  for (const group of ['metrics', 'seasonStats']) {
+    const before = existing[group] ?? {}
+    const after = incoming[group] ?? {}
+    const out = { ...before }
+    for (const [key, value] of Object.entries(after)) {
+      if (value === null || value === undefined) continue
+      const current = out[key]
+      if (current === null || current === undefined) {
+        out[key] = value
+      } else if (current !== value) {
+        console.warn(
+          `Conflict for "${existing.id}" ${group}.${key}: keeping ${current}, ` +
+            `${label} says ${value}. Reconcile by hand.`,
+        )
+      }
+    }
+    if (Object.keys(out).length > 0) merged[group] = out
+  }
+
+  const sources = [...new Set([...(existing.sources ?? []), ...(incoming.sources ?? [])])]
+  if (sources.length > 0) merged.sources = sources
+
+  const notes = [existing.notes, incoming.notes].filter(Boolean)
+  if (notes.length > 0) merged.notes = notes.join(' | ')
+
+  return merged
+}
+
 function prune(obj) {
   const out = {}
   for (const [key, value] of Object.entries(obj)) {
@@ -376,11 +447,8 @@ for (const file of BATCH_FILES) {
     continue
   }
   for (const entry of entries) {
-    if (metricsById.has(entry.id)) {
-      console.warn(`Duplicate metrics entry for "${entry.id}" — keeping the first.`)
-      continue
-    }
-    metricsById.set(entry.id, entry)
+    const existing = metricsById.get(entry.id)
+    metricsById.set(entry.id, existing ? mergeBatchEntries(existing, entry, file) : entry)
   }
 }
 
