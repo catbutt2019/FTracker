@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Info } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import {
-  Disclosure,
   InfoHint,
   SectionHeading,
   StatCard,
@@ -44,25 +43,6 @@ export function Dashboard() {
           {outlook.poolSize} tracked players and {outlook.simulations.toLocaleString()} simulations
           of how they might develop. Every figure here is a range.
         </p>
-        {/* The claim stays visible; only the reasoning behind it folds away. A
-            reader who skips the expander still cannot come away thinking this
-            page forecasts qualification, which is the one misreading that
-            would matter. */}
-        <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
-          <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
-          <div className="space-y-1">
-            <p className="font-medium text-foreground">
-              A stronger talent pool is not the same thing as qualification.
-            </p>
-            <Disclosure summary="Why">
-              <p className="max-w-3xl">
-                There are no opponents and no competition format anywhere in this model, so it says
-                nothing about results or reaching a tournament. It describes the players available,
-                nothing more.
-              </p>
-            </Disclosure>
-          </div>
-        </div>
       </header>
 
       {/* First on the page deliberately: a named eleven is the one thing here
@@ -253,13 +233,6 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
   const selection = buildMatchdaySelection(players, MANUAL_UNAVAILABILITY, asOfDate)
   const { kickoff, competition, venue } = NEXT_FIXTURE
 
-  // Counted rather than stated, so the caveat below cannot go stale the way it
-  // already did once: it claimed the field was empty for every player, which
-  // stopped being true the moment research round 2 landed.
-  const researchedAvailability = players.filter(
-    (player) => player.seniorStatus.availabilityStatus !== null,
-  ).length
-
   const fixtureDetail = [
     competition,
     venue ? (venue === 'home' ? 'Home' : venue === 'away' ? 'Away' : 'Neutral venue') : null,
@@ -333,16 +306,8 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
           </div>
         </div>
 
-        {fixtureDetail.length > 0 ? (
+        {fixtureDetail.length > 0 && (
           <p className="text-xs text-muted-foreground">{fixtureDetail.join(' · ')}</p>
-        ) : (
-          <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
-            <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
-            <p>
-              No date, competition or venue is recorded for this fixture, so the eleven above is
-              simply "strongest available now" rather than "strongest available on match day".
-            </p>
-          </div>
         )}
 
         <Separator />
@@ -386,20 +351,6 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
           </p>
         )}
 
-        <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
-          <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
-          <p>
-            <span className="font-medium text-foreground">
-              This is a model ranking, not a team sheet.
-            </span>{' '}
-            Nothing in the dataset records call-ups or recent selection. Availability is barely
-            researched: {researchedAvailability} of {players.length} players have a citable status,
-            everything else above was typed in by hand, and anyone not listed is assumed fit — which
-            will sometimes be wrong. Positions are filled scarcest-first, so a player who covers two
-            roles goes to the thinner one. That is a heuristic, not the strongest possible
-            combination.
-          </p>
-        </div>
       </CardContent>
     </Card>
   )
