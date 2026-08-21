@@ -33,7 +33,13 @@ const ROOT = path.resolve(__dirname, '..')
 const RESEARCH_DIR = path.join(ROOT, 'research')
 
 const BATCH_FILES = [1, 2, 3, 4].map((n) => path.join(RESEARCH_DIR, `player-metrics-batch-${n}.json`))
-const BASE_FILE = path.join(RESEARCH_DIR, 'irish-players-research.json')
+// Round 2 is a strict superset of round 1: identical in all 31 original
+// player fields, plus a sourced `seniorStatus` block per player, plus 20
+// backfilled dates of birth and corrected `caps`. Round 1 is kept on disk as
+// the provenance record for the fields round 2 did not revisit, but is no
+// longer read — pointing at both and merging would only invite the two to
+// drift.
+const BASE_FILE = path.join(RESEARCH_DIR, 'irish-players-research-round-2.json')
 const OUT_FILE = path.join(RESEARCH_DIR, 'real-players.json')
 
 /* ------------------------------------------------------------------ *
@@ -129,7 +135,14 @@ function assumedSeasonMinutes(league) {
  * Eligibility mapping (research schema -> domain EligibilityStatus)
  * ------------------------------------------------------------------ */
 
-function mapEligibility(standing) {
+function mapEligibility(standing, seniorCaps) {
+  // A sourced cap count outranks the prose standing label. Round 1 records
+  // Robbie Brady (71 senior caps) as `committed-uncapped`, which would map to
+  // `declared-ireland` and present one of Ireland's most-capped players as
+  // having never been capped. Holding an actual cap is the definition of
+  // capped, so it settles the question regardless of the label.
+  if ((seniorCaps ?? 0) > 0) return 'capped-ireland'
+
   switch (standing) {
     case 'capped-senior':
     case 'capped-youth':
@@ -438,11 +451,29 @@ function selectAvatarUrl(avatar) {
  * ------------------------------------------------------------------ */
 
 function buildSeniorStatus(p) {
-  // caps is only genuinely a senior-caps count when the standing itself is
-  // senior — for capped-youth players the same field is a youth-caps count,
-  // and treating it as senior caps would wrongly grant senior status to
-  // under-21s who have never played for the senior team.
-  const seniorCaps = p.eligibilityStanding === 'capped-senior' ? (p.caps ?? null) : 0
+  // Round 2 researched this block per-player, with a source URL per field and
+  // an explicit `null` wherever no citable value was found. Where it has a
+  // value, it wins outright: it is sourced, whereas everything below is
+  // inferred from adjacent fields.
+  const researched = p.seniorStatus ?? {}
+
+  // Previously: `p.eligibilityStanding === 'capped-senior' ? (p.caps ?? null) : 0`.
+  //
+  // That `: 0` was the single largest source of wrong output in this model. It
+  // turned "this pass found no cap count" into the positive assertion "has
+  // never played for Ireland", which `hasSeniorAppearance` in
+  // src/model/squadStatus.ts reads as `(seniorCaps ?? 0) > 0`. Seventeen
+  // senior-level players were flattened to zero caps that way — Robbie Brady
+  // (71 caps) and Jayson Molumby (36) among them — and three of those then
+  // resurfaced as "potential future starters", the exact misclassification the
+  // squad-status rewrite existed to remove.
+  //
+  // The standing label cannot be trusted to gate this either: round 1 records
+  // Brady as `committed-uncapped`. A sourced cap count is stronger evidence
+  // than a prose label, so the researched value is used directly and `null`
+  // stays `null` — unknown, with confidence lowered downstream, rather than a
+  // fabricated zero.
+  const seniorCaps = numOrNull(researched.seniorCaps)
 
   const lastSeason = p.lastCompletedSeason ?? null
   const appearances = lastSeason?.appearances ?? null
@@ -455,20 +486,26 @@ function buildSeniorStatus(p) {
 
   return {
     seniorCaps,
-    // No provider in this dataset publishes per-player senior start/minutes/
-    // call-up/availability feeds. These stay null — never inferred from
-    // caps, involvement or free-text notes — so squadStatus.ts and
-    // positionRisk.ts reduce confidence instead of assuming zero.
-    seniorStarts: null,
-    competitiveSeniorStarts: null,
-    seniorMinutes: null,
-    seniorMinutesLast12Months: null,
-    lastSeniorAppearanceDate: null,
-    lastSeniorStartDate: null,
-    recentSquadCallups: null,
-    clubMinutesLast12Months,
+    // Researched in round 2 where a source published them, and still `null`
+    // otherwise — never inferred from caps, involvement or free-text notes,
+    // so squadStatus.ts and positionRisk.ts reduce confidence instead of
+    // assuming zero. `seniorMinutes` (career) and `recentSquadCallups` came
+    // back null for all 89: no provider publishes them per player.
+    seniorStarts: numOrNull(researched.seniorStarts),
+    competitiveSeniorStarts: numOrNull(researched.competitiveSeniorStarts),
+    seniorMinutes: numOrNull(researched.seniorMinutes),
+    seniorMinutesLast12Months: numOrNull(researched.seniorMinutesLast12Months),
+    lastSeniorAppearanceDate: researched.lastSeniorAppearanceDate ?? null,
+    lastSeniorStartDate: researched.lastSeniorStartDate ?? null,
+    recentSquadCallups: numOrNull(researched.recentSquadCallups),
+    // Round 2 returned `null` for this field for every player, so the round-1
+    // derivation from last completed season minutes is kept rather than
+    // discarding 16 real values for nothing.
+    clubMinutesLast12Months: numOrNull(researched.clubMinutesLast12Months) ?? clubMinutesLast12Months,
+    // Genuinely derived rather than researched — a property of the league, not
+    // of the player — so no round-2 equivalent exists or is wanted.
     clubCompetitionLevel: leagueStrength(lastSeason?.league ?? p.league) ?? NEUTRAL_LEAGUE_STRENGTH,
-    availabilityStatus: null,
+    availabilityStatus: researched.availabilityStatus ?? null,
   }
 }
 
@@ -520,18 +557,24 @@ for (const p of base.players) {
   if (avatarUrl) avatarsUsed += 1
   else avatarsSkipped += 1
 
+  const seniorStatus = buildSeniorStatus(p)
+
   players.push({
     id: p.id,
     name: p.fullName,
     dateOfBirth,
-    nationalityStatus: mapEligibility(p.eligibilityStanding),
+    nationalityStatus: mapEligibility(p.eligibilityStanding, seniorStatus.seniorCaps),
     nationalTeamLevel: p.level,
     primaryPosition: p.primaryPosition,
     secondaryPositions: p.secondaryPositions ?? [],
     seasons,
     currentClub: buildCurrentClub(p),
-    seniorStatus: buildSeniorStatus(p),
-    internationalCaps: p.caps ?? 0,
+    seniorStatus,
+    // Includes youth caps, so it is >= seniorStatus.seniorCaps by definition.
+    // Falling back to the researched senior count keeps that invariant when
+    // the legacy field is null but a senior cap total was sourced — otherwise
+    // a capped senior would report fewer total caps than senior caps.
+    internationalCaps: p.caps ?? seniorStatus.seniorCaps ?? 0,
     // No real per-appearance minutes feed exists for international caps.
     // Left at 0 rather than estimated; forecast.ts/PlayerDetail.tsx are
     // adjusted to omit the "N international minutes" clause when this is 0
