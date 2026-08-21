@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+# Compiled output of vite.config.ts. Must never be committed: Vite resolves
+# vite.config.js *before* vite.config.ts, so a stale copy silently wins over
+# the real config.
+vite.config.js
+vite.config.d.ts
+
+*.tsbuildinfo
+.DS_Store
+*.local
+npm-debug.log*
