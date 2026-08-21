@@ -52,6 +52,17 @@ export function Dashboard() {
         </div>
       </header>
 
+      {/* First on the page deliberately: a named eleven is the one thing here
+          a casual reader recognises on sight, and it earns the scroll into the
+          probabilities and risk breakdowns below. */}
+      <section>
+        <SectionHeading
+          title={`Projected XI vs ${NEXT_FIXTURE.opponent}`}
+          description="The strongest available eleven on current form, using each player's score today rather than a projection. The fixture is a label, not a forecast of it."
+        />
+        <MatchdayCard players={players} asOfDate={asOfDate} />
+      </section>
+
       <section>
         <SectionHeading
           title="Probability the talent pool improves"
@@ -124,14 +135,6 @@ export function Dashboard() {
             hint="Squad strength recomputed from the season before last, using the same method, so the comparison is like for like."
           />
         </div>
-      </section>
-
-      <section>
-        <SectionHeading
-          title={`Projected XI vs ${NEXT_FIXTURE.opponent}`}
-          description="The strongest available eleven on current form, using each player's score today rather than a projection. The fixture is a label, not a forecast of it."
-        />
-        <MatchdayCard players={players} asOfDate={asOfDate} />
       </section>
 
       <section>
