@@ -9,6 +9,7 @@ import {
 } from '@/components/Primitives'
 import { DeltaValue, DepthRiskBadge } from '@/components/Indicators'
 import { ProbabilityBar } from '@/components/ProbabilityBar'
+import { MatchdayPitch } from '@/components/MatchdayPitch'
 import { SquadTrendChart } from '@/components/charts/SquadTrendChart'
 import { useDataset } from '@/hooks/useDataset'
 import { HORIZONS } from '@/model/forecast'
@@ -302,34 +303,7 @@ function MatchdayCard({ players }: { players: Player[] }) {
 
         <Separator />
 
-        <ul className="grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
-          {selection.slots.map((slot) => (
-            <li
-              key={`${slot.position}-${slot.player.id}`}
-              className="flex items-baseline justify-between gap-3 text-sm"
-            >
-              <span className="flex min-w-0 items-baseline gap-2">
-                <span className="w-8 shrink-0 text-xs font-medium text-muted-foreground">
-                  {slot.position}
-                </span>
-                <Link
-                  to={`/players/${slot.player.id}`}
-                  className="truncate transition-colors hover:text-shamrock-700"
-                >
-                  {slot.player.name}
-                </Link>
-                {slot.weight < 1 && (
-                  <span className="shrink-0 text-xs text-muted-foreground">
-                    out of position
-                  </span>
-                )}
-              </span>
-              <span className="tabular shrink-0 text-sm text-muted-foreground">
-                {slot.effectiveScore.toFixed(1)}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <MatchdayPitch slots={selection.slots} unfilled={selection.unfilled} />
 
         {selection.unfilled.length > 0 && (
           <p className="text-xs leading-relaxed text-destructive">
