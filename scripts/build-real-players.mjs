@@ -590,7 +590,7 @@ function selectAvatarUrl(avatar) {
  * never parsed into these fields, by design.
  * ------------------------------------------------------------------ */
 
-function buildSeniorStatus(p) {
+function buildSeniorStatus(p, batch) {
   // Round 2 researched this block per-player, with a source URL per field and
   // an explicit `null` wherever no citable value was found. Where it has a
   // value, it wins outright: it is sourced, whereas everything below is
@@ -638,10 +638,22 @@ function buildSeniorStatus(p) {
     lastSeniorAppearanceDate: researched.lastSeniorAppearanceDate ?? null,
     lastSeniorStartDate: researched.lastSeniorStartDate ?? null,
     recentSquadCallups: numOrNull(researched.recentSquadCallups),
-    // Round 2 returned `null` for this field for every player, so the round-1
-    // derivation from last completed season minutes is kept rather than
-    // discarding 16 real values for nothing.
-    clubMinutesLast12Months: numOrNull(researched.clubMinutesLast12Months) ?? clubMinutesLast12Months,
+    // Three sources, strongest first.
+    //
+    // Round 2 returned `null` for every player, so without the fallback this
+    // would be empty. `batch.clubMinutesLast12Months` is a genuine rolling
+    // 12-month figure requested per player in DATA-REQUEST-PROMPT.md; the
+    // derivation below is last completed season minutes, which is the same
+    // number `clubWorkload` would otherwise reach on its own — so it keeps 16
+    // real values rather than discarding them, but adds nothing.
+    //
+    // Wired here rather than left for a later pass because a batch field the
+    // build script does not read is collected and silently ignored, which is
+    // the failure mode the metric key names were retargeted to avoid.
+    clubMinutesLast12Months:
+      numOrNull(researched.clubMinutesLast12Months) ??
+      numOrNull(batch?.clubMinutesLast12Months) ??
+      clubMinutesLast12Months,
     // Genuinely derived rather than researched — a property of the league, not
     // of the player — so no round-2 equivalent exists or is wanted.
     clubCompetitionLevel: leagueStrength(lastSeason?.league ?? p.league) ?? NEUTRAL_LEAGUE_STRENGTH,
@@ -697,7 +709,7 @@ for (const p of base.players) {
   if (avatarUrl) avatarsUsed += 1
   else avatarsSkipped += 1
 
-  const seniorStatus = buildSeniorStatus(p)
+  const seniorStatus = buildSeniorStatus(p, batch)
 
   players.push({
     id: p.id,

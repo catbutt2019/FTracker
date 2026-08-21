@@ -78,13 +78,21 @@ function monthsBetween(from: Date, to: Date): number {
  * How much club football the player is actually playing, 0-1, or `null` when
  * nothing is published either way.
  *
- * Prefers a genuine rolling 12-month club figure, then falls back to the most
- * recent completed season, then to that season's appearance count. The
- * fallbacks are an approximation and worth being explicit about: a completed
- * season is not the same window as the last twelve months. It is what the
- * research pass actually supplies — `seniorStatus.clubMinutesLast12Months` is
- * null for all 89 players today — and for a player who has stopped playing
- * the two windows agree on the thing that matters.
+ * Prefers a rolling 12-month club figure, then falls back to the most recent
+ * completed season, then to that season's appearance count.
+ *
+ * Be clear about what the first branch is worth today. The round-2 research
+ * pass returned `clubMinutesLast12Months` as null for all 89 players, and the
+ * build script backfills it from the last completed season's minutes — so for
+ * the 16 players who have it, it is the *same number* as the second branch,
+ * not an independent measurement. The ordering is written for the data this
+ * should eventually be given, not the data it has.
+ *
+ * That matters because a completed season is not the last twelve months: a
+ * player who was a regular until May and has not kicked a ball since scores
+ * the same as one still playing every week. For a player who has stopped
+ * playing altogether the two windows agree, which is the case this is mainly
+ * guarding, but the approximation is real and worth researching out.
  *
  * `appearances === 0` returns `null`, not `0`. The build script coerces a
  * missing appearance count to 0, so a genuine "never came off the bench" and
@@ -94,6 +102,15 @@ function monthsBetween(from: Date, to: Date): number {
  * the branch above anyway.
  */
 function clubWorkload(player: Player): number | null {
+  // A free agent is playing no club football *now*, whatever he played last
+  // season, so the historical figures below would overstate him. This is the
+  // only place being unattached enters the model, and it is deliberately a
+  // damper rather than an exclusion: a player between clubs in August is in a
+  // routine, temporary position, and treating a 26-year-old senior
+  // international the same as a 37-year-old winding down would be a much
+  // cruder claim than the evidence supports. It removes his selection bonus;
+  // it never pushes him below a player nobody has picked.
+  if (player.currentClub.unattached) return 0
   const published = player.seniorStatus.clubMinutesLast12Months
   if (published !== null) {
     return clamp(published / MATCHDAY_INVOLVEMENT.fullClubMinutes, 0, 1)
@@ -192,10 +209,7 @@ export interface MatchdaySelection {
   /** Slots no available player could fill at all. */
   unfilled: Position[]
   strength: number
-  /**
-   * The same XI recomputed as if nobody were injured or withdrawn. Free agents
-   * stay excluded here too — see `buildMatchdaySelection`.
-   */
+  /** The same XI recomputed as if nobody were unavailable. */
   strengthAtFullAvailability: number
   /** Negative when absences cost strength. */
   strengthCostOfAbsences: number
@@ -336,23 +350,21 @@ export function buildMatchdaySelection(
   // `seniorStatus.availabilityStatus` from cited sources, so it outranks the
   // hand-maintained list and needs no human upkeep.
   //
-  // Having no club counts here too. A free agent is not injured, but he is
-  // equally not pickable: he is not training with a team, playing competitive
-  // football, or accumulating any evidence at all. Note this is a statement
-  // about selectability only — `currentClub.unattached` is deliberately
-  // invisible to the ability and projection models, which continue to rate
-  // these players on what they did when they last played.
+  // Being a free agent is deliberately *not* an absence. Managers do call up
+  // unattached players, and a free agent in August is usually a player between
+  // contracts rather than one who has stopped playing — an exclusion would
+  // rule out a 26-year-old senior international on a technicality. Free agency
+  // is handled where it belongs instead, as zero current club football damping
+  // the selection bonus; see `clubWorkload`.
   const unavailable: MatchdayAbsence[] = []
   const seen = new Set<string>()
   for (const player of players) {
     const status = player.seniorStatus.availabilityStatus
-    const absent = status === 'injured' || status === 'unavailable'
-    if (!absent && !player.currentClub.unattached) continue
+    if (status !== 'injured' && status !== 'unavailable') continue
     seen.add(player.id)
     unavailable.push({
       player,
-      // Injury is the more specific fact when a player is both, so it wins.
-      reason: status === 'injured' ? 'Injured' : status === 'unavailable' ? 'Unavailable' : 'No club',
+      reason: status === 'injured' ? 'Injured' : 'Unavailable',
       recordedOn: null,
       source: 'researched',
     })
@@ -385,13 +397,7 @@ export function buildMatchdaySelection(
 
   const { slots, unfilled } = selectSlots(available, asOf)
   const strength = strengthOf(slots)
-  // Free agents stay out of the full-availability counterfactual. "If nobody
-  // were unavailable" means "if nobody were injured or withdrawn" — a question
-  // about a squad recovering. Being clubless is not a condition anyone
-  // recovers from between now and kick-off, so putting free agents back in
-  // would inflate the baseline and misattribute the gap to absences.
-  const selectable = players.filter((p) => !p.currentClub.unattached)
-  const strengthAtFullAvailability = strengthOf(selectSlots(selectable, asOf).slots)
+  const strengthAtFullAvailability = strengthOf(selectSlots(players, asOf).slots)
 
   return {
     slots,

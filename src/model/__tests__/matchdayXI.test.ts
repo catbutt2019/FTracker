@@ -347,51 +347,79 @@ describe('buildMatchdaySelection', () => {
     )
   })
 
-  it('does not pick a player who has no club', () => {
-    // A free agent is not injured, but he is not selectable either: no club
-    // means no training, no competitive football and no evidence accruing.
-    // Séamus Coleman, Robbie Brady and Will Smallbone are all in this state in
-    // the current dataset, and all three were previously eligible for the XI.
-    const squad = completeSquad().filter((p) => p.primaryPosition !== 'RB')
-    const clubless = player({ id: 'clubless', position: 'RB', score: 90, unattached: true })
-    const employed = player({ id: 'employed', position: 'RB', score: 50 })
-    const selection = buildMatchdaySelection([...squad, clubless, employed], [], AS_OF)
+  it('strips a free agent of his involvement bonus without excluding him', () => {
+    // Séamus Coleman's case. He and this comparison player have identical,
+    // maximally current international records; only one of them still has a
+    // club. Being unattached is read as zero current club football, so the
+    // "he keeps getting picked, so he will be picked again" bonus goes — but
+    // it is only ever damped to neutral, never turned into a penalty.
+    const clubless = player({
+      id: 'clubless',
+      position: 'RB',
+      score: 60,
+      seniorMinutesLast12Months: 810,
+      lastSeniorAppearanceDate: AS_OF,
+      unattached: true,
+      // Last season's minutes are deliberately generous, to prove they are
+      // ignored: what he played before losing his club does not describe what
+      // he is playing now.
+      clubMinutes: MATCHDAY_INVOLVEMENT.fullClubMinutes,
+    })
+    const employed = player({
+      id: 'employed',
+      position: 'GK',
+      score: 60,
+      seniorMinutesLast12Months: 810,
+      lastSeniorAppearanceDate: AS_OF,
+      clubMinutes: MATCHDAY_INVOLVEMENT.fullClubMinutes,
+    })
+    const selection = buildMatchdaySelection([clubless, employed], [], AS_OF)
 
-    // 40 points better and still not picked, so this is an availability gate
-    // and not merely a scoring penalty that a good enough player could survive.
-    expect(selection.slots.find((s) => s.position === 'RB')?.player.id).toBe('employed')
-    const absence = selection.unavailable.find((u) => u.player.id === 'clubless')
-    expect(absence?.reason).toBe('No club')
-    expect(absence?.source).toBe('researched')
+    const free = selection.slots.find((s) => s.player.id === 'clubless')!
+    expect(free.involvement.clubWorkload).toBe(0)
+    expect(free.involvement.factor).toBe(1)
+    expect(free.effectiveScore).toBe(free.rawScore)
+    expect(selection.slots.find((s) => s.player.id === 'employed')!.involvement.factor).toBeCloseTo(
+      1 + MATCHDAY_INVOLVEMENT.maxSwing,
+      4,
+    )
   })
 
-  it('calls an unattached and injured player injured, not clubless', () => {
-    // Both are true; the injury is the more specific and more useful fact.
-    const injuredFreeAgent = player({
+  it('still picks a free agent who is the best option at his position', () => {
+    // The guard against overcorrecting. Will Smallbone is 26 and a senior
+    // international who happens to be between contracts in August; an
+    // exclusion would have treated him exactly like a 37-year-old winding
+    // down. Losing a selection bonus is proportionate; losing eligibility is
+    // not, so no amount of being unattached may keep a clearly better player
+    // out of the XI.
+    const squad = completeSquad().filter((p) => p.primaryPosition !== 'CM')
+    const clubless = player({ id: 'clubless', position: 'CM', score: 90, unattached: true })
+    const employed = player({ id: 'employed', position: 'CM', score: 50 })
+    const selection = buildMatchdaySelection([...squad, clubless, employed], [], AS_OF)
+
+    expect(selection.slots.find((s) => s.position === 'CM')?.player.id).toBe('clubless')
+    expect(selection.unavailable.map((u) => u.player.id)).not.toContain('clubless')
+  })
+
+  it('records a free agent as unavailable only when something else makes him so', () => {
+    // Having no club is not an absence; an injury still is, even for a player
+    // who also has no club.
+    const clubless = player({ id: 'clubless', position: 'ST', score: 60, unattached: true })
+    const injuredAndClubless = player({
       id: 'both',
-      position: 'ST',
+      position: 'W',
       score: 60,
       unattached: true,
       availabilityStatus: 'injured',
     })
-    const selection = buildMatchdaySelection([...completeSquad(), injuredFreeAgent], [], AS_OF)
+    const selection = buildMatchdaySelection(
+      [...completeSquad(), clubless, injuredAndClubless],
+      [],
+      AS_OF,
+    )
 
-    expect(selection.unavailable.filter((u) => u.player.id === 'both')).toHaveLength(1)
-    expect(selection.unavailable.find((u) => u.player.id === 'both')?.reason).toBe('Injured')
-  })
-
-  it('does not credit a free agent to the fully available baseline', () => {
-    // "If nobody were unavailable" is a question about a squad recovering from
-    // injury. Nobody recovers from being out of contract by kick-off, so
-    // counting a free agent in the baseline would invent a cost of absence
-    // that no return to fitness could ever recoup.
-    const squad = completeSquad().filter((p) => p.primaryPosition !== 'RB')
-    const clubless = player({ id: 'clubless', position: 'RB', score: 90, unattached: true })
-    const employed = player({ id: 'employed', position: 'RB', score: 50 })
-    const selection = buildMatchdaySelection([...squad, clubless, employed], [], AS_OF)
-
-    expect(selection.strengthAtFullAvailability).toBe(selection.strength)
-    expect(selection.strengthCostOfAbsences).toBe(0)
+    expect(selection.unavailable.map((u) => u.player.id)).toEqual(['both'])
+    expect(selection.unavailable[0].reason).toBe('Injured')
   })
 
   it('damps the involvement bonus for a player who is barely playing club football', () => {

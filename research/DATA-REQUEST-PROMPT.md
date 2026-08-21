@@ -184,6 +184,7 @@ name fails silently rather than loudly.
       "goals": null,
       "assists": null
     },
+    "clubMinutesLast12Months": null,
     "metrics": {
       "<field>": null
     },
@@ -198,12 +199,55 @@ Notes on the shape:
 - `seasonStats` covers the same competitions as `metrics`, and is how I check
   whether the 450-minute rule below was met. Supply it where you can — these are
   the easiest fields to source and they feed the model directly.
+- **`clubMinutesLast12Months` is wanted for every player in every request**,
+  regardless of position. See the section below — it is the field I most need
+  and the one I currently have no real values for.
 - There is no separate `scope` or `confidence` field. Put both in `notes`, in
   prose: which competitions and clubs the figures cover, and how confident you
   are in each. Say so plainly if a number came from a single uncorroborated
   source.
 - `dateOfBirth` only matters for the five players named below as missing one.
   Leave it `null` otherwise; a value here never overrides the research file.
+
+## `clubMinutesLast12Months` — wanted for every player, every request
+
+**Total minutes of senior club football played in the 12 months before the
+as-of date, across all competitions.** Not a season total. Not a per-90 rate. A
+rolling window ending on the as-of date.
+
+This is a different question from `seasonStats.minutes`, and the difference is
+the whole point of asking. A player who was a regular until May and has not
+played since scores identically to one still starting every week if all I have
+is the completed season. The model uses this figure to decide how much to trust
+"he keeps getting picked for Ireland, so he will be picked again" — an inference
+that quietly stops holding when a player stops playing.
+
+Worked example of why: Séamus Coleman was capped in June 2026 and played 656
+international minutes in the last year, so on international evidence alone he
+looks like a current starter. He also played **18 minutes** of club football all
+season and is now unattached. Without a club figure the model rated him a
+likely starter at right-back.
+
+Rules:
+
+- **Include** league, domestic cup, and continental club football. Senior only.
+- **Exclude** international appearances — `seniorMinutesLast12Months` in the
+  research file already covers those, and double-counting them here would
+  reward a player twice for the same football.
+- **Exclude** youth, reserve and academy fixtures, and pre-season friendlies.
+- Cover a mid-season transfer by summing across both clubs, and say so in
+  `notes`.
+- `0` is a real and useful answer for a player who was fit and available but
+  never got on the pitch. Say in `notes` that you confirmed it, so I can tell it
+  apart from a guess.
+- **`null` when no source publishes a minutes figure.** Do not derive it from
+  appearances, and do not estimate it as appearances × 90 — that is precisely
+  the fabrication this field exists to replace. An honest `null` leaves the
+  model on its existing appearance-count fallback, which is weak but not wrong.
+  An invented number silently overrides it.
+- If you can only find the completed-season total and not a rolling 12-month
+  one, put the season total in `seasonStats.minutes`, leave this `null`, and
+  say so. Do not copy the season total into this field.
 
 ## Fields for this request
 
