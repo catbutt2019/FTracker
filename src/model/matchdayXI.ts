@@ -41,13 +41,33 @@ export interface MatchdaySelection {
   strengthAtFullAvailability: number
   /** Negative when absences cost strength. */
   strengthCostOfAbsences: number
-  unavailable: { player: Player; reason: string; recordedOn: string }[]
+  unavailable: MatchdayAbsence[]
   /**
    * Ids in the manual unavailability list matching no tracked player — a typo
    * or a stale id. Surfaced rather than silently dropped, because silently
    * ignoring "this player is injured" would overstate the XI.
    */
   unmatchedUnavailableIds: string[]
+  /**
+   * Manual entries the dataset already covers, so the hand-maintained list can
+   * be pruned rather than drifting out of sync with the research behind it.
+   */
+  redundantManualIds: string[]
+}
+
+export interface MatchdayAbsence {
+  player: Player
+  reason: string
+  /** `null` for researched absences, which carry the dataset's own date. */
+  recordedOn: string | null
+  /**
+   * Where the absence came from. `researched` means the round-2 pass sourced
+   * `seniorStatus.availabilityStatus`; `manual` means a person typed it into
+   * `src/data/nextFixture.ts` with no citation. Kept distinct so the UI can
+   * say which, rather than presenting a sourced fact and an assertion as
+   * equally solid.
+   */
+  source: 'researched' | 'manual'
 }
 
 /**
@@ -131,15 +151,43 @@ export function buildMatchdaySelection(
 ): MatchdaySelection {
   const byId = new Map(players.map((p) => [p.id, p]))
 
-  const unavailable: MatchdaySelection['unavailable'] = []
+  // Researched availability first. Round 2 populated
+  // `seniorStatus.availabilityStatus` from cited sources, so it outranks the
+  // hand-maintained list and needs no human upkeep.
+  const unavailable: MatchdayAbsence[] = []
+  const seen = new Set<string>()
+  for (const player of players) {
+    const status = player.seniorStatus.availabilityStatus
+    if (status !== 'injured' && status !== 'unavailable') continue
+    seen.add(player.id)
+    unavailable.push({
+      player,
+      reason: status === 'injured' ? 'Injured' : 'Unavailable',
+      recordedOn: null,
+      source: 'researched',
+    })
+  }
+
+  // Then manual overrides, for absences no source in the research pass covers.
   const unmatchedUnavailableIds: string[] = []
+  const redundantManualIds: string[] = []
   for (const entry of unavailability) {
     const player = byId.get(entry.playerId)
     if (!player) {
       unmatchedUnavailableIds.push(entry.playerId)
       continue
     }
-    unavailable.push({ player, reason: entry.reason, recordedOn: entry.recordedOn })
+    if (seen.has(entry.playerId)) {
+      redundantManualIds.push(entry.playerId)
+      continue
+    }
+    seen.add(entry.playerId)
+    unavailable.push({
+      player,
+      reason: entry.reason,
+      recordedOn: entry.recordedOn,
+      source: 'manual',
+    })
   }
 
   const unavailableIds = new Set(unavailable.map((u) => u.player.id))
@@ -157,5 +205,6 @@ export function buildMatchdaySelection(
     strengthCostOfAbsences: round(strength - strengthAtFullAvailability, 1),
     unavailable,
     unmatchedUnavailableIds,
+    redundantManualIds,
   }
 }

@@ -232,6 +232,13 @@ function MatchdayCard({ players }: { players: Player[] }) {
   const selection = buildMatchdaySelection(players, MANUAL_UNAVAILABILITY)
   const { kickoff, competition, venue } = NEXT_FIXTURE
 
+  // Counted rather than stated, so the caveat below cannot go stale the way it
+  // already did once: it claimed the field was empty for every player, which
+  // stopped being true the moment research round 2 landed.
+  const researchedAvailability = players.filter(
+    (player) => player.seniorStatus.availabilityStatus !== null,
+  ).length
+
   const fixtureDetail = [
     competition,
     venue ? (venue === 'home' ? 'Home' : venue === 'away' ? 'Away' : 'Neutral venue') : null,
@@ -263,8 +270,11 @@ function MatchdayCard({ players }: { players: Player[] }) {
           <div className="min-w-[14rem] flex-1">
             {selection.strengthCostOfAbsences === 0 ? (
               <p className="text-xs leading-relaxed text-muted-foreground">
-                The absences below cost this XI nothing, because neither player was selected in it
-                on current form.
+                {selection.unavailable.length === 0
+                  ? 'Nobody is recorded as unavailable, so this is the strongest eleven the pool can field.'
+                  : selection.unavailable.length === 1
+                    ? 'The absence below costs this XI nothing, because that player was not selected in it on current form.'
+                    : 'The absences below cost this XI nothing, because none of those players was selected in it on current form.'}
               </p>
             ) : (
               <p className="text-xs leading-relaxed text-muted-foreground">
@@ -355,7 +365,10 @@ function MatchdayCard({ players }: { players: Player[] }) {
                     {entry.player.name}
                   </Link>
                   <span className="text-xs text-muted-foreground">
-                    {entry.reason} · noted {entry.recordedOn}
+                    {entry.reason} ·{' '}
+                    {entry.source === 'researched'
+                      ? 'from the research pass'
+                      : `entered by hand, noted ${entry.recordedOn}`}
                   </span>
                 </li>
               ))}
@@ -363,18 +376,28 @@ function MatchdayCard({ players }: { players: Player[] }) {
           )}
         </div>
 
+        {selection.redundantManualIds.length > 0 && (
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            Research now covers the hand-entered {selection.redundantManualIds.length === 1 ? 'absence' : 'absences'}{' '}
+            for {selection.redundantManualIds.join(', ')}, counted once here. The manual{' '}
+            {selection.redundantManualIds.length === 1 ? 'entry' : 'entries'} can be removed from{' '}
+            <code>src/data/nextFixture.ts</code>.
+          </p>
+        )}
+
         <div className="flex items-start gap-2 rounded-md border border-border/70 bg-card/40 p-3 text-xs leading-relaxed text-muted-foreground">
           <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
           <p>
             <span className="font-medium text-foreground">
-              Availability here is entered by hand, not researched.
+              Availability is barely researched, so most absences are asserted rather than sourced.
             </span>{' '}
-            No source in this dataset covers injuries — the availability field is empty for all{' '}
-            {players.length} tracked players — so anyone not listed above is assumed fit, which will
-            sometimes be wrong. Selection is also a model ranking rather than a real team sheet: the
-            dataset holds no call-up or recent-selection evidence. Positions are filled
-            scarcest-first, so a player who can cover two roles is assigned to the thinner of them,
-            which is a heuristic and not necessarily the strongest possible combination.
+            The research pass found a citable availability status for {researchedAvailability} of{' '}
+            {players.length} tracked players; everything else above was typed in by hand, and anyone
+            not listed is assumed fit — which will sometimes be wrong. Selection is also a model
+            ranking rather than a real team sheet: the dataset holds no call-up or recent-selection
+            evidence. Positions are filled scarcest-first, so a player who can cover two roles is
+            assigned to the thinner of them, which is a heuristic and not necessarily the strongest
+            possible combination.
           </p>
         </div>
       </CardContent>

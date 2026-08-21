@@ -4,7 +4,7 @@ import { POSITIONS } from '@/types/domain'
 import { REQUIRED_STARTING_SLOTS } from '../config'
 import { buildMatchdaySelection } from '../matchdayXI'
 
-function seniorStatus(): SeniorStatus {
+function seniorStatus(availabilityStatus: SeniorStatus['availabilityStatus'] = null): SeniorStatus {
   return {
     seniorCaps: 0,
     seniorStarts: null,
@@ -16,7 +16,7 @@ function seniorStatus(): SeniorStatus {
     recentSquadCallups: null,
     clubMinutesLast12Months: null,
     clubCompetitionLevel: 60,
-    availabilityStatus: null,
+    availabilityStatus,
   }
 }
 
@@ -27,9 +27,16 @@ function player(options: {
   position: Position
   score: number
   secondaryPositions?: Position[]
+  availabilityStatus?: SeniorStatus['availabilityStatus']
 }): Player {
   idCounter += 1
-  const { id = `p${idCounter}`, position, score, secondaryPositions = [] } = options
+  const {
+    id = `p${idCounter}`,
+    position,
+    score,
+    secondaryPositions = [],
+    availabilityStatus = null,
+  } = options
   return {
     id,
     name: `Player ${id}`,
@@ -37,7 +44,7 @@ function player(options: {
     minutes: 2200,
     primaryPosition: position,
     secondaryPositions,
-    seniorStatus: seniorStatus(),
+    seniorStatus: seniorStatus(availabilityStatus),
     forecast: {
       currentPerformanceScore: score,
       trajectory: 'stable',
@@ -162,6 +169,55 @@ describe('buildMatchdaySelection', () => {
 
     expect(selection.slots.find((slot) => slot.position === 'LB')?.player.id).toBe('dual')
     expect(selection.unfilled).toEqual([])
+  })
+
+  it('excludes a player the dataset itself records as injured, with no manual entry', () => {
+    // The point of research round 2 populating `availabilityStatus`: an
+    // absence should not depend on someone remembering to type it in.
+    const striker = player({
+      id: 'crocked',
+      position: 'ST',
+      score: 95,
+      availabilityStatus: 'injured',
+    })
+    const selection = buildMatchdaySelection([...completeSquad(), striker], [])
+
+    expect(selection.slots.some((s) => s.player.id === 'crocked')).toBe(false)
+    expect(selection.unavailable.map((u) => [u.player.id, u.source])).toEqual([
+      ['crocked', 'researched'],
+    ])
+    expect(selection.strengthCostOfAbsences).toBeLessThan(0)
+  })
+
+  it('reports a manual entry the dataset already covers as redundant, not twice', () => {
+    // Otherwise the hand-maintained list silently accumulates entries that
+    // research has since superseded, and the card double-counts the absence.
+    const striker = player({
+      id: 'crocked',
+      position: 'ST',
+      score: 95,
+      availabilityStatus: 'injured',
+    })
+    const selection = buildMatchdaySelection([...completeSquad(), striker], [
+      { playerId: 'crocked', reason: 'Injured', recordedOn: '2026-08-21' },
+    ])
+
+    expect(selection.unavailable).toHaveLength(1)
+    expect(selection.unavailable[0].source).toBe('researched')
+    expect(selection.redundantManualIds).toEqual(['crocked'])
+  })
+
+  it('keeps a manual absence the dataset does not corroborate', () => {
+    // The Jaden Umeh case: asserted by hand, `availabilityStatus: null` in the
+    // data. Dropping it would overstate the XI.
+    const striker = player({ id: 'hand-entered', position: 'ST', score: 95 })
+    const selection = buildMatchdaySelection([...completeSquad(), striker], [
+      { playerId: 'hand-entered', reason: 'Injured', recordedOn: '2026-08-21' },
+    ])
+
+    expect(selection.slots.some((s) => s.player.id === 'hand-entered')).toBe(false)
+    expect(selection.unavailable[0].source).toBe('manual')
+    expect(selection.redundantManualIds).toEqual([])
   })
 
   it('is deterministic across repeated calls', () => {

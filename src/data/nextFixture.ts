@@ -6,11 +6,17 @@
  * that file came from a sourced research pass, whereas everything here was
  * typed in by a person and carries no citation.
  *
- * It exists because `SeniorStatus.availabilityStatus` is `null` for all 84
- * tracked players — no feed in the research pass covers injuries — so the only
- * way to reflect who is actually unavailable for a specific match is to say so
- * by hand. When that field is populated by a future research round, this
- * override list should shrink to nothing and then be deleted.
+ * It exists because `SeniorStatus.availabilityStatus` is sparse: research
+ * round 2 sourced it for exactly 1 of 84 tracked players, so the only way to
+ * reflect most absences is still to say so by hand. `buildMatchdaySelection`
+ * reads the researched field first and treats this list as an override layer
+ * on top, reporting any entry the dataset already covers as redundant so it
+ * can be pruned. As coverage improves this list should shrink to nothing and
+ * then be deleted.
+ *
+ * Evan Ferguson has already made that journey: round 2 records him as
+ * `availabilityStatus: 'injured'`, cited to a 2026-08-05 report of his ankle
+ * surgery recovery, so the hand-entered duplicate has been removed.
  */
 
 export interface Fixture {
@@ -43,6 +49,9 @@ export const NEXT_FIXTURE: Fixture = {
 }
 
 export const MANUAL_UNAVAILABILITY: ManualUnavailability[] = [
-  { playerId: 'evan-ferguson', reason: 'Injured', recordedOn: '2026-08-21' },
+  // Asserted by hand and NOT corroborated by research round 2, which returned
+  // `availabilityStatus: null` for this player. Kept because the person
+  // maintaining this file reported it; flagged here because it is the only
+  // absence in the XI resting on no citation.
   { playerId: 'jaden-umeh', reason: 'Injured', recordedOn: '2026-08-21' },
 ]
