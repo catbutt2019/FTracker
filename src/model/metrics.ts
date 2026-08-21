@@ -199,8 +199,13 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
     },
     {
       key: 'interceptions90',
-      label: 'Interceptions and blocks',
-      description: 'Combined interceptions and blocks per 90 minutes.',
+      label: 'Interceptions',
+      // Blocks used to be added into this figure. They are published for only 3
+      // of the 26 defenders in the research file, so the sum described 3 players
+      // on one scale and 8 on another — and since a metric is ranked against
+      // every other player's value for the same metric, the eight were compared
+      // against numbers roughly twice the size of their own.
+      description: 'Interceptions per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
       weight: 0.16,
