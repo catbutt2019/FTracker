@@ -271,7 +271,7 @@ export function MetricPercentileChart({ metrics }: { metrics: MetricScore[] }) {
       )}
 
       {missing.length > 0 && (
-        <div className="space-y-2 rounded-md border border-dashed border-border/70 p-3">
+        <div className="space-y-2 rounded-md border border-dashed border-border-strong p-3">
           <p className="text-xs font-medium text-muted-foreground">
             Not supplied for this season
           </p>
@@ -279,7 +279,7 @@ export function MetricPercentileChart({ metrics }: { metrics: MetricScore[] }) {
             {missing.map((metric) => (
               <li key={metric.key} className="flex items-center gap-2 text-xs">
                 <span
-                  className="diagonal-hatch h-3 w-10 shrink-0 rounded-sm border border-border/60"
+                  className="diagonal-hatch h-3 w-10 shrink-0 rounded-sm border border-border"
                   aria-hidden="true"
                 />
                 <span className="text-muted-foreground">{metric.label}</span>

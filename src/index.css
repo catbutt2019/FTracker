@@ -6,7 +6,10 @@
   :root {
     color-scheme: light;
 
-    --background: 140 23% 97%;
+    /* Deeper than the card white by a clear step. White cards and tables are
+       the content surface, and they can only read as raised if the page behind
+       them is visibly tinted. */
+    --background: 142 20% 93%;
     --foreground: 152 39% 6%;
     --card: 0 0% 100%;
     --card-foreground: 152 39% 6%;
@@ -24,9 +27,11 @@
     --accent-foreground: 158 100% 19%;
     --destructive: 356 68% 43%;
     --destructive-foreground: 0 0% 100%;
-    --border: 144 17% 89%;
-    --border-strong: 145 11% 66%;
-    --input: 144 17% 89%;
+    /* Dark enough to draw a definite edge against a white card, since the
+       border is now doing the work that a translucent fill used to fudge. */
+    --border: 144 14% 82%;
+    --border-strong: 145 11% 62%;
+    --input: 144 14% 82%;
     --ring: 158 79% 32%;
     --radius: 0.6rem;
   }

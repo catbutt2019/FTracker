@@ -117,12 +117,12 @@ export function AppShell({
         {children}
       </main>
 
-      <footer className="mt-12 border-t border-border/70 py-8">
+      <footer className="mt-12 border-t border-border py-8">
         <div className="container flex flex-col gap-3 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
             <p>
-              Experimental model {MODEL_CONFIG.version}. Projections are estimates from a
-              transparent, unfitted model, not predictions of fact.
+              Experimental model {MODEL_CONFIG.version}. Every projection here is an estimate from a
+              model that has never been tested against real outcomes.
             </p>
             {sourceLabel && asOfDate && (
               <p>

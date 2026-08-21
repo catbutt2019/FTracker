@@ -188,15 +188,15 @@ export function PlayerExplorer() {
   return (
     <div className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-2xl font-semibold tracking-tight">Player explorer</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">All players</h1>
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
           Every tracked player, with their position-specific performance score and the model's view
-          of where they are heading. Scores are percentile-based within this pool, so 50 is the pool
-          average rather than a rating against world football.
+          of where they are heading. Scores are percentiles within this pool, so 50 is average for
+          this group, not a rating against world football.
         </p>
       </header>
 
-      <Card className="border-border/70 bg-card/60">
+      <Card className="border-border bg-card">
         <CardContent className="space-y-4 pt-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end lg:flex-nowrap">
             <div className="min-w-[160px] flex-1 space-y-1.5">
@@ -521,7 +521,7 @@ function PlayerTable({
   onSort: (key: SortKey) => void
 }) {
   return (
-    <Card className="border-border/70 bg-card/60">
+    <Card className="border-border bg-card">
       <CardContent className="p-0">
         <div className="overflow-x-auto">
           <Table>
@@ -599,7 +599,7 @@ function PlayerTable({
             </TableHeader>
             <TableBody>
               {players.map((player) => (
-                <TableRow key={player.id} className="border-border/50">
+                <TableRow key={player.id} className="border-border">
                   <TableCell>
                     <div className="flex items-center gap-2.5">
                       <PlayerAvatar name={player.name} imageUrl={player.avatarUrl} size="sm" />
@@ -625,7 +625,7 @@ function PlayerTable({
                   </TableCell>
                   <TableCell className="tabular text-right">{player.age}</TableCell>
                   <TableCell>
-                    <span className="rounded border border-border/70 px-1.5 py-0.5 text-xs">
+                    <span className="rounded border border-border px-1.5 py-0.5 text-xs">
                       {player.primaryPosition}
                     </span>
                   </TableCell>
@@ -692,7 +692,7 @@ function PlayerGrid({ players }: { players: Player[] }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {players.map((player) => (
-        <Card key={player.id} className="border-border/70 bg-card/60">
+        <Card key={player.id} className="border-border bg-card">
           <CardContent className="space-y-4 pt-6">
             <div className="flex items-start justify-between gap-3">
               <div className="flex min-w-0 items-start gap-2.5">
@@ -728,7 +728,7 @@ function PlayerGrid({ players }: { players: Player[] }) {
 
             <ProbabilityBar probabilities={player.forecast.projections[24].probabilities} />
 
-            <div className="grid grid-cols-3 gap-2 border-t border-border/60 pt-3 text-xs">
+            <div className="grid grid-cols-3 gap-2 border-t border-border pt-3 text-xs">
               <div>
                 <p className="text-muted-foreground">Minutes</p>
                 <p className="tabular">

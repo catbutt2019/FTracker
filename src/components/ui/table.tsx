@@ -20,7 +20,17 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+  <thead
+    ref={ref}
+    className={cn(
+      // Tinted band plus a heavier rule under it: on a white card the header
+      // was previously distinguished only by muted text, which read as just
+      // another row in a dense stat table.
+      "bg-muted/70 [&_tr]:border-b-2 [&_tr]:border-border",
+      className,
+    )}
+    {...props}
+  />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -58,7 +68,12 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+      // Zebra striping carries the row boundary across wide tables, where a
+      // 1px rule alone leaves the eye to track a value back to its player.
+      // `even:` is emitted before `hover:` in Tailwind's variant order, so the
+      // hover tint still wins on striped rows. Hover is the green accent
+      // rather than more grey, so it reads over the stripe.
+      "border-b transition-colors even:bg-muted/40 hover:bg-accent/70 data-[state=selected]:bg-muted",
       className
     )}
     {...props}

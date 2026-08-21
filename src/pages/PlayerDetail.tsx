@@ -39,7 +39,7 @@ export function PlayerDetail() {
     return (
       <EmptyState
         title="Player not found"
-        description="No tracked player matches this address. They may have been removed from the dataset, or the link may be out of date."
+        description="No tracked player has this id. They may have been dropped from the dataset, or the link may be out of date."
         action={
           <Link
             to="/"
@@ -156,7 +156,7 @@ export function PlayerDetail() {
           {HORIZONS.map((horizon) => {
             const projection = forecast.projections[horizon]
             return (
-              <Card key={horizon} className="border-border/70 bg-card/60">
+              <Card key={horizon} className="border-border bg-card">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center justify-between text-sm font-medium">
                     <span>{horizon} months</span>
@@ -231,7 +231,7 @@ export function PlayerDetail() {
           title="Performance over time"
           description="Season scores as observed, continued into the projected range. Solid is what happened; dashed and shaded is what the model guesses."
         />
-        <Card className="border-border/70 bg-card/60">
+        <Card className="border-border bg-card">
           <CardContent className="pt-6">
             <PlayerTrendChart player={player} />
           </CardContent>
@@ -257,7 +257,7 @@ export function PlayerDetail() {
             </p>
           </div>
         )}
-        <Card className="border-border/70 bg-card/60">
+        <Card className="border-border bg-card">
           <CardContent className="p-0">
             <div className="overflow-x-auto">
               <Table>
@@ -351,7 +351,7 @@ export function PlayerDetail() {
           title={`${POSITION_LABELS[player.primaryPosition]} metrics`}
           description="Percentile rank against every tracked Irish player scored on the same metric family, using the latest season. Bars are percentiles rather than raw values so metrics on different scales can sit together."
         />
-        <Card className="border-border/70 bg-card/60">
+        <Card className="border-border bg-card">
           <CardContent className="pt-6">
             <MetricPercentileChart metrics={player.metrics} />
           </CardContent>
@@ -364,7 +364,7 @@ export function PlayerDetail() {
           title="Age and development"
           description="The positional age curve the model applies, with this player placed on it. Shown because the age assumption is one of the model's biggest levers and should not be taken on trust."
         />
-        <Card className="border-border/70 bg-card/60">
+        <Card className="border-border bg-card">
           <CardContent className="pt-6">
             <AgeCurveChart player={player} />
             <p className="mt-4 max-w-3xl text-xs leading-relaxed text-muted-foreground">
@@ -391,7 +391,7 @@ function ReasonCard({
   tone: 'support' | 'risk'
 }) {
   return (
-    <Card className="border-border/70 bg-card/60">
+    <Card className="border-border bg-card">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-sm font-medium">
           <Icon
@@ -432,7 +432,7 @@ function ReasonCard({
 function MetricTable({ player }: { player: Player }) {
   const latest = player.seasonScores[0]
   return (
-    <Card className="mt-4 border-border/70 bg-card/60">
+    <Card className="mt-4 border-border bg-card">
       <CardContent className="p-0">
         <div className="overflow-x-auto">
           <Table>
@@ -477,7 +477,7 @@ function MetricTable({ player }: { player: Player }) {
             </TableBody>
           </Table>
         </div>
-        <div className="border-t border-border/60 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+        <div className="border-t border-border px-4 py-3 text-xs leading-relaxed text-muted-foreground">
           Metric coverage for {latest.season}: {Math.round(latest.metricCoverage * 100)}% of the
           normal weight for this position.
           {latest.metricCoverage < 1

@@ -39,7 +39,7 @@ export function StatCard({
   className?: string
 }) {
   return (
-    <Card className={cn('border-border/70 bg-card/60', className)}>
+    <Card className={cn('border-border bg-card', className)}>
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-muted-foreground">
           {label}
@@ -86,7 +86,7 @@ export function LoadingState({ label = 'Loading player data' }: { label?: string
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {Array.from({ length: 4 }).map((_, index) => (
-          <Card key={index} className="border-border/70 bg-card/60">
+          <Card key={index} className="border-border bg-card">
             <CardHeader className="pb-2">
               <Skeleton className="h-3 w-24" />
             </CardHeader>
@@ -97,7 +97,7 @@ export function LoadingState({ label = 'Loading player data' }: { label?: string
           </Card>
         ))}
       </div>
-      <Card className="border-border/70 bg-card/60">
+      <Card className="border-border bg-card">
         <CardContent className="pt-6">
           <Skeleton className="h-64 w-full" />
         </CardContent>
@@ -143,7 +143,7 @@ export function EmptyState({
   action?: ReactNode
 }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-border/70 px-6 py-14 text-center">
+    <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-border-strong px-6 py-14 text-center">
       <Inbox className="size-6 text-muted-foreground/60" aria-hidden="true" />
       <p className="text-sm font-medium">{title}</p>
       <p className="max-w-md text-sm leading-relaxed text-muted-foreground">{description}</p>
@@ -162,7 +162,7 @@ export function EmptyState({
 export function NotSupplied({ reason }: { reason?: string }) {
   return (
     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-      <span className="diagonal-hatch h-3 w-6 rounded-sm border border-border/60" aria-hidden="true" />
+      <span className="diagonal-hatch h-3 w-6 rounded-sm border border-border" aria-hidden="true" />
       <span className="italic">Not supplied</span>
       {reason && <InfoHint label="Why is this missing?">{reason}</InfoHint>}
     </span>

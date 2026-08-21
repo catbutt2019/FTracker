@@ -44,9 +44,8 @@ export function Methodology() {
         </div>
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Methodology</h1>
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          This page describes exactly how every number in the application is produced. It is written
-          on the assumption that a projection nobody can inspect is a projection nobody should
-          believe.
+          Exactly how every number in this app is produced. It is written on the assumption that a
+          projection nobody can inspect is a projection nobody should believe.
         </p>
         <div className="flex items-start gap-2.5 rounded-md border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed">
           <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600" aria-hidden="true" />
@@ -135,7 +134,7 @@ export function Methodology() {
 
         <div className="space-y-6">
           {METRIC_GROUPS.map((group) => (
-            <Card key={group} className="border-border/70 bg-card/60">
+            <Card key={group} className="border-border bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium">
                   {GROUP_LABELS[group]}
@@ -201,7 +200,7 @@ export function Methodology() {
           {MODEL_CONFIG.strongLeagueThreshold} is described as &ldquo;strong&rdquo; in the interface.
         </p>
 
-        <div className="overflow-x-auto rounded-lg border border-border/70">
+        <div className="overflow-x-auto rounded-lg border border-border">
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent">
@@ -281,7 +280,7 @@ export function Methodology() {
           45-rated one.
         </p>
 
-        <div className="overflow-x-auto rounded-lg border border-border/70">
+        <div className="overflow-x-auto rounded-lg border border-border">
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent">

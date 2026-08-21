@@ -19,14 +19,13 @@ export function PositionDepthPage() {
       <header className="space-y-3">
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Position depth</h1>
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          Each of the nine positions, with who is available now, who could be available later, and
-          how exposed the position is once required starters, depth, succession, trend and
-          availability are each weighed separately. Position strength is built from the number of
-          players a formation actually needs there, weighted toward the weakest of them, so adding
-          a fringe option never makes a position look weaker — and a weak required starter can no
-          longer be smoothed away by an average.
+          Each of the nine positions: who is available now, who could be later, and how exposed the
+          position is on quality, depth, succession, trend and availability. Position strength
+          counts only the players a formation actually needs there, weighted toward the weakest of
+          them. So adding a fringe option never makes a position look weaker, and a weak required
+          starter cannot be smoothed away by an average.
         </p>
-        <div className="flex items-start gap-2 rounded-md border border-border/70 bg-card/40 p-3 text-xs leading-relaxed text-muted-foreground">
+        <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
           <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
           <p>
             Players are counted in their primary position only. A centre-back who can play
@@ -38,11 +37,11 @@ export function PositionDepthPage() {
 
       <section>
         <SectionHeading
-          title="Summary"
-          description="Sorted by the model's own ordering, from strongest to weakest current position strength."
+          title="All nine positions"
+          description="Strongest to weakest by current position strength."
         />
-        <Card className="border-border/70 bg-card/60">
-          <CardContent className="divide-y divide-border/60 p-0">
+        <Card className="border-border bg-card">
+          <CardContent className="divide-y divide-border p-0">
             {[...outlook.depthByPosition]
               .sort((a, b) => b.currentStrength - a.currentStrength)
               .map((depth) => (
@@ -88,7 +87,7 @@ export function PositionDepthPage() {
 
 function PositionCard({ depth }: { depth: PositionDepth }) {
   return (
-    <Card id={depth.position} className="scroll-mt-20 border-border/70 bg-card/60">
+    <Card id={depth.position} className="scroll-mt-20 border-border bg-card">
       <CardHeader className="pb-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="space-y-1">
@@ -143,7 +142,7 @@ function PositionCard({ depth }: { depth: PositionDepth }) {
             </p>
           </div>
 
-          <div className="space-y-2 rounded-md border border-border/70 bg-background/40 p-3">
+          <div className="space-y-2 rounded-md border border-border bg-muted/50 p-3">
             <div className="flex items-center justify-between gap-2">
               <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Risk assessment · {depth.positionalGroup} unit
@@ -232,7 +231,7 @@ function PlayerGroup({
         <p className="text-xs leading-relaxed text-muted-foreground">{description}</p>
       </div>
       {players.length === 0 ? (
-        <p className="rounded-md border border-dashed border-border/70 px-3 py-4 text-xs leading-relaxed text-muted-foreground">
+        <p className="rounded-md border border-dashed border-border-strong px-3 py-4 text-xs leading-relaxed text-muted-foreground">
           {emptyLabel}
         </p>
       ) : (
@@ -241,7 +240,7 @@ function PlayerGroup({
             <li key={player.id}>
               <Link
                 to={`/players/${player.id}`}
-                className="block rounded-md border border-border/70 bg-background/40 px-3 py-2.5 transition-colors hover:border-border hover:bg-accent/40"
+                className="block rounded-md border border-border bg-muted/50 px-3 py-2.5 transition-colors hover:border-border hover:bg-accent/40"
               >
                 <div className="flex items-start justify-between gap-2">
                   <span className="flex items-center gap-2">

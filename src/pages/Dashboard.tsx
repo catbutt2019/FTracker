@@ -31,24 +31,23 @@ export function Dashboard() {
     <div className="space-y-10">
       <header className="space-y-3">
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-          National-team talent outlook
+          Is the talent pool getting stronger?
         </h1>
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          An estimate of whether the pool of players available to the Republic of Ireland men's
-          senior team is getting stronger or weaker, built from {outlook.poolSize} tracked players
-          and {outlook.simulations.toLocaleString()} simulations. Every figure on this page is a
-          range, because a single number would imply a precision this model does not have.
+          An estimate for the Republic of Ireland men's senior team, built from{' '}
+          {outlook.poolSize} tracked players and {outlook.simulations.toLocaleString()} simulations
+          of how they might develop. Every figure on this page is a range, because a single number
+          would imply a precision this model does not have.
         </p>
-        <div className="flex items-start gap-2 rounded-md border border-border/70 bg-card/40 p-3 text-xs leading-relaxed text-muted-foreground">
+        <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
           <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
           <p>
             <span className="font-medium text-foreground">
               A stronger talent pool is not the same thing as qualification.
             </span>{' '}
-            This model contains no opponent data and no competition format, so it says nothing about
-            results or reaching a tournament. It only describes the players available. The projected
-            eleven below names a fixture, but only to fix a point in time and a set of absences — not
-            to forecast the match.
+            There are no opponents and no competition format anywhere in this model, so it says
+            nothing about results or reaching a tournament. It describes the players available,
+            nothing more.
           </p>
         </div>
       </header>
@@ -71,7 +70,7 @@ export function Dashboard() {
           <StatCard
             label="Squad strength"
             value={outlook.currentStrength.toFixed(1)}
-            hint="A 0-100 weighted score built from the number of players each of the nine positions actually needs to start, weighted toward the weakest of them so one weak required starter cannot be averaged away. Because it is based on percentiles within the Irish pool, roughly 50 is average for this group — it is not a rating against the rest of the world."
+            hint="Roughly 50 is average for this group, not a rating against world football — the score is built from percentiles within the tracked Irish pool. It counts only the players each of the nine positions needs to start, weighted toward the weakest of them, so one weak starter cannot be averaged away."
           >
             <DeltaValue value={outlook.changeFromPreviousSeason} suffix=" vs last season" />
           </StatCard>
@@ -84,9 +83,9 @@ export function Dashboard() {
           />
 
           <StatCard
-            label="Average squad age"
+            label="Average senior age"
             value={outlook.averageSquadAge.toFixed(1)}
-            hint="Mean age of players currently at senior international level. Under-21 and emerging players are excluded so that the figure describes the present squad rather than the whole pool."
+            hint="Mean age of players currently at senior international level. Under-21 and emerging players are excluded, so this describes the present squad rather than the whole pool."
           />
 
           <StatCard
@@ -130,7 +129,7 @@ export function Dashboard() {
       <section>
         <SectionHeading
           title={`Projected XI vs ${NEXT_FIXTURE.opponent}`}
-          description="The strongest available eleven on current form, using each player's score today rather than a projection. A label for a fixture, not a forecast of it — this model has no opponent data."
+          description="The strongest available eleven on current form, using each player's score today rather than a projection. The fixture is a label, not a forecast of it."
         />
         <MatchdayCard players={players} asOfDate={asOfDate} />
       </section>
@@ -140,7 +139,7 @@ export function Dashboard() {
           title="Squad strength over time"
           description="Observed seasons are drawn as a solid line. Projections are dashed, with a shaded 80% range."
         />
-        <Card className="border-border/70 bg-card/60">
+        <Card className="border-border bg-card">
           <CardContent className="pt-6">
             <SquadTrendChart data={outlook.history} />
             <p className="mt-4 max-w-3xl text-xs leading-relaxed text-muted-foreground">
@@ -183,8 +182,8 @@ export function Dashboard() {
             </Link>
           }
         />
-        <Card className="border-border/70 bg-card/60">
-          <CardContent className="divide-y divide-border/60 p-0">
+        <Card className="border-border bg-card">
+          <CardContent className="divide-y divide-border p-0">
             {outlook.depthByPosition.map((depth) => (
               <div
                 key={depth.position}
@@ -258,7 +257,7 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
   ].filter(Boolean)
 
   return (
-    <Card className="border-border/70 bg-card/60">
+    <Card className="border-border bg-card">
       <CardContent className="space-y-6 pt-6">
         <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
           <div>
@@ -297,7 +296,7 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
         {fixtureDetail.length > 0 ? (
           <p className="text-xs text-muted-foreground">{fixtureDetail.join(' · ')}</p>
         ) : (
-          <div className="flex items-start gap-2 rounded-md border border-border/70 bg-card/40 p-3 text-xs leading-relaxed text-muted-foreground">
+          <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
             <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
             <p>
               No date, competition or venue is recorded for this fixture, so the eleven below is
@@ -332,7 +331,9 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
             Recorded as unavailable
           </p>
           {selection.unavailable.length === 0 ? (
-            <p className="text-xs text-muted-foreground">Nobody recorded as unavailable.</p>
+            <p className="text-xs text-muted-foreground">
+              Nobody. Everyone in the pool is assumed fit, which is not the same as confirmed fit.
+            </p>
           ) : (
             <ul className="space-y-1 text-sm">
               {selection.unavailable.map((entry) => (
@@ -364,19 +365,18 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
           </p>
         )}
 
-        <div className="flex items-start gap-2 rounded-md border border-border/70 bg-card/40 p-3 text-xs leading-relaxed text-muted-foreground">
+        <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
           <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
           <p>
             <span className="font-medium text-foreground">
-              Availability is barely researched, so most absences are asserted rather than sourced.
+              This is a model ranking, not a team sheet.
             </span>{' '}
-            The research pass found a citable availability status for {researchedAvailability} of{' '}
-            {players.length} tracked players; everything else above was typed in by hand, and anyone
-            not listed is assumed fit — which will sometimes be wrong. Selection is also a model
-            ranking rather than a real team sheet: the dataset holds no call-up or recent-selection
-            evidence. Positions are filled scarcest-first, so a player who can cover two roles is
-            assigned to the thinner of them, which is a heuristic and not necessarily the strongest
-            possible combination.
+            Nothing in the dataset records call-ups or recent selection. Availability is barely
+            researched: {researchedAvailability} of {players.length} players have a citable status,
+            everything else above was typed in by hand, and anyone not listed is assumed fit — which
+            will sometimes be wrong. Positions are filled scarcest-first, so a player who covers two
+            roles goes to the thinner one. That is a heuristic, not the strongest possible
+            combination.
           </p>
         </div>
       </CardContent>
@@ -393,7 +393,7 @@ function HorizonCard({
 }) {
   const data = outlook.horizons[horizon]
   return (
-    <Card className="border-border/70 bg-card/60">
+    <Card className="border-border bg-card">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center justify-between text-sm font-medium">
           <span>{horizon} months</span>
@@ -451,7 +451,7 @@ function PositionalRiskSummary({ outlook }: { outlook: SquadOutlook }) {
 
   if (highRiskGroups.length === 0 && monitorGroups.length === 0) {
     return (
-      <Card className="border-dashed border-border/70 bg-transparent">
+      <Card className="border-dashed border-border-strong bg-transparent">
         <CardContent className="py-8 text-center text-sm text-muted-foreground">
           No position is currently flagged as at risk: every one of the six positional units clears
           this model's thresholds on current quality, depth, succession, trend and availability.
@@ -489,8 +489,8 @@ function RiskGroupList({
   return (
     <div>
       <p className={`mb-2 text-xs font-medium uppercase tracking-wide ${toneClassName}`}>{title}</p>
-      <Card className="border-border/70 bg-card/60">
-        <CardContent className="divide-y divide-border/60 p-0">
+      <Card className="border-border bg-card">
+        <CardContent className="divide-y divide-border p-0">
           {groups.map((group) => (
             <div key={group.group} className="space-y-1.5 px-4 py-3">
               <div className="flex items-center justify-between gap-3">
@@ -525,7 +525,7 @@ function PositionTrendList({
 }) {
   if (entries.length === 0) {
     return (
-      <Card className="border-dashed border-border/70 bg-transparent">
+      <Card className="border-dashed border-border-strong bg-transparent">
         <CardContent className="py-8 text-center text-sm text-muted-foreground">
           {emptyLabel}
         </CardContent>
@@ -534,8 +534,8 @@ function PositionTrendList({
   }
 
   return (
-    <Card className="border-border/70 bg-card/60">
-      <CardContent className="divide-y divide-border/60 p-0">
+    <Card className="border-border bg-card">
+      <CardContent className="divide-y divide-border p-0">
         {entries.map((entry) => (
           <div key={entry.position} className="space-y-1.5 px-4 py-3">
             <div className="flex items-center justify-between gap-3">
