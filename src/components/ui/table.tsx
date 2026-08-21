@@ -26,7 +26,7 @@ const TableHeader = React.forwardRef<
       // Tinted band plus a heavier rule under it: on a white card the header
       // was previously distinguished only by muted text, which read as just
       // another row in a dense stat table.
-      "bg-muted/70 [&_tr]:border-b-2 [&_tr]:border-border",
+      "bg-muted [&_tr]:border-b-2 [&_tr]:border-border",
       className,
     )}
     {...props}
@@ -73,7 +73,7 @@ const TableRow = React.forwardRef<
       // `even:` is emitted before `hover:` in Tailwind's variant order, so the
       // hover tint still wins on striped rows. Hover is the green accent
       // rather than more grey, so it reads over the stripe.
-      "border-b transition-colors even:bg-muted/40 hover:bg-accent/70 data-[state=selected]:bg-muted",
+      "border-b transition-colors even:bg-muted/70 hover:bg-accent data-[state=selected]:bg-muted",
       className
     )}
     {...props}
