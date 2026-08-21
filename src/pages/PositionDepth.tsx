@@ -8,7 +8,7 @@ import { ConfidenceIndicator, DeltaValue, DepthRiskBadge, TrajectoryBadge } from
 import { PlayerAvatar } from '@/components/PlayerAvatar'
 import { RangeBar } from '@/components/ProbabilityBar'
 import { useDataset } from '@/hooks/useDataset'
-import { MODEL_CONFIG, POSITION_SQUAD_WEIGHTS } from '@/model/config'
+import { POSITION_SQUAD_WEIGHTS } from '@/model/config'
 import { NATIONAL_TEAM_LEVEL_LABELS, type Player, type PositionDepth } from '@/types/domain'
 
 export function PositionDepthPage() {
@@ -20,9 +20,11 @@ export function PositionDepthPage() {
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Position depth</h1>
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
           Each of the nine positions, with who is available now, who could be available later, and
-          how exposed the position is if one or two players are unavailable. Position strength is
-          the mean of the best {MODEL_CONFIG.squadSlotsPerPosition} players, so adding a fringe
-          option never makes a position look weaker.
+          how exposed the position is once required starters, depth, succession, trend and
+          availability are each weighed separately. Position strength is built from the number of
+          players a formation actually needs there, weighted toward the weakest of them, so adding
+          a fringe option never makes a position look weaker — and a weak required starter can no
+          longer be smoothed away by an average.
         </p>
         <div className="flex items-start gap-2 rounded-md border border-border/70 bg-card/40 p-3 text-xs leading-relaxed text-muted-foreground">
           <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
@@ -97,8 +99,9 @@ function PositionCard({ depth }: { depth: PositionDepth }) {
               </span>
             </CardTitle>
             <p className="text-xs text-muted-foreground">
-              {depth.playerCount} tracked · average age {depth.averageAge.toFixed(1)} · squad
-              weighting {POSITION_SQUAD_WEIGHTS[depth.position].toFixed(2)}
+              {depth.playerCount} tracked · average age {depth.averageAge.toFixed(1)} ·{' '}
+              {depth.requiredStartingSlots} starting slot{depth.requiredStartingSlots === 1 ? '' : 's'}{' '}
+              required · squad weighting {POSITION_SQUAD_WEIGHTS[depth.position].toFixed(2)}
               <InfoHint label="About squad weighting">
                 How much this position contributes to the overall squad-strength score. Central
                 spine roles carry slightly more weight because a weakness there is harder to hide.
@@ -134,48 +137,80 @@ function PositionCard({ depth }: { depth: PositionDepth }) {
               />
             )}
             <p className="text-xs leading-relaxed text-muted-foreground">
-              Projected range is the 24-month 80% interval, averaged across the best{' '}
-              {MODEL_CONFIG.squadSlotsPerPosition} projected players in this position.
+              Projected range is the 24-month 80% interval, averaged across the{' '}
+              {depth.requiredStartingSlots} required starting slot{depth.requiredStartingSlots === 1 ? '' : 's'}{' '}
+              in this position.
             </p>
           </div>
 
           <div className="space-y-2 rounded-md border border-border/70 bg-background/40 p-3">
-            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-              Depth assessment
-            </p>
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                Risk assessment · {depth.positionalGroup} unit
+              </p>
+              <ConfidenceIndicator level={depth.risk.confidence} />
+            </div>
             <p className="text-sm leading-relaxed">{depth.depthRiskReason}</p>
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              <RiskDimensionChip label="Quality" level={depth.risk.currentQualityRisk} />
+              <RiskDimensionChip label="Depth" level={depth.risk.depthRisk} />
+              <RiskDimensionChip label="Succession" level={depth.risk.successionRisk} />
+              <RiskDimensionChip label="Trend" level={depth.risk.trendRisk} />
+              <RiskDimensionChip label="Availability" level={depth.risk.availabilityRisk} />
+            </div>
             <p className="text-xs leading-relaxed text-muted-foreground">
-              Risk considers how many players clear a senior-ready score of 55, how many are aged
-              23 or under, and how many of the current options are over 30. It is deliberately
-              separate from position strength: a position can be strong today and still be exposed.
+              Each dimension is assessed for this position's whole group (e.g. midfield covers
+              DM/CM/AM together, since that is the unit a formation actually fields), not this one
+              granular position in isolation.
             </p>
           </div>
         </div>
 
         <Separator className="bg-border/60" />
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <PlayerGroup
-            title="First-choice options"
-            description="The two highest current scores available."
-            players={depth.firstChoice}
+            title="Highest-rated current options"
+            description="Best model scores available. Not a claim about actual team selection — this dataset has no reliable recent-selection evidence."
+            players={depth.highestRatedCurrent}
             emptyLabel="Nobody is tracked in this position."
           />
           <PlayerGroup
-            title="Potential future starters"
-            description="Projected to reach 52 or above within 24 months, behind the first choices."
-            players={depth.futureStarters}
-            emptyLabel="No further player is projected to reach a starting level within 24 months."
+            title="Senior contender / rotation option"
+            description="Senior-capped or already started, but not among the highest-rated current options."
+            players={depth.seniorContenders}
+            emptyLabel="No further senior-capped player is tracked here."
           />
           <PlayerGroup
-            title="Emerging players"
-            description="Aged 21 or under, ordered by projected midpoint."
-            players={depth.emerging}
+            title="Future contender"
+            description="No senior appearance yet, aged 23 or under, stable or improving, and projected to approach senior level within 24 months."
+            players={depth.futureContenders}
+            emptyLabel="No player currently meets every future-contender condition."
+          />
+          <PlayerGroup
+            title="Emerging prospect"
+            description="Aged 21 or under, no senior appearance yet, still developing toward the future-contender bar."
+            players={depth.emergingProspects}
             emptyLabel="No player aged 21 or under is tracked in this position."
           />
         </div>
       </CardContent>
     </Card>
+  )
+}
+
+function RiskDimensionChip({ label, level }: { label: string; level: 'none' | 'moderate' | 'high' }) {
+  const styles: Record<typeof level, string> = {
+    none: 'bg-shamrock-50 text-shamrock-800 border-shamrock-200',
+    moderate: 'bg-slate-100 text-slate-700 border-slate-300',
+    high: 'bg-amber-50 text-amber-800 border-amber-200',
+  }
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[11px] font-medium whitespace-nowrap ${styles[level]}`}
+    >
+      {label}: {level === 'none' ? 'clear' : level}
+    </span>
   )
 }
 

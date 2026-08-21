@@ -5,11 +5,25 @@ import { MODEL_CONFIG } from '@/model/config'
 import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
-  { to: '/', label: 'Outlook' },
-  { to: '/players', label: 'Players' },
+  { to: '/', label: 'Players' },
+  { to: '/outlook', label: 'Outlook' },
   { to: '/depth', label: 'Position depth' },
   { to: '/methodology', label: 'Methodology' },
 ]
+
+/**
+ * The Irish tricolour — a national flag, not a trademarked club/federation
+ * logo, so there's no rights issue reproducing its colours and proportions.
+ */
+function IrelandFlag({ className }: { className?: string }) {
+  return (
+    <span className={cn('flex overflow-hidden rounded-[3px]', className)} aria-hidden="true">
+      <span className="flex-1 bg-[#169b62]" />
+      <span className="flex-1 bg-white" />
+      <span className="flex-1 bg-[#ff883e]" />
+    </span>
+  )
+}
 
 export function AppShell({
   children,
@@ -31,18 +45,14 @@ export function AppShell({
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-shamrock-950/40 bg-shamrock-700 text-white shadow-sm">
         <div className="container flex h-14 items-center justify-between gap-4">
           <NavLink to="/" className="flex items-center gap-2.5">
-            <span
-              className="flex size-7 items-center justify-center rounded-md bg-primary text-[13px] font-bold text-primary-foreground"
-              aria-hidden="true"
-            >
-              IE
-            </span>
-            <span className="text-sm font-semibold leading-tight">
+            <IrelandFlag className="h-6 w-9 shrink-0 shadow-sm ring-1 ring-black/10" />
+
+            <span className="text-sm font-semibold leading-tight text-white">
               Irish Player Progression Tracker
-              <span className="ml-2 hidden rounded border border-border px-1.5 py-0.5 text-[10px] font-normal uppercase tracking-wide text-muted-foreground sm:inline">
+              <span className="ml-2 hidden rounded border border-white/30 px-1.5 py-0.5 text-[10px] font-normal uppercase tracking-wide text-white/70 sm:inline">
                 Experimental
               </span>
             </span>
@@ -58,8 +68,8 @@ export function AppShell({
                   cn(
                     'rounded-md px-3 py-1.5 text-sm transition-colors',
                     isActive
-                      ? 'bg-accent font-medium text-foreground'
-                      : 'text-muted-foreground hover:bg-accent/60 hover:text-foreground',
+                      ? 'bg-white/15 font-medium text-white'
+                      : 'text-white/75 hover:bg-white/10 hover:text-white',
                   )
                 }
               >
@@ -70,7 +80,7 @@ export function AppShell({
 
           <button
             type="button"
-            className="rounded-md p-2 text-muted-foreground transition-colors hover:bg-accent md:hidden"
+            className="rounded-md p-2 text-white/80 transition-colors hover:bg-white/10 hover:text-white md:hidden"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
@@ -80,7 +90,7 @@ export function AppShell({
         </div>
 
         {menuOpen && (
-          <nav className="border-t border-border/70 md:hidden" aria-label="Main">
+          <nav className="border-t border-white/15 md:hidden" aria-label="Main">
             <div className="container flex flex-col py-2">
               {NAV_ITEMS.map((item) => (
                 <NavLink
@@ -91,9 +101,7 @@ export function AppShell({
                   className={({ isActive }) =>
                     cn(
                       'rounded-md px-3 py-2 text-sm transition-colors',
-                      isActive
-                        ? 'bg-accent font-medium text-foreground'
-                        : 'text-muted-foreground hover:bg-accent/60',
+                      isActive ? 'bg-white/15 font-medium text-white' : 'text-white/75 hover:bg-white/10 hover:text-white',
                     )
                   }
                 >

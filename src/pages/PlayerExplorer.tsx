@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { LayoutGrid, RotateCcw, Search, Table2 } from 'lucide-react'
+import { ChevronDown, LayoutGrid, RotateCcw, Search, SlidersHorizontal, Table2 } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -125,6 +125,10 @@ export function PlayerExplorer() {
   const [sort, setSort] = useState<SortKey>('score')
   const [sortDir, setSortDir] = useState<SortDirection>(DEFAULT_SORT_DIRECTION.score)
   const [view, setView] = useState<'table' | 'grid'>('table')
+  // Collapsed by default below the `lg` breakpoint so a phone or tablet isn't
+  // faced with eight dropdowns and a slider before it ever sees a player.
+  // Irrelevant at `lg`+, where the panel is always shown regardless of this.
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
   const handleSortChange = (key: SortKey) => {
     setSort(key)
@@ -192,8 +196,8 @@ export function PlayerExplorer() {
 
       <Card className="border-border/70 bg-card/60">
         <CardContent className="space-y-4 pt-6">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
-            <div className="flex-1 space-y-1.5">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end lg:flex-nowrap">
+            <div className="min-w-[160px] flex-1 space-y-1.5">
               <Label htmlFor="player-search" className="text-xs text-muted-foreground">
                 Search by name
               </Label>
@@ -217,7 +221,7 @@ export function PlayerExplorer() {
             <div className="space-y-1.5">
               <Label className="text-xs text-muted-foreground">Sort by</Label>
               <Select value={sort} onValueChange={(value) => handleSortChange(value as SortKey)}>
-                <SelectTrigger className="h-9 w-full lg:w-52">
+                <SelectTrigger className="h-9 w-full sm:w-52">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -230,7 +234,7 @@ export function PlayerExplorer() {
               </Select>
             </div>
 
-            <div className="flex items-center gap-1 rounded-md border border-border p-0.5">
+            <div className="flex items-center gap-1 self-start rounded-md border border-border p-0.5 sm:self-auto">
               <ViewToggle
                 active={view === 'table'}
                 onClick={() => setView('table')}
@@ -246,118 +250,153 @@ export function PlayerExplorer() {
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <FilterSelect
-              label="Position"
-              value={filters.position}
-              onChange={(value) => setFilters((p) => ({ ...p, position: value as Position }))}
-              options={POSITIONS.map((position) => ({
-                value: position,
-                label: POSITION_LABELS[position],
-              }))}
-            />
-            <FilterSelect
-              label="Level"
-              value={filters.level}
-              onChange={(value) => setFilters((p) => ({ ...p, level: value as NationalTeamLevel }))}
-              options={Object.entries(NATIONAL_TEAM_LEVEL_LABELS).map(([value, label]) => ({
-                value,
-                label,
-              }))}
-            />
-            <FilterSelect
-              label="Trajectory"
-              value={filters.trajectory}
-              onChange={(value) => setFilters((p) => ({ ...p, trajectory: value as Trajectory }))}
-              options={[
-                { value: 'improving', label: 'Improving' },
-                { value: 'stable', label: 'Stable' },
-                { value: 'declining', label: 'Declining' },
-              ]}
-            />
-            <FilterSelect
-              label="Confidence"
-              value={filters.confidence}
-              onChange={(value) =>
-                setFilters((p) => ({ ...p, confidence: value as ConfidenceLevel }))
-              }
-              options={[
-                { value: 'high', label: 'High' },
-                { value: 'moderate', label: 'Moderate' },
-                { value: 'low', label: 'Low' },
-              ]}
-            />
-            <FilterSelect
-              label="Club"
-              value={filters.club}
-              onChange={(value) => setFilters((p) => ({ ...p, club: value }))}
-              options={clubs.map((club) => ({ value: club, label: club }))}
-            />
-            <FilterSelect
-              label="League"
-              value={filters.league}
-              onChange={(value) => setFilters((p) => ({ ...p, league: value }))}
-              options={leagues.map((league) => ({ value: league, label: league }))}
-            />
-            <FilterSelect
-              label="Club playing time"
-              value={filters.playingTime}
-              onChange={(value) =>
-                setFilters((p) => ({ ...p, playingTime: value as PlayingTimeStatus }))
-              }
-              options={Object.entries(PLAYING_TIME_LABELS).map(([value, label]) => ({
-                value,
-                label,
-              }))}
-            />
-            <FilterSelect
-              label="Irish eligibility"
-              value={filters.eligibility}
-              onChange={(value) =>
-                setFilters((p) => ({ ...p, eligibility: value as EligibilityStatus }))
-              }
-              options={Object.entries(ELIGIBILITY_LABELS).map(([value, label]) => ({
-                value,
-                label,
-              }))}
-            />
+          {/* Below `lg`, the filter grid and age slider start collapsed behind
+              this toggle — a phone or tablet screen otherwise has to scroll
+              past eight dropdowns before reaching a single player. */}
+          <div className="flex items-center justify-between gap-3 lg:hidden">
+            <button
+              type="button"
+              onClick={() => setFiltersOpen((prev) => !prev)}
+              aria-expanded={filtersOpen}
+              aria-controls="player-filter-panel"
+              className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm transition-colors hover:bg-accent"
+            >
+              <SlidersHorizontal className="size-3.5" aria-hidden="true" />
+              Filters
+              {activeFilterCount > 0 && (
+                <span className="tabular inline-flex size-5 items-center justify-center rounded-full bg-shamrock-600 text-[11px] font-medium text-white">
+                  {activeFilterCount}
+                </span>
+              )}
+              <ChevronDown
+                className={cn('size-3.5 transition-transform', filtersOpen && 'rotate-180')}
+                aria-hidden="true"
+              />
+            </button>
+            <span className="tabular text-xs text-muted-foreground">
+              {filtered.length} of {players.length} players
+            </span>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="w-full max-w-xs space-y-2">
-              <Label className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>Age range</span>
-                <span className="tabular text-foreground">
-                  {filters.ageRange[0]}–{filters.ageRange[1]}
-                </span>
-              </Label>
-              <Slider
-                value={filters.ageRange}
-                min={16}
-                max={38}
-                step={1}
-                minStepsBetweenThumbs={1}
-                onValueChange={(value) =>
-                  setFilters((p) => ({ ...p, ageRange: [value[0], value[1]] }))
+          <div
+            id="player-filter-panel"
+            className={cn('space-y-4', !filtersOpen && 'hidden lg:block')}
+          >
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <FilterSelect
+                label="Position"
+                value={filters.position}
+                onChange={(value) => setFilters((p) => ({ ...p, position: value as Position }))}
+                options={POSITIONS.map((position) => ({
+                  value: position,
+                  label: POSITION_LABELS[position],
+                }))}
+              />
+              <FilterSelect
+                label="Level"
+                value={filters.level}
+                onChange={(value) =>
+                  setFilters((p) => ({ ...p, level: value as NationalTeamLevel }))
                 }
-                aria-label="Age range"
+                options={Object.entries(NATIONAL_TEAM_LEVEL_LABELS).map(([value, label]) => ({
+                  value,
+                  label,
+                }))}
+              />
+              <FilterSelect
+                label="Trajectory"
+                value={filters.trajectory}
+                onChange={(value) => setFilters((p) => ({ ...p, trajectory: value as Trajectory }))}
+                options={[
+                  { value: 'improving', label: 'Improving' },
+                  { value: 'stable', label: 'Stable' },
+                  { value: 'declining', label: 'Declining' },
+                ]}
+              />
+              <FilterSelect
+                label="Confidence"
+                value={filters.confidence}
+                onChange={(value) =>
+                  setFilters((p) => ({ ...p, confidence: value as ConfidenceLevel }))
+                }
+                options={[
+                  { value: 'high', label: 'High' },
+                  { value: 'moderate', label: 'Moderate' },
+                  { value: 'low', label: 'Low' },
+                ]}
+              />
+              <FilterSelect
+                label="Club"
+                value={filters.club}
+                onChange={(value) => setFilters((p) => ({ ...p, club: value }))}
+                options={clubs.map((club) => ({ value: club, label: club }))}
+              />
+              <FilterSelect
+                label="League"
+                value={filters.league}
+                onChange={(value) => setFilters((p) => ({ ...p, league: value }))}
+                options={leagues.map((league) => ({ value: league, label: league }))}
+              />
+              <FilterSelect
+                label="Club playing time"
+                value={filters.playingTime}
+                onChange={(value) =>
+                  setFilters((p) => ({ ...p, playingTime: value as PlayingTimeStatus }))
+                }
+                options={Object.entries(PLAYING_TIME_LABELS).map(([value, label]) => ({
+                  value,
+                  label,
+                }))}
+              />
+              <FilterSelect
+                label="Irish eligibility"
+                value={filters.eligibility}
+                onChange={(value) =>
+                  setFilters((p) => ({ ...p, eligibility: value as EligibilityStatus }))
+                }
+                options={Object.entries(ELIGIBILITY_LABELS).map(([value, label]) => ({
+                  value,
+                  label,
+                }))}
               />
             </div>
 
-            <div className="flex items-center gap-3 text-sm text-muted-foreground">
-              <span className="tabular">
-                {filtered.length} of {players.length} players
-              </span>
-              {activeFilterCount > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setFilters(DEFAULT_FILTERS)}
-                  className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-xs transition-colors hover:bg-accent"
-                >
-                  <RotateCcw className="size-3" aria-hidden="true" />
-                  Clear {activeFilterCount} filter{activeFilterCount === 1 ? '' : 's'}
-                </button>
-              )}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="w-full space-y-2 sm:max-w-xs">
+                <Label className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>Age range</span>
+                  <span className="tabular text-foreground">
+                    {filters.ageRange[0]}–{filters.ageRange[1]}
+                  </span>
+                </Label>
+                <Slider
+                  value={filters.ageRange}
+                  min={16}
+                  max={38}
+                  step={1}
+                  minStepsBetweenThumbs={1}
+                  onValueChange={(value) =>
+                    setFilters((p) => ({ ...p, ageRange: [value[0], value[1]] }))
+                  }
+                  aria-label="Age range"
+                />
+              </div>
+
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="tabular hidden lg:inline">
+                  {filtered.length} of {players.length} players
+                </span>
+                {activeFilterCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(DEFAULT_FILTERS)}
+                    className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-xs transition-colors hover:bg-accent"
+                  >
+                    <RotateCcw className="size-3" aria-hidden="true" />
+                    Clear {activeFilterCount} filter{activeFilterCount === 1 ? '' : 's'}
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </CardContent>
@@ -494,6 +533,8 @@ function PlayerTable({
                   onSort={onSort}
                   className="min-w-[190px]"
                 />
+                <TableHead>Trajectory</TableHead>
+                <TableHead className="min-w-[170px]">Club and league</TableHead>
                 <SortableTableHead
                   label="Age"
                   sortKey="age"
@@ -504,7 +545,6 @@ function PlayerTable({
                   className="text-right"
                 />
                 <TableHead>Position</TableHead>
-                <TableHead className="min-w-[170px]">Club and league</TableHead>
                 <TableHead>Level</TableHead>
                 <SortableTableHead
                   label="Minutes"
@@ -544,7 +584,6 @@ function PlayerTable({
                   align="right"
                   className="text-right"
                 />
-                <TableHead>Trajectory</TableHead>
                 <SortableTableHead
                   label="Improve / stable / decline"
                   sortKey="improve"
@@ -575,15 +614,18 @@ function PlayerTable({
                       </div>
                     </div>
                   </TableCell>
+                  <TableCell>
+                    <TrajectoryBadge trajectory={player.forecast.trajectory} />
+                  </TableCell>
+                  <TableCell>
+                    <p className="text-sm">{player.club}</p>
+                    <p className="text-xs text-muted-foreground">{player.league}</p>
+                  </TableCell>
                   <TableCell className="tabular text-right">{player.age}</TableCell>
                   <TableCell>
                     <span className="rounded border border-border/70 px-1.5 py-0.5 text-xs">
                       {player.primaryPosition}
                     </span>
-                  </TableCell>
-                  <TableCell>
-                    <p className="text-sm">{player.club}</p>
-                    <p className="text-xs text-muted-foreground">{player.league}</p>
                   </TableCell>
                   <TableCell className="text-xs text-muted-foreground">
                     {NATIONAL_TEAM_LEVEL_LABELS[player.nationalTeamLevel]}
@@ -603,9 +645,6 @@ function PlayerTable({
                   </TableCell>
                   <TableCell className="text-right">
                     <DeltaValue value={player.forecast.seasonOnSeasonChange} />
-                  </TableCell>
-                  <TableCell>
-                    <TrajectoryBadge trajectory={player.forecast.trajectory} />
                   </TableCell>
                   <TableCell>
                     <ProbabilityBar

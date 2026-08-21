@@ -75,6 +75,76 @@ export const NATIONAL_TEAM_LEVEL_LABELS: Record<NationalTeamLevel, string> = {
 }
 
 /**
+ * Positional groups used specifically for cross-position risk comparison.
+ *
+ * The nine granular `Position` values are the right resolution for depth
+ * charts, but a formation doesn't field three independent one-slot "central
+ * midfield" units — it fields one three-slot midfield unit. Flattening
+ * DM/CM/AM (and RB/LB, and the two wide slots) into one group lets
+ * `positionRisk.ts` judge "is midfield weak" as a single question about a
+ * three-player unit, rather than three separate one-player questions that
+ * each look individually fine.
+ */
+export const POSITIONAL_GROUPS = [
+  'goalkeeper',
+  'fullback',
+  'centreback',
+  'midfield',
+  'wide',
+  'forward',
+] as const
+
+export type PositionalGroupId = (typeof POSITIONAL_GROUPS)[number]
+
+export const POSITIONAL_GROUP_LABELS: Record<PositionalGroupId, string> = {
+  goalkeeper: 'Goalkeeper',
+  fullback: 'Full-back / wing-back',
+  centreback: 'Centre-back',
+  midfield: 'Midfield',
+  wide: 'Winger / wide forward',
+  forward: 'Striker',
+}
+
+export const POSITION_TO_GROUP: Record<Position, PositionalGroupId> = {
+  GK: 'goalkeeper',
+  RB: 'fullback',
+  LB: 'fullback',
+  CB: 'centreback',
+  DM: 'midfield',
+  CM: 'midfield',
+  AM: 'midfield',
+  W: 'wide',
+  ST: 'forward',
+}
+
+/**
+ * Mutually exclusive squad-status categories for a player within one
+ * position's depth pool. See `src/model/squadStatus.ts` for the
+ * classification rules, and its module comment for why each category means
+ * exactly what it says and no more.
+ */
+export const SQUAD_STATUS_CATEGORIES = [
+  'highest-rated-current',
+  'senior-contender',
+  'future-contender',
+  'emerging-prospect',
+] as const
+
+export type SquadStatusCategory = (typeof SQUAD_STATUS_CATEGORIES)[number]
+
+export const SQUAD_STATUS_LABELS: Record<SquadStatusCategory, string> = {
+  'highest-rated-current': 'Highest-rated current options',
+  'senior-contender': 'Senior contender / rotation option',
+  'future-contender': 'Future contender',
+  'emerging-prospect': 'Emerging prospect',
+}
+
+export type RiskLevel = 'none' | 'moderate' | 'high'
+
+/** Availability as of the research snapshot. `null` when no feed covers it. */
+export type AvailabilityStatus = 'available' | 'injured' | 'unavailable' | null
+
+/**
  * How the player qualifies. Kept explicit because eligibility routes carry
  * real uncertainty: a declared player is a firmer planning assumption than an
  * eligible-but-uncommitted one.
@@ -161,6 +231,39 @@ export interface CurrentClub {
   transferNote: string | null
 }
 
+/**
+ * Structured, observed senior-national-team evidence, kept separate from
+ * `nationalTeamLevel`/`internationalCaps` on purpose.
+ *
+ * `nationalTeamLevel` and `internationalCaps` describe standing loosely
+ * enough to have previously let a 25-year-old senior international who is
+ * out of form (Finn Azaz) and a player who has already started for the
+ * senior team (Harvey Vale) both be classified as "potential future
+ * starters" — a status that should be reserved for players who have never
+ * started for the senior side. Every field here is either a real number
+ * sourced from the research pass, or `null` when no feed covers it — never a
+ * fabricated zero. Consumers (see `squadStatus.ts`) must treat `null` as
+ * "unknown, so lower confidence", not as "zero, so no evidence".
+ */
+export interface SeniorStatus {
+  /** Caps only ever counted when `eligibilityStanding` was genuinely senior. */
+  seniorCaps: number | null
+  seniorStarts: number | null
+  /** Starts in competitive (non-friendly) senior fixtures. */
+  competitiveSeniorStarts: number | null
+  seniorMinutes: number | null
+  seniorMinutesLast12Months: number | null
+  lastSeniorAppearanceDate: string | null
+  lastSeniorStartDate: string | null
+  /** Count of senior squad call-ups in the last 12 months, selection or not. */
+  recentSquadCallups: number | null
+  /** Club minutes in the last 12 months. `null`, not 0, when unpublished. */
+  clubMinutesLast12Months: number | null
+  /** 0-100, same scale as `SeasonRecord.leagueStrength`. */
+  clubCompetitionLevel: number | null
+  availabilityStatus: AvailabilityStatus
+}
+
 export interface PlayerRaw {
   id: string
   name: string
@@ -171,6 +274,8 @@ export interface PlayerRaw {
   secondaryPositions: Position[]
   /** Most recent season first. */
   seasons: SeasonRecord[]
+  /** Structured senior-team evidence. See `SeniorStatus`. */
+  seniorStatus: SeniorStatus
   /**
    * Current club/league as of the research snapshot, which may already
    * differ from `seasons[0]` (see `CurrentClub`). Scoring and forecasting
@@ -308,20 +413,75 @@ export interface Player extends PlayerRaw {
  * Squad-level types
  * ------------------------------------------------------------------ */
 
+/**
+ * The five orthogonal risk dimensions for one positional group, plus a
+ * confidence rating and a rolled-up overall level.
+ *
+ * These are deliberately independent: a position can be `currentQualityRisk:
+ * 'high'` while `successionRisk: 'none'` (weak now, strong pipeline behind
+ * it), or the reverse (strong now, nobody credible coming through). Collapsing
+ * them into one number was the root cause of "well stocked" verdicts that
+ * were really just "many bodies, low quality" — see `positionRisk.ts`.
+ */
+export interface PositionRiskAssessment {
+  /** Required starters scoring materially below the squad-wide median. */
+  currentQualityRisk: RiskLevel
+  /** Too few credible senior-ready players beyond the required starters. */
+  depthRisk: RiskLevel
+  /** Too few improving/future-contender-eligible players coming through. */
+  successionRisk: RiskLevel
+  /** Half or more of the required starters on a declining trajectory. */
+  trendRisk: RiskLevel
+  /** Required starters flagged injured/unavailable. */
+  availabilityRisk: RiskLevel
+  confidence: ConfidenceLevel
+  /** Highest of the five dimensions, mapped onto the existing badge scale. */
+  overallRisk: 'low' | 'moderate' | 'high' | 'critical'
+  /** Human-readable cause for each dimension currently at 'moderate'/'high'. */
+  reasons: string[]
+}
+
 export interface PositionDepth {
   position: Position
   label: string
-  firstChoice: Player[]
-  futureStarters: Player[]
-  emerging: Player[]
+  positionalGroup: PositionalGroupId
+  /** Players actually needed to start here, from the formation config. */
+  requiredStartingSlots: number
+  /**
+   * The model's best-scoring current options. Deliberately not called
+   * "first choice" — the dataset has no reliable recent-selection evidence
+   * (no published start dates/call-up recency), so this is a ranking by
+   * model score, not a claim about who Ireland's manager would actually pick.
+   */
+  highestRatedCurrent: Player[]
+  /** Senior-capped or already started, but not among `highestRatedCurrent`. */
+  seniorContenders: Player[]
+  /** No senior start, age 23 or under, on an improving/stable trajectory. */
+  futureContenders: Player[]
+  /** Age 21 or under, not yet meeting the future-contender bar. */
+  emergingProspects: Player[]
   averageAge: number
   currentStrength: number
   projectedStrength: number
   projectedLow: number
   projectedHigh: number
+  risk: PositionRiskAssessment
+  /** Mirrors `risk.overallRisk` — kept so existing badge components need no changes. */
   depthRisk: 'low' | 'moderate' | 'high' | 'critical'
+  /** Mirrors `risk.reasons` joined into one paragraph. */
   depthRiskReason: string
   playerCount: number
+}
+
+export interface PositionalGroupOutlook {
+  group: PositionalGroupId
+  label: string
+  positions: Position[]
+  requiredStartingSlots: number
+  currentStrength: number
+  /** Median currentStrength across all six positional groups. */
+  squadMedianStrength: number
+  risk: PositionRiskAssessment
 }
 
 export interface SquadHorizonOutlook {
@@ -359,8 +519,16 @@ export interface SquadOutlook {
   horizons: Record<ProjectionHorizon, SquadHorizonOutlook>
   history: SquadStrengthPoint[]
   depthByPosition: PositionDepth[]
+  /** @deprecated Positions projected to strengthen. Granular, trend-only. */
   strengthening: PositionDepth[]
+  /** @deprecated Superseded by `highRiskGroups`/`monitorGroups` below. */
   atRisk: PositionDepth[]
+  positionalGroups: PositionalGroupOutlook[]
+  /** Groups with `risk.overallRisk` of 'high' or 'critical'. */
+  highRiskGroups: PositionalGroupOutlook[]
+  /** Groups with `risk.overallRisk` of 'moderate'. */
+  monitorGroups: PositionalGroupOutlook[]
+  lowRiskGroups: PositionalGroupOutlook[]
   simulations: number
   dataLastUpdated: string
 }

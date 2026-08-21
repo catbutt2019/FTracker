@@ -13,6 +13,10 @@ import { PositionDepthPage } from '@/pages/PositionDepth'
  * HashRouter rather than BrowserRouter: GitHub Pages serves static files with
  * no rewrite rules, so a deep link to /players would 404 under browser
  * routing.
+ *
+ * The player pool, not the squad-level outlook, is the root route: it's the
+ * page most visitors actually want first, and the one most in need of being
+ * reachable on a phone or tablet without an extra tap.
  */
 export function App() {
   return (
@@ -48,9 +52,10 @@ function Shell() {
   return (
     <AppShell sourceLabel={state.data.sourceLabel} asOfDate={state.data.asOfDate}>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/players" element={<PlayerExplorer />} />
+        <Route path="/" element={<PlayerExplorer />} />
+        <Route path="/players" element={<Navigate to="/" replace />} />
         <Route path="/players/:id" element={<PlayerDetail />} />
+        <Route path="/outlook" element={<Dashboard />} />
         <Route path="/depth" element={<PositionDepthPage />} />
         <Route path="/methodology" element={<Methodology />} />
         <Route path="*" element={<Navigate to="/" replace />} />

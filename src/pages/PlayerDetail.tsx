@@ -42,7 +42,7 @@ export function PlayerDetail() {
         description="No tracked player matches this address. They may have been removed from the dataset, or the link may be out of date."
         action={
           <Link
-            to="/players"
+            to="/"
             className="rounded-md border border-border px-3 py-1.5 text-sm transition-colors hover:bg-accent"
           >
             Back to all players
@@ -58,7 +58,7 @@ export function PlayerDetail() {
     <div className="space-y-10">
       <div>
         <Link
-          to="/players"
+          to="/"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-3.5" aria-hidden="true" />

@@ -13,7 +13,7 @@ import { SquadTrendChart } from '@/components/charts/SquadTrendChart'
 import { useDataset } from '@/hooks/useDataset'
 import { HORIZONS } from '@/model/forecast'
 import { MODEL_CONFIG } from '@/model/config'
-import type { ProjectionHorizon, SquadOutlook } from '@/types/domain'
+import type { PositionalGroupOutlook, ProjectionHorizon, SquadOutlook } from '@/types/domain'
 
 export function Dashboard() {
   const { outlook, players } = useDataset()
@@ -60,7 +60,7 @@ export function Dashboard() {
           <StatCard
             label="Squad strength"
             value={outlook.currentStrength.toFixed(1)}
-            hint="A 0-100 weighted score built from the best two available players in each of the nine positions. Because it is based on percentiles within the Irish pool, roughly 50 is average for this group — it is not a rating against the rest of the world."
+            hint="A 0-100 weighted score built from the number of players each of the nine positions actually needs to start, weighted toward the weakest of them so one weak required starter cannot be averaged away. Because it is based on percentiles within the Irish pool, roughly 50 is average for this group — it is not a rating against the rest of the world."
           >
             <DeltaValue value={outlook.changeFromPreviousSeason} suffix=" vs last season" />
           </StatCard>
@@ -138,17 +138,17 @@ export function Dashboard() {
         </div>
         <div>
           <SectionHeading
-            title="Positions at risk"
-            description="Projected to weaken, or structurally thin regardless of trend."
+            title="Positional risk"
+            description="Judged as six positional units (e.g. midfield = DM/CM/AM together) across five independent dimensions: current quality, depth, succession, trend and availability."
           />
-          <PositionTrendList entries={outlook.atRisk} emptyLabel="No position is currently flagged as at risk." />
+          <PositionalRiskSummary outlook={outlook} />
         </div>
       </section>
 
       <section>
         <SectionHeading
           title="Squad depth by position"
-          description="Current strength is the mean of the best two available players. Depth risk considers how many bodies are behind them and how old they are."
+          description="Current strength is built from the number of players each position actually needs to start. Depth risk is inherited from this position's group (e.g. all of DM/CM/AM for midfield) and reflects quality, depth, succession, trend and availability, not just body count."
           action={
             <Link
               to="/depth"
@@ -246,6 +246,87 @@ function HorizonCard({
         </div>
       </CardContent>
     </Card>
+  )
+}
+
+/**
+ * High-risk / areas to monitor / low-risk, built from the six positional
+ * groups' risk verdicts (see `positionRisk.ts`).
+ *
+ * The old version of this section only ever showed a binary "at risk" list,
+ * which meant a position with no single big red flag — just several
+ * moderate ones, or a genuinely weak but numerically deep group like this
+ * pool's midfield — could fall through to a reassuring empty state. The
+ * all-clear message below is only ever shown when every dimension of every
+ * group is genuinely clear.
+ */
+function PositionalRiskSummary({ outlook }: { outlook: SquadOutlook }) {
+  const { highRiskGroups, monitorGroups, lowRiskGroups } = outlook
+
+  if (highRiskGroups.length === 0 && monitorGroups.length === 0) {
+    return (
+      <Card className="border-dashed border-border/70 bg-transparent">
+        <CardContent className="py-8 text-center text-sm text-muted-foreground">
+          No position is currently flagged as at risk: every one of the six positional units clears
+          this model's thresholds on current quality, depth, succession, trend and availability.
+        </CardContent>
+      </Card>
+    )
+  }
+
+  return (
+    <div className="space-y-4">
+      <RiskGroupList title="High risk" groups={highRiskGroups} tone="high" />
+      <RiskGroupList title="Areas to monitor" groups={monitorGroups} tone="moderate" />
+      {lowRiskGroups.length > 0 && <RiskGroupList title="Low risk" groups={lowRiskGroups} tone="low" />}
+    </div>
+  )
+}
+
+function RiskGroupList({
+  title,
+  groups,
+  tone,
+}: {
+  title: string
+  groups: PositionalGroupOutlook[]
+  tone: 'high' | 'moderate' | 'low'
+}) {
+  if (groups.length === 0) return null
+  const toneClassName =
+    tone === 'high'
+      ? 'text-amber-800'
+      : tone === 'moderate'
+        ? 'text-slate-700'
+        : 'text-shamrock-800'
+
+  return (
+    <div>
+      <p className={`mb-2 text-xs font-medium uppercase tracking-wide ${toneClassName}`}>{title}</p>
+      <Card className="border-border/70 bg-card/60">
+        <CardContent className="divide-y divide-border/60 p-0">
+          {groups.map((group) => (
+            <div key={group.group} className="space-y-1.5 px-4 py-3">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-sm font-medium">{group.label}</span>
+                <DepthRiskBadge risk={group.risk.overallRisk} />
+              </div>
+              {group.risk.reasons.length > 0 ? (
+                group.risk.reasons.map((reason) => (
+                  <p key={reason} className="text-xs leading-relaxed text-muted-foreground">
+                    {reason}
+                  </p>
+                ))
+              ) : (
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  No dimension of risk is currently flagged for this unit.
+                </p>
+              )}
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    </div>
   )
 }
 

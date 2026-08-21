@@ -425,6 +425,54 @@ function selectAvatarUrl(avatar) {
 }
 
 /* ------------------------------------------------------------------ *
+ * Senior-team status
+ *
+ * Structured evidence for the senior/future-contender/emerging-prospect
+ * classification in src/model/squadStatus.ts. Deliberately built from the
+ * raw research object, before buildSeasonRecord()'s `?? 0` defaulting has
+ * collapsed "not published" into "zero" — see that function's fields above.
+ * Every field that has no genuine source stays `null` rather than 0, so the
+ * model can lower confidence instead of silently treating "unknown" as
+ * "none". `internationalInvolvement`/`injuryNote` are free-text prose and are
+ * never parsed into these fields, by design.
+ * ------------------------------------------------------------------ */
+
+function buildSeniorStatus(p) {
+  // caps is only genuinely a senior-caps count when the standing itself is
+  // senior — for capped-youth players the same field is a youth-caps count,
+  // and treating it as senior caps would wrongly grant senior status to
+  // under-21s who have never played for the senior team.
+  const seniorCaps = p.eligibilityStanding === 'capped-senior' ? (p.caps ?? null) : 0
+
+  const lastSeason = p.lastCompletedSeason ?? null
+  const appearances = lastSeason?.appearances ?? null
+  const minutes = lastSeason?.minutes ?? null
+  // appearances > 0 with minutes === 0 is not a real football outcome — it
+  // means the provider published appearances but never published minutes.
+  // Treating that as "0 minutes" would silently invent a fact; null is honest.
+  const clubMinutesLast12Months =
+    minutes !== null && !(appearances && appearances > 0 && minutes === 0) ? minutes : null
+
+  return {
+    seniorCaps,
+    // No provider in this dataset publishes per-player senior start/minutes/
+    // call-up/availability feeds. These stay null — never inferred from
+    // caps, involvement or free-text notes — so squadStatus.ts and
+    // positionRisk.ts reduce confidence instead of assuming zero.
+    seniorStarts: null,
+    competitiveSeniorStarts: null,
+    seniorMinutes: null,
+    seniorMinutesLast12Months: null,
+    lastSeniorAppearanceDate: null,
+    lastSeniorStartDate: null,
+    recentSquadCallups: null,
+    clubMinutesLast12Months,
+    clubCompetitionLevel: leagueStrength(lastSeason?.league ?? p.league) ?? NEUTRAL_LEAGUE_STRENGTH,
+    availabilityStatus: null,
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * Build PlayerRaw[]
  * ------------------------------------------------------------------ */
 
@@ -482,6 +530,7 @@ for (const p of base.players) {
     secondaryPositions: p.secondaryPositions ?? [],
     seasons,
     currentClub: buildCurrentClub(p),
+    seniorStatus: buildSeniorStatus(p),
     internationalCaps: p.caps ?? 0,
     // No real per-appearance minutes feed exists for international caps.
     // Left at 0 rather than estimated; forecast.ts/PlayerDetail.tsx are

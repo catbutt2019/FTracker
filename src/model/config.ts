@@ -83,8 +83,109 @@ export const MODEL_CONFIG = {
   /** Squad strength must move by more than this for a sim to count as improved. */
   squadStableBandPoints: 1.5,
 
-  /** Players considered per position when building a notional squad. */
+  /**
+   * Players considered per position when building a notional squad.
+   * @deprecated Superseded by `REQUIRED_STARTING_SLOTS`, which varies by
+   * position instead of assuming every position needs exactly two bodies.
+   * Kept only as the fallback for any position missing from that map.
+   */
   squadSlotsPerPosition: 2,
+} as const
+
+/**
+ * Formation-aware starting requirement per granular position, summing to a
+ * canonical XI (1 GK, 4 defenders, 3-4 midfield, 2 wide, 1 striker).
+ *
+ * This replaces the old assumption that every position needs exactly two
+ * bodies to be "full strength" — a winger position needs two starters
+ * (both flanks), a striker needs one, and a lone central-midfield slot is
+ * really one third of a three-player midfield unit (see
+ * `GROUP_REQUIRED_STARTING_SLOTS` below, which is what `positionRisk.ts`
+ * actually judges midfield against as a unit).
+ */
+export const REQUIRED_STARTING_SLOTS: Record<Position, number> = {
+  GK: 1,
+  RB: 1,
+  CB: 2,
+  LB: 1,
+  DM: 1,
+  CM: 1,
+  AM: 1,
+  W: 2,
+  ST: 1,
+}
+
+/** Required starters per positional group — what `positionRisk.ts` judges. */
+export const GROUP_REQUIRED_STARTING_SLOTS: Record<
+  'goalkeeper' | 'fullback' | 'centreback' | 'midfield' | 'wide' | 'forward',
+  number
+> = {
+  goalkeeper: 1,
+  fullback: 2,
+  centreback: 2,
+  midfield: 3,
+  wide: 2,
+  forward: 1,
+}
+
+/**
+ * How much a player counts toward a position's depth pool when it's their
+ * secondary rather than primary position. A discount, not an exclusion: a
+ * centre-back who can also play left-back is real (if lesser) cover there,
+ * but must not be counted as full-strength depth in both places at once.
+ */
+export const SECONDARY_POSITION_WEIGHT = 0.7
+
+/**
+ * How much the single weakest required starter drags down a position's
+ * strength score, versus the plain mean of the required starters.
+ *
+ * At 0 this is just the mean (the old behaviour: a strong-plus-two-weak
+ * midfield would average out as merely "a bit below its best player"). At
+ * 1 it is entirely the weakest starter. 0.4 means one materially weak
+ * required starter pulls the score down substantially without letting a
+ * single number dominate it outright.
+ */
+export const WEAKEST_LINK_WEIGHT = 0.4
+
+/**
+ * Thresholds behind the five-dimension positional-risk assessment in
+ * `positionRisk.ts`. Centralised here, as with everything else in this file,
+ * so a reviewer can audit every number that decides whether a position is
+ * flagged, in one place — and so no threshold is duplicated inside a React
+ * component.
+ *
+ * None of these are empirically fitted. They are the initial calibration
+ * requested alongside this model: gaps and counts chosen to be intuitive
+ * and auditable, checked against the real dataset so a plainly weak position
+ * (this pool's midfield) is flagged and a plainly strong one is not.
+ */
+export const RISK_CONFIG = {
+  /** Score at/above which a player counts as "senior-ready" quality. */
+  seniorReadyThreshold: 55,
+
+  /** Required-starter mean this far below the squad median = high quality risk. */
+  qualityRiskHighGapPoints: 8,
+  /** ...and this far below = moderate quality risk. */
+  qualityRiskModerateGapPoints: 4,
+
+  /**
+   * Depth risk fires when there are fewer credible senior-ready players
+   * than requiredStartingSlots + this buffer — i.e. not even one injury
+   * of cover beyond the players actually needed to start.
+   */
+  depthBufferSlots: 1,
+
+  /** Share of required starters on a declining trajectory that trips trend risk. */
+  trendRiskDecliningFraction: 0.5,
+
+  /** Future-contender eligibility (see `squadStatus.ts`). */
+  futureContenderMaxAge: 23,
+  futureContenderMinClubMinutes: 900,
+  futureContenderProjectionThreshold: 52,
+
+  /** Emerging-prospect age ceiling. */
+  emergingProspectMaxAge: 21,
 } as const
 
 /**

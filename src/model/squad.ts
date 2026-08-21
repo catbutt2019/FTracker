@@ -7,9 +7,12 @@ import type {
   SquadOutlook,
   SquadStrengthPoint,
 } from '@/types/domain'
-import { POSITIONS, POSITION_LABELS } from '@/types/domain'
-import { MODEL_CONFIG, POSITION_SQUAD_WEIGHTS } from './config'
+import { POSITION_LABELS, POSITION_TO_GROUP, POSITIONS } from '@/types/domain'
+import { MODEL_CONFIG, POSITION_SQUAD_WEIGHTS, REQUIRED_STARTING_SLOTS, WEAKEST_LINK_WEIGHT } from './config'
 import { HORIZONS } from './forecast'
+import { buildPositionalGroupOutlooks, riskForPosition } from './positionRisk'
+import { buildPositionPool, weightedStrength } from './positionStrength'
+import { classifySquadStatus } from './squadStatus'
 import {
   clamp,
   createRng,
@@ -22,29 +25,34 @@ import {
 } from './math'
 
 /**
- * Squad strength is the weighted mean of the best N players available in each
- * position, not the mean of the whole pool.
+ * Squad strength is the weighted, formation-aware strength of each position
+ * (see `positionStrength.ts`), not the mean of the whole pool.
  *
  * This matters: adding a fringe 40-rated left-back to the dataset should not
  * make the national team look weaker, because he would not play. Depth is
- * captured separately through the depth-risk measure.
+ * captured separately through the positional-risk assessment.
  */
-export function squadStrengthFrom(
-  scoresByPosition: Map<Position, number[]>,
-  slots = MODEL_CONFIG.squadSlotsPerPosition,
-): number {
+export function squadStrengthFrom(scoresByPosition: Map<Position, number[]>): number {
   let weighted = 0
   let weightUsed = 0
   for (const position of POSITIONS) {
     const scores = (scoresByPosition.get(position) ?? []).slice().sort((a, b) => b - a)
     if (scores.length === 0) continue
+    const slots = REQUIRED_STARTING_SLOTS[position] ?? MODEL_CONFIG.squadSlotsPerPosition
     const best = scores.slice(0, slots)
     // A position with fewer bodies than slots is penalised toward a floor
     // value, because an unfilled slot is a real weakness rather than no data.
     const filled = [...best]
     while (filled.length < slots) filled.push(Math.min(35, best[best.length - 1] ?? 35))
+    // Weakest-link blend: the plain mean of the required starters, pulled
+    // toward the single weakest of them, so one materially weak required
+    // starter drags the position down instead of being smoothed away by a
+    // stronger teammate. See `positionStrength.ts#weightedStrength`, which
+    // this mirrors for the plain (unweighted-by-secondary-position) case
+    // Monte Carlo simulation and history need.
+    const positionStrength = mean(filled) * (1 - WEAKEST_LINK_WEIGHT) + Math.min(...filled) * WEAKEST_LINK_WEIGHT
     const weight = POSITION_SQUAD_WEIGHTS[position]
-    weighted += mean(filled) * weight
+    weighted += positionStrength * weight
     weightUsed += weight
   }
   return weightUsed > 0 ? weighted / weightUsed : 0
@@ -58,9 +66,12 @@ function groupByPosition<T>(
   for (const position of POSITIONS) map.set(position, [])
   for (const player of players) {
     map.get(player.primaryPosition)?.push(pick(player))
-    // Secondary positions count at a discount when assessing depth, handled by
-    // the caller where relevant. Kept out of the strength calculation to avoid
-    // double-counting one body across two positions.
+    // Secondary positions are handled separately, through
+    // `positionStrength.ts#buildPositionPool`/`buildGroupPool`, which apply a
+    // discount rather than full-strength double-counting. The Monte Carlo
+    // simulation below and the historical series only ever look at primary
+    // positions, matching the pre-existing (and still current) simplification
+    // that projections are not separately simulated per secondary position.
   }
   return map
 }
@@ -155,105 +166,66 @@ export function simulateSquad(players: Player[]): SimulationOutput {
  * Depth
  * ------------------------------------------------------------------ */
 
-function depthRisk(
-  players: Player[],
-  currentStrength: number,
-): { level: PositionDepth['depthRisk']; reason: string } {
-  const senior = players.filter((p) => p.nationalTeamLevel === 'senior')
-  const readyNow = players.filter((p) => p.forecast.currentPerformanceScore >= 55)
-  const pipeline = players.filter((p) => p.age <= 23)
-  const ageing = players.filter((p) => p.age >= 30 && p.forecast.currentPerformanceScore >= 55)
-
-  if (players.length <= 1) {
-    return {
-      level: 'critical',
-      reason: `Only ${players.length} player${players.length === 1 ? '' : 's'} in the pool listed here as a primary position. One injury leaves no covered option.`,
-    }
-  }
-  if (readyNow.length === 0) {
-    return {
-      level: 'high',
-      reason: 'No player in this position currently scores above the senior-ready threshold of 55.',
-    }
-  }
-  if (ageing.length >= 2 && pipeline.length === 0) {
-    return {
-      level: 'high',
-      reason: `The senior options here are ageing (${ageing.length} aged 30 or over) with nobody aged 23 or under behind them.`,
-    }
-  }
-  if (readyNow.length === 1 || (pipeline.length === 0 && senior.length <= 2)) {
-    return {
-      level: 'moderate',
-      reason:
-        readyNow.length === 1
-          ? 'Only one player currently clears the senior-ready threshold, so cover is thin.'
-          : 'Adequate now, but no under-23 in this position means the pool is not replenishing.',
-    }
-  }
-  if (currentStrength >= 58 && pipeline.length >= 2) {
-    return {
-      level: 'low',
-      reason: `Well stocked: ${readyNow.length} senior-ready options and ${pipeline.length} aged 23 or under.`,
-    }
-  }
-  return {
-    level: 'moderate',
-    reason: `${readyNow.length} senior-ready options with ${pipeline.length} younger players behind them. Serviceable rather than strong.`,
-  }
-}
-
+/**
+ * Build one position's depth card: the four squad-status categories (see
+ * `squadStatus.ts`), formation-aware current/projected strength (see
+ * `positionStrength.ts`), and the risk verdict inherited from this
+ * position's positional group (see `positionRisk.ts`).
+ *
+ * The risk verdict is deliberately computed once per group and inherited by
+ * every granular position inside it — a lone central-midfield slot cannot
+ * honestly be judged "fine" in isolation when the three-player midfield
+ * unit it belongs to is the squad's weakest area; see the module comment on
+ * `positionRisk.ts`.
+ */
 export function buildPositionDepth(
   players: Player[],
   position: Position,
+  groupOutlooks: ReturnType<typeof buildPositionalGroupOutlooks>,
   horizon: ProjectionHorizon = 24,
 ): PositionDepth {
   const pool = players
     .filter((p) => p.primaryPosition === position)
     .sort((a, b) => b.forecast.currentPerformanceScore - a.forecast.currentPerformanceScore)
 
-  const firstChoice = pool.slice(0, 2)
-  const emerging = pool
-    .filter((p) => p.age <= 21 && !firstChoice.includes(p))
-    .sort((a, b) => b.forecast.projections[horizon].median - a.forecast.projections[horizon].median)
-    .slice(0, 3)
-  // Emerging players are excluded here rather than listed twice. Showing the
-  // same name in two adjacent columns reads as a bug and inflates the apparent
-  // depth of the position.
-  const futureStarters = pool
-    .slice(2)
-    .filter((p) => p.forecast.projections[horizon].median >= 52 && !emerging.includes(p))
-    .slice(0, 3)
+  const requiredStartingSlots = REQUIRED_STARTING_SLOTS[position]
+  const { highestRatedCurrent, seniorContenders, futureContenders, emergingProspects } = classifySquadStatus(
+    pool,
+    requiredStartingSlots,
+  )
 
-  const currentStrength = pool.length
-    ? mean(
-        pool
-          .map((p) => p.forecast.currentPerformanceScore)
-          .sort((a, b) => b - a)
-          .slice(0, MODEL_CONFIG.squadSlotsPerPosition),
-      )
-    : 0
+  const weightedPool = buildPositionPool(players, position)
+  const currentStrength = weightedStrength(weightedPool, requiredStartingSlots)
 
   const bestProjected = pool
     .map((p) => p.forecast.projections[horizon])
     .sort((a, b) => b.median - a.median)
-    .slice(0, MODEL_CONFIG.squadSlotsPerPosition)
+    .slice(0, requiredStartingSlots)
 
-  const risk = depthRisk(pool, currentStrength)
+  const risk = riskForPosition(groupOutlooks, position)
+  const positionalGroup = POSITION_TO_GROUP[position]
+  const depthRiskReason =
+    risk.reasons.length > 0
+      ? risk.reasons.join(' ')
+      : `No dimension of risk — current quality, depth, succession, trend or availability — is currently flagged for the ${POSITION_LABELS[position]} position's group, relative to the rest of the squad.`
 
   return {
     position,
     label: POSITION_LABELS[position],
-    firstChoice,
-    futureStarters,
-    emerging,
+    positionalGroup,
+    requiredStartingSlots,
+    highestRatedCurrent,
+    seniorContenders,
+    futureContenders,
+    emergingProspects,
     averageAge: pool.length ? round(mean(pool.map((p) => p.age)), 1) : 0,
     currentStrength: round(currentStrength, 1),
     projectedStrength: bestProjected.length ? round(mean(bestProjected.map((p) => p.median)), 1) : 0,
     projectedLow: bestProjected.length ? round(mean(bestProjected.map((p) => p.low)), 1) : 0,
     projectedHigh: bestProjected.length ? round(mean(bestProjected.map((p) => p.high)), 1) : 0,
-    depthRisk: risk.level,
-    depthRiskReason: risk.reason,
+    risk,
+    depthRisk: risk.overallRisk,
+    depthRiskReason,
     playerCount: pool.length,
   }
 }
@@ -361,7 +333,8 @@ export function buildHistory(
 
 export function buildSquadOutlook(players: Player[], asOfIso: string): SquadOutlook {
   const { horizons, currentStrength } = simulateSquad(players)
-  const depthByPosition = POSITIONS.map((position) => buildPositionDepth(players, position))
+  const positionalGroups = buildPositionalGroupOutlooks(players)
+  const depthByPosition = POSITIONS.map((position) => buildPositionDepth(players, position, positionalGroups))
   const history = buildHistory(players, horizons, currentStrength)
 
   const observedPoints = history.filter((p) => p.observed !== null)
@@ -383,6 +356,12 @@ export function buildSquadOutlook(players: Player[], asOfIso: string): SquadOutl
           d.depthRisk === 'critical'),
     )
     .sort((a, b) => a.projectedStrength - a.currentStrength - (b.projectedStrength - b.currentStrength))
+
+  const highRiskGroups = positionalGroups.filter(
+    (g) => g.risk.overallRisk === 'high' || g.risk.overallRisk === 'critical',
+  )
+  const monitorGroups = positionalGroups.filter((g) => g.risk.overallRisk === 'moderate')
+  const lowRiskGroups = positionalGroups.filter((g) => g.risk.overallRisk === 'low')
 
   return {
     currentStrength,
@@ -407,6 +386,10 @@ export function buildSquadOutlook(players: Player[], asOfIso: string): SquadOutl
     depthByPosition,
     strengthening,
     atRisk,
+    positionalGroups,
+    highRiskGroups,
+    monitorGroups,
+    lowRiskGroups,
     simulations: MODEL_CONFIG.simulations,
     dataLastUpdated: asOfIso,
   }

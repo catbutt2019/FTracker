@@ -187,6 +187,54 @@ describe('buildSquadOutlook', () => {
     expect(leftBack!.playerCount).toBeLessThan(5)
     expect(['moderate', 'high', 'critical']).toContain(leftBack!.depthRisk)
   })
+
+  // Regression tests for the bug that prompted this refactor: Finn Azaz (25,
+  // senior-capped, currently declining) and Harvey Vale (already started for
+  // senior Ireland) were both shown as "potential future starters". Neither
+  // player is special-cased anywhere in the model — this only holds because
+  // both carry seniorCaps > 0 in the real research data, which the global
+  // `hasSeniorAppearance`/`isFutureContenderEligible` rules key off.
+  it('never lists Finn Azaz as a future contender in the real dataset', () => {
+    const am = outlook.depthByPosition.find((d) => d.position === 'AM')!
+    expect(am.futureContenders.some((p) => p.id === 'finn-azaz')).toBe(false)
+    expect(am.emergingProspects.some((p) => p.id === 'finn-azaz')).toBe(false)
+    const azaz = [...am.highestRatedCurrent, ...am.seniorContenders].find((p) => p.id === 'finn-azaz')
+    expect(azaz).toBeDefined()
+  })
+
+  it('never lists Harvey Vale as a future contender in the real dataset', () => {
+    const am = outlook.depthByPosition.find((d) => d.position === 'AM')!
+    expect(am.futureContenders.some((p) => p.id === 'harvey-vale')).toBe(false)
+    expect(am.emergingProspects.some((p) => p.id === 'harvey-vale')).toBe(false)
+    const vale = [...am.highestRatedCurrent, ...am.seniorContenders].find((p) => p.id === 'harvey-vale')
+    expect(vale).toBeDefined()
+  })
+
+  it('flags midfield among the weaker positional groups in the real dataset', () => {
+    // Regression guard for "midfield not identified as an area of concern
+    // despite being weaker than other positional groups" — assert midfield's
+    // current strength sits at or below the squad median, and that it is not
+    // reported as the cleanest group, rather than pinning an exact risk
+    // level that would make this test brittle against calibration tweaks.
+    const midfield = outlook.positionalGroups.find((g) => g.group === 'midfield')!
+    expect(midfield.currentStrength).toBeLessThanOrEqual(midfield.squadMedianStrength)
+    const allLow = outlook.positionalGroups.every((g) => g.risk.overallRisk === 'low')
+    if (!allLow) {
+      expect(midfield.risk.overallRisk).not.toBe('low')
+    }
+  })
+
+  it('never places a player in more than one squad-status category within a position', () => {
+    for (const depth of outlook.depthByPosition) {
+      const ids = [
+        ...depth.highestRatedCurrent.map((p) => p.id),
+        ...depth.seniorContenders.map((p) => p.id),
+        ...depth.futureContenders.map((p) => p.id),
+        ...depth.emergingProspects.map((p) => p.id),
+      ]
+      expect(new Set(ids).size).toBe(ids.length)
+    }
+  })
 })
 
 describe('assembleDataset', () => {
