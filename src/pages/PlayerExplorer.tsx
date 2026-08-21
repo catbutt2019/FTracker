@@ -26,6 +26,7 @@ import { PlayerAvatar } from '@/components/PlayerAvatar'
 import { ProbabilityBar } from '@/components/ProbabilityBar'
 import { SortableTableHead, type SortDirection } from '@/components/SortableTableHead'
 import { useDataset } from '@/hooks/useDataset'
+import { useIsDesktop } from '@/hooks/useMediaQuery'
 import {
   ELIGIBILITY_LABELS,
   NATIONAL_TEAM_LEVEL_LABELS,
@@ -127,6 +128,11 @@ export function PlayerExplorer() {
   const [sort, setSort] = useState<SortKey>('score')
   const [sortDir, setSortDir] = useState<SortDirection>(DEFAULT_SORT_DIRECTION.score)
   const [view, setView] = useState<'table' | 'grid'>('table')
+  // The twelve-column table is not a real option on a phone — it can only be
+  // read by scrolling sideways — so below `lg` the choice isn't offered and a
+  // compact card list is rendered instead. The dense views are a laptop
+  // affordance, not a preference to be remembered across breakpoints.
+  const isDesktop = useIsDesktop()
   // Collapsed by default below the `lg` breakpoint so a phone or tablet isn't
   // faced with eight dropdowns and a slider before it ever sees a player.
   // Irrelevant at `lg`+, where the panel is always shown regardless of this.
@@ -236,20 +242,22 @@ export function PlayerExplorer() {
               </Select>
             </div>
 
-            <div className="flex items-center gap-1 self-start rounded-md border border-border p-0.5 sm:self-auto">
-              <ViewToggle
-                active={view === 'table'}
-                onClick={() => setView('table')}
-                icon={<Table2 className="size-3.5" />}
-                label="Table view"
-              />
-              <ViewToggle
-                active={view === 'grid'}
-                onClick={() => setView('grid')}
-                icon={<LayoutGrid className="size-3.5" />}
-                label="Grid view"
-              />
-            </div>
+            {isDesktop && (
+              <div className="flex items-center gap-1 self-start rounded-md border border-border p-0.5 sm:self-auto">
+                <ViewToggle
+                  active={view === 'table'}
+                  onClick={() => setView('table')}
+                  icon={<Table2 className="size-3.5" />}
+                  label="Table view"
+                />
+                <ViewToggle
+                  active={view === 'grid'}
+                  onClick={() => setView('grid')}
+                  icon={<LayoutGrid className="size-3.5" />}
+                  label="Grid view"
+                />
+              </div>
+            )}
           </div>
 
           {/* Below `lg`, the filter grid and age slider start collapsed behind
@@ -418,6 +426,8 @@ export function PlayerExplorer() {
             </button>
           }
         />
+      ) : !isDesktop ? (
+        <PlayerGrid players={filtered} compact />
       ) : view === 'table' ? (
         <PlayerTable
           players={filtered}
@@ -688,7 +698,52 @@ function PlayerTable({
   )
 }
 
-function PlayerGrid({ players }: { players: Player[] }) {
+/**
+ * `compact` is the phone rendering. It carries the four things you'd scan a
+ * list for — who, where they play, how good, which way they're heading — and
+ * drops the probability bar, the confidence chip and the minutes/starts row.
+ * Those aren't cut for space alone: they need a legend or a tooltip to mean
+ * anything, and both are the detail page's job. A row you can read at a glance
+ * beats a row that raises four questions.
+ */
+function PlayerGrid({ players, compact = false }: { players: Player[]; compact?: boolean }) {
+  if (compact) {
+    return (
+      <Card className="border-border bg-card">
+        <CardContent className="divide-y divide-border p-0">
+          {players.map((player) => (
+            <Link
+              key={player.id}
+              to={`/players/${player.id}`}
+              className="flex items-center gap-2.5 px-3 py-3 transition-colors hover:bg-accent"
+            >
+              <PlayerAvatar name={player.name} imageUrl={player.avatarUrl} size="sm" />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium">{player.name}</p>
+                {/* The position code, not the written label: "Defensive
+                    midfield · 19 · Manchester United U21" overflowed 375px by
+                    over 100px, and it was the position eating most of it.
+                    Truncating the club to save the word "midfield" is the
+                    wrong trade — DM/CB/GK is the form a football reader
+                    already scans, and the club is the part they can't infer. */}
+                <p className="truncate text-xs text-muted-foreground">
+                  {player.primaryPosition} · {player.age} · {player.club}
+                </p>
+              </div>
+              {/* Icon-only: at 375px the written label ("Improving") crowds out
+                  the club name, and the arrow plus its colour already carries
+                  the direction. The words survive for screen readers. */}
+              <TrajectoryBadge trajectory={player.forecast.trajectory} compact className="px-1" />
+              <div className="tabular w-9 text-right text-base font-semibold">
+                {player.forecast.currentPerformanceScore.toFixed(1)}
+              </div>
+            </Link>
+          ))}
+        </CardContent>
+      </Card>
+    )
+  }
+
   return (
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {players.map((player) => (
