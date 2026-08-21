@@ -13,7 +13,15 @@ import { SquadTrendChart } from '@/components/charts/SquadTrendChart'
 import { useDataset } from '@/hooks/useDataset'
 import { HORIZONS } from '@/model/forecast'
 import { MODEL_CONFIG } from '@/model/config'
-import type { PositionalGroupOutlook, ProjectionHorizon, SquadOutlook } from '@/types/domain'
+import { buildMatchdaySelection } from '@/model/matchdayXI'
+import { MANUAL_UNAVAILABILITY, NEXT_FIXTURE } from '@/data/nextFixture'
+import type {
+  Player,
+  Position,
+  PositionalGroupOutlook,
+  ProjectionHorizon,
+  SquadOutlook,
+} from '@/types/domain'
 
 export function Dashboard() {
   const { outlook, players } = useDataset()
@@ -36,8 +44,10 @@ export function Dashboard() {
             <span className="font-medium text-foreground">
               A stronger talent pool is not the same thing as qualification.
             </span>{' '}
-            This model contains no fixtures, no opponents and no competition format, so it says
-            nothing about results or reaching a tournament. It only describes the players available.
+            This model contains no opponent data and no competition format, so it says nothing about
+            results or reaching a tournament. It only describes the players available. The projected
+            eleven below names a fixture, but only to fix a point in time and a set of absences — not
+            to forecast the match.
           </p>
         </div>
       </header>
@@ -109,6 +119,14 @@ export function Dashboard() {
             hint="Squad strength recomputed from the season before last, using the same method, so the comparison is like for like."
           />
         </div>
+      </section>
+
+      <section>
+        <SectionHeading
+          title={`Projected XI vs ${NEXT_FIXTURE.opponent}`}
+          description="The strongest available eleven on current form, using each player's score today rather than a projection. A label for a fixture, not a forecast of it — this model has no opponent data."
+        />
+        <MatchdayCard players={players} />
       </section>
 
       <section>
@@ -195,6 +213,172 @@ export function Dashboard() {
         </Card>
       </section>
     </div>
+  )
+}
+
+const POSITION_LABELS: Record<Position, string> = {
+  GK: 'Goalkeeper',
+  RB: 'Right-back',
+  CB: 'Centre-back',
+  LB: 'Left-back',
+  DM: 'Defensive midfield',
+  CM: 'Central midfield',
+  AM: 'Attacking midfield',
+  W: 'Wide',
+  ST: 'Striker',
+}
+
+function MatchdayCard({ players }: { players: Player[] }) {
+  const selection = buildMatchdaySelection(players, MANUAL_UNAVAILABILITY)
+  const { kickoff, competition, venue } = NEXT_FIXTURE
+
+  const fixtureDetail = [
+    competition,
+    venue ? (venue === 'home' ? 'Home' : venue === 'away' ? 'Away' : 'Neutral venue') : null,
+    kickoff
+      ? new Date(kickoff).toLocaleDateString('en-IE', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+        })
+      : null,
+  ].filter(Boolean)
+
+  return (
+    <Card className="border-border/70 bg-card/60">
+      <CardContent className="space-y-6 pt-6">
+        <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-muted-foreground">XI strength</p>
+            <p className="tabular text-2xl font-semibold">{selection.strength.toFixed(1)}</p>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-wide text-muted-foreground">
+              At full availability
+            </p>
+            <p className="tabular text-2xl font-semibold text-muted-foreground">
+              {selection.strengthAtFullAvailability.toFixed(1)}
+            </p>
+          </div>
+          <div className="min-w-[14rem] flex-1">
+            {selection.strengthCostOfAbsences === 0 ? (
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                The absences below cost this XI nothing, because neither player was selected in it
+                on current form.
+              </p>
+            ) : (
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Absences cost{' '}
+                <span className="font-medium text-foreground">
+                  {Math.abs(selection.strengthCostOfAbsences).toFixed(1)} points
+                </span>{' '}
+                against the same XI picked from a fully available pool.
+              </p>
+            )}
+          </div>
+        </div>
+
+        {fixtureDetail.length > 0 ? (
+          <p className="text-xs text-muted-foreground">{fixtureDetail.join(' · ')}</p>
+        ) : (
+          <div className="flex items-start gap-2 rounded-md border border-border/70 bg-card/40 p-3 text-xs leading-relaxed text-muted-foreground">
+            <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
+            <p>
+              No date, competition or venue is recorded for this fixture, so the eleven below is
+              simply "strongest available now" rather than "strongest available on match day".
+            </p>
+          </div>
+        )}
+
+        <Separator />
+
+        <ul className="grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
+          {selection.slots.map((slot) => (
+            <li
+              key={`${slot.position}-${slot.player.id}`}
+              className="flex items-baseline justify-between gap-3 text-sm"
+            >
+              <span className="flex min-w-0 items-baseline gap-2">
+                <span className="w-8 shrink-0 text-xs font-medium text-muted-foreground">
+                  {slot.position}
+                </span>
+                <Link
+                  to={`/players/${slot.player.id}`}
+                  className="truncate transition-colors hover:text-shamrock-700"
+                >
+                  {slot.player.name}
+                </Link>
+                {slot.weight < 1 && (
+                  <span className="shrink-0 text-xs text-muted-foreground">
+                    out of position
+                  </span>
+                )}
+              </span>
+              <span className="tabular shrink-0 text-sm text-muted-foreground">
+                {slot.effectiveScore.toFixed(1)}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        {selection.unfilled.length > 0 && (
+          <p className="text-xs leading-relaxed text-destructive">
+            No available player can fill:{' '}
+            {selection.unfilled.map((position) => POSITION_LABELS[position]).join(', ')}.
+          </p>
+        )}
+
+        {selection.unmatchedUnavailableIds.length > 0 && (
+          <p className="text-xs leading-relaxed text-destructive">
+            Unavailability recorded for unknown {selection.unmatchedUnavailableIds.length === 1 ? 'player' : 'players'}{' '}
+            {selection.unmatchedUnavailableIds.join(', ')} — the id matches nobody in the dataset, so
+            the absence has not been applied.
+          </p>
+        )}
+
+        <Separator />
+
+        <div className="space-y-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            Recorded as unavailable
+          </p>
+          {selection.unavailable.length === 0 ? (
+            <p className="text-xs text-muted-foreground">Nobody recorded as unavailable.</p>
+          ) : (
+            <ul className="space-y-1 text-sm">
+              {selection.unavailable.map((entry) => (
+                <li key={entry.player.id} className="flex flex-wrap items-baseline gap-x-2">
+                  <Link
+                    to={`/players/${entry.player.id}`}
+                    className="transition-colors hover:text-shamrock-700"
+                  >
+                    {entry.player.name}
+                  </Link>
+                  <span className="text-xs text-muted-foreground">
+                    {entry.reason} · noted {entry.recordedOn}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div className="flex items-start gap-2 rounded-md border border-border/70 bg-card/40 p-3 text-xs leading-relaxed text-muted-foreground">
+          <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
+          <p>
+            <span className="font-medium text-foreground">
+              Availability here is entered by hand, not researched.
+            </span>{' '}
+            No source in this dataset covers injuries — the availability field is empty for all{' '}
+            {players.length} tracked players — so anyone not listed above is assumed fit, which will
+            sometimes be wrong. Selection is also a model ranking rather than a real team sheet: the
+            dataset holds no call-up or recent-selection evidence. Positions are filled
+            scarcest-first, so a player who can cover two roles is assigned to the thinner of them,
+            which is a heuristic and not necessarily the strongest possible combination.
+          </p>
+        </div>
+      </CardContent>
+    </Card>
   )
 }
 
