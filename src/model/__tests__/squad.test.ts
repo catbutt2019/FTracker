@@ -1,16 +1,18 @@
 import { describe, expect, it } from 'vitest'
-import type { Player, Position } from '@/types/domain'
+import type { Player, PlayerRaw, Position } from '@/types/domain'
 import { POSITIONS } from '@/types/domain'
 import { simulateSquad, squadStrengthFrom } from '../squad'
 import { HORIZONS } from '../forecast'
 import { assembleDataset } from '@/data/pipeline'
-import { DEMO_AS_OF, generateDemoPlayers } from '@/data/demo/generate'
+import realPlayersFile from '../../../research/real-players.json'
+
+const REAL_AS_OF = '2026-08-20'
 
 function dataset() {
-  return assembleDataset(generateDemoPlayers(), {
-    asOfDate: DEMO_AS_OF,
-    sourceLabel: 'Demonstration dataset',
-    isDemonstrationData: true,
+  return assembleDataset(realPlayersFile as unknown as PlayerRaw[], {
+    asOfDate: REAL_AS_OF,
+    sourceLabel: 'Researched Republic of Ireland squad pool',
+    isDemonstrationData: false,
   })
 }
 
@@ -179,7 +181,7 @@ describe('buildSquadOutlook', () => {
     }
   })
 
-  it('surfaces the thin positions built into the demonstration dataset', () => {
+  it('surfaces the thin positions in the real player pool', () => {
     const leftBack = outlook.depthByPosition.find((d) => d.position === 'LB')
     expect(leftBack).toBeDefined()
     expect(leftBack!.playerCount).toBeLessThan(5)
@@ -204,20 +206,37 @@ describe('assembleDataset', () => {
     expect(best.poolPercentile).toBeGreaterThan(90)
   })
 
-  it('flattens the latest season onto the player for table display', () => {
+  it('flattens the latest season onto the player for table display, except club/league which track currentClub', () => {
     const { players } = dataset()
     for (const player of players) {
       const latest = player.seasons[0]
-      expect(player.club).toBe(latest.club)
       expect(player.minutes).toBe(latest.minutes)
       expect(player.season).toBe(latest.season)
+      // Club/league displayed on the player are the *current* club, which is
+      // deliberately independent of the last scored season — a transfer can
+      // move a player before there is any performance data at the new club.
+      expect(player.club).toBe(player.currentClub.club)
+      expect(player.league).toBe(player.currentClub.league)
     }
   })
 
-  it('marks the demonstration dataset as such, so provenance is never lost', () => {
+  it('shows the current club even when it differs from the last scored season (a transfer since)', () => {
+    const { players } = dataset()
+    const transferred = players.filter((p) => p.currentClub.changedSinceLastSeason)
+    // The real dataset is expected to contain at least one player who has
+    // moved since their last recorded season; if it doesn't, this test would
+    // pass vacuously, so assert the premise holds.
+    expect(transferred.length).toBeGreaterThan(0)
+    for (const player of transferred) {
+      expect(player.club).toBe(player.currentClub.club)
+      expect(player.club).not.toBe(player.seasons[0].club)
+    }
+  })
+
+  it('marks the real dataset as such, so provenance is never lost', () => {
     const data = dataset()
-    expect(data.isDemonstrationData).toBe(true)
-    expect(data.sourceLabel).toBe('Demonstration dataset')
+    expect(data.isDemonstrationData).toBe(false)
+    expect(data.sourceLabel).toBe('Researched Republic of Ireland squad pool')
   })
 
   it('includes players at all three national-team levels', () => {

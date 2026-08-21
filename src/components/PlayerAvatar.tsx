@@ -1,21 +1,23 @@
+import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
 /**
- * No real photo exists for demo-tier players (fictional) and none is
- * licensed for research-tier players (real people), so every avatar is a
- * deterministic initials badge rather than a fetched image. The colour is
- * derived from the name so the same player always gets the same colour
- * across pages, without needing to store anything.
+ * Falls back to a deterministic initials badge when no photo is available —
+ * either because the research pass found none, or because it found one but
+ * couldn't verify it was actually this player (see `avatarUrl` on
+ * `PlayerRaw`). The colour is derived from the name so the same player
+ * always gets the same colour across pages, without needing to store
+ * anything.
  */
 const PALETTE = [
-  'border-shamrock-600/50 bg-shamrock-700/40 text-shamrock-200',
-  'border-sky-600/50 bg-sky-700/40 text-sky-200',
-  'border-amber-600/50 bg-amber-700/40 text-amber-200',
-  'border-violet-600/50 bg-violet-700/40 text-violet-200',
-  'border-rose-600/50 bg-rose-700/40 text-rose-200',
-  'border-teal-600/50 bg-teal-700/40 text-teal-200',
-  'border-indigo-600/50 bg-indigo-700/40 text-indigo-200',
-  'border-slate-500/50 bg-slate-600/40 text-slate-200',
+  'border-shamrock-200 bg-shamrock-100 text-shamrock-800',
+  'border-sky-200 bg-sky-100 text-sky-800',
+  'border-amber-200 bg-amber-100 text-amber-800',
+  'border-violet-200 bg-violet-100 text-violet-800',
+  'border-rose-200 bg-rose-100 text-rose-800',
+  'border-teal-200 bg-teal-100 text-teal-800',
+  'border-indigo-200 bg-indigo-100 text-indigo-800',
+  'border-slate-300 bg-slate-100 text-slate-800',
 ]
 
 const SIZE_CLASSES = {
@@ -42,14 +44,47 @@ function initialsOf(name: string): string {
 
 export function PlayerAvatar({
   name,
+  imageUrl,
   size = 'md',
   className,
 }: {
   name: string
+  /**
+   * A verified-source photo URL, or null/undefined to use the initials
+   * badge. These are hotlinked third-party images, so a load failure (dead
+   * link, CORS, etc.) silently falls back to initials rather than showing a
+   * broken-image icon.
+   */
+  imageUrl?: string | null
   size?: keyof typeof SIZE_CLASSES
   className?: string
 }) {
+  const [failed, setFailed] = useState(false)
   const palette = PALETTE[hashString(name) % PALETTE.length]
+
+  if (imageUrl && !failed) {
+    return (
+      <span
+        aria-hidden="true"
+        className={cn(
+          'inline-flex shrink-0 overflow-hidden rounded-full border bg-muted',
+          SIZE_CLASSES[size],
+          className,
+        )}
+      >
+        <img
+          src={imageUrl}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          referrerPolicy="no-referrer"
+          onError={() => setFailed(true)}
+          className="size-full object-cover object-top"
+        />
+      </span>
+    )
+  }
+
   return (
     <span
       aria-hidden="true"

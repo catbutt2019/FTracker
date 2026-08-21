@@ -83,6 +83,12 @@ export interface ConfidenceInputs {
   seasonCount: number
   hasInjuryData: boolean
   exactAge: number
+  /**
+   * Fallback playing-time signal for seasons where a source reports
+   * appearances but never published minutes. Only consulted when
+   * `weightedMinutes` is zero, so it never displaces a real minutes figure.
+   */
+  weightedAppearances?: number
 }
 
 /**
@@ -92,7 +98,10 @@ export interface ConfidenceInputs {
  * player. A very good player with 300 minutes should still be low confidence.
  */
 export function computeConfidence(inputs: ConfidenceInputs): number {
-  const minutesFactor = clamp(inputs.weightedMinutes / 2600, 0, 1)
+  const minutesFactor =
+    inputs.weightedMinutes > 0
+      ? clamp(inputs.weightedMinutes / 2600, 0, 1)
+      : clamp((inputs.weightedAppearances ?? 0) / (2600 / 90), 0, 1)
   const coverageFactor = clamp(inputs.coverage, 0, 1)
   const historyFactor = clamp((inputs.seasonCount - 1) / 2, 0, 1)
   const injuryFactor = inputs.hasInjuryData ? 1 : 0.5
@@ -173,8 +182,12 @@ function buildForecastReasons(input: ExplanationInputs): string[] {
   }
 
   if (player.internationalCaps > 0) {
+    const minutesClause =
+      player.internationalMinutes > 0
+        ? ` and ${player.internationalMinutes.toLocaleString()} international minutes`
+        : ''
     reasons.push(
-      `${player.internationalCaps} senior cap${player.internationalCaps === 1 ? '' : 's'} and ${player.internationalMinutes.toLocaleString()} international minutes indicate the step up has already been made at least once.`,
+      `${player.internationalCaps} senior cap${player.internationalCaps === 1 ? '' : 's'}${minutesClause} indicate the step up has already been made at least once.`,
     )
   }
 
@@ -201,7 +214,7 @@ function buildUncertaintyReasons(input: ExplanationInputs): string[] {
       .map((key) => defs.find((d) => d.key === key)?.label ?? key)
       .join(', ')
     reasons.push(
-      `The demonstration dataset has no value for ${names} in ${latest.season}, so ${Math.round((1 - coverage) * 100)}% of the normal metric weight is unavailable and the remaining metrics carry more load than intended.`,
+      `There is no value for ${names} in ${latest.season}, so ${Math.round((1 - coverage) * 100)}% of the normal metric weight is unavailable and the remaining metrics carry more load than intended.`,
     )
   }
 
@@ -256,6 +269,15 @@ function buildUncertaintyReasons(input: ExplanationInputs): string[] {
     )
   }
 
+  if (player.currentClub.changedSinceLastSeason) {
+    const from = latest.club
+    const to = player.currentClub.club
+    reasons.push(
+      `The player has moved from ${from} to ${to} since ${latest.season}, the most recent season with any recorded performance data. ` +
+        'This score and projection are still built entirely from performance at the previous club — adapting to a new team, role or league is not modelled, so treat the projection as a pre-move baseline rather than a forecast of life at the new club.',
+    )
+  }
+
   // No forecast should ever be presented without a caveat. Where the evidence
   // is genuinely strong, the honest caveat is what the model cannot see at all.
   if (reasons.length === 0) {
@@ -302,6 +324,7 @@ export function forecastPlayer(
   let scoreSum = 0
   let weightSum = 0
   let minutesSum = 0
+  let appearancesSum = 0
   let coverageSum = 0
   seasonScores.forEach((season, index) => {
     const weight = weights[index] ?? 0
@@ -309,15 +332,17 @@ export function forecastPlayer(
     scoreSum += season.adjustedScore * weight
     coverageSum += season.metricCoverage * weight
     minutesSum += season.minutes * weight
+    appearancesSum += (player.seasons[index]?.appearances ?? 0) * weight
     weightSum += weight
   })
   const observedScore = weightSum > 0 ? scoreSum / weightSum : 50
   const coverage = weightSum > 0 ? coverageSum / weightSum : 0
   const weightedMinutes = weightSum > 0 ? minutesSum / weightSum : 0
+  const weightedAppearances = weightSum > 0 ? appearancesSum / weightSum : 0
 
   // 3. Regression to the mean.
   const groupMean = cohort.groupMeans[group] ?? 50
-  const rel = reliability(weightedMinutes, coverage)
+  const rel = reliability(weightedMinutes, coverage, weightedAppearances)
   const currentScore = clamp(groupMean + rel * (observedScore - groupMean), 1, 99)
   const regressionAdjustment = currentScore - observedScore
 
@@ -336,6 +361,7 @@ export function forecastPlayer(
 
   const confidence = computeConfidence({
     weightedMinutes,
+    weightedAppearances,
     coverage,
     seasonCount: seasonScores.length,
     hasInjuryData: player.seasons.some((s) => s.injuryDays !== null),

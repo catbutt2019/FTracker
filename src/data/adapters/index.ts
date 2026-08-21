@@ -1,4 +1,4 @@
-import { demoAdapter } from './demoAdapter'
+import { realAdapter } from './realAdapter'
 import type { DataSource } from './types'
 
 export type { DataSource } from './types'
@@ -12,19 +12,15 @@ export { DataSourceError } from './types'
  * which provider is active.
  */
 const ADAPTERS: Record<string, DataSource> = {
-  demo: demoAdapter,
+  real: realAdapter,
 }
 
 export function resolveDataSource(): DataSource {
-  const requested = import.meta.env.VITE_DATA_SOURCE ?? 'demo'
+  const requested = import.meta.env.VITE_DATA_SOURCE ?? 'real'
   const adapter = ADAPTERS[requested]
   if (!adapter) {
-    // Falling back rather than throwing keeps a misconfigured deployment usable,
-    // and the provenance banner will still say which dataset is in play.
-    console.warn(
-      `Unknown VITE_DATA_SOURCE "${requested}". Falling back to the demonstration dataset.`,
-    )
-    return demoAdapter
+    console.warn(`Unknown VITE_DATA_SOURCE "${requested}". Falling back to the real player dataset.`)
+    return realAdapter
   }
   return adapter
 }

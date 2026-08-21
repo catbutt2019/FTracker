@@ -26,7 +26,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Goals scored per 90 minutes, excluding penalties. Penalties are removed because winning and taking them depends heavily on team role rather than finishing ability.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.28,
+      weight: 0.24,
     },
     {
       key: 'expectedGoals90',
@@ -35,7 +35,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'The number of goals an average player would be expected to score from the same chances, per 90 minutes. Measures the quality of positions a player gets into.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.26,
+      weight: 0.22,
     },
     {
       key: 'shots90',
@@ -43,7 +43,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Attempts on goal per 90 minutes, a proxy for shooting volume and intent.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.14,
+      weight: 0.12,
     },
     {
       key: 'boxTouches90',
@@ -52,7 +52,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Touches inside the opposition penalty area per 90 minutes. A repeatable indicator of dangerous positioning.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.18,
+      weight: 0.15,
     },
     {
       key: 'chanceConversion',
@@ -60,7 +60,16 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Share of shots that become goals. Noisy over small samples, so weighted lightly.',
       unit: '%',
       higherIsBetter: true,
-      weight: 0.14,
+      weight: 0.12,
+    },
+    {
+      key: 'goalInvolvement90',
+      label: 'Goal involvement',
+      description:
+        'Goals plus assists per 90 minutes (or per appearance when minutes are unavailable). A simple, always-available productivity signal used alongside the advanced metrics above, especially for seasons where only box-score data exists.',
+      unit: 'per 90',
+      higherIsBetter: true,
+      weight: 0.15,
     },
   ],
   creator: [
@@ -71,7 +80,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'The number of assists an average player would be expected to record from the same passes, per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.28,
+      weight: 0.24,
     },
     {
       key: 'progressiveCarries90',
@@ -80,7 +89,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Carries that move the ball meaningfully towards the opposition goal, per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.24,
+      weight: 0.2,
     },
     {
       key: 'chancesCreated90',
@@ -88,7 +97,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Passes leading directly to a shot, per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.24,
+      weight: 0.2,
     },
     {
       key: 'finalThirdEntries90',
@@ -97,7 +106,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Touches and receptions in the attacking third per 90 minutes. Indicates how often a player is in the area of the pitch where they can hurt an opponent.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.16,
+      weight: 0.14,
     },
     {
       key: 'dribbleSuccess',
@@ -105,7 +114,16 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Share of attempted dribbles past an opponent that succeed.',
       unit: '%',
       higherIsBetter: true,
-      weight: 0.08,
+      weight: 0.07,
+    },
+    {
+      key: 'goalInvolvement90',
+      label: 'Goal involvement',
+      description:
+        'Goals plus assists per 90 minutes (or per appearance when minutes are unavailable). A simple, always-available productivity signal used alongside the advanced metrics above, especially for seasons where only box-score data exists.',
+      unit: 'per 90',
+      higherIsBetter: true,
+      weight: 0.15,
     },
   ],
   midfielder: [
@@ -116,7 +134,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Completed passes that move the ball significantly towards the opposition goal, per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.26,
+      weight: 0.23,
     },
     {
       key: 'passCompletion',
@@ -125,7 +143,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Share of attempted passes completed. Read alongside progressive passing, since safe sideways passing inflates it.',
       unit: '%',
       higherIsBetter: true,
-      weight: 0.18,
+      weight: 0.16,
     },
     {
       key: 'pressures90',
@@ -133,7 +151,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Occasions applying pressure to an opponent in possession, per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.2,
+      weight: 0.18,
     },
     {
       key: 'defensiveActions90',
@@ -141,7 +159,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Combined successful tackles and interceptions per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.22,
+      weight: 0.2,
     },
     {
       key: 'possessionLost90',
@@ -150,7 +168,16 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Times the player concedes possession per 90 minutes. Lower is better, so this metric is inverted before scoring.',
       unit: 'per 90',
       higherIsBetter: false,
-      weight: 0.14,
+      weight: 0.13,
+    },
+    {
+      key: 'goalInvolvement90',
+      label: 'Goal involvement',
+      description:
+        'Goals plus assists per 90 minutes (or per appearance when minutes are unavailable). A simple, always-available productivity signal used alongside the advanced metrics above, especially for seasons where only box-score data exists.',
+      unit: 'per 90',
+      higherIsBetter: true,
+      weight: 0.1,
     },
   ],
   defender: [
@@ -160,7 +187,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Share of ground duels won.',
       unit: '%',
       higherIsBetter: true,
-      weight: 0.24,
+      weight: 0.22,
     },
     {
       key: 'aerialSuccess',
@@ -168,7 +195,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Share of aerial duels won.',
       unit: '%',
       higherIsBetter: true,
-      weight: 0.2,
+      weight: 0.18,
     },
     {
       key: 'interceptions90',
@@ -176,7 +203,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       description: 'Combined interceptions and blocks per 90 minutes.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.2,
+      weight: 0.18,
     },
     {
       key: 'progressiveDistance90',
@@ -185,7 +212,7 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
         'Metres of forward progress created by carries and passes per 90 minutes, scaled to hundreds of metres.',
       unit: 'per 90',
       higherIsBetter: true,
-      weight: 0.2,
+      weight: 0.18,
     },
     {
       key: 'errors90',
@@ -195,6 +222,15 @@ export const METRIC_DEFINITIONS: Record<MetricGroup, MetricDefinition[]> = {
       unit: 'per 90',
       higherIsBetter: false,
       weight: 0.16,
+    },
+    {
+      key: 'goalInvolvement90',
+      label: 'Goal involvement',
+      description:
+        'Goals plus assists per 90 minutes (or per appearance when minutes are unavailable). A small productivity signal — defenders rarely score or assist, but the occasional set-piece threat or overlapping full-back should count for something, and it is always available even when advanced data is missing.',
+      unit: 'per 90',
+      higherIsBetter: true,
+      weight: 0.08,
     },
   ],
   goalkeeper: [

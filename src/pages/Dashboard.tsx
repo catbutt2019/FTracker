@@ -169,7 +169,7 @@ export function Dashboard() {
                 <div className="min-w-[9.5rem] flex-1">
                   <Link
                     to="/depth"
-                    className="text-sm font-medium transition-colors hover:text-shamrock-200"
+                    className="text-sm font-medium transition-colors hover:text-shamrock-700"
                   >
                     {depth.label}
                   </Link>

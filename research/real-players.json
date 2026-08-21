@@ -1,0 +1,6126 @@
+[
+  {
+    "id": "caoimhin-kelleher",
+    "name": "Caoimhín Odhrán Kelleher",
+    "dateOfBirth": "1998-11-23",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "GK",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Brentford",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 37,
+        "minutes": 3330,
+        "minutesPercentage": 0.974,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "savePercentage": 68.79
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Liverpool",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Liverpool",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Brentford",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Brentford."
+    },
+    "internationalCaps": 31,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/98/45/459845_caoimhin_kelleher_20250818120347.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "mark-travers",
+    "name": "Mark Travers",
+    "dateOfBirth": "1999-05-18",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "GK",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Everton",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "savePercentage": 60
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "AFC Bournemouth / Middlesbrough (loan)",
+        "league": "Premier League / EFL Championship",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 22,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "AFC Bournemouth / Stoke City (loan)",
+        "league": "Premier League / EFL Championship",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 17,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Everton",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Everton."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.supersport.com/media/10tlrcet/mark-travers-profile-oct-2022.png?format=webp&quality=90&width=500",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "josh-keeley",
+    "name": "Josh Keeley",
+    "dateOfBirth": "2003-05-17",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "GK",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Luton Town",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 45,
+        "starts": 45,
+        "minutes": 4050,
+        "minutesPercentage": 0.978,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "savePercentage": 63.82
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Leyton Orient (loan)",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 36,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Tottenham Hotspur U21 / Barnet (loan)",
+        "league": "Academy / National League",
+        "leagueStrength": 38,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Luton Town",
+      "league": "League One",
+      "leagueStrength": 57,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Luton Town."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.ctfassets.net/eb3hgtb96i1x/heHmuHW3nmt0uXEY9Rh2B/8666d0d225d4bfb1e99d5ba95fc65f55/2O1A0714.JPG?f=face&fit=fill&fm=webp&h=1280&q=75&w=1920",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "seamus-coleman",
+    "name": "Séamus Coleman",
+    "dateOfBirth": "1988-10-11",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "RB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Everton",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 5,
+        "starts": 0,
+        "minutes": 18,
+        "minutesPercentage": 0.005,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Everton",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 5,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Everton",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 12,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "unattached / free agent",
+      "league": "none",
+      "leagueStrength": 60,
+      "changedSinceLastSeason": true,
+      "transferNote": "Left Everton when his contract expired after the 2025/26 season. Everton offered a coaching role, but no new playing club or retirement decision was confirmed in the sources reviewed."
+    },
+    "internationalCaps": 81,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/66/29/106629_seamus_coleman_20250908132111.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "nathan-collins",
+    "name": "Nathan Collins",
+    "dateOfBirth": "2001-04-30",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [
+      "RB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Brentford",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 32,
+        "minutes": 2971,
+        "minutesPercentage": 0.869,
+        "goals": 1,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "interceptions90": 2.45,
+          "goalInvolvement90": 0.09
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Brentford",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 38,
+        "starts": 38,
+        "minutes": 3420,
+        "minutesPercentage": 1,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Brentford",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 32,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Brentford",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Brentford."
+    },
+    "internationalCaps": 40,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.zerozero.pt/img/jogadores/new/44/00/564400_nathan_collins_20240818121925.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "john-egan",
+    "name": "John Egan",
+    "dateOfBirth": "1992-10-20",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Hull City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 42,
+        "starts": 32,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "interceptions90": 1.08,
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Burnley / Hull City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Sheffield United",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 6,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Hull City",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Hull City."
+    },
+    "internationalCaps": 36,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/59/82/205982_john_egan_20251001155001.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jake-obrien",
+    "name": "Jake Patrick O'Brien",
+    "dateOfBirth": "2001-05-15",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [
+      "RB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Everton",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 35,
+        "minutes": 3124,
+        "minutesPercentage": 0.913,
+        "goals": 1,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "interceptions90": 0.43,
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Everton",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 20,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.1
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Lyon",
+        "league": "Ligue 1",
+        "leagueStrength": 82,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.15
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Everton",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Everton."
+    },
+    "internationalCaps": 17,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.staticzz.com/img/planteis/new/10/12/11611012_jake_o_brien_20240815224151.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "dara-oshea",
+    "name": "Dara O'Shea",
+    "dateOfBirth": "1999-03-04",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Ipswich Town",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 46,
+        "starts": 46,
+        "minutes": 4140,
+        "minutesPercentage": 1,
+        "goals": 1,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "interceptions90": 0.85,
+          "goalInvolvement90": 0.04
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Burnley / Ipswich Town",
+        "league": "EFL Championship / Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Burnley",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 33,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.09
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Ipswich Town",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Ipswich Town."
+    },
+    "internationalCaps": 45,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.ogol.com.br/img/jogadores/new/38/59/483859_dara_o_shea_20241005231204.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "liam-scales",
+    "name": "Liam Scales",
+    "dateOfBirth": "1998-08-08",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [
+      "LB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Celtic",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 34,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "aerialSuccess": 66.2,
+          "duelSuccess": 75,
+          "interceptions90": 1.13,
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Celtic",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 26,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.08
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Celtic",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 34,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Celtic",
+      "league": "Scottish Premiership",
+      "leagueStrength": 61,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Celtic."
+    },
+    "internationalCaps": 16,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.webapi.gc.celticfc.com/fit-in/1400x1400/3feae820-4891-11ec-a7a8-054a8508b6bd.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "gavin-bazunu",
+    "name": "Gavin Bazunu",
+    "dateOfBirth": "2002-02-20",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "GK",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Southampton / Stoke City (loan)",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 2250,
+        "minutesPercentage": 0.543,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "savePercentage": 60
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Southampton / Standard Liege (loan)",
+        "league": "Premier League / Belgian Pro League",
+        "leagueStrength": 68,
+        "clubStrength": 55,
+        "appearances": 8,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Southampton",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 41,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Southampton",
+      "league": "Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "Returned to Southampton after the Stoke City loan ended. Celtic and Dinamo Zagreb interest has been reported, but no completed transfer was confirmed by the cutoff."
+    },
+    "internationalCaps": 22,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/24/90/642490_gavin_bazunu_20240815191933.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "andrew-omobamidele",
+    "name": "Andrew Omobamidele",
+    "dateOfBirth": "2002-06-23",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Strasbourg",
+        "league": "Ligue 1",
+        "leagueStrength": 82,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 1351,
+        "minutesPercentage": 0.442,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "interceptions90": 1.07,
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Nottingham Forest / Strasbourg (loan)",
+        "league": "Premier League / Ligue 1",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Norwich City / Nottingham Forest",
+        "league": "EFL Championship / Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 13,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Strasbourg",
+      "league": "Ligue 1",
+      "leagueStrength": 82,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Strasbourg."
+    },
+    "internationalCaps": 10,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://mmo.aiircdn.com/516/685acce690d81.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "cathal-heffernan",
+    "name": "Cathal Heffernan",
+    "dateOfBirth": "2005-04-27",
+    "nationalityStatus": "eligible-uncommitted",
+    "nationalTeamLevel": "emerging",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Newcastle United U21 / Harrogate Town",
+        "league": "Premier League 2 / EFL League Two",
+        "leagueStrength": 30,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Newcastle United U21",
+        "league": "Premier League 2",
+        "leagueStrength": 30,
+        "clubStrength": 55,
+        "appearances": 20,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Newcastle United U21",
+        "league": "Premier League 2",
+        "leagueStrength": 30,
+        "clubStrength": 55,
+        "appearances": 16,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Harrogate Town",
+      "league": "National League",
+      "leagueStrength": 38,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Harrogate Town."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.ctfassets.net/9ec6988xevcz/7Dq3sz9vv4NfhNLXw3xryW/572659c7ad3b5523c55a3c148c7effda/Cahal_Heffernan_.png?f=face&fit=fill&h=630&w=1200",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "ryan-manning",
+    "name": "Ryan Phelim Manning",
+    "dateOfBirth": "1996-06-14",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "LB",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Southampton",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 43,
+        "starts": 35,
+        "minutes": 3429,
+        "minutesPercentage": 0.828,
+        "goals": 8,
+        "assists": 4,
+        "positionSpecificMetrics": {
+          "interceptions90": 1.13,
+          "goalInvolvement90": 0.31
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Southampton",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 24,
+        "starts": 18,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.04
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Southampton",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Southampton",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Southampton."
+    },
+    "internationalCaps": 23,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.playmakerstats.com/img/jogadores/new/45/44/434544_ryan_manning_20240815192918.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jayson-molumby",
+    "name": "Jayson Molumby",
+    "dateOfBirth": "1999-08-06",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "West Bromwich Albion",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 38,
+        "starts": 31,
+        "minutes": 2902,
+        "minutesPercentage": 0.701,
+        "goals": 2,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "passCompletion": 86.19,
+          "goalInvolvement90": 0.12
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "West Bromwich Albion",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.11
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "West Bromwich Albion",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 24,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "West Bromwich Albion",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with West Bromwich Albion."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.brightonandhovenews.org/wp-content/uploads/2021/01/Jayson-Molumby.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "alan-browne",
+    "name": "Alan Browne",
+    "dateOfBirth": "1995-07-22",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CM",
+    "secondaryPositions": [
+      "AM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Sunderland / Middlesbrough (loan)",
+        "league": "Premier League / EFL Championship",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 38,
+        "starts": 13,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "passCompletion": 83.58,
+          "defensiveActions90": 2.54,
+          "goalInvolvement90": 0.11
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Sunderland",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 22,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Preston North End",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 41,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.1
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Sunderland",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "Returned to Sunderland after the Middlesbrough loan. Preston and Blackburn have been linked, but no completed move was confirmed."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.playmakerstats.com/img/jogadores/new/16/81/361681_alan_browne_20240819233307.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jack-taylor",
+    "name": "Jack Taylor",
+    "dateOfBirth": "1998-06-23",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CM",
+    "secondaryPositions": [
+      "DM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Ipswich Town",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 39,
+        "starts": 24,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "defensiveActions90": 1.66,
+          "goalInvolvement90": 0.08
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Ipswich Town",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 32,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Ipswich Town",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 33,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Ipswich Town",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Ipswich Town."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.webapi.gc.ipswichtownfcservices.co.uk/fit-in/600x600/fc58d5c0-225c-11ee-9709-5f846cc307c7.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jason-knight",
+    "name": "Jason Knight",
+    "dateOfBirth": "2001-02-13",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Bristol City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 34,
+        "starts": 0,
+        "minutes": 2774,
+        "minutesPercentage": 0.67,
+        "goals": 0,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "passCompletion": 82.37,
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Bristol City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 46,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Bristol City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 46,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.09
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Bristol City",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Bristol City."
+    },
+    "internationalCaps": 41,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/planteis/new/20/90/11532090_jason_knight_20240803143414.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "finn-azaz",
+    "name": "Finn Azaz",
+    "dateOfBirth": "2000-09-07",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Middlesbrough / Southampton",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 43,
+        "starts": 0,
+        "minutes": 3068,
+        "minutesPercentage": 0.741,
+        "goals": 11,
+        "assists": 8,
+        "positionSpecificMetrics": {
+          "expectedAssists90": 0.22,
+          "progressiveCarries90": 1.22,
+          "chancesCreated90": 1.79,
+          "goalInvolvement90": 0.56
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Middlesbrough",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 45,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 12,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.27
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Plymouth Argyle (loan) / Middlesbrough",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 46,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 11,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.24
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Southampton",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Southampton."
+    },
+    "internationalCaps": 7,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/57/42/545742_finn_azaz_20260116165431.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "robbie-brady",
+    "name": "Robbie Brady",
+    "dateOfBirth": "1992-01-14",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "LB",
+    "secondaryPositions": [
+      "W",
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Preston North End",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 5,
+        "starts": 1,
+        "minutes": 90,
+        "minutesPercentage": 0.022,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Preston North End",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 29,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Preston North End",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 32,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "unattached / free agent",
+      "league": "none",
+      "leagueStrength": 60,
+      "changedSinceLastSeason": true,
+      "transferNote": "Released by Preston North End at contract expiry in June 2026; no new club was confirmed by the cutoff."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.playmakerstats.com/img/jogadores/new/38/47/133847_robbie_brady_20251128150630.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jamie-mcgrath",
+    "name": "Jamie McGrath",
+    "dateOfBirth": "1996-09-30",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Hibernian",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 34,
+        "starts": 0,
+        "minutes": 2398,
+        "minutesPercentage": 0.701,
+        "goals": 8,
+        "assists": 4,
+        "positionSpecificMetrics": {
+          "expectedAssists90": 0.23,
+          "chancesCreated90": 1.95,
+          "goalInvolvement90": 0.45
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Aberdeen",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.16
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Aberdeen",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 34,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 9,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.26
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Hibernian",
+      "league": "Scottish Premiership",
+      "leagueStrength": 61,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Hibernian."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://assets.sorare.com/playerpicture/7f88bc51-dddb-4a55-9fbc-21fd4cb0e92b/picture/squared-859e41d349a6c759c9516b95138e048d.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "killian-phillips",
+    "name": "Killian Phillips",
+    "dateOfBirth": "2002-03-30",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CM",
+    "secondaryPositions": [
+      "DM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "St Mirren",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 31,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "passCompletion": 75.78,
+          "defensiveActions90": 2.21,
+          "goalInvolvement90": 0.11
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "St Mirren",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.11
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Wycombe Wanderers / Aberdeen (loans)",
+        "league": "EFL League One / Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 34,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "St Mirren",
+      "league": "Scottish Premiership",
+      "leagueStrength": 61,
+      "changedSinceLastSeason": false,
+      "transferNote": "Remains at St Mirren and started the 2026/27 season there. The club has acknowledged he may earn a move, but none was completed by the cutoff."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.stmirren.com/images/2024-25-headshots/killian-phillips-web-2425.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "joe-hodge",
+    "name": "Joe Hodge",
+    "dateOfBirth": "2002-09-14",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Tondela",
+        "league": "Primeira Liga",
+        "leagueStrength": 74,
+        "clubStrength": 55,
+        "appearances": 26,
+        "starts": 0,
+        "minutes": 1423,
+        "minutesPercentage": 0.465,
+        "goals": 1,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "passCompletion": 82.17,
+          "defensiveActions90": 2.07,
+          "goalInvolvement90": 0.13
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Wolverhampton Wanderers / Huddersfield Town (loan)",
+        "league": "Premier League / EFL League One",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.04
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Wolverhampton Wanderers / Queens Park Rangers (loan)",
+        "league": "Premier League / EFL Championship",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 8,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.13
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Motherwell",
+      "league": "Scottish Premiership",
+      "leagueStrength": 61,
+      "changedSinceLastSeason": true,
+      "transferNote": "Joined Motherwell permanently from CD Tondela for an undisclosed fee on a two-year deal, with a club option for a third year."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/26/83/642683_joe_hodge_20250814152606.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "conor-coventry",
+    "name": "Conor Coventry",
+    "dateOfBirth": "2000-03-25",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Charlton Athletic",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 40,
+        "starts": 26,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "passCompletion": 78.26,
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Charlton Athletic",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 44,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.02
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Charlton Athletic",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 17,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Charlton Athletic",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Charlton Athletic."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn.charltonafc.com/sites/default/files/styles/cc_2000x2664/public/2025-08/conor_coventry.jpg?h=7c5983da&itok=CwTYRUAI",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "dawson-devoy",
+    "name": "Dawson Devoy",
+    "dateOfBirth": "2001-11-20",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CM",
+    "secondaryPositions": [
+      "AM"
+    ],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Bohemians",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 34,
+        "starts": 0,
+        "minutes": 1710,
+        "minutesPercentage": 0.528,
+        "goals": 5,
+        "assists": 3,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.42
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "Bohemians",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 13,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.31
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Milton Keynes Dons / Swindon Town (loan)",
+        "league": "EFL League Two",
+        "leagueStrength": 47,
+        "clubStrength": 55,
+        "appearances": 26,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.12
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Bohemians",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Bohemians."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "corrie-ndaba",
+    "name": "Corrie Ndaba",
+    "dateOfBirth": "1999-12-25",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [
+      "RB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Kilmarnock / Lecce",
+        "league": "Scottish Premiership / Serie A",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 14,
+        "starts": 6,
+        "minutes": 543,
+        "minutesPercentage": 0.159,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "interceptions90": 0.5,
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Kilmarnock",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 36,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Kilmarnock",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 28,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.04
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Lecce",
+      "league": "Serie A",
+      "leagueStrength": 86,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Lecce."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.zerozero.pt/img/jogadores/new/11/44/541144_corrie_ndaba_20241030120507.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "sam-curtis",
+    "name": "Sam Curtis",
+    "dateOfBirth": "2005-12-01",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "RB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Sheffield United / Chesterfield (loan)",
+        "league": "EFL Championship / EFL League Two",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 20,
+        "starts": 10,
+        "minutes": 1736,
+        "minutesPercentage": 0.419,
+        "goals": 2,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "interceptions90": 0.8,
+          "goalInvolvement90": 0.16
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Sheffield United / Peterborough United / St Johnstone (loans)",
+        "league": "EFL Championship / EFL League One / Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "St Patrick's Athletic / Sheffield United",
+        "league": "League of Ireland Premier Division / Premier League",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.09
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Sheffield United",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": true,
+      "transferNote": "The Chesterfield loan ran only to the end of 2025/26. No new loan or permanent move was confirmed, so his current registration reverts to Sheffield United."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.ogol.com.br/img/jogadores/new/57/19/885719_sam_curtis_20250327171955.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "andrew-moran",
+    "name": "Andrew Moran",
+    "dateOfBirth": "2003-10-15",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "CM",
+      "W"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Los Angeles FC / Preston North End",
+        "league": "Major League Soccer / EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 15,
+        "starts": 3,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "expectedAssists90": 0.18,
+          "chancesCreated90": 0.95,
+          "goalInvolvement90": 0.27
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Stoke City (loan)",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.11
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Blackburn Rovers (loan)",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Preston North End",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Preston North End."
+    },
+    "internationalCaps": 3,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/38/66/823866_andy_moran_20240816011408.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "rocco-vata",
+    "name": "Rocco Vata",
+    "dateOfBirth": "2005-04-18",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "W",
+    "secondaryPositions": [
+      "AM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Watford",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 12,
+        "starts": 0,
+        "minutes": 523,
+        "minutesPercentage": 0.126,
+        "goals": 2,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "expectedAssists90": 0.25,
+          "goalInvolvement90": 0.69
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Watford",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 33,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.09
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Celtic B / Celtic",
+        "league": "Lowland League / Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 16,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 12,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.75
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Watford",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Watford."
+    },
+    "internationalCaps": 10,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/44/31/914431_rocco_vata_20240808134436.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "mark-mcguinness",
+    "name": "Mark McGuinness",
+    "dateOfBirth": "2001-01-05",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Luton Town / Sheffield United",
+        "league": "EFL League One / EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 15,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "duelSuccess": 57.78,
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Cardiff City / Luton Town",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 42,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Cardiff City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Sheffield United",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Sheffield United."
+    },
+    "internationalCaps": 2,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.ctfassets.net/eb3hgtb96i1x/4fTyupb2GW0YaZQQoe1lfe/a5305c30f7a41d98d28b86db82e349f2/mcguinness_headshot.png?f=top&fit=fill&fm=webp&h=1440&q=75&w=1440",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "troy-parrott",
+    "name": "Troy Daniel Parrott",
+    "dateOfBirth": "2002-02-04",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "AZ",
+        "league": "Eredivisie",
+        "leagueStrength": 72,
+        "clubStrength": 55,
+        "appearances": 28,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 16,
+        "assists": 4,
+        "positionSpecificMetrics": {
+          "expectedGoals90": 0.58,
+          "shots90": 3.55,
+          "nonPenaltyGoals90": 0.65,
+          "chanceConversion": 19.54,
+          "goalInvolvement90": 0.71
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "AZ",
+        "league": "Eredivisie",
+        "leagueStrength": 72,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 14,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.47
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Excelsior (loan)",
+        "league": "Eredivisie",
+        "leagueStrength": 72,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 10,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.4
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Real Betis",
+      "league": "La Liga",
+      "leagueStrength": 90,
+      "changedSinceLastSeason": true,
+      "transferNote": "Completed a permanent €20m move from AZ Alkmaar to Real Betis and signed a five-year contract through 2031."
+    },
+    "internationalCaps": 37,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/11/69/641169_troy_parrott_20251114000618.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "adam-idah",
+    "name": "Adam Idah",
+    "dateOfBirth": "2001-02-11",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Celtic / Swansea City",
+        "league": "Scottish Premiership / EFL Championship",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 6,
+        "minutes": 844,
+        "minutesPercentage": 0.247,
+        "goals": 6,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "expectedGoals90": 0.46,
+          "goalInvolvement90": 0.85
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Norwich City / Celtic",
+        "league": "EFL Championship / Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 36,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 13,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.36
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Norwich City / Celtic (loan)",
+        "league": "EFL Championship / Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 43,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 14,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.33
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Swansea City",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Swansea City."
+    },
+    "internationalCaps": 39,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/44/04/594404_adam_idah_20250212231001.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "sammie-szmodics",
+    "name": "Sammie Szmodics",
+    "dateOfBirth": "1995-09-24",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [
+      "AM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Ipswich Town / Derby County (loan)",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 29,
+        "starts": 10,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "chanceConversion": 9.52,
+          "goalInvolvement90": 0.14
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Blackburn Rovers / Ipswich Town",
+        "league": "EFL Championship / Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 21,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 5,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.24
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Blackburn Rovers",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 44,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 27,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.61
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Derby County",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": true,
+      "transferNote": "Rejoined Derby County on loan for the full 2026/27 season from Ipswich Town, with an obligation to buy."
+    },
+    "internationalCaps": 12,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/planteis/new/75/16/11657516_sammie_szmodics_20241005231547.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "chiedozie-ogbene",
+    "name": "Chiedozie Ogbene",
+    "dateOfBirth": "1997-05-01",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "W",
+    "secondaryPositions": [
+      "ST"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Ipswich Town / Sheffield United (loan)",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 15,
+        "starts": 10,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.13
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Luton Town / Ipswich Town",
+        "league": "EFL Championship / Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 8,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Luton Town",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.13
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Ipswich Town",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": true,
+      "transferNote": "The Sheffield United season loan ended on 30 June 2026. No subsequent transfer was confirmed, so he is back with parent club Ipswich Town."
+    },
+    "internationalCaps": 24,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/69/84/476984_chiedozie_ogbene_20251011231429.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "johnny-kenny",
+    "name": "Johnny Kenny",
+    "dateOfBirth": "2003-06-06",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Celtic / Bolton Wanderers (loan)",
+        "league": "Scottish Premiership / EFL League One",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 29,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 10,
+        "assists": 3,
+        "positionSpecificMetrics": {
+          "chanceConversion": 10.26,
+          "goalInvolvement90": 0.45
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Shamrock Rovers (loan) / Celtic",
+        "league": "League of Ireland Premier Division / Scottish Premiership",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 14,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.38
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023",
+        "club": "Shamrock Rovers (loan)",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 5,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.17
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Celtic",
+      "league": "Scottish Premiership",
+      "leagueStrength": 61,
+      "changedSinceLastSeason": false,
+      "transferNote": "Returned to Celtic after the Bolton loan. Bolton and Millwall interest was reported, but no completed move was confirmed."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://assets.sorare.com/playerpicture/0b048382-6a46-47fb-a197-badac8a985d9/picture/squared-bf59dd509c1c10135dd6825c8d30a340.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "mason-melia",
+    "name": "Mason Melia",
+    "dateOfBirth": "2007-09-22",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [
+      "W"
+    ],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "St Patrick's Athletic",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 13,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "chanceConversion": 15.3,
+          "goalInvolvement90": 0.37
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "St Patrick's Athletic",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 6,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.19
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023",
+        "club": "St Patrick's Athletic",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.2
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Lincoln City",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": true,
+      "transferNote": "Joined Lincoln City on a season-long loan from Tottenham Hotspur for 2026/27."
+    },
+    "internationalCaps": 2,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.playmakerstats.com/img/jogadores/new/58/23/1035823_mason_melia_20250322151703.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "evan-ferguson",
+    "name": "Evan Ferguson",
+    "dateOfBirth": "2004-10-19",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Brighton & Hove Albion / Roma (loan)",
+        "league": "Premier League / Serie A",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 16,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "nonPenaltyGoals90": 0.35,
+          "expectedGoals90": 0.3,
+          "shots90": 3.13,
+          "chanceConversion": 11.11,
+          "goalInvolvement90": 0.19
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Brighton & Hove Albion / West Ham United (loan)",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 21,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Brighton & Hove Albion",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 6,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.22
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Brighton & Hove Albion",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "Returned to Brighton after the Roma loan and remains under contract while recovering from ankle surgery. Torino talks were reported, but no completed move was confirmed."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.staticzz.com/img/planteis/new/29/07/14322907_evan_ferguson_20250227215131.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "festy-ebosele",
+    "name": "Festy Oseiwe Ebosele",
+    "dateOfBirth": "2002-08-02",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "RB",
+    "secondaryPositions": [
+      "W"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Istanbul Basaksehir",
+        "league": "Super Lig",
+        "leagueStrength": 60,
+        "clubStrength": 55,
+        "appearances": 14,
+        "starts": 0,
+        "minutes": 689,
+        "minutesPercentage": 0.201,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "interceptions90": 1.57,
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Udinese / Watford (loan) / Istanbul Basaksehir",
+        "league": "Serie A / EFL Championship / Super Lig",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.04
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Udinese",
+        "league": "Serie A",
+        "leagueStrength": 86,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Erzurumspor FK",
+      "league": "Turkish Süper Lig",
+      "leagueStrength": 65,
+      "changedSinceLastSeason": true,
+      "transferNote": "Joined Erzurumspor FK on loan from İstanbul Başakşehir for the 2026/27 season."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Festy_Ebosele_36_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250813_%285%29_%28cropped%29.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "mikey-johnston",
+    "name": "Mikey Johnston",
+    "dateOfBirth": "1999-04-19",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "W",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "West Bromwich Albion",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 9,
+        "positionSpecificMetrics": {
+          "expectedAssists90": 0.45,
+          "progressiveCarries90Note": null,
+          "goalInvolvement90": 0.44
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Celtic / West Bromwich Albion",
+        "league": "Scottish Premiership / EFL Championship",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 41,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Celtic / West Bromwich Albion (loan)",
+        "league": "Scottish Premiership / EFL Championship",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 9,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.33
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "West Bromwich Albion",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with West Bromwich Albion."
+    },
+    "internationalCaps": 19,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/04/18/480418_mikey_johnston_20251114001142.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "kasey-mcateer",
+    "name": "Kasey McAteer",
+    "dateOfBirth": "2001-11-22",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "W",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Leicester City / Ipswich Town",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 9,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.13
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Leicester City",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Leicester City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 23,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 6,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.26
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Ipswich Town",
+      "league": "Premier League",
+      "leagueStrength": 93,
+      "changedSinceLastSeason": false,
+      "transferNote": "West Brom made a loan enquiry, but did not proceed. No completed move was confirmed; McAteer remains with promoted Ipswich Town."
+    },
+    "internationalCaps": 8,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.webapi.gc.ipswichtownfcservices.co.uk/fit-in/600x600/24b1de70-c93d-11f0-abb6-178e52b1c787.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "tom-cannon",
+    "name": "Tom Cannon",
+    "dateOfBirth": "2002-12-28",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Sheffield United",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 36,
+        "starts": 0,
+        "minutes": 1722,
+        "minutesPercentage": 0.416,
+        "goals": 6,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "nonPenaltyGoals90": 0.31,
+          "expectedGoals90": 0.35,
+          "shots90": 2.19,
+          "chanceConversion": 14.29,
+          "goalInvolvement90": 0.42
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Leicester City / Stoke City (loan) / Sheffield United",
+        "league": "Premier League / EFL Championship",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 10,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.27
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Leicester City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 13,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.15
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Sheffield United",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "Preston interest was reported, but Sheffield United were reported to have no interest in selling. No completed move was confirmed."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/00/25/660025_tom_cannon__20240816114114.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "kevin-zefi",
+    "name": "Kevin Zefi",
+    "dateOfBirth": "2005-02-11",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "W",
+    "secondaryPositions": [
+      "AM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Unattached",
+        "league": "No competitive club football found",
+        "leagueStrength": 60,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Roma U20",
+        "league": "Campionato Primavera 1",
+        "leagueStrength": 60,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.11
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Inter Milan U18 / Roma U19",
+        "league": "Youth competition",
+        "leagueStrength": 60,
+        "clubStrength": 55,
+        "appearances": 1,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Sligo Rovers",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Sligo Rovers."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/80/09/868009_kevin_zefi_20250327192301.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "ollie-oneill",
+    "name": "Oliver John O'Neill",
+    "dateOfBirth": "2003-01-08",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "W",
+    "secondaryPositions": [
+      "AM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Leyton Orient",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 33,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.12
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Leyton Orient",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 26,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.08
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Derry City / Leyton Orient",
+        "league": "League of Ireland Premier Division / EFL League One",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 36,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 6,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.17
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Leyton Orient",
+      "league": "EFL League One",
+      "leagueStrength": 57,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Leyton Orient."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.playmakerstats.com/img/jogadores/new/47/00/664700_ollie_o_neill_20240905150446.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "aidomo-emakhu",
+    "name": "Aidomo Abraham Emakhu",
+    "dateOfBirth": "2003-10-26",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "W",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Millwall / Oxford United",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 38,
+        "starts": 0,
+        "minutes": 1691,
+        "minutesPercentage": 0.408,
+        "goals": 2,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "expectedAssists90": 0.15,
+          "progressiveCarries90": 1.74,
+          "chancesCreated90": 1.16,
+          "goalInvolvement90": 0.16
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Millwall",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Millwall",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 21,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Oxford United",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Oxford United."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://assets.sorare.com/playerpicture/24464a84-0a67-42fb-aaef-3c6926919f8c/picture/squared-d15d7ceebf764d25bfde0c60ef65e22b.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "sinclair-armstrong",
+    "name": "Sinclair Armstrong",
+    "dateOfBirth": "2003-06-22",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Bristol City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 41,
+        "starts": 11,
+        "minutes": 1594,
+        "minutesPercentage": 0.385,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "shots90": 2.45,
+          "expectedGoals90": 0.34,
+          "chanceConversion": 9.09,
+          "goalInvolvement90": 0.23
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Bristol City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 36,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.08
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Queens Park Rangers",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 39,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.08
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Göztepe",
+      "league": "Turkish Süper Lig",
+      "leagueStrength": 65,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Göztepe."
+    },
+    "internationalCaps": 1,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/66/81/846681_sinclair_armstrong_20250810163542.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "callum-robinson",
+    "name": "Callum Robinson",
+    "dateOfBirth": "1995-02-02",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "ST",
+    "secondaryPositions": [
+      "W"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Cardiff City",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 6,
+        "assists": 3,
+        "positionSpecificMetrics": {
+          "shots90": 3.53,
+          "chanceConversion": 17.02,
+          "goalInvolvement90": 0.29
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Cardiff City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 34,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 12,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.35
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Cardiff City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 23,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.04
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Cardiff City",
+      "league": "EFL League One",
+      "leagueStrength": 57,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Cardiff City."
+    },
+    "internationalCaps": 38,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn.cardiffcityfc.co.uk/sites/default/files/2023-08/callum-robinson.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "ryan-johansson",
+    "name": "Ryan Nils Johansson",
+    "dateOfBirth": "2001-02-15",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "W"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "SV Wehen Wiesbaden",
+        "league": "3. Liga",
+        "leagueStrength": 50,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 1435,
+        "minutesPercentage": 0.42,
+        "goals": 1,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "expectedAssists90": 0.09,
+          "chancesCreated90": 0.1,
+          "goalInvolvement90": 0.19
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "SV Wehen Wiesbaden",
+        "league": "3. Liga",
+        "leagueStrength": 50,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "SC Freiburg II",
+        "league": "3. Liga",
+        "leagueStrength": 50,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "SC Preußen Münster",
+      "league": "3. Liga (Germany)",
+      "leagueStrength": 50,
+      "changedSinceLastSeason": true,
+      "transferNote": "Joined SC Preußen Münster from SV Wehen Wiesbaden on a permanent transfer."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/planteis/new/14/51/8881451_ryan_johansson_20250304113619.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "james-abankwah",
+    "name": "James Abankwah",
+    "dateOfBirth": "2004-01-16",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Watford (loan)",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 2602,
+        "minutesPercentage": 0.629,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "aerialSuccess": 67.7,
+          "interceptions90": 1.59,
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Udinese / Watford (loan)",
+        "league": "Serie A / EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Udinese / Charlton Athletic (loan)",
+        "league": "Serie A / EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 2,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Udinese",
+      "league": "Serie A",
+      "leagueStrength": 86,
+      "changedSinceLastSeason": true,
+      "transferNote": "The Watford loan ended on 30 June 2026. Abankwah returned to Udinese and started their Coppa Italia win over Padova on 15 August."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.irishexaminer.com/cms_media/module_img/8926/4463383_3_articlelarge_inpho_02568209_1_.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jaden-umeh",
+    "name": "Jaden Umeh",
+    "dateOfBirth": "2008-03-18",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "W",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Benfica U19",
+        "league": "UEFA Youth League",
+        "leagueStrength": 60,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.3
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Benfica",
+        "league": "Primeira Liga (first team)",
+        "leagueStrength": 74,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Cork City (2023-2024 calendar seasons)",
+        "league": "League of Ireland Premier / First Division",
+        "leagueStrength": 32,
+        "clubStrength": 55,
+        "appearances": 16,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.13
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Benfica",
+      "league": "Primeira Liga",
+      "leagueStrength": 74,
+      "changedSinceLastSeason": false,
+      "transferNote": "No transfer was confirmed. Umeh remains at Benfica and underwent surgery in July for a right-thigh muscle injury."
+    },
+    "internationalCaps": 2,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/40/57/1264057_jaden_umeh_20251211161008.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "victor-ozhianvuna",
+    "name": "Victor Ozhianvuna",
+    "dateOfBirth": "2009-01-10",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "emerging",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Shamrock Rovers",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 13,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.15
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Shamrock Rovers",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "Arsenal and Shamrock Rovers have agreed a transfer for January 2027, when Ozhianvuna turns 18. He remains a Shamrock Rovers player until then."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn.shamrockrovers.ie/wp-content/uploads/2024/02/22221715/Victor-Ozhianvuna.jpeg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "michael-noonan",
+    "name": "Michael Noonan",
+    "dateOfBirth": "2008-07-31",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Shamrock Rovers",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 6,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.2
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "St Patrick's Athletic",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 1,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Shamrock Rovers",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "European and British interest has been reported, but no completed move was confirmed. Noonan remains with Shamrock Rovers."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.shamrockrovers.ie/wp-content/uploads/2025/01/3032126.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "trent-kone-doherty",
+    "name": "Trent Kone-Doherty",
+    "dateOfBirth": "2006-06-30",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "W",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Liverpool / Molde",
+        "league": "Premier League / Eliteserien",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 6,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Liverpool",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Liverpool U21",
+        "league": "EFL Trophy",
+        "leagueStrength": 26,
+        "clubStrength": 55,
+        "appearances": 1,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Molde FK",
+      "league": "Eliteserien (Norway)",
+      "leagueStrength": 55,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Molde FK."
+    },
+    "internationalCaps": 4,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "adam-brennan",
+    "name": "Adam Brennan",
+    "dateOfBirth": "2007-05-29",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "AM",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "UCD",
+        "league": "League of Ireland First Division",
+        "leagueStrength": 32,
+        "clubStrength": 55,
+        "appearances": 28,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 9,
+        "assists": 12,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.75
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "UCD",
+        "league": "League of Ireland First Division",
+        "leagueStrength": 32,
+        "clubStrength": 55,
+        "appearances": 12,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.08
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Shamrock Rovers",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Shamrock Rovers."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/24/83/1692483_adam_brennan_20250319131300.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "gbemi-arubi",
+    "name": "Gbemi Kingslyn Arubi",
+    "dateOfBirth": "2004-05-26",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Dundalk",
+        "league": "League of Ireland First Division",
+        "leagueStrength": 32,
+        "clubStrength": 55,
+        "appearances": 28,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 12,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.43
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "Waterford",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 13,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023",
+        "club": "Shelbourne",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 8,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Burton Albion",
+      "league": "EFL League One",
+      "leagueStrength": 57,
+      "changedSinceLastSeason": true,
+      "transferNote": "Joined Burton Albion permanently from Dundalk on a three-year deal with a club option for another year."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.staticzz.com/img/jogadores/new/35/30/963530_gbemi_arubi_20250222020114.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "conor-mcmanus",
+    "name": "Conor McManus",
+    "dateOfBirth": "2004-06-16",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Brentford B",
+        "league": "Professional Development League",
+        "leagueStrength": 24,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Brentford B",
+        "league": "Professional Development League",
+        "leagueStrength": 24,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Gillingham",
+      "league": "EFL League Two",
+      "leagueStrength": 47,
+      "changedSinceLastSeason": true,
+      "transferNote": "Completed a permanent move from Brentford B to Gillingham for an undisclosed fee."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://res.cloudinary.com/brentford-fc/image/upload/f_auto%2Cq_auto%3Abest%2Cf_auto%2Cq_100%2Cc_fill%2Car_16%3A9/Production/CM_peg3qk.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "cory-osullivan",
+    "name": "Cory O'Sullivan",
+    "dateOfBirth": "2006-05-02",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Shamrock Rovers",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 26,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "Shamrock Rovers",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 6,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.17
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023",
+        "club": "Shamrock Rovers",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Shamrock Rovers",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Shamrock Rovers."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/07/12/1000712_cory_o_sullivan_20250417062127.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "john-osullivan-2006",
+    "name": "John O'Sullivan (also reported as John O'Reilly-O'Sullivan)",
+    "dateOfBirth": "2006-01-29",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "CM",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Shamrock Rovers / Drogheda United (loan)",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 11,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "Shamrock Rovers / Bray Wanderers (loan)",
+        "league": "League of Ireland Premier / First Division",
+        "leagueStrength": 32,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.1
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023",
+        "club": "Shamrock Rovers",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Shamrock Rovers",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Shamrock Rovers."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn.shamrockrovers.ie/wp-content/uploads/2025/01/31122438/3032028-740x740.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "aaron-ochoa-moloney",
+    "name": "Aarón Ochoa Moloney",
+    "dateOfBirth": "2007-04-18",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "CM",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Malaga",
+        "league": "Segunda Division",
+        "leagueStrength": 70,
+        "clubStrength": 55,
+        "appearances": 24,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.17
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Malaga",
+        "league": "Segunda Division",
+        "leagueStrength": 70,
+        "clubStrength": 55,
+        "appearances": 26,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Atletico Malagueno / Malaga",
+        "league": "Tercera Federacion / Primera Federacion",
+        "leagueStrength": 60,
+        "clubStrength": 55,
+        "appearances": 20,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Málaga CF",
+      "league": "La Liga",
+      "leagueStrength": 90,
+      "changedSinceLastSeason": false,
+      "transferNote": "No transfer was confirmed. Ochoa remains with promoted Málaga and is recovering from a knee/meniscus injury."
+    },
+    "internationalCaps": 1,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://statics-maker.llt-services.com/mga/images/2025/07/22/xlarge/7490b07d-de56-4d6f-9675-61399d4a8b24-514.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "sean-patton",
+    "name": "Sean Patton",
+    "dateOfBirth": "2006-07-25",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Reading / Aldershot Town (loan)",
+        "league": "EFL League One / National League",
+        "leagueStrength": 38,
+        "clubStrength": 55,
+        "appearances": 11,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 5,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.45
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "Derry City / Finn Harps (loan)",
+        "league": "League of Ireland Premier / First Division",
+        "leagueStrength": 32,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023",
+        "club": "Derry City",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 1,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Reading",
+      "league": "EFL League One",
+      "leagueStrength": 57,
+      "changedSinceLastSeason": true,
+      "transferNote": "Reading recalled Patton from Aldershot Town in February 2026. No subsequent transfer was confirmed."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/97/12/1189712_sean_patton_20250318205652.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "gabriel-kelly-gartside",
+    "name": "Gabriel Gartside-Kelly (reported in some sources as Gabriel Kelly)",
+    "dateOfBirth": "2006-12-19",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Stoke City U21",
+        "league": "Premier League 2",
+        "leagueStrength": 30,
+        "clubStrength": 55,
+        "appearances": 11,
+        "starts": 11,
+        "minutes": 945,
+        "minutesPercentage": 0.276,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.1
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Stoke City U21",
+        "league": "Premier League 2",
+        "leagueStrength": 30,
+        "clubStrength": 55,
+        "appearances": 6,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Stoke City U21",
+        "league": "Premier League 2",
+        "leagueStrength": 30,
+        "clubStrength": 55,
+        "appearances": 3,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Stoke City",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Stoke City."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "noah-jauny",
+    "name": "Noah Jauny",
+    "dateOfBirth": "2004-08-26",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "GK",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Brest",
+        "league": "Ligue 1",
+        "leagueStrength": 82,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Brest",
+        "league": "Ligue 1",
+        "leagueStrength": 82,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Brest II",
+        "league": "Championnat National 2",
+        "leagueStrength": 60,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Royal Francs Borains",
+      "league": "Belgian Challenger Pro League",
+      "leagueStrength": 35,
+      "changedSinceLastSeason": true,
+      "transferNote": "Left Stade Brestois and joined Belgian second-tier club Royal Francs Borains on a permanent transfer."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://static.sky.it/images/skysport/it/calcio/serie-a/probabili-formazioni/superscudetto/512/664943.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "franco-umeh-chibueze",
+    "name": "Franco Umeh-Chibueze",
+    "dateOfBirth": "2005-02-26",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "W",
+    "secondaryPositions": [
+      "ST"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Portsmouth",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 1,
+        "starts": 0,
+        "minutes": 1,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Crystal Palace",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Crystal Palace U21",
+        "league": "EFL Trophy",
+        "leagueStrength": 26,
+        "clubStrength": 55,
+        "appearances": 2,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Portsmouth",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Portsmouth."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "tommy-lonergan",
+    "name": "Tommy Lonergan",
+    "dateOfBirth": "2004-01-02",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "ST",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Waterford",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 33,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 9,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.27
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Fleetwood Town",
+        "league": "EFL League Two",
+        "leagueStrength": 47,
+        "clubStrength": 55,
+        "appearances": 6,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Fleetwood Town",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 9,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.11
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Waterford FC",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "Waterford rejected a reported €180,000 bid from Derry City and other approaches. Lonergan remains at Waterford."
+    },
+    "internationalCaps": 6,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.zerozero.pt/img/jogadores/new/31/96/873196_tommy_lonergan_20250330031706.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "sean-grehan",
+    "name": "Seán Grehan",
+    "dateOfBirth": "2004-01-08",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Doncaster Rovers",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 10,
+        "minutes": 910,
+        "minutesPercentage": 0.22,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2025",
+        "club": "Bohemians (loan)",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.17
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Crystal Palace / Carlisle United (loan)",
+        "league": "Premier League / EFL League One",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 3,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Doncaster Rovers",
+      "league": "EFL League One",
+      "leagueStrength": 57,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found in the latest search; remains with Doncaster Rovers."
+    },
+    "internationalCaps": 8,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "alex-murphy",
+    "name": "Alex Murphy",
+    "dateOfBirth": "2004-06-25",
+    "nationalityStatus": "declared-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [
+      "LB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Newcastle United",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 1,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Bolton Wanderers (loan from Newcastle United)",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 13,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.15
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Newcastle United",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 2,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "1. FC Kaiserslautern",
+      "league": "2. Bundesliga",
+      "leagueStrength": 88,
+      "changedSinceLastSeason": false,
+      "transferNote": "Season-long 2026-27 loan from Newcastle United completed on 11 August 2026."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "josh-cullen",
+    "name": "Josh Cullen",
+    "dateOfBirth": "1996-04-07",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Burnley",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 18,
+        "minutes": 1519,
+        "minutesPercentage": 0.444,
+        "goals": 2,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.24
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Burnley",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 44,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Burnley",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 3,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.2
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Burnley",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains contracted to Burnley."
+    },
+    "internationalCaps": 47,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "will-smallbone",
+    "name": "Will Smallbone",
+    "dateOfBirth": "2000-02-21",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CM",
+    "secondaryPositions": [
+      "AM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Millwall (loan from Southampton)",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Southampton",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.06
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Southampton",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 43,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 6,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.14
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Unattached",
+      "league": "Free agent",
+      "leagueStrength": 60,
+      "changedSinceLastSeason": false,
+      "transferNote": "Released at the end of his Southampton contract; no newer completed signing was found."
+    },
+    "internationalCaps": 15,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/40/51/524051_will_smallbone_20251127143940.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "matt-doherty",
+    "name": "Matt Doherty",
+    "dateOfBirth": "1992-01-16",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "RB",
+    "secondaryPositions": [
+      "RWB",
+      "LB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Wolverhampton Wanderers",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 11,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Wolverhampton Wanderers",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Wolverhampton Wanderers",
+        "league": "Premier League",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Sheffield United",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "Signed for Sheffield United on 21 July 2026."
+    },
+    "internationalCaps": 53,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.ogol.com.br/img/jogadores/new/90/55/169055_matt_doherty_20250816193149.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jack-moylan",
+    "name": "Jack Moylan",
+    "dateOfBirth": "2001-09-01",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "LW",
+      "ST"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Lincoln City",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 11,
+        "assists": 7,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.58
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Lincoln City",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 28,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Lincoln City",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 18,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.22
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Cardiff City",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "Permanent transfer from Lincoln City completed on 5 August 2026."
+    },
+    "internationalCaps": 2,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.soccerzz.com/img/jogadores/new/45/84/754584_jack_moylan_20240819183126.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jimmy-dunne",
+    "name": "Jimmy Dunne",
+    "dateOfBirth": "1997-10-19",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "CB",
+    "secondaryPositions": [
+      "RB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Queens Park Rangers",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 39,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 3,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.08
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Queens Park Rangers",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 45,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 5,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.11
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Queens Park Rangers",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 29,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Queens Park Rangers",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains with Queens Park Rangers."
+    },
+    "internationalCaps": 3,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "bosun-lawal",
+    "name": "Bosun Lawal",
+    "dateOfBirth": "2003-05-30",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CB",
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Stoke City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.04
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Stoke City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 7,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Fleetwood Town (loan from Celtic)",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 42,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 6,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.14
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Stoke City",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains with Stoke City."
+    },
+    "internationalCaps": 1,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://assets.sorare.com/player/95d29341-0232-44f1-9f1f-ad7e19fb43e7/picture/squared-0ce25b211ffedfc39414a3137b0a2cff.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "harvey-vale",
+    "name": "Harvey Vale",
+    "dateOfBirth": "2003-09-11",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "LW",
+      "LB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Queens Park Rangers",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.13
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Chelsea / Queens Park Rangers",
+        "league": "Premier League / EFL Championship",
+        "leagueStrength": 93,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Bristol Rovers (loan from Chelsea)",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 39,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Queens Park Rangers",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains with Queens Park Rangers."
+    },
+    "internationalCaps": 2,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/54/09/755409_harvey_vale_20241212150014.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "max-oleary",
+    "name": "Max O’Leary",
+    "dateOfBirth": "1996-10-10",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "GK",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Bristol City / West Bromwich Albion",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 21,
+        "starts": 21,
+        "minutes": 1890,
+        "minutesPercentage": 0.457,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Bristol City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 46,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Bristol City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 46,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "West Bromwich Albion",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "Signed a new three-year West Bromwich Albion contract in June 2026."
+    },
+    "internationalCaps": 2,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn.wba.co.uk/sites/default/files/styles/cc_1280x960/public/2026-01/AF_036_MAX_OLEARY_WBA_EXP.JPG?h=53945a7e&itok=y4ganUHX",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "will-ferry",
+    "name": "Will Ferry",
+    "dateOfBirth": "2000-12-07",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "LB",
+    "secondaryPositions": [
+      "LWB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Dundee United",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 32,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.13
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Dundee United",
+        "league": "Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Cheltenham Town",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 43,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Dundee United",
+      "league": "Scottish Premiership",
+      "leagueStrength": 61,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains with Dundee United."
+    },
+    "internationalCaps": 1,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://assets.sorare.com/playerpicture/c30b2d5f-2fd2-423c-81a0-5e324e25b1ac/picture/squared-cd07ea16a03dc5b44ad07f22dcdeb2b2.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "tayo-adaramola",
+    "name": "Tayo Adaramola",
+    "dateOfBirth": "2003-11-14",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "LB",
+    "secondaryPositions": [
+      "LWB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Leyton Orient / Sheffield Wednesday (loans from Crystal Palace)",
+        "league": "EFL League One / EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Stockport County / Bradford City (loans from Crystal Palace)",
+        "league": "EFL League One / EFL League Two",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 22,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 3,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.14
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "RWD Molenbeek (loan from Crystal Palace)",
+        "league": "Belgian Pro League",
+        "leagueStrength": 68,
+        "clubStrength": 55,
+        "appearances": 14,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Cercle Brugge",
+      "league": "Belgian Pro League",
+      "leagueStrength": 68,
+      "changedSinceLastSeason": false,
+      "transferNote": "Permanent transfer to Cercle Brugge completed on 17 August 2026."
+    },
+    "internationalCaps": 1,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://www.playmakerstats.com/img/jogadores/new/43/30/784330_tayo_adaramola_20240821171118.png",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "millenic-alli",
+    "name": "Millenic Alli",
+    "dateOfBirth": "2000-02-06",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "W",
+    "secondaryPositions": [
+      "LW",
+      "RW",
+      "ST"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Luton Town / Portsmouth (loan)",
+        "league": "EFL League One / EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 37,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 4,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.16
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Exeter City / Luton Town",
+        "league": "EFL League One / EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 41,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 13,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.34
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "FC Halifax Town / Exeter City",
+        "league": "National League / EFL League One",
+        "leagueStrength": 38,
+        "clubStrength": 55,
+        "appearances": 31,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 11,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.35
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Charlton Athletic",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "Permanent transfer from Luton Town to Charlton Athletic completed on 26 July 2026."
+    },
+    "internationalCaps": 1,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.ctfassets.net/eb3hgtb96i1x/4kJ1114qtxicH3phT6Rv0p/37640f3e10a12f5b1a4a696cfd0ac030/R6_29196.JPG",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "rory-finneran",
+    "name": "Rory Finneran",
+    "dateOfBirth": "2008-02-29",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Newcastle United U18/U19/U21",
+        "league": "Academy competitions",
+        "leagueStrength": 20,
+        "clubStrength": 55,
+        "appearances": 26,
+        "starts": 23,
+        "minutes": 1941,
+        "minutesPercentage": 0.568,
+        "goals": 2,
+        "assists": 3,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.23
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Newcastle United U18/U21",
+        "league": "Academy competitions",
+        "leagueStrength": 20,
+        "clubStrength": 55,
+        "appearances": 21,
+        "starts": 0,
+        "minutes": 1590,
+        "minutesPercentage": 0.465,
+        "goals": 4,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.23
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Blackburn Rovers U18/U21",
+        "league": "Academy competitions",
+        "leagueStrength": 20,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 799,
+        "minutesPercentage": 0.234,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Newcastle United U21",
+      "league": "Premier League 2",
+      "leagueStrength": 30,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains in Newcastle United’s academy structure."
+    },
+    "internationalCaps": 1,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "kian-leavy",
+    "name": "Kian Leavy",
+    "dateOfBirth": "2002-03-21",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "senior",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "CM",
+      "W"
+    ],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "St Patrick’s Athletic",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 2,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.15
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "St Patrick’s Athletic",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 33,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023",
+        "club": "Shelbourne (loan) / St Patrick’s Athletic",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 20,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.1
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "St Patrick’s Athletic",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "No completed transfer found; remains with St Patrick’s Athletic. External interest is recorded as rumour only."
+    },
+    "internationalCaps": 1,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn-img.zerozero.pt/img/jogadores/new/09/90/660990_kian_leavy_20250329040947.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "conor-walsh",
+    "name": "Conor Walsh",
+    "dateOfBirth": "2005-03-17",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "GK",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Sligo Rovers",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 6,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "Finn Harps / Wexford (loans)",
+        "league": "League of Ireland First Division",
+        "leagueStrength": 32,
+        "clubStrength": 55,
+        "appearances": 20,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2023",
+        "club": "Sligo Rovers",
+        "league": "League of Ireland Premier Division",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 5,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Shelbourne",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "Permanent move to Shelbourne completed for the 2026 season."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://shop.shelbournefc.ie/cdn/shop/files/3342990.jpg?v=1770215256&width=800",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "oisin-gallagher",
+    "name": "Oisín Gallagher",
+    "dateOfBirth": "2004-12-02",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "CB",
+    "secondaryPositions": [
+      "DM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Boston United (loan from Lincoln City)",
+        "league": "National League",
+        "leagueStrength": 38,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 2014,
+        "minutesPercentage": 0.486,
+        "goals": 1,
+        "assists": 1,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.09
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Peterborough Sports / Boston United (loans)",
+        "league": "National League North / National League",
+        "leagueStrength": 38,
+        "clubStrength": 55,
+        "appearances": 25,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.04
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Drogheda United / Peterborough Sports / Lincoln City",
+        "league": "League of Ireland Premier Division / National League North / EFL League One",
+        "leagueStrength": 45,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.07
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Lincoln City",
+      "league": "EFL Championship",
+      "leagueStrength": 75,
+      "changedSinceLastSeason": false,
+      "transferNote": "Boston United loan ended; remains a Lincoln City player."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn.weareimps.com/sites/default/files/styles/cc_2000x2664/public/2025-06/untitled_design_11.png?h=d22d6d8c&itok=jHGjqcX4",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "david-okagbue",
+    "name": "David Okagbue",
+    "dateOfBirth": "2004-02-04",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "CB",
+    "secondaryPositions": [],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Peterborough United",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 25,
+        "minutes": 2319,
+        "minutesPercentage": 0.56,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Walsall (loan from Stoke City)",
+        "league": "EFL League Two",
+        "leagueStrength": 47,
+        "clubStrength": 55,
+        "appearances": 47,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 2,
+        "assists": 5,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.15
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Walsall (loan from Stoke City)",
+        "league": "EFL League Two",
+        "leagueStrength": 47,
+        "clubStrength": 55,
+        "appearances": 30,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.03
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Peterborough United",
+      "league": "EFL League One",
+      "leagueStrength": 57,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains with Peterborough United."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://cdn.theposh.com/sites/default/files/styles/cc_960x960/public/2025-08/david-okagbue.png?h=c9d75c7f&itok=RDAvaIiV",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jacob-devaney",
+    "name": "Jacob Devaney",
+    "dateOfBirth": "2007-06-11",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "DM",
+    "secondaryPositions": [
+      "CB",
+      "RB"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Manchester United U21 / St Mirren (loan)",
+        "league": "Premier League 2 / Scottish Premiership",
+        "leagueStrength": 61,
+        "clubStrength": 55,
+        "appearances": 22,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.05
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Manchester United U18/U21",
+        "league": "Academy competitions",
+        "leagueStrength": 20,
+        "clubStrength": 55,
+        "appearances": 34,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Manchester United U21",
+      "league": "Premier League 2",
+      "leagueStrength": 30,
+      "changedSinceLastSeason": false,
+      "transferNote": "St Mirren loan ended; remains a Manchester United academy player."
+    },
+    "internationalCaps": 6,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://assets.manutd.com/AssetPicker/images/0/0/20/185/1358307/ZA_AcademyHeadshots_508003_NY8OGzFr1725357597221_large.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "jamie-mullins",
+    "name": "Jamie Mullins",
+    "dateOfBirth": "2004-09-29",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "CM",
+    "secondaryPositions": [
+      "DM",
+      "AM"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Wycombe Wanderers",
+        "league": "EFL League One",
+        "leagueStrength": 57,
+        "clubStrength": 55,
+        "appearances": 35,
+        "starts": 24,
+        "minutes": 1976,
+        "minutesPercentage": 0.477,
+        "goals": 3,
+        "assists": 4,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.32
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Brighton & Hove Albion U21",
+        "league": "Premier League 2 / academy competitions",
+        "leagueStrength": 30,
+        "clubStrength": 55,
+        "appearances": 27,
+        "starts": 0,
+        "minutes": 2298,
+        "minutesPercentage": 0.672,
+        "goals": 2,
+        "assists": 5,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.27
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Brighton & Hove Albion U21",
+        "league": "Premier League 2 / academy competitions",
+        "leagueStrength": 30,
+        "clubStrength": 55,
+        "appearances": 10,
+        "starts": 0,
+        "minutes": 636,
+        "minutesPercentage": 0.186,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0.14
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Wycombe Wanderers",
+      "league": "EFL League One",
+      "leagueStrength": 57,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains with Wycombe Wanderers."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": "https://images.webapi.gc.wycombewanderersfcservices.co.uk/fit-in/600x600/8165fec0-6ed5-11f0-91b2-e500c19be357.jpg",
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "cillian-murphy",
+    "name": "Cillian Murphy",
+    "dateOfBirth": "2009-07-22",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "RW",
+      "CM"
+    ],
+    "seasons": [
+      {
+        "season": "2025",
+        "club": "Cork City U17",
+        "league": "League of Ireland academy competition",
+        "leagueStrength": 20,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 9,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2024",
+        "club": "Cork City U15",
+        "league": "League of Ireland academy competition",
+        "leagueStrength": 20,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 1,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Cork City",
+      "league": "League of Ireland First Division",
+      "leagueStrength": 32,
+      "changedSinceLastSeason": false,
+      "transferNote": "No newer completed transfer was found; remains with Cork City."
+    },
+    "internationalCaps": 0,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  },
+  {
+    "id": "harry-vaughan",
+    "name": "Harry Vaughan",
+    "dateOfBirth": "2004-04-06",
+    "nationalityStatus": "capped-ireland",
+    "nationalTeamLevel": "u21",
+    "primaryPosition": "AM",
+    "secondaryPositions": [
+      "W"
+    ],
+    "seasons": [
+      {
+        "season": "2025-26",
+        "club": "Hull City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 0,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {},
+        "injuryDays": null
+      },
+      {
+        "season": "2024-25",
+        "club": "Hull City",
+        "league": "EFL Championship",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 3,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      },
+      {
+        "season": "2023-24",
+        "club": "Hull City / Bristol Rovers (loan)",
+        "league": "EFL Championship / EFL League One",
+        "leagueStrength": 75,
+        "clubStrength": 55,
+        "appearances": 20,
+        "starts": 0,
+        "minutes": 0,
+        "minutesPercentage": 0,
+        "goals": 0,
+        "assists": 0,
+        "positionSpecificMetrics": {
+          "goalInvolvement90": 0
+        },
+        "injuryDays": null
+      }
+    ],
+    "currentClub": {
+      "club": "Bohemians",
+      "league": "League of Ireland Premier Division",
+      "leagueStrength": 45,
+      "changedSinceLastSeason": false,
+      "transferNote": "Permanent Bohemians deal completed on 29 June 2026 after the Hull City contract expired."
+    },
+    "internationalCaps": 7,
+    "internationalMinutes": 0,
+    "avatarUrl": null,
+    "dataLastUpdated": "2026-08-21"
+  }
+]

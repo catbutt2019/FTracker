@@ -12,18 +12,15 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { useDataset } from '@/hooks/useDataset'
-import { useResearchSnapshot } from '@/hooks/useResearchSnapshot'
 import { MODEL_CONFIG, AGE_CURVES } from '@/model/config'
 import { METRIC_DEFINITIONS } from '@/model/metrics'
-import { EVIDENCE_CATEGORY_WEIGHT } from '@/model/researchAssessment'
-import { LEAGUES } from '@/data/demo/leagues'
+import { LEAGUE_STRENGTH_TABLE } from '@/model/leagueTiers'
 import {
   METRIC_GROUPS,
   POSITIONS,
   POSITION_LABELS,
   POSITION_METRIC_GROUP,
 } from '@/types/domain'
-import { EVIDENCE_CATEGORIES, EVIDENCE_CATEGORY_LABELS, EVIDENCE_DIRECTION } from '@/types/research'
 
 const GROUP_LABELS: Record<(typeof METRIC_GROUPS)[number], string> = {
   goalkeeper: 'Goalkeepers',
@@ -34,14 +31,13 @@ const GROUP_LABELS: Record<(typeof METRIC_GROUPS)[number], string> = {
 }
 
 export function Methodology() {
-  const { outlook, sourceLabel, asOfDate, isDemonstrationData } = useDataset()
-  const research = useResearchSnapshot()
+  const { outlook, sourceLabel, asOfDate } = useDataset()
 
   return (
     <div className="space-y-12">
       <header className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="outline" className="gap-1.5 border-amber-600/50 font-normal text-amber-100">
+          <Badge variant="outline" className="gap-1.5 border-amber-300 font-normal text-amber-800">
             <FlaskConical className="size-3.5" aria-hidden="true" />
             Experimental model {MODEL_CONFIG.version}
           </Badge>
@@ -52,10 +48,10 @@ export function Methodology() {
           on the assumption that a projection nobody can inspect is a projection nobody should
           believe.
         </p>
-        <div className="flex items-start gap-2.5 rounded-md border border-amber-700/40 bg-amber-950/30 p-4 text-sm leading-relaxed">
-          <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-300" aria-hidden="true" />
+        <div className="flex items-start gap-2.5 rounded-md border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed">
+          <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600" aria-hidden="true" />
           <div className="space-y-2">
-            <p className="font-medium text-amber-100">
+            <p className="font-medium text-amber-800">
               This model is experimental and has not been validated against real outcomes.
             </p>
             <p className="text-muted-foreground">
@@ -211,26 +207,29 @@ export function Methodology() {
               <TableRow className="hover:bg-transparent">
                 <TableHead>Competition</TableHead>
                 <TableHead className="text-right">Strength</TableHead>
-                <TableHead>Metric availability</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {[...LEAGUES]
+              {[...LEAGUE_STRENGTH_TABLE]
                 .sort((a, b) => b.strength - a.strength)
                 .map((league) => (
                   <TableRow key={league.name}>
                     <TableCell className="font-medium">{league.name}</TableCell>
                     <TableCell className="tabular text-right">{league.strength}</TableCell>
-                    <TableCell className="text-xs text-muted-foreground">
-                      {league.dataQuality === 'full'
-                        ? 'Full advanced event data'
-                        : 'Basic only — expected goals and similar are not published'}
-                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>
           </Table>
         </div>
+        <p className="text-xs text-muted-foreground">
+          Advanced per-90 metrics (progressive passes, pressures, expected goals and similar) are
+          only published for a subset of these competitions. Where a metric was not available for a
+          player&rsquo;s league, it is dropped for that player rather than estimated — see{' '}
+          <a href="#missing" className="underline decoration-dotted hover:text-foreground">
+            how missing data is handled
+          </a>
+          .
+        </p>
       </Section>
 
       <Section
@@ -468,222 +467,6 @@ export function Methodology() {
 
       <Separator className="bg-border/60" />
 
-      <header className="space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="outline" className="font-normal">
-            Research snapshot
-          </Badge>
-          <span className="text-xs text-muted-foreground">
-            {research.label} · researched {research.researchDate}
-          </span>
-        </div>
-        <h2 className="text-2xl font-semibold tracking-tight">Research snapshot methodology</h2>
-        <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          This is a separate tier from everything above. It is a one-time, dated web-research
-          exercise against FAI, UEFA, club, league and reputable press sources — not a statistical
-          model and not a live feed. It carries no accuracy claim: it is a structured, sourced,
-          cited read of what was publicly reported on {research.researchDate}, and it goes stale
-          the moment any of those facts change.
-        </p>
-      </header>
-
-      <Section
-        id="research-evidence"
-        title="The evidence model"
-        lead="Every sourced claim about a player is its own record, kept separate from the reading of it."
-      >
-        <p>
-          A claim (e.g. &ldquo;started seven of the last ten league matches&rdquo;) is recorded
-          apart from its interpretation (e.g. &ldquo;provides moderate evidence of positive
-          progression&rdquo;), together with its source, publish and access dates, whether it is a
-          primary or secondary account, and links to any evidence that corroborates or contradicts
-          it. Nothing is invented: where a fact could not be verified, the field is set to{' '}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">null</code> or the player carries
-          an explicit note in <code className="rounded bg-muted px-1 py-0.5 text-xs">unverified</code>{' '}
-          rather than a guessed number. Every source must resolve to a direct article URL — the
-          runtime schema rejects a search-results page as a source.
-        </p>
-        <p>
-          Each claim is assigned one of 18 fixed categories, and each category has a fixed
-          direction — positive, negative or neutral — set once, not per player, so the direction of
-          a category cannot be quietly tuned to produce a nicer-looking assessment. Neutral
-          categories such as a transfer or an eligibility confirmation describe a change in
-          situation without implying it is progress or regress.
-        </p>
-        <div className="overflow-x-auto rounded-lg border border-border/70">
-          <Table>
-            <TableHeader>
-              <TableRow className="hover:bg-transparent">
-                <TableHead>Category</TableHead>
-                <TableHead>Direction</TableHead>
-                <TableHead className="text-right">Weight</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {EVIDENCE_CATEGORIES.map((category) => (
-                <TableRow key={category}>
-                  <TableCell className="font-medium">
-                    {EVIDENCE_CATEGORY_LABELS[category]}
-                  </TableCell>
-                  <TableCell className="text-xs capitalize text-muted-foreground">
-                    {EVIDENCE_DIRECTION[category]}
-                  </TableCell>
-                  <TableCell className="tabular text-right">
-                    {EVIDENCE_CATEGORY_WEIGHT[category]}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </Section>
-
-      <Section
-        id="research-heuristic"
-        title="The progression heuristic"
-        lead="A documented, fixed arithmetic over evidence — not a fitted or validated model."
-      >
-        <p>Each non-neutral evidence item contributes:</p>
-        <pre className="max-w-3xl overflow-x-auto rounded-md border border-border/70 bg-muted/40 p-3 text-xs">
-          contribution = sign × categoryWeight × sourceReliability × recency × primaryOrSecondary ×
-          contested
-        </pre>
-        <ul className="ml-5 list-disc space-y-2">
-          <li>
-            <strong className="font-medium text-foreground">sign</strong> is +1 for a
-            positive-direction category, -1 for negative.
-          </li>
-          <li>
-            <strong className="font-medium text-foreground">categoryWeight</strong> (0-12, listed
-            above) reflects how large a signal the category typically is.
-          </li>
-          <li>
-            <strong className="font-medium text-foreground">sourceReliability</strong> is 1.0 /
-            0.75 / 0.5 for high / medium / low-reliability sources.
-          </li>
-          <li>
-            <strong className="font-medium text-foreground">recency</strong> decays from 1.0 at
-            three months old to 0.25 beyond 24 months; an unknown publish date is treated as 36
-            months old, never as recent.
-          </li>
-          <li>
-            <strong className="font-medium text-foreground">primaryOrSecondary</strong> is 1.0 for
-            a primary source, 0.8 for reporting on one.
-          </li>
-          <li>
-            <strong className="font-medium text-foreground">contested</strong> is 0.6 if another
-            item contradicts this one, 1.0 otherwise — a contested claim is damped, never discarded.
-          </li>
-        </ul>
-        <p>
-          A small, capped age-curve nudge (±2 points, using the same positional curves as the
-          statistical model above) is applied on top, but only when the player already has at
-          least one piece of directional evidence. This is the direct implementation of the
-          brief&rsquo;s central safety rule: age or youth alone never creates a status. A
-          19-year-old or a 34-year-old with zero sourced evidence both resolve to
-          &ldquo;insufficient evidence&rdquo;, never to stable, improving or declining.
-        </p>
-        <p>
-          The summed score is compared against a ±4-point stable band: above it is improving, below
-          it declining, inside it stable. A non-senior player with breakthrough-shaped evidence
-          (first-team breakthrough, senior call-up, or under-21 progression) and a non-negative
-          score is labelled emerging instead. A player with no relevant evidence at all is
-          insufficient-evidence, regardless of age, position or club — absence of news is never
-          read as decline.
-        </p>
-        <p>
-          Confidence (0-1, reported as low / moderate / high at 0.4 / 0.7) multiplicatively
-          combines a saturating evidence-count term, average source reliability and recency, a
-          source-diversity penalty when every item traces to one source, a contradiction penalty, a
-          penalty scaled to the player&rsquo;s number of unverified fields, a penalty for a recent
-          club change, and a penalty for fewer than 450 minutes in the last completed season. Each
-          reason is surfaced in plain language in the assessment&rsquo;s missing-information list,
-          not folded into a single number.
-        </p>
-        <p>
-          The progression score and a confidence-derived standard deviation (6 points at full
-          confidence, widening to 15 at zero confidence) are fed through the same
-          normal-distribution machinery the statistical model uses, against the same ±4-point
-          stable band, and rounded by largest remainder so the three probabilities always sum to
-          exactly 100. A player with insufficient-evidence status is given a flat 34/33/33 split
-          rather than a computed one, since there is nothing to compute from.
-        </p>
-      </Section>
-
-      <Section
-        id="research-outlook"
-        title="The pool outlook"
-        lead="Two things worth stating plainly, because the interface must not blur them."
-      >
-        <p>
-          <strong className="font-medium text-foreground">
-            &ldquo;Depth&rdquo; here is a headcount-and-involvement measure, not an ability
-            measure.
-          </strong>{' '}
-          A position can look deep on paper — many players, most starting regularly for their
-          clubs — while every player in it is mediocre. This snapshot has no percentile scoring to
-          say otherwise.
-        </p>
-        <p>
-          A position is flagged as depending on ageing players only when its senior options
-          average 30 or older <em>and</em> no emerging player has been researched behind them —
-          both conditions, not either. A pool-wide direction (strengthening / broadly-stable /
-          weakening) is only attempted once at least 5 players have a directional assessment; below
-          that the outlook reports insufficient-evidence rather than a number built on too little.
-          Where a direction is given, it comes from a confidence-weighted net score of
-          improving-vs-declining assessments against a fixed ±0.15 threshold, and the
-          uncertainty field states the exact fraction of players it is based on.
-        </p>
-        <p className="font-medium text-foreground">
-          As above, repeated here because it is the most important limitation: this module says
-          nothing about qualification for any tournament. There is no fixture list, no opponent
-          strength and no qualification model anywhere in this snapshot or the code that derives
-          from it.
-        </p>
-      </Section>
-
-      <Section
-        id="research-limits"
-        title="Research snapshot: known limitations"
-        lead="This is a single research pass at a point in time, not a monitored feed."
-      >
-        <ul className="ml-5 list-disc space-y-2.5">
-          <li>
-            Any transfer, injury or squad announcement after {research.researchDate} is not
-            reflected.
-          </li>
-          <li>
-            Coverage across the four research groups that produced this snapshot was uneven under
-            time constraints — see the research gaps below for players named in a squad list but
-            not researched to a standard fit for inclusion, and players deliberately omitted rather
-            than guessed at.
-          </li>
-          <li>
-            The heuristic&rsquo;s category weights and confidence terms are hand-set, like the
-            statistical model&rsquo;s priors above — they have not been fitted or backtested
-            against outcomes.
-          </li>
-          <li>
-            Involvement (starting / rotating / bench / out-of-squad / unknown) is a qualitative
-            read of the most recent reporting found, not a computed stat.
-          </li>
-        </ul>
-        {research.gaps.length > 0 && (
-          <div className="space-y-2">
-            <p className="font-medium text-foreground">
-              Named research gaps ({research.gaps.length})
-            </p>
-            <ul className="ml-5 list-disc space-y-2">
-              {research.gaps.map((gap) => (
-                <li key={gap}>{gap}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </Section>
-
-      <Separator className="bg-border/60" />
-
       <section className="space-y-3">
         <h2 className="text-lg font-semibold tracking-tight">Data provenance</h2>
         <div className="space-y-2 text-sm leading-relaxed text-muted-foreground">
@@ -692,17 +475,19 @@ export function Methodology() {
             <span className="text-foreground">{asOfDate}</span> · model version{' '}
             <span className="text-foreground">{MODEL_CONFIG.version}</span>
           </p>
-          {isDemonstrationData && (
-            <p className="rounded-md border border-amber-700/40 bg-amber-950/30 p-3 text-amber-100/90">
-              The dataset currently loaded is a demonstration dataset. Player names are fictional and
-              every statistic is illustrative, generated from a seeded random process. Nothing on any
-              page of this application describes a real footballer. League and club names are real,
-              and their strength ratings are this model&rsquo;s own estimates. The application reads
-              its data through a single adapter interface, so replacing this dataset with a licensed
-              football-data feed requires one new implementation of that interface and no change to
-              the model or the interface.
-            </p>
-          )}
+          <p>
+            Player identity, eligibility, club and season records are gathered from public sources
+            (FAI reporting, club sites, FBref, Transfermarkt) and merged into a single dataset by a
+            standalone, auditable build step, not invented or generated. Two fields have no
+            real-world source and use a documented neutral default rather than an invented value:
+            club strength (55, this model&rsquo;s own neutral midpoint) and international minutes
+            (0, since no per-appearance minutes feed exists for caps — the interface omits the
+            minutes clause rather than assert a false zero). Where a player had no usable season
+            record or date of birth at all, they were left out of the pool rather than papered over.
+            The application reads its data through a single adapter interface, so replacing this
+            dataset with a licensed football-data feed requires one new implementation of that
+            interface and no change to the model or the interface.
+          </p>
         </div>
       </section>
     </div>

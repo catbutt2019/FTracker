@@ -1,0 +1,215 @@
+[
+  {
+    "id": "chiedozie-ogbene",
+    "dateOfBirth": "1997-05-01",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 15, "starts": 10, "minutes": null, "goals": 1, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/788c0277/Chiedozie-Ogbene",
+      "https://www.transfermarkt.co.uk/chiedozie-ogbene/leistungsdaten/spieler/392591/saison/",
+      "https://footystats.org/players/republic-of-ireland/chiedozie-ogbene"
+    ],
+    "notes": "2025-26 season split between Ipswich Town (parent club) and a loan spell at Sheffield United (Championship). Two slightly different appearance counts were found (13 vs 15) across sources for what appears to be the same loan spell; used 15 as the more recently retrieved figure, with 1 goal/1 assist consistent across both. Only 3 shots (1 on target) recorded in the higher-appearance snapshot, suggesting very low attacking output/minutes as a squad rotation option. No creator advanced metrics (xA90, progressive carries90, chances created90, final third entries90, dribble success%) were retrievable - FBref itself was not directly fetchable in this session (WebFetch tool unavailable), only search-engine snippets of it. Previous season (2024-25) was largely lost to an Achilles tear/surgery (~8 total apps, 0 goals/assists) - context only, not used as seasonStats."
+  },
+  {
+    "id": "johnny-kenny",
+    "dateOfBirth": "2003-06-06",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 14, "starts": null, "minutes": null, "goals": 6, "assists": 3 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/e8ce6ee7/Johnny-Kenny",
+      "https://www.transfermarkt.co.uk/johnny-kenny/leistungsdaten/spieler/875208"
+    ],
+    "notes": "2025-26 figures (14 apps, 6 goals, 3 assists) are from his January-May 2026 loan at Bolton Wanderers (League One), not parent club Celtic; he returned to Celtic for 2026-27. A separate search returned a conflicting snippet showing only '1 appearance, 1 start, 3 shots' which looked like a single-match log rather than a season total, so it was discarded in favour of the season aggregate. For 2024-25 at Celtic (Scottish Premiership, before his breakthrough), one snippet suggested only 8 Premiership appearances/151 minutes/1 goal/1 assist plus 6 Conference League apps/472 minutes/5 goals - small early-career sample, not used as primary seasonStats. No forward advanced per-90 metrics (npxG90, xG90, shots90, box touches90, chance conversion%) reliably retrieved."
+  },
+  {
+    "id": "mason-melia",
+    "dateOfBirth": "2007-09-22",
+    "seasonUsed": "2025 (League of Ireland Premier Division, part-season through December 2025)",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": 13, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.us/mason-melia/leistungsdaten/spieler/1005766",
+      "https://en.wikipedia.org/wiki/2025_St_Patrick%27s_Athletic_F.C._season"
+    ],
+    "notes": "Youth/breakthrough player (born 2007). In the 2025 League of Ireland Premier Division season (his last full season at St Patrick's Athletic before a January 2026 transfer to Tottenham Hotspur) he was St Pat's top scorer with 13 league goals (15 in all competitions); exact appearances/starts/assists/minutes not found in sources reviewed. No advanced forward metrics available/expected for League of Ireland level, per task instructions. Now at Tottenham, loaned to Lincoln City for 2026-27, but that season is not yet completed."
+  },
+  {
+    "id": "evan-ferguson",
+    "dateOfBirth": "2004-10-19",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 22, "starts": null, "minutes": null, "goals": 5, "assists": null },
+    "metrics": {
+      "nonPenaltyGoals90": 0.35,
+      "expectedGoals90": 0.51,
+      "shots90": 3.13
+    },
+    "sources": [
+      "https://fbref.com/en/players/4596da74/Evan-Ferguson",
+      "https://www.statmuse.com/fc/player/evan-ferguson-1893",
+      "https://www.espn.co.uk/football/story/_/id/43668521/evan-ferguson-joins-west-ham-loan-brighton"
+    ],
+    "notes": "Loan at AS Roma (Serie A), cut short by a recurring ankle injury requiring surgery. Two different in-season snapshots were found: one giving 22 apps/5 goals (closer to end of his season before injury recurred, used here for seasonStats), another giving 16 matches/3 goals with per-90 advanced figures (npxG90 0.51 - recorded here as expectedGoals90; goals90 0.35 recorded as nonPenaltyGoals90; shots90 3.13; xA90 0.23 for a forward is unusual/likely noisy small-sample and was NOT carried into metrics). These two snapshots don't fully reconcile (different match counts) so treat the per-90 rates as approximate/from a smaller sample than the final 22-appearance tally. boxTouches90 and chanceConversion% not found. Assists and minutes not confirmed. Prior loan at West Ham (Jan-May 2025, part of 2024-25 season): 8 league appearances, 1 start, 151 minutes, 0 goals, 0 assists - context only."
+  },
+  {
+    "id": "festy-ebosele",
+    "dateOfBirth": "2002-08-02",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 20, "starts": null, "minutes": 689, "goals": 1, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/dbfa4f16/Festy-Ebosele",
+      "https://www.transfermarkt.co.in/festy-ebosele/leistungsdaten/spieler/586756"
+    ],
+    "notes": "2025-26 season at İstanbul Başakşehir (Turkish Süper Lig). Two conflicting snapshots found: one giving 20 apps/1 goal (used here, likely closer to season-end total), another giving '0 goals, 0 assists, 689 minutes' (used here for minutes as the more specific figure, though it may reflect an earlier in-season crawl and could understate his final minutes total - flagged as uncertain). Defender advanced metrics (duel success%, aerial success%, interceptions90, progressive distance90, errors90) not retrievable from search snippets in this session; FBref direct fetch was unavailable. Now transferred to Erzurumspor for 2026-27 (too new to have stats)."
+  },
+  {
+    "id": "mikey-johnston",
+    "dateOfBirth": "1999-04-19",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 34, "starts": null, "minutes": null, "goals": 2, "assists": 9 },
+    "metrics": {
+      "expectedAssists90": 0.45,
+      "progressiveCarries90Note": null
+    },
+    "sources": [
+      "https://www.westbromnews.co.uk/2025/11/11/mikey-johnston-among-championships-best-as-stunning-stats-provide-solution-to-west-broms-attacking-woes/",
+      "https://www.transfermarkt.co.uk/mikey-johnston/leistungsdaten/spieler/297257"
+    ],
+    "notes": "34 appearances for West Bromwich Albion (Championship) 2025-26 per prior cross-referenced squad data. A dedicated stats article (as of ~11 Nov 2025, so a partial/in-season snapshot rather than final season total) reported 9 assists on 0.45 per 90, 3161.6m of progressive-carry distance (2nd most in the Championship at that point), 11 chances created via carries, and 19 shots for 2 goals - these are informative but pre-date the final season tally, so the assists figure (9) may be higher than the earlier 2-goal/unspecified-assist figure previously recorded and should be treated as the more complete number. expectedAssists90 (0.45) is recorded as the one directly-stated per-90 advanced metric found; progressiveCarries90, chancesCreated90, finalThirdEntries90 and dribbleSuccess% could not be reliably converted to true per-90 rates from the snippet (distance/counts given without matching minutes) so are omitted rather than estimated."
+  },
+  {
+    "id": "kasey-mcateer",
+    "dateOfBirth": "2001-11-22",
+    "seasonUsed": "2024-25",
+    "seasonStats": { "appearances": 18, "starts": 9, "minutes": null, "goals": 1, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://www.statmuse.com/fc/player/kasey-mcateer-7079",
+      "https://fbref.com/en/squads/a2d435b3/2024-2025/all_comps/Leicester-City-Stats-All-Competitions"
+    ],
+    "notes": "Used 2024-25 (Leicester City, Premier League) rather than 2025-26 because it is the season with the most complete data found: 18 matches, 9 starts, 1 goal, 1 assist. A season-total xG of 0.97 and xA of 0.61 were reported but minutes were not confirmed, so these were NOT converted into per-90 metrics (would require dividing by minutes, which is unknown) - omitted rather than estimated, per the no-invented-numbers rule. For 2025-26 at Ipswich Town (Championship) after his summer 2025 transfer: 1271 minutes, 3 goals, 1 assist; appearances/starts not confirmed - noted as context only since it is a less complete data point than the 2024-25 Leicester figures. Creator per-90 metrics (progressive carries90, chances created90, final third entries90, dribble success%) not found for either season."
+  },
+  {
+    "id": "tom-cannon",
+    "dateOfBirth": "2002-12-28",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 36, "starts": null, "minutes": 1722, "goals": 8, "assists": 2 },
+    "metrics": {
+      "nonPenaltyGoals90": 0.31
+    },
+    "sources": [
+      "https://www.livescore.com/en/season-stats/tom-cannon/9395/",
+      "https://en.wikipedia.org/wiki/Tom_Cannon_(footballer)",
+      "https://fbref.com/en/players/4506aec5/Tom-Cannon"
+    ],
+    "notes": "2025-26 season at Sheffield United (Championship). League-only figures used for seasonStats: 36 apps, 1722 minutes, 8 goals, goals-per-90 of 0.31 (recorded as nonPenaltyGoals90, though it is not confirmed whether any of the 8 were penalties). Assists (2) come from a slightly different all-competitions snapshot (38 apps, 1865 minutes, 8 goals, 2 assists) and are merged in cautiously since the goal count matches. Prior context: on loan at Stoke City (Championship) for the first half of 2024-25, he was Stoke's top league scorer with 9 goals (10 in all competitions) before a January 2025 permanent move to Sheffield United - not used as seasonStats. xG90, shots90, boxTouches90 and chanceConversion% not retrievable from search snippets."
+  },
+  {
+    "id": "kevin-zefi",
+    "dateOfBirth": "2005-02-11",
+    "seasonUsed": "none - no first-team domestic league minutes found",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://en.wikipedia.org/wiki/Kevin_Zefi",
+      "https://www.the42.ie/kevin-zefi-sligo-7054797-May2026/",
+      "https://www.sligorovers.com/kevin-zefi-signs-for-sligo-rovers/"
+    ],
+    "notes": "Came through Shamrock Rovers academy (LOI debut at 15), then Inter Milan (2021) and AS Roma academies; reported to have been blighted by injury during his time in Italy and did not break into a first team there. Signed for Sligo Rovers (League of Ireland Premier Division) as a free agent on 28 May 2026 on a contract to end of that season - the 2026 LOI season is not yet completed as of this research and he has no verifiable senior/first-team appearance stats for any prior season. All fields correctly left null per the task's explicit allowance for League of Ireland/no-public-data cases."
+  },
+  {
+    "id": "ollie-oneill",
+    "dateOfBirth": "2003-01-08",
+    "seasonUsed": "unknown - no season-specific appearance data found",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.co.uk/ollie-oneill/profil/spieler/610786",
+      "https://www.leytonorient.com/news/2024/january/23/ollie-o-neill-signs-for-the-o-s-from-fulham/"
+    ],
+    "notes": "Date of birth (8 January 2003, London) found and used to correct a null in prior cross-referenced research. Left winger at Leyton Orient (League One) since a January 2024 move from Fulham; market value ~€650k as of the most recent Transfermarkt snapshot found. No 2025-26 (or 2024-25) appearance/minutes/goals/assists breakdown was retrievable from search snippets - direct Transfermarkt/FBref page fetch was unavailable in this session (WebFetch denied). Creator advanced metrics not found either. Genuinely sparse public data for a League One squad player at this profile level."
+  },
+  {
+    "id": "aidomo-emakhu",
+    "dateOfBirth": "2003-10-26",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 38, "starts": null, "minutes": 1691, "goals": 2, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/be7c526f/Aidomo-Emakhu",
+      "https://www.fotmob.com/en-GB/players/1248057/aidomo-emakhu"
+    ],
+    "notes": "2025-26 Championship season combining Millwall (27 apps, until Feb 2026) and Oxford United (11 apps, from Feb 2026) per FBref-derived search snippet: 38 total apps, 1691 minutes, 2 goals, 1 assist. This supersedes/matches an earlier cross-referenced figure of '27 apps' which appears to have only covered his Millwall spell. Starts and creator advanced metrics (xA90, progressive carries90, chances created90, final third entries90, dribble success%) not retrievable from search snippets."
+  },
+  {
+    "id": "sinclair-armstrong",
+    "dateOfBirth": "2003-06-22",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": null, "starts": 11, "minutes": 1594, "goals": 4, "assists": 0 },
+    "metrics": {
+      "shots90": 2.37
+    },
+    "sources": [
+      "https://fbref.com/en/players/c2bf2522/Sinclair-Armstrong",
+      "https://www.sportinglife.com/football/player/sinclair-armstrong/111144/stats/bristol-city/228"
+    ],
+    "notes": "2025-26 season at Bristol City (Championship) before a June 2026 permanent transfer to Göztepe (Turkish Süper Lig, 2026-27, too new for stats): 11 starts, 1594 minutes, 4 goals, 0 assists, 42 shots (20 on target) giving shots90 of 2.37; total appearances (including any substitute-only apps beyond the 11 starts) not confirmed. xG90/npxG90 and chanceConversion% were referenced as existing on FotMob's shot map but the specific number was not shown in the search snippet, so omitted rather than estimated. Note: an earlier draft of this file mistakenly reused Evan Ferguson's FBref player ID for Armstrong - corrected here to c2bf2522, verified via a second independent source."
+  },
+  {
+    "id": "callum-robinson",
+    "dateOfBirth": "1995-02-02",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 40, "starts": null, "minutes": null, "goals": 8, "assists": 3 },
+    "metrics": {
+      "shots90": null
+    },
+    "sources": [
+      "https://footystats.org/players/england/callum-robinson",
+      "https://www.transfermarkt.co.uk/callum-robinson/leistungsdaten/spieler/183299"
+    ],
+    "notes": "2025-26 League One season at Cardiff City: 40 matches, 8 goals, 3 assists (11 total goal involvements at 0.83 per 90), 47 shots taken. Minutes and starts not confirmed, so shots90 could not be reliably computed (omitted rather than estimated) despite the raw 47-shot count; goals90/assists90 also omitted since minutes are unknown, only the combined 'G/A per 90' of 0.83 was directly stated by the source and is not one of the requested metric keys. chanceConversion% (goals/shots = 8/47 ≈ 17%) is a plausible derived figure but is being treated with caution and left out of metrics since it combines two different-season-position snapshots; noted here only as an approximate cross-check, not as a verified reported statistic."
+  },
+  {
+    "id": "ryan-johansson",
+    "dateOfBirth": "2001-02-15",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 13, "starts": null, "minutes": 1435, "goals": 1, "assists": 2 },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.us/ryan-johansson/leistungsdaten/spieler/351071",
+      "https://www.sofascore.com/football/player/johansson-ryan/942298"
+    ],
+    "notes": "2025-26 3. Liga (Germany) season at SV Wehen Wiesbaden: 1 goal, 2 assists, 1435 minutes; appearance count (13) carried over from prior cross-referenced research and not independently re-confirmed in this pass, so treat with slight caution alongside the newly-found minutes/assists figures. Creator advanced metrics (xA90, progressive carries90, chances created90, final third entries90, dribble success%) not found in search snippets; his contract with the club is reported to run only to 30 June 2026, so his 2026-27 club status is uncertain."
+  },
+  {
+    "id": "james-abankwah",
+    "dateOfBirth": "2004-01-16",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": 2602, "goals": 1, "assists": 0 },
+    "metrics": {
+      "aerialSuccess": 67.7,
+      "interceptions90": 1.42
+    },
+    "sources": [
+      "https://www.transfermarkt.us/james-abankwah/leistungsdaten/spieler/648032",
+      "https://www.fotmob.com/players/1269329/james-abankwah",
+      "https://en.wikipedia.org/wiki/James_Abankwah"
+    ],
+    "notes": "Date of birth (16 January 2004, Waterford, Ireland) found and used to correct a null in prior cross-referenced research. 2025-26 season on loan at Watford (Championship) from Udinese: 2602 minutes, 1 goal, 0 assists, 41 tackles, 26 interceptions, 15 blocked shots, aerial duels won 67.7%. interceptions90 here is computed as (interceptions + blocked shots) / (minutes/90) = (26+15)/(2602/90) ≈ 1.42, matching the requested 'interceptions+blocks per 90' definition. duelSuccess% (overall, not just aerial), progressiveDistance90 and errors90 not found. Total appearance count and starts not confirmed (only a separate, seemingly stale snippet gave '7 appearances, 0 goals' which conflicts with the 1-goal/2602-minute figure and was discarded as likely an early-season partial crawl)."
+  },
+  {
+    "id": "jaden-umeh",
+    "dateOfBirth": "2008-03-18",
+    "seasonUsed": "2025-26 (reserve/youth level - Benfica U23 and U19, not first team)",
+    "seasonStats": { "appearances": 3, "starts": null, "minutes": null, "goals": 2, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.us/jaden-umeh/profil/spieler/1110448",
+      "https://www.soccerzz.com/player/jaden-umeh/1264057?epoca_id=154"
+    ],
+    "notes": "Date of birth (18 March 2008) found, correcting a null in prior cross-referenced research; he is genuinely very young (18) and, despite senior Ireland caps as a fast-tracked prospect, has minimal club-level senior football. 2025-26 club-level stats found are at reserve/academy level only: 1 appearance/1 goal for Benfica U23 in Liga Revelação U23, plus 2 appearances/1 goal for Benfica U19 in the UEFA Youth League (combined here as 3 apps/2 goals - not a genuine 'domestic league' first-team season, flagged accordingly). No first-team Primeira Liga appearances, minutes, or advanced metrics found; his senior Ireland involvement (debut 28 May 2026 v Qatar; first start 5 June 2026 v Canada, 70 minutes) is international, not club-level, and so is excluded from seasonStats/metrics per the task's club-season scope."
+  }
+]

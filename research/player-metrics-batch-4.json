@@ -1,0 +1,196 @@
+[
+  {
+    "id": "victor-ozhianvuna",
+    "dateOfBirth": "2009-01-10",
+    "seasonUsed": "2025",
+    "seasonStats": { "appearances": 21, "starts": null, "minutes": null, "goals": 0, "assists": 2 },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.us/victor-ozhianvuna/profil/spieler/1260393",
+      "https://www.livescore.com/en/season-stats/victor-ozhianvuna/100758/",
+      "https://www.irishtimes.com/sport/soccer/2025/10/03/shamrock-rovers-confirm-record-breaking-2m-move-to-arsenal-for-victor-ozhianvuna/"
+    ],
+    "notes": "Very young academy prospect (turned 16/17 during 2025 season, position listed as AM/forward depending on source though task lists ST); joined Shamrock Rovers Feb 2025, agreement reached for future transfer to Arsenal (effective Jan 2027). 21 total 2025 appearances (all competitions) with 0 goals, 2 assists per LiveScore/Transfermarkt aggregation; per-competition split and minutes/starts not confirmed from search snippets. No advanced per-90 metrics found (LOI not covered by FBref)."
+  },
+  {
+    "id": "michael-noonan",
+    "dateOfBirth": "2008-07-31",
+    "seasonUsed": "2025",
+    "seasonStats": { "appearances": 18, "starts": null, "minutes": null, "goals": 5, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.co.uk/michael-noonan/leistungsdaten/spieler/1134231",
+      "https://www.irishtimes.com/sport/soccer/2025/02/14/who-is-michael-noonan-shamrock-rovers-16-year-old-european-goalscorer/"
+    ],
+    "notes": "Joined Shamrock Rovers Jan 2025 (born Dublin 2008). Became one of the youngest ever scorers in European club competition history (goal vs Molde in UEFA Conference League playoff, Feb 2025). Approx breakdown found: 15 apps/3 goals League of Ireland Premier Division + 3 apps/2 goals FAI Cup (=18 apps/5 goals domestic in 2025); separately 10 Europa Conference League appearances (0 goals) not counted in domestic totals above. Assists and minutes not confirmed. No advanced per-90 metrics available (LOI not covered by FBref)."
+  },
+  {
+    "id": "trent-kone-doherty",
+    "dateOfBirth": "2006-06-30",
+    "seasonUsed": "2024-25",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.the42.ie/trent-kone-doherty-molde-6970235-Feb2026/",
+      "https://www.liverpoolfc.com/info/trent-kone-doherty",
+      "https://www.transfermarkt.us/trent-kone-doherty/profil/spieler/944140"
+    ],
+    "notes": "Left winger, joined Liverpool academy from Derry City in summer 2022; spent ~4 years mostly at U18/U19/U21 level. Only 2 confirmed senior appearances for Liverpool first team, both as a late substitute (FA Cup vs Plymouth Argyle Feb 2025; vs Crystal Palace Oct 2025) -- essentially no senior league minutes logged. Moved permanently to Molde FK (Norway, Eliteserien) in Feb 2026 for a reported ~€750k. Republic of Ireland U21 international since Aug 2025. Given negligible senior domestic-league minutes, full season stats/metrics are not meaningfully available; seasonStats left null rather than estimated."
+  },
+  {
+    "id": "adam-brennan",
+    "dateOfBirth": "2007-05-29",
+    "seasonUsed": "2025",
+    "seasonStats": { "appearances": 28, "starts": null, "minutes": null, "goals": 9, "assists": 12 },
+    "metrics": {},
+    "sources": [
+      "https://www.rte.ie/sport/soccer/2026/0130/1556006-hoops-sign-ireland-u19-winger-brennan-from-ucd/",
+      "https://www.transfermarkt.co.uk/adam-brennan/profil/spieler/1259889",
+      "https://www.shamrockrovers.ie/2026/01/30/signing-news-adam-brennan/"
+    ],
+    "notes": "Stats are from his final season at UCD (League of Ireland First Division, 2025 season) before signing for Shamrock Rovers on 30 January 2026 -- he had not yet featured for Rovers in a completed season at time of research. Born Blanchardstown, Ireland; Ireland U19 international; first player to progress through every level of UCD's academy to the first team. No advanced per-90 metrics found (First Division not covered by FBref)."
+  },
+  {
+    "id": "gbemi-arubi",
+    "dateOfBirth": "2004-05-26",
+    "seasonUsed": "2025",
+    "seasonStats": { "appearances": 23, "starts": null, "minutes": null, "goals": 7, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.burtonalbionfc.co.uk/news/2026/july/18/brewers-bring-in-gbemi-arubi/",
+      "https://sports.yahoo.com/articles/burton-sign-dundalk-forward-arubi-124922620.html",
+      "https://www.transfermarkt.co.uk/gbemi-arubi/profil/spieler/993050"
+    ],
+    "notes": "Full name Gbemi Kingslyn Arubi; holds Irish and Nigerian citizenship; earned Republic of Ireland U21 debut June 2025 (2-2 draw with Croatia). Most recently completed domestic season used is 2025 with Dundalk in the League of Ireland Premier Division: 23 appearances, 7 goals (assists/minutes/starts not confirmed from sources). Prior season (2024-25, First Division) he had 28 matches, 12 goals, 2 assists as Dundalk won the First Division title and were promoted. Signed for Burton Albion (League One) in July 2026, i.e. after the season captured here -- club/league in the brief reflects his destination at time of writing, not the season the stats below are drawn from. No advanced per-90 metrics found (LOI not covered by FBref)."
+  },
+  {
+    "id": "conor-mcmanus",
+    "dateOfBirth": "2004-06-16",
+    "seasonUsed": null,
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://en.wikipedia.org/wiki/Conor_McManus_(footballer)",
+      "https://www.brentfordfc.com/en/news/article/brentford-b-team-conor-mcmanus-gillingham-league-two-transfer",
+      "https://www.kentonline.co.uk/medway/sport/the-brentford-defender-tipped-to-solve-gillingham-s-left-bac-343460/"
+    ],
+    "notes": "IMPORTANT IDENTITY/POSITION FLAG: this is Conor James McManus (b. 16 June 2004, ex-Cabinteely/Bray Wanderers), a LEFT-BACK, not the centre-back described in the brief -- confirmed to be the correct Brentford-linked Ireland U21 player (not the Monaghan GAA player of the same name). He signed for Brentford in Dec 2022/transferred in 2023 but spent his entire ~3.5 years there with Brentford B in the Professional Development League (regularly trained with the first team, was in a matchday squad vs Leeds, but no confirmed competitive first-team/senior league appearances for Brentford were found). He made his Republic of Ireland U21 debut in March 2025 (scored twice vs Hungary). He completed a permanent transfer to Gillingham (EFL League Two) in 2026, which appears to be the start of his senior domestic league career, but that spell is very recent/ongoing and not a completed season at time of research, so seasonStats are left entirely null rather than estimated. No senior-football appearance data or advanced metrics could be confirmed for a completed domestic season."
+  },
+  {
+    "id": "cory-osullivan",
+    "dateOfBirth": "2006-05-02",
+    "seasonUsed": "2025",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://en.wikipedia.org/wiki/Cory_O'Sullivan",
+      "https://www.transfermarkt.co.uk/cory-osullivan/profil/spieler/957327",
+      "https://fbref.com/en/players/6b23e5f6/Cory-OSullivan"
+    ],
+    "notes": "Versatile defender (left-sided CB/full-back/wing-back) for Shamrock Rovers, came through the club's academy from age 10. Made his League of Ireland Premier Division debut 29 April 2024 and scored his first senior goal 2 August 2024. Described as having 'a series of assured performances in the latter half of the 2025 season' but exact 2025 appearance/goal/assist totals could not be confirmed from available snippets within the search budget -- left null rather than estimated. Republic of Ireland U19 international. No advanced per-90 metrics found (LOI not reliably covered by FBref for this player)."
+  },
+  {
+    "id": "john-osullivan-2006",
+    "dateOfBirth": "2006-01-29",
+    "seasonUsed": "2025",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://en.wikipedia.org/wiki/John_O'Sullivan_(footballer,_born_2006)",
+      "https://www.shamrockrovers.ie/player/john-osullivan/",
+      "https://www.transfermarkt.us/john-osullivan/leistungsdaten/spieler/1061560"
+    ],
+    "notes": "Also referred to in some sources as John O'Reilly-O'Sullivan. Central midfielder, product of the Shamrock Rovers academy (joined 2019 via Cambridge Boys and Cherry Orchard). His 2025 season was split by a loan spell at Drogheda United that ended 14 July 2025, before returning to Shamrock Rovers on 30 November 2025 -- exact appearance/goal/assist totals across the two spells could not be confirmed from available snippets within the search budget, so left null rather than estimated. No advanced per-90 metrics found (LOI not reliably covered by FBref for this player)."
+  },
+  {
+    "id": "aaron-ochoa-moloney",
+    "dateOfBirth": "2007-04-18",
+    "seasonUsed": "2024-25",
+    "seasonStats": { "appearances": 26, "starts": null, "minutes": null, "goals": 0, "assists": 2 },
+    "metrics": {},
+    "sources": [
+      "https://en.wikipedia.org/wiki/Aaron_Ochoa",
+      "https://www.malagacf.com/en/players/aaron-ochoa",
+      "https://www.transfermarkt.es/aaron-ochoa/leistungsdaten/spieler/1109577/saison"
+    ],
+    "notes": "Spanish-Irish (born Marbella) midfielder; joined Malaga's youth academy at age 9 (2016), part of first team during 2023-24 promotion-winning season to LaLiga2 (Segunda Division/Hypermotion), made professional debut 17 Aug 2024 (started v Racing de Ferrol). Plays for Republic of Ireland at U21 level. 2024-25 Segunda Division: 26 appearances, 0 goals, 2 assists; minutes/starts not confirmed. Recently signed a contract extension to 2029. No advanced per-90 creator/midfielder metrics found in search snippets."
+  },
+  {
+    "id": "sean-patton",
+    "dateOfBirth": "2006-07-25",
+    "seasonUsed": "2025-26 (partial)",
+    "seasonStats": { "appearances": 5, "starts": null, "minutes": null, "goals": 0, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://en.wikipedia.org/wiki/Sean_Patton",
+      "https://www.soccerway.com/player/patton-sean/zJl2BtZk/",
+      "https://donegalnews.com/finn-harps-secure-loan-signing-of-sean-patton/"
+    ],
+    "notes": "From Letterkenny, Co. Donegal. Made League of Ireland Premier Division debut for Derry City May 2023; loaned to Finn Harps (First Division) for back half of 2024 season, recording 13 appearances (10 starts) and 1 goal there. Joined Reading in 2025; per Soccerway, 2025-26 season shows only 5 League One appearances for Reading first team with 0 goals (has otherwise featured for Reading U21) and was loaned out to Aldershot Town in 2026. Given how thin his 2025-26 first-team involvement is, the 2024 Finn Harps loan season (13 apps/10 starts/1 goal) may be more representative of a 'completed' season but is a different club/league than currently listed (Reading) -- flagging this discrepancy rather than merging the two. Ireland U19 (2024) and U21 (2026) international. No advanced per-90 forward metrics found."
+  },
+  {
+    "id": "gabriel-kelly-gartside",
+    "dateOfBirth": "2006-12-19",
+    "seasonUsed": null,
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.us/gabriel-gartside-kelly/profil/spieler/1018096",
+      "https://www.premierleague.com/en/players/519914/gabriel-garside-kelly/overview",
+      "https://www.playmakerstats.com/player/gabriel-gartside-kelly/1177382"
+    ],
+    "notes": "Also listed simply as Gabriel Kelly. Defensive midfielder; joined Stoke City U18 in July 2023, moved up to Stoke City U21 (Premier League 2) in July 2025. No evidence found of any senior/first-team Stoke City appearance to date -- all located data is at U18/U21 (PL2) level, so no meaningful domestic league season stats exist yet. seasonStats and metrics left null accordingly rather than estimated."
+  },
+  {
+    "id": "noah-jauny",
+    "dateOfBirth": "2004-08-26",
+    "seasonUsed": null,
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://en.wikipedia.org/wiki/Noah_Jauny",
+      "https://x.com/SB29/status/2087547166264824161",
+      "https://www.transfermarkt.us/noah-jauny/profil/spieler/975438"
+    ],
+    "notes": "Dublin-born goalkeeper; joined Shamrock Rovers academy at age 12, then Stade Brestois (France) academy at 16, and spent 5 seasons in the Brest system (from training centre through to the professional group) without a confirmed senior Ligue 1 appearance in the sources checked. Departed Brest in 2026 to join Royal Francs Borains (Belgian Challenger Pro League). Republic of Ireland U21 international. Given the lack of confirmed senior minutes at Brest and Francs Borains stats not yet available/confirmed within the search budget, seasonStats and GK metrics (save %, goals prevented, etc.) are left null rather than estimated."
+  },
+  {
+    "id": "franco-umeh-chibueze",
+    "dateOfBirth": "2005-01-26",
+    "seasonUsed": "2025-26 (very early/partial)",
+    "seasonStats": { "appearances": 1, "starts": null, "minutes": 1, "goals": 0, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.co.uk/franco-umeh-chibueze/profil/spieler/943560",
+      "https://fbref.com/en/players/8e526344/Franco-Umeh-Chibueze",
+      "https://www.espn.com/soccer/player/stats/_/id/365355/franco-umeh-chibueze"
+    ],
+    "notes": "Right winger, dual Irish/Nigerian citizenship, brother of Jaden Umeh (SL Benfica U23). Career included spells at Crystal Palace academy and Cork City before joining Portsmouth on 1 September 2025 (contract to June 2029). Republic of Ireland U21 international (2 caps, 0 goals) plus prior U19/U17 caps. Per FBref/ESPN, his Portsmouth Championship involvement so far is extremely minimal: 1 match played, 1 minute, 0 goals, 0 assists -- effectively not yet a first-team regular. No prior completed domestic season at senior level with confirmed appearance data was found (Cork City League of Ireland stats not located within search budget). No advanced creator/winger metrics available given minimal minutes."
+  },
+  {
+    "id": "tommy-lonergan",
+    "dateOfBirth": null,
+    "seasonUsed": "2025",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": null, "goals": 6, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://waterfordfc.ie/2025/07/18/tommy-lonergan-makes-loan-move-permanent/",
+      "https://www.fleetwoodtownfc.com/lonergan-completes-permanent-move-to-waterford/",
+      "https://www.transfermarkt.co.uk/tommy-lonergan/leistungsdaten/spieler/700155"
+    ],
+    "notes": "Striker; came through St Patrick's Athletic, moved to Fleetwood Town (England) Jan 2024, then joined Waterford FC on loan Jan 2025 for the 2025 SSE Airtricity Premier Division season, later made permanent in July 2025. Confirmed he scored 6 goals in Waterford's 2025 Premier Division campaign (including a debut goal on the opening day, a 3-2 away win at Sligo Rovers) and was later named a Waterford Sports Award / Player of the Month winner, suggesting a productive full season, but a firm end-of-season total for appearances/assists could not be confirmed within the search budget (a separate '10 apps, 0 goals' figure found in one snippet appears to instead describe his largely unused 2024-25 Fleetwood Town loan spell in England, not his Waterford form -- flagging this discrepancy). Date of birth not confirmed from available snippets, left null rather than estimated. No advanced forward per-90 metrics found (LOI not reliably covered by FBref)."
+  },
+  {
+    "id": "sean-grehan",
+    "dateOfBirth": "2004-01-08",
+    "seasonUsed": "2025-26 (partial)",
+    "seasonStats": { "appearances": 16, "starts": 10, "minutes": 910, "goals": null, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.doncasterroversfc.co.uk/news/2025/june/24/rovers-sign-defender-se-n-grehan-from-crystal-palace/",
+      "https://www.livescore.com/en/season-stats/sean-grehan/72883/",
+      "https://en.wikipedia.org/wiki/Se%C3%A1n_Grehan"
+    ],
+    "notes": "Centre-back from Dublin; came through St Kevin's Boys, signed professionally with Bohemians (2021) before joining Crystal Palace in summer 2022, and had a loan spell back at Bohemians (League of Ireland) that was well-regarded. Signed permanently for Doncaster Rovers (League One) in June 2025. 2025-26 season stats per LiveScore (as of research date, so still partial/in-progress rather than a fully completed season): 16 total appearances, 10 starts, 910 minutes; goals/assists not confirmed (likely 0/0 given defensive role and limited data, but left null rather than assumed). 8 caps for Republic of Ireland U21s, including captaining the side vs Croatia. No advanced defender per-90 metrics (duel success, aerials, interceptions) found in search snippets."
+  }
+]

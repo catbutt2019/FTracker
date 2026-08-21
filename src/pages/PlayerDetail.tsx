@@ -69,7 +69,7 @@ export function PlayerDetail() {
       <header className="space-y-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-3">
-            <PlayerAvatar name={player.name} size="lg" />
+            <PlayerAvatar name={player.name} imageUrl={player.avatarUrl} size="lg" />
             <div className="space-y-2">
               <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{player.name}</h1>
               <p className="text-sm text-muted-foreground">
@@ -137,8 +137,12 @@ export function PlayerDetail() {
           <StatCard
             label="International record"
             value={player.internationalCaps}
-            hint="Senior caps and minutes as supplied by the data source. International minutes are not scored — the samples are too small — but they indicate how established a player already is."
-            footnote={`${player.internationalMinutes.toLocaleString()} international minutes`}
+            hint="Senior caps as supplied by the data source. International minutes are not scored — the samples are too small — but they indicate how established a player already is."
+            footnote={
+              player.internationalMinutes > 0
+                ? `${player.internationalMinutes.toLocaleString()} international minutes`
+                : 'minutes not tracked for caps'
+            }
           />
         </div>
       </section>
@@ -239,6 +243,20 @@ export function PlayerDetail() {
           title="Club, league and playing time"
           description="Playing time is the strongest single driver of confidence in this model, so the raw record is shown rather than summarised."
         />
+        {player.currentClub.changedSinceLastSeason && (
+          <div className="mb-4 rounded-md border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-900 dark:text-amber-200">
+            <p className="font-medium">
+              Now at {player.currentClub.club} ({player.currentClub.league}), not {player.seasons[0].club}
+            </p>
+            <p className="mt-1 text-amber-800/90 dark:text-amber-200/80">
+              {player.currentClub.transferNote ??
+                'A club change since the last recorded season was confirmed by research.'}{' '}
+              The score and projection below are still built entirely from performance at the
+              previous club — this model does not fabricate a season of data for a move that
+              hasn&rsquo;t happened on the pitch yet.
+            </p>
+          </div>
+        )}
         <Card className="border-border/70 bg-card/60">
           <CardContent className="p-0">
             <div className="overflow-x-auto">
@@ -369,7 +387,7 @@ function ReasonCard({
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-sm font-medium">
           <Icon
-            className={tone === 'support' ? 'size-4 text-shamrock-400' : 'size-4 text-amber-300'}
+            className={tone === 'support' ? 'size-4 text-shamrock-600' : 'size-4 text-amber-600'}
             aria-hidden="true"
           />
           {title}
@@ -382,8 +400,8 @@ function ReasonCard({
               <span
                 className={
                   tone === 'support'
-                    ? 'mt-1.5 size-1.5 shrink-0 rounded-full bg-shamrock-400'
-                    : 'mt-1.5 size-1.5 shrink-0 rounded-full bg-amber-400'
+                    ? 'mt-1.5 size-1.5 shrink-0 rounded-full bg-shamrock-500'
+                    : 'mt-1.5 size-1.5 shrink-0 rounded-full bg-amber-500'
                 }
                 aria-hidden="true"
               />

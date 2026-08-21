@@ -4,25 +4,30 @@
 
 @layer base {
   :root {
-    --background: 215 40% 8%;
-    --foreground: 210 20% 94%;
-    --card: 217 33% 11%;
-    --card-foreground: 210 20% 94%;
-    --popover: 217 33% 12%;
-    --popover-foreground: 210 20% 94%;
-    --primary: 154 54% 39%;
-    --primary-foreground: 155 60% 97%;
-    --secondary: 217 26% 18%;
-    --secondary-foreground: 210 20% 94%;
-    --muted: 217 26% 16%;
-    --muted-foreground: 215 16% 65%;
-    --accent: 217 26% 20%;
-    --accent-foreground: 210 20% 94%;
-    --destructive: 3 72% 55%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 217 25% 20%;
-    --input: 217 25% 22%;
-    --ring: 154 54% 45%;
+    color-scheme: light;
+
+    --background: 140 23% 97%;
+    --foreground: 152 39% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 152 39% 6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 152 39% 6%;
+    --primary: 158 100% 19%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 159 86% 16%;
+    --primary-pressed: 160 80% 14%;
+    --secondary: 140 20% 94%;
+    --secondary-foreground: 152 27% 12%;
+    --muted: 140 20% 94%;
+    --muted-foreground: 147 13% 37%;
+    --accent: 152 45% 94%;
+    --accent-foreground: 158 100% 19%;
+    --destructive: 356 68% 43%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 144 17% 89%;
+    --border-strong: 145 11% 66%;
+    --input: 144 17% 89%;
+    --ring: 158 79% 32%;
     --radius: 0.6rem;
   }
 }
@@ -44,6 +49,22 @@
 
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.18);
+    color: hsl(var(--foreground));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 

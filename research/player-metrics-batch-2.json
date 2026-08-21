@@ -1,0 +1,210 @@
+[
+  {
+    "id": "jason-knight",
+    "dateOfBirth": "2001-02-13",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 34, "starts": null, "minutes": 2774, "goals": 0, "assists": 2 },
+    "metrics": { "passCompletion": 82.4 },
+    "sources": [
+      "https://fbref.com/en/players/b83ec960/Jason-Knight",
+      "https://www.fotmob.com/en-GB/players/1051415",
+      "https://www.transfermarkt.co.uk/jason-knight/leistungsdaten/spieler/530780"
+    ],
+    "notes": "2025-26 Championship season for Bristol City (DM/CM). Exact starts count not confirmed; suffered an adductor injury in late Sept 2025 but still totalled 34 apps/2774 mins across the season. progressivePasses90, pressures90, defensiveActions90, possessionLost90 not found in accessible source snippets (fbref advanced tables not directly fetchable in this pass) — left as null/omitted."
+  },
+  {
+    "id": "finn-azaz",
+    "dateOfBirth": "2000-09-07",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 41, "starts": null, "minutes": 3068, "goals": 11, "assists": 8 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/b6f54c31/Finn-Azaz",
+      "https://www.transfermarkt.co.uk/finn-azaz/leistungsdaten/spieler/480723",
+      "https://en.wikipedia.org/wiki/Finn_Azaz"
+    ],
+    "notes": "2025-26 Championship season for Southampton (transferred from Middlesbrough 29 Aug 2025). Goals/assists conflict slightly between sources: FotMob-derived figure shows 11G/8A/3068 mins, another source shows 10G/7A across 41 apps — used the higher-cited figure but treat with caution. Was joint top scorer for Southampton in 2025-26 (4th place finish). Creator-group advanced metrics (xA90, progressive carries90, chances created90, final third entries90, dribble success%) not found in accessible snippets."
+  },
+  {
+    "id": "robbie-brady",
+    "dateOfBirth": "1992-01-14",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 5, "starts": null, "minutes": 90, "goals": 0, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://www.rte.ie/sport/soccer/2026/0519/1574189-brady-on-lookout-for-new-club-after-preston-release/",
+      "https://www.transfermarkt.us/robbie-brady/leistungsdaten/spieler/128229",
+      "https://www.premierleague.com/en/players/90517/robbie-brady/overview"
+    ],
+    "notes": "CURRENT STATUS VERIFIED: Robbie Brady is an unattached free agent as of August 2026, released by Preston North End at the end of his contract (effective 1 July 2026) after an injury-hit final season. 2025-26 season stats are sparse (5 substitute apps, 90 mins, 0G/0A) as he only returned from injury in late Feb 2026. Career Preston totals: 105 apps, 2 goals, 12 assists. No advanced defender metrics found for this tiny sample; left as null/omitted given limited minutes."
+  },
+  {
+    "id": "jamie-mcgrath",
+    "dateOfBirth": "1996-09-30",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 32, "starts": null, "minutes": 2398, "goals": 8, "assists": 4 },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.us/jamie-mcgrath/leistungsdaten/spieler/344107",
+      "https://fbref.com/en/players/0c8b5171/Jamie-McGrath",
+      "https://en.wikipedia.org/wiki/Jamie_McGrath"
+    ],
+    "notes": "2025-26 Scottish Premiership season for Hibernian. One of Hibernian's top scorers alongside Martin Boyle/Kieron Bowie. Creator-group advanced per-90 metrics (xA90, progressive carries90, chances created90, final third entries90, dribble success%) not found in accessible source snippets."
+  },
+  {
+    "id": "killian-phillips",
+    "dateOfBirth": "2002-03-30",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 45, "starts": 31, "minutes": null, "goals": 3, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.us/killian-phillips/leistungsdaten/spieler/801420",
+      "https://global.espn.com/football/player/_/id/319132/killian-phillips",
+      "https://fbref.com/en/players/cfa9f361/Killian-Phillips"
+    ],
+    "notes": "Joined St Mirren 1 July 2025 (Scottish Premiership). Sources vary: fbref league-only snapshot showed 15 MP/1279 mins/1 goal (likely a mid-season snapshot, not full-season), while Transfermarkt/ESPN full-season figures show 45 appearances (31 starts) and 3 goals across all competitions — used the full-season figure. Minutes total not confirmed. Midfielder-group advanced metrics (progressivePasses90, passCompletion, pressures90, defensiveActions90, possessionLost90) not found in accessible snippets."
+  },
+  {
+    "id": "joe-hodge",
+    "dateOfBirth": "2002-09-14",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 29, "starts": null, "minutes": 1423, "goals": 1, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://www.motherwellfc.co.uk/2026/08/12/joe-hodge-arrives-for-undisclosed-fee/",
+      "https://www.rte.ie/sport/soccer/2026/0812/1587598-transfers-irelands-hodge-joins-motherwell-from-tondela/",
+      "https://www.playmakerstats.com/player/joe-hodge/642683"
+    ],
+    "notes": "IMPORTANT: Hodge only signed for Motherwell (Scottish Premiership) on/around 12 Aug 2026, so his most recently COMPLETED domestic league season (2025-26) was actually played for CD Tondela in Portugal's Liga Portugal 2, not Motherwell — 29 appearances, ~1423 minutes (source figures slightly inconsistent between 26-29 apps), 1 goal, 1 assist. He has just 1 appearance for Motherwell so far in 2026-27, too small a sample for season stats. Midfielder-group advanced metrics not found in accessible snippets."
+  },
+  {
+    "id": "conor-coventry",
+    "dateOfBirth": "2000-03-25",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 33, "starts": 26, "minutes": null, "goals": 0, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://www.espn.com/soccer/player/matches/_/id/243543/conor-coventry",
+      "https://fbref.com/en/players/a5ca9127/Conor-Coventry",
+      "https://www.soccerbase.com/players/player.sd?player_id=97115"
+    ],
+    "notes": "2025-26 Championship season for Charlton Athletic (DM). 26 starts + 7 sub appearances = 33 total; exact minutes total not confirmed in accessible snippets. Midfielder-group advanced metrics (progressivePasses90, passCompletion, pressures90, defensiveActions90, possessionLost90) not found."
+  },
+  {
+    "id": "dawson-devoy",
+    "dateOfBirth": "2001-11-20",
+    "seasonUsed": "2025",
+    "seasonStats": { "appearances": 19, "starts": null, "minutes": 1710, "goals": 2, "assists": 3 },
+    "metrics": {},
+    "sources": [
+      "https://footystats.org/players/republic-of-ireland/dawson-devoy",
+      "https://www.transfermarkt.us/dawson-devoy/profil/spieler/683530",
+      "https://en.wikipedia.org/wiki/Dawson_Devoy"
+    ],
+    "notes": "League of Ireland Premier Division runs on a calendar-year season; the most recently completed season is 2025 (concluded ~Nov 2025). Bohemians, CM. Assists figure (3) is DERIVED from a reported rate of 0.16 assists per 90 minutes over 1710 minutes (0.16 * 19 ≈ 3.04) rather than a directly stated season total — flagged as approximate. Advanced midfielder metrics not published for League of Ireland players on the sources checked; left null/omitted as expected per task instructions."
+  },
+  {
+    "id": "corrie-ndaba",
+    "dateOfBirth": "1999-12-25",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 14, "starts": 6, "minutes": 543, "goals": 0, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://www.transfermarkt.co.uk/corrie-ndaba/leistungsdaten/spieler/433329",
+      "https://www.livescore.com/en/season-stats/corrie-ndaba/29903/",
+      "https://fbref.com/en/players/4db55657/Corrie-Ndaba"
+    ],
+    "notes": "2025-26 Serie A season for Lecce (CB). 14 apps (6 starts, 8 from bench), 543 minutes, 0G/0A. Defender-group advanced metrics (duelSuccess, aerialSuccess, interceptions90, progressiveDistance90, errors90) not found in accessible snippets — low minutes total makes any per-90 figure less reliable anyway."
+  },
+  {
+    "id": "sam-curtis",
+    "dateOfBirth": "2005-12-01",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": null, "starts": 10, "minutes": null, "goals": 2, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://www.thestar.co.uk/sport/football/sheffield-united/sam-curtis-sheffield-united-chesterfield-8789231",
+      "https://www.soccerzz.com/player/sam-curtis/885719",
+      "https://en.wikipedia.org/wiki/Sam_Curtis"
+    ],
+    "notes": "2025-26 League Two season on loan at Chesterfield (from Sheffield United), RB. Only a 10-starts figure was confirmed in accessible snippets (described as a prominent contributor helping Chesterfield reach the play-offs); total appearances (incl. subs) and minutes not confirmed — likely higher than 10. Defender-group advanced metrics not found."
+  },
+  {
+    "id": "andrew-moran",
+    "dateOfBirth": "2003-10-15",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 4, "starts": 3, "minutes": null, "goals": 1, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://www.lep.co.uk/sport/football/preston-north-end/preston-north-end-transfer-news-andrew-moran-brighton-and-hove-albion-pnefc-5500226",
+      "https://www.brightonandhovealbion.com/media-article/mft-transfer-news-andrew-moran-preston-north-end-february-2026",
+      "https://www.transfermarkt.co.uk/andrew-moran/profil/spieler/724537"
+    ],
+    "notes": "IMPORTANT CAVEAT: Moran only joined Preston North End (Championship) permanently from Brighton on 2 Feb 2026, so his Preston 2025-26 sample is tiny (4 apps: 3 starts + 1 sub, 1G/1A, minutes not confirmed). The bulk of his 2025-26 season prior to that was spent on loan at LAFC in MLS (not a domestic Irish/UK league and stats not gathered here — out of scope per task's domestic-league focus). Prior to LAFC he also had loan spells at Blackburn Rovers and Stoke City. Creator-group advanced metrics for the Preston stint not found/not meaningful given the small sample."
+  },
+  {
+    "id": "rocco-vata",
+    "dateOfBirth": "2005-04-18",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 12, "starts": null, "minutes": 523, "goals": 2, "assists": 2 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/a444355f/Rocco-Vata",
+      "https://www.fotmob.com/players/1394402/rocco-vata",
+      "https://www.premierleague.com/en/players/546089/rocco-vata/overview"
+    ],
+    "notes": "2025-26 Championship season for Watford (W). 12 apps, 523 minutes, 2G/2A per FBref-derived search snippet. Creator-group advanced metrics (xA90, progressive carries90, chances created90, final third entries90, dribble success%) not found in accessible snippets; low minutes sample also limits reliability of any per-90 figure."
+  },
+  {
+    "id": "mark-mcguinness",
+    "dateOfBirth": "2001-01-05",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 15, "starts": 15, "minutes": null, "goals": 1, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://www.espn.co.uk/football/player/_/id/290105/mark-mcguinness",
+      "https://www.transfermarkt.us/mark-mcguinness/leistungsdatendetails/spieler/561454",
+      "https://fbref.com/en/players/0fae1880/Mark-McGuinness"
+    ],
+    "notes": "2025-26 Championship season for Sheffield United (CB). Source snippet was ambiguous ('15 starts with 12 full appearances') — interpreted as 15 starts, of which 12 were full 90-minute appearances (i.e. subbed off/on in 3). Recorded here as appearances=starts=15 pending clearer confirmation; minutes total not confirmed. Defender-group advanced metrics (duelSuccess, aerialSuccess, interceptions90, progressiveDistance90, errors90) not found in accessible snippets."
+  },
+  {
+    "id": "troy-parrott",
+    "dateOfBirth": "2002-02-04",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 28, "starts": null, "minutes": null, "goals": 15, "assists": 4 },
+    "metrics": { "expectedGoals90": 0.57, "shots90": 3.55, "nonPenaltyGoals90": 0.65 },
+    "sources": [
+      "https://fbref.com/en/players/4357f557/scout/12808/Troy-Parrott-Scouting-Report",
+      "https://en.wikipedia.org/wiki/2025%E2%80%9326_AZ_Alkmaar_season",
+      "https://www.espn.com/soccer/player/stats/_/id/279790/Troy-Parrott"
+    ],
+    "notes": "2025-26 Eredivisie season for AZ Alkmaar (ST) — was AZ's top league scorer with 15 league goals in 28 appearances (34 apps/30 goals across all competitions per Wikipedia). Minor source conflict: one snippet cites '16 goals in 28 matches / 0.65 goals per 90' vs the '15 league goals' headline figure — used 15 as the season total (league-only) but kept the 0.65 goals/90 figure (labelled nonPenaltyGoals90, though it is not confirmed whether penalties are excluded). expectedGoals90 is FBref's non-penalty xG per 90 (npxG/90 = 0.57, 96th percentile for Eredivisie). shots90 = 3.55. boxTouches90 and chanceConversion% not found in accessible snippets. Minutes and exact starts not confirmed."
+  },
+  {
+    "id": "adam-idah",
+    "dateOfBirth": "2001-02-11",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 25, "starts": 6, "minutes": 844, "goals": 6, "assists": 2 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/291e3ec3/Adam-Idah",
+      "https://www.celticnewsnow.com/data/adam-idah/",
+      "https://www.espn.co.uk/football/player/stats/_/id/288958/adam-idah"
+    ],
+    "notes": "2025-26 Championship season for Swansea City (ST), used mainly as a substitute (6 starts, 19 sub appearances of 25 total), 844 minutes, 6G/2A — a good goals-per-minute rate despite limited starts. Forward-group advanced metrics (expectedGoals90, shots90, boxTouches90, chanceConversion%) not found in accessible snippets."
+  },
+  {
+    "id": "sammie-szmodics",
+    "dateOfBirth": "1995-09-24",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 19, "starts": 10, "minutes": null, "goals": 1, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://www.espn.com/soccer/player/stats/_/id/223547/sammie-szmodics",
+      "https://www.transfermarkt.us/sammie-szmodics/leistungsdaten/spieler/292139",
+      "https://fbref.com/en/players/39944392/Sammie-Szmodics"
+    ],
+    "notes": "2025-26 Championship season for Derby County (ST) — a quiet season by his standards (10 starts + 9 sub appearances, 1G/0A), a big drop-off from his prior Blackburn/Ireland form. Minutes total not confirmed. Forward-group advanced metrics not found in accessible snippets."
+  }
+]

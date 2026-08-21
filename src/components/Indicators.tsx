@@ -18,17 +18,17 @@ const TRAJECTORY_STYLES: Record<
   improving: {
     label: 'Improving',
     icon: TrendingUp,
-    className: 'bg-shamrock-700/25 text-shamrock-200 border-shamrock-600/50',
+    className: 'bg-shamrock-50 text-shamrock-800 border-shamrock-200',
   },
   stable: {
     label: 'Stable',
     icon: Minus,
-    className: 'bg-slate-500/15 text-slate-300 border-slate-500/40',
+    className: 'bg-slate-100 text-slate-700 border-slate-300',
   },
   declining: {
     label: 'Declining',
     icon: TrendingDown,
-    className: 'bg-amber-600/20 text-amber-200 border-amber-600/50',
+    className: 'bg-amber-50 text-amber-800 border-amber-200',
   },
 }
 
@@ -109,10 +109,10 @@ const DEPTH_RISK_STYLES: Record<
   PositionDepth['depthRisk'],
   { label: string; className: string; hatched: boolean }
 > = {
-  low: { label: 'Low risk', className: 'bg-shamrock-700/25 text-shamrock-200 border-shamrock-600/50', hatched: false },
-  moderate: { label: 'Moderate risk', className: 'bg-slate-500/15 text-slate-300 border-slate-500/40', hatched: false },
-  high: { label: 'High risk', className: 'bg-amber-600/20 text-amber-200 border-amber-600/50', hatched: true },
-  critical: { label: 'Critical risk', className: 'bg-destructive/20 text-red-200 border-destructive/60', hatched: true },
+  low: { label: 'Low risk', className: 'bg-shamrock-50 text-shamrock-800 border-shamrock-200', hatched: false },
+  moderate: { label: 'Moderate risk', className: 'bg-slate-100 text-slate-700 border-slate-300', hatched: false },
+  high: { label: 'High risk', className: 'bg-amber-50 text-amber-800 border-amber-200', hatched: true },
+  critical: { label: 'Critical risk', className: 'bg-red-50 text-red-700 border-red-200', hatched: true },
 }
 
 export function DepthRiskBadge({
@@ -156,8 +156,8 @@ export function DeltaValue({
     <span
       className={cn(
         'tabular inline-flex items-center gap-1 font-medium',
-        positive && 'text-shamrock-200',
-        negative && 'text-amber-200',
+        positive && 'text-shamrock-700',
+        negative && 'text-amber-800',
         !positive && !negative && 'text-muted-foreground',
         className,
       )}

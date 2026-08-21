@@ -110,6 +110,21 @@ export function scoreMetrics(
 }
 
 /**
+ * Metric groups where goal involvement is not actually diagnostic of the
+ * job — a centre-back or holding midfielder recording zero goals and assists
+ * all season is completely normal, unlike a forward or creator, for whom it
+ * is close to the point of the role. `goalInvolvement90` still counts for
+ * these groups when it sits alongside at least one genuinely position-
+ * specific metric, but it is never allowed to stand alone: because
+ * `scoreSeason` renormalises around whichever metrics are actually present,
+ * a season with nothing else recorded would otherwise let this one weak,
+ * tangential number become 100% of the weighted score, which reads as "this
+ * defender had a bad season" when the honest reading is "we know nothing
+ * about this defender's defending this season".
+ */
+const GOAL_INVOLVEMENT_SUPPLEMENTARY_ONLY: readonly MetricGroup[] = ['defender', 'midfielder']
+
+/**
  * Turn one season into a 0-100 score.
  *
  * Missing metrics are dropped and the remaining weights renormalised, rather
@@ -128,8 +143,24 @@ export function scoreSeason(
   const missingMetrics: string[] = []
   const totalDefinedWeight = defs.reduce((sum, d) => sum + d.weight, 0)
 
+  const isPresent = (key: string) => {
+    const value = season.positionSpecificMetrics[key]
+    return value !== null && value !== undefined && !Number.isNaN(value)
+  }
+
+  // See GOAL_INVOLVEMENT_SUPPLEMENTARY_ONLY: for defenders and midfielders,
+  // goal involvement only counts when some other, genuinely position-specific
+  // metric is also present this season.
+  const suppressGoalInvolvementAlone =
+    GOAL_INVOLVEMENT_SUPPLEMENTARY_ONLY.includes(group) &&
+    defs.some((d) => d.key === 'goalInvolvement90' && isPresent(d.key)) &&
+    defs.filter((d) => d.key !== 'goalInvolvement90').every((d) => !isPresent(d.key))
+
   for (const def of defs) {
-    const value = season.positionSpecificMetrics[def.key]
+    const value =
+      suppressGoalInvolvementAlone && def.key === 'goalInvolvement90'
+        ? null
+        : season.positionSpecificMetrics[def.key]
     if (value === null || value === undefined || Number.isNaN(value)) {
       missingMetrics.push(def.key)
       continue
@@ -153,7 +184,7 @@ export function scoreSeason(
   // inside buildCohort, which only consumes `adjustedScore`, so the neutral 50
   // fallback there is never surfaced.
   const groupMean = cohort.groupMeans[group] ?? 50
-  const seasonReliability = reliability(season.minutes, coverage)
+  const seasonReliability = reliability(season.minutes, coverage, season.appearances)
   const shrunkScore = groupMean + seasonReliability * (adjustedScore - groupMean)
 
   return {
@@ -185,10 +216,24 @@ export function playingTimeStatus(minutesPercentage: number): PlayingTimeStatus 
  * played, and not enough metrics supplied. Both must be adequate, so they are
  * combined multiplicatively rather than averaged — a full season of minutes
  * with only two of five metrics available is still a weak basis for a forecast.
+ *
+ * `weightedAppearances` is only consulted when there is no minutes figure at
+ * all. Some sources report appearances and goals/assists for a season but
+ * never publish minutes — treating that as "0 minutes played" would make a
+ * real 28-appearance season indistinguishable from a player who never got on
+ * the pitch, and would silently override every other metric with the
+ * regression-to-the-mean fallback. Falling back to appearances keeps that
+ * distinction honest without inventing a specific minutes total.
  */
-export function reliability(weightedMinutes: number, coverage: number): number {
+export function reliability(
+  weightedMinutes: number,
+  coverage: number,
+  weightedAppearances = 0,
+): number {
   const minutesFactor =
-    weightedMinutes / (weightedMinutes + MODEL_CONFIG.reliabilityMinutes)
+    weightedMinutes > 0
+      ? weightedMinutes / (weightedMinutes + MODEL_CONFIG.reliabilityMinutes)
+      : weightedAppearances / (weightedAppearances + MODEL_CONFIG.reliabilityAppearances)
   const coverageFactor = 0.6 + 0.4 * clamp(coverage, 0, 1)
   return clamp(minutesFactor * coverageFactor, 0, MODEL_CONFIG.maxReliability)
 }

@@ -20,6 +20,17 @@ export const MODEL_CONFIG = {
    * the observed score as roughly half-trustworthy on its own.
    */
   reliabilityMinutes: 900,
+  /**
+   * Fallback half-trust point in appearances, used only when a season has no
+   * minutes figure at all (common for lower-profile leagues a provider covers
+   * for goals/assists/appearances but not minute-by-minute data). Ten
+   * appearances is the appearances-based equivalent of `reliabilityMinutes`
+   * (900 minutes / 90). Treating an unrecorded minutes total as "0 minutes
+   * played" would be worse than this estimate: a player with 28 recorded
+   * appearances has real playing-time evidence even when the exact minute
+   * count wasn't published.
+   */
+  reliabilityAppearances: 10,
   /** Ceiling on how much weight observed performance can ever carry. */
   maxReliability: 0.92,
 

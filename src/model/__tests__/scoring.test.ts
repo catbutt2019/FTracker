@@ -2,7 +2,9 @@ import { describe, expect, it } from 'vitest'
 import type { PlayerRaw, SeasonRecord } from '@/types/domain'
 import { buildCohort, reliability, scoreMetrics, scoreSeason } from '../scoring'
 import { metricsFor } from '../metrics'
-import { generateDemoPlayers } from '@/data/demo/generate'
+import realPlayersFile from '../../../research/real-players.json'
+
+const realPlayers = realPlayersFile as unknown as PlayerRaw[]
 
 function season(overrides: Partial<SeasonRecord> = {}): SeasonRecord {
   return {
@@ -39,6 +41,13 @@ function player(overrides: Partial<PlayerRaw> = {}): PlayerRaw {
     primaryPosition: 'CB',
     secondaryPositions: [],
     seasons: [season()],
+    currentClub: {
+      club: 'Test FC',
+      league: 'Championship',
+      leagueStrength: 60,
+      changedSinceLastSeason: false,
+      transferNote: null,
+    },
     internationalCaps: 5,
     internationalMinutes: 300,
     dataLastUpdated: '2026-08-20',
@@ -130,6 +139,7 @@ describe('scoreSeason', () => {
           interceptions90: 3.1,
           progressiveDistance90: null,
           errors90: 0.12,
+          goalInvolvement90: 0.2,
         },
       }),
       'defender',
@@ -308,7 +318,7 @@ describe('reliability', () => {
 
 describe('buildCohort', () => {
   it('collects distributions for each metric group present in the data', () => {
-    const cohort = buildCohort(generateDemoPlayers())
+    const cohort = buildCohort(realPlayers)
     for (const group of ['goalkeeper', 'defender', 'midfielder', 'creator', 'forward']) {
       expect(cohort.distributions[group]).toBeDefined()
       expect(cohort.groupMeans[group]).toBeGreaterThan(0)
@@ -316,7 +326,7 @@ describe('buildCohort', () => {
   })
 
   it('excludes missing values from the distributions rather than counting them as zero', () => {
-    const cohort = buildCohort(generateDemoPlayers())
+    const cohort = buildCohort(realPlayers)
     for (const metrics of Object.values(cohort.distributions)) {
       for (const values of Object.values(metrics)) {
         expect(values.every((v) => typeof v === 'number' && !Number.isNaN(v))).toBe(true)
@@ -325,7 +335,7 @@ describe('buildCohort', () => {
   })
 
   it('sorts each distribution ascending', () => {
-    const cohort = buildCohort(generateDemoPlayers())
+    const cohort = buildCohort(realPlayers)
     for (const metrics of Object.values(cohort.distributions)) {
       for (const values of Object.values(metrics)) {
         const sorted = [...values].sort((a, b) => a - b)

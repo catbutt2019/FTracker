@@ -1,0 +1,208 @@
+[
+  {
+    "id": "caoimhin-kelleher",
+    "dateOfBirth": "1998-11-23",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 37, "starts": 37, "minutes": 3330, "goals": 0, "assists": 0 },
+    "metrics": {
+      "savePercentage": 68.2
+    },
+    "sources": [
+      "https://fbref.com/en/players/62d7ef38/Caoimhin-Kelleher",
+      "https://fbref.com/en/players/62d7ef38/scout/12750/Caoimhin-Kelleher-Scouting-Report",
+      "https://www.transfermarkt.us/caoimhin-kelleher/leistungsdaten/spieler/340918"
+    ],
+    "notes": "Season totals (37 apps/starts, 3330 min) from prior research pass, consistent with a full 2025-26 PL season as Brentford's No.1. Save% is uncertain: repeated searches returned three different scoped figures (68.2% season aggregate; 65.2% from a snapshot based on 1530 min/PSxG 21.9/GA90 1.47; 69.4% from a snapshot based on 21 matches/28 GA/PSxG 26.1/85 SoTA) — these look like different partial-season caches of the live fbref page rather than one settled figure, so treat 68.2% as indicative only, not fully verified. Could not confirm goalsPrevented90, crossesClaimed90, passCompletion, or longPassAccuracy from search snippets alone (fbref full tables were not directly fetchable in this environment); left null rather than estimate."
+  },
+  {
+    "id": "mark-travers",
+    "dateOfBirth": "1999-05-18",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 3, "starts": 2, "minutes": 182, "goals": 0, "assists": 0 },
+    "metrics": {
+      "savePercentage": 60.0
+    },
+    "sources": [
+      "https://fbref.com/en/players/fe558029/Mark-Travers",
+      "https://www.premierleague.com/en/players/229600/mark-travers/stats"
+    ],
+    "notes": "Backup keeper at Everton after summer 2025 move from Bournemouth; save% (60.0%, from a search snippet: 3 saves / 2 conceded / 5 shots faced) is based on an extremely small sample and should be treated as low-confidence/indicative only, not a reliable season rate. No advanced GK metrics (goalsPrevented90, crossesClaimed90, passCompletion, longPassAccuracy) could be confirmed."
+  },
+  {
+    "id": "josh-keeley",
+    "dateOfBirth": "2003-05-17",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 23, "starts": 23, "minutes": null, "goals": 0, "assists": 0 },
+    "metrics": {
+      "savePercentage": 69.0
+    },
+    "sources": [
+      "https://fbref.com/en/players/06dc837d/Josh-Keeley",
+      "https://www.fotmob.com/en-GB/players/1204776/josh-keeley"
+    ],
+    "notes": "Season appearance total (23) is from prior research pass. The 69.0% save percentage came from a search snippet referencing only 9 matches/30 shots faced, which appears to be a partial-season snapshot rather than the full 23-game season — treat as indicative only. Minutes and other advanced GK metrics not confirmed."
+  },
+  {
+    "id": "seamus-coleman",
+    "dateOfBirth": "1988-10-11",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 3, "starts": null, "minutes": 20, "goals": 0, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/0420d84f/Seamus-Coleman",
+      "https://www.fotmob.com/players/77690/seamus-coleman"
+    ],
+    "notes": "Near-total absence from the Everton squad in 2025-26 (announced retirement from playing at end of season); only 3 total appearances / 20 minutes found. Sample far too small for any meaningful defender per-90 advanced metrics, so all left null rather than estimated."
+  },
+  {
+    "id": "nathan-collins",
+    "dateOfBirth": "2001-04-30",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 35, "starts": 32, "minutes": 2971, "goals": 1, "assists": 2 },
+    "metrics": {
+      "interceptions90": 2.36
+    },
+    "sources": [
+      "https://fbref.com/en/players/a8c19eb8/Nathan-Collins",
+      "https://www.matchbingo.co.uk/english-premier-league/2025/brentford/nathan-collins"
+    ],
+    "notes": "Brentford club captain, ever-present starter. interceptions90 = (37 interceptions + 41 blocks) / 2971 minutes * 90 = 2.36, computed from directly-sourced season totals (not a published per-90 figure). duelSuccess/aerialSuccess % and progressiveDistance90 not confirmed from search snippets; errors90 not found (no reported errors leading to a shot)."
+  },
+  {
+    "id": "john-egan",
+    "dateOfBirth": "1992-10-20",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 34, "starts": 32, "minutes": null, "goals": 2, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/debe38a0/John-Egan",
+      "https://www.fantasyfootballscout.co.uk/2026/07/28/fpl-promoted-teams-what-to-expect-from-hulls-defence"
+    ],
+    "notes": "Played for Hull City (Championship) in 2025-26; Hull were promoted to the Premier League for 2026-27 but that is not the season these stats cover. Only found that he was Hull's top-scoring defender (2 goals) and led the squad for shots taken (24); no usable defender advanced per-90 metrics (duel/aerial success, interceptions+blocks, progressive distance, errors) found in search snippets."
+  },
+  {
+    "id": "jake-obrien",
+    "dateOfBirth": "2001-05-15",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 37, "starts": 35, "minutes": 3124, "goals": 1, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/25f2ef01/Jake-OBrien",
+      "https://www.soccerbase.com/players/player.sd?player_id=117445&season_id=158"
+    ],
+    "notes": "Everton first-choice centre-back for most of 2025-26. Qualitative commentary found (\"progressive passing is a standout feature... a valuable conduit from defence to midfield\") but no quantified progressiveDistance90 or other advanced metric could be confirmed from search snippets alone."
+  },
+  {
+    "id": "dara-oshea",
+    "dateOfBirth": "1999-03-04",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 46, "starts": 46, "minutes": 4140, "goals": 1, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/1d042188/Dara-OShea",
+      "https://www.rotowire.com/soccer/player/dara-oshea-31343"
+    ],
+    "notes": "Ipswich Town captain, ever-present in the 2025-26 Championship promotion season (46/46 starts). Search snippets returned conflicting/ambiguous defensive numbers (one gave ~0.48 tackles + 0.85 interceptions per 90 for the Championship season; another gave 49 tackles/33 interceptions/50 blocks across 35 starts mislabeled as 'Premier League', which does not match the season or competition and could not be reconciled) — too unreliable to place in structured metrics, so left null rather than guess which figure is correct."
+  },
+  {
+    "id": "liam-scales",
+    "dateOfBirth": "1998-08-08",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 37, "starts": 34, "minutes": null, "goals": 0, "assists": null },
+    "metrics": {
+      "aerialSuccess": 66.2,
+      "duelSuccess": 75.0,
+      "interceptions90": 1.99
+    },
+    "sources": [
+      "https://fbref.com/en/players/4b5ed2f7/Liam-Scales",
+      "https://fbref.com/en/players/4b5ed2f7/scout/365_m1/Liam-Scales-Scouting-Report",
+      "https://www.footballfancast.com/celtic-liam-scales-is-fast-becoming-their-best-player-over-engels"
+    ],
+    "notes": "Celtic centre-back/left-back, regular starter in the Scottish Premiership. aerialSuccess (66.2%, ~5.2 aerial duels won/game) found directly. duelSuccess (75.0%) is specifically the reported tackle-success rate, not a broader all-duels figure, so it's a proxy rather than an exact match for the metric definition. interceptions90 (1.99) is a derived estimate: source stated interceptions90=1.40 directly (38 total interceptions) and separately 16 blocks; implying ~2443 minutes (38/1.40*90), blocks90≈0.59, summed to ~1.99 — this involves an assumption about season minutes so treat as approximate. progressiveDistance90 and errors90 not found."
+  },
+  {
+    "id": "gavin-bazunu",
+    "dateOfBirth": "2002-02-20",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": null, "starts": null, "minutes": 2250, "goals": 0, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/c91441dc/Gavin-Bazunu",
+      "https://www.livescore.com/en/season-stats/gavin-bazunu/6096/"
+    ],
+    "notes": "Split 2025-26 between Southampton and a loan at Stoke City (from 13 Jan 2026, reportedly cut short after errors); only a minutes total (2250, Championship, scope/date of snapshot unclear — may not include the Stoke loan) could be found. No reliable savePercentage or other GK advanced metric found; not included in Ireland's most recent senior squads per prior research."
+  },
+  {
+    "id": "andrew-omobamidele",
+    "dateOfBirth": "2002-06-23",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 25, "starts": null, "minutes": 1351, "goals": 1, "assists": 0 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/c393a6c4/Andrew-Omobamidele",
+      "https://scoutingstats.ai/player/andrew-omobamidele-442/"
+    ],
+    "notes": "Ligue 1 (Strasbourg). A scouting-style summary described his ball-retention as elite (96th percentile) but flagged weaker ball-recovery and progressive-passing output for his position; this is qualitative/percentile framing rather than the specific duelSuccess/aerialSuccess/interceptions90/progressiveDistance90/errors90 figures requested, so left null rather than approximate."
+  },
+  {
+    "id": "cathal-heffernan",
+    "dateOfBirth": "2005-04-27",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 14, "starts": null, "minutes": null, "goals": 0, "assists": null },
+    "metrics": {},
+    "sources": [
+      "research/irish-players-research.json (prior research pass)"
+    ],
+    "notes": "National League (Harrogate Town) — fbref does not provide the same depth of advanced per-90 data at this tier, and no search results surfaced usable defender metrics; not re-searched further in this pass to conserve search budget given very low profile."
+  },
+  {
+    "id": "ryan-manning",
+    "dateOfBirth": "1996-06-14",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 45, "starts": 37, "minutes": 3429, "goals": 8, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/847b53eb/Ryan-Manning",
+      "https://www.playmakerstats.com/player/ryan-manning/434544"
+    ],
+    "notes": "Southampton left-back/wing-back, Championship 2025-26. Season totals from prior research pass (45 apps/37 starts/3429 min/8 goals). A search snippet gave an internally inconsistent alternative (27 starts, 22 appearances, 6 goals, 3 assists) that could not be reconciled with the primary figures — flagged rather than used, assists left null. No defender advanced metrics (duel/aerial success, interceptions+blocks, progressive distance, errors) confirmed."
+  },
+  {
+    "id": "jayson-molumby",
+    "dateOfBirth": "1999-08-06",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 38, "starts": 31, "minutes": 2902, "goals": 2, "assists": 2 },
+    "metrics": {},
+    "sources": [
+      "https://fbref.com/en/players/c908a1bc/Jayson-Molumby",
+      "https://www.espn.com/soccer/player/_/id/243465/jayson-molumby"
+    ],
+    "notes": "West Bromwich Albion defensive midfielder, Championship 2025-26; season totals corroborated across sources (38 apps, 2902 min, 2 goals, 2 assists; one red card). No progressivePasses90, passCompletion, pressures90, defensiveActions90, or possessionLost90 figures could be confirmed from search snippets — fbref's detailed tables were not directly accessible in this environment."
+  },
+  {
+    "id": "alan-browne",
+    "dateOfBirth": "1995-07-22",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 23, "starts": 13, "minutes": null, "goals": 1, "assists": null },
+    "metrics": {},
+    "sources": [
+      "https://www.safc.com/news/2025/september/01/alan-browne-joins-middlesbrough/",
+      "https://fbref.com/en/players/25dea15a/"
+    ],
+    "notes": "Played 2025-26 on loan at Middlesbrough (Championship) from Sunderland; loan has since ended and he returned to Sunderland. Appearance/start figures for the loan spell vary between sources (23 apps/13 starts used here per prior research pass; another source suggested 19 starts/16 other apps) — flagged as uncertain. No midfielder advanced metrics (progressivePasses90, passCompletion, pressures90, defensiveActions90, possessionLost90) could be confirmed from search snippets."
+  },
+  {
+    "id": "jack-taylor",
+    "dateOfBirth": "1998-06-23",
+    "seasonUsed": "2025-26",
+    "seasonStats": { "appearances": 25, "starts": 24, "minutes": null, "goals": 2, "assists": 1 },
+    "metrics": {},
+    "sources": [
+      "https://www.skysports.com/football/player/147540/jack-taylor",
+      "https://www.itfc.co.uk/players/jacktaylor/",
+      "https://en.wikipedia.org/wiki/Jack_Taylor_(footballer,_born_1998)"
+    ],
+    "notes": "DOB resolved in this pass: multiple independent sources (Sky Sports player profile, Ipswich Town's own site, and the Wikipedia disambiguation page for 'Jack Taylor (footballer, born 1998)') consistently describe a defensive midfielder at Ipswich Town born 23 June 1998, joined from Peterborough United in 2023 — this appears to be the same player, superseding the prior research pass's note that DOB was unconfirmed and its caution about a same-named 'older' 1998-born footballer (that caution now looks to have been a false-alarm self-disambiguation). Minor inconsistency: one stats aggregator listed his age as 27 (which would imply born mid-1998 to mid-1999, roughly consistent). Eligibility for Ireland (birthplace/parentage) still not independently confirmed. No advanced midfielder metrics found."
+  }
+]

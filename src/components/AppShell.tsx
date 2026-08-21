@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
-import { FlaskConical, Github, Menu, X } from 'lucide-react'
+import { Github, Menu, X } from 'lucide-react'
 import { MODEL_CONFIG } from '@/model/config'
 import { cn } from '@/lib/utils'
 
@@ -8,8 +8,6 @@ const NAV_ITEMS = [
   { to: '/', label: 'Outlook' },
   { to: '/players', label: 'Players' },
   { to: '/depth', label: 'Position depth' },
-  { to: '/research', label: 'Research' },
-  { to: '/research/players', label: 'Research players' },
   { to: '/methodology', label: 'Methodology' },
 ]
 
@@ -17,12 +15,10 @@ export function AppShell({
   children,
   sourceLabel,
   asOfDate,
-  isDemonstrationData,
 }: {
   children: ReactNode
   sourceLabel?: string
   asOfDate?: string
-  isDemonstrationData?: boolean
 }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -35,30 +31,11 @@ export function AppShell({
         Skip to content
       </a>
 
-      {/*
-        The provenance strip is deliberately the first thing on the page and is
-        not dismissible. The single biggest risk in a product like this is a
-        screenshot of a projection circulating without the context that the
-        numbers are illustrative.
-      */}
-      {isDemonstrationData && (
-        <div className="border-b border-amber-700/40 bg-amber-950/40">
-          <div className="container flex flex-wrap items-center gap-x-2 gap-y-1 py-2 text-xs text-amber-100/90">
-            <FlaskConical className="size-3.5 shrink-0" aria-hidden="true" />
-            <span className="font-medium">Demonstration data.</span>
-            <span className="text-amber-100/70">
-              Players are fictional and every statistic is illustrative. Nothing here describes a
-              real footballer.
-            </span>
-          </div>
-        </div>
-      )}
-
       <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
         <div className="container flex h-14 items-center justify-between gap-4">
           <NavLink to="/" className="flex items-center gap-2.5">
             <span
-              className="flex size-7 items-center justify-center rounded-md bg-shamrock-600/90 text-[13px] font-bold text-white"
+              className="flex size-7 items-center justify-center rounded-md bg-primary text-[13px] font-bold text-primary-foreground"
               aria-hidden="true"
             >
               IE

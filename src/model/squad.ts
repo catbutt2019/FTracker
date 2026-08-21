@@ -270,34 +270,68 @@ export function buildPositionDepth(
  * season, so early seasons rest on a smaller pool. That is a real limitation
  * and is stated on the methodology page.
  */
+/** The most frequent string in a list, ties broken by first occurrence. */
+function mostCommon(values: string[]): string {
+  const counts = new Map<string, number>()
+  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1)
+  let best = values[0]
+  let bestCount = 0
+  for (const value of values) {
+    const count = counts.get(value) ?? 0
+    if (count > bestCount) {
+      best = value
+      bestCount = count
+    }
+  }
+  return best
+}
+
 export function buildHistory(
   players: Player[],
   horizons: Record<ProjectionHorizon, SquadHorizonOutlook>,
   currentStrength: number,
 ): SquadStrengthPoint[] {
-  const seasons = Array.from(
-    new Set(players.flatMap((p) => p.seasonScores.map((s) => s.season))),
-  ).sort()
+  // Bucket by each player's own recency index (0 = their most recently
+  // completed season, 1 = the one before that, ...), not by matching season
+  // label strings across players. Labels are not a reliable join key once
+  // players come from leagues with different season conventions — a
+  // calendar-year league (e.g. MLS: "2025") and a split-year league (e.g.
+  // "2025-26") can both be a player's most recent season at the same point
+  // in time, but their labels never compare equal or sort adjacently, which
+  // would otherwise scatter one real "current" snapshot across several
+  // near-empty historical points.
+  const maxSeasonCount = players.reduce((max, p) => Math.max(max, p.seasonScores.length), 0)
 
-  const observed: SquadStrengthPoint[] = seasons.map((season) => {
+  const observed: SquadStrengthPoint[] = []
+  for (let index = maxSeasonCount - 1; index >= 0; index -= 1) {
     const byPosition = new Map<Position, number[]>()
     for (const position of POSITIONS) byPosition.set(position, [])
+    const labels: string[] = []
     for (const player of players) {
-      const seasonScore = player.seasonScores.find((s) => s.season === season)
+      const seasonScore = player.seasonScores[index]
       if (!seasonScore) continue
-      byPosition.get(player.primaryPosition)?.push(seasonScore.shrunkScore)
+      // The most recent season (index 0) uses the player's blended
+      // currentPerformanceScore rather than that single season's own
+      // shrunkScore, so this point is computed on exactly the same basis as
+      // currentStrength below. Older seasons have no such blend to draw on —
+      // there is no "current score as of two years ago" — so they fall back
+      // to that season's own shrunk score.
+      const value = index === 0 ? player.forecast.currentPerformanceScore : seasonScore.shrunkScore
+      byPosition.get(player.primaryPosition)?.push(value)
+      labels.push(seasonScore.season)
     }
-    return {
-      season,
+    if (labels.length === 0) continue
+    observed.push({
+      season: mostCommon(labels),
       observed: round(squadStrengthFrom(byPosition), 1),
       projectedMedian: null,
       projectedLow: null,
       projectedHigh: null,
       kind: 'observed' as const,
-    }
-  })
+    })
+  }
 
-  const lastSeason = seasons[seasons.length - 1] ?? '2025-26'
+  const lastSeason = observed[observed.length - 1]?.season ?? '2025-26'
   const startYear = Number(lastSeason.slice(0, 4))
   const seasonLabel = (offsetYears: number) => {
     const y = startYear + offsetYears

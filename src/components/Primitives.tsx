@@ -110,7 +110,7 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry?: ()
   return (
     <Card className="border-destructive/40 bg-destructive/5">
       <CardContent className="flex flex-col items-start gap-3 py-8">
-        <div className="flex items-center gap-2 text-sm font-medium text-red-200">
+        <div className="flex items-center gap-2 text-sm font-medium text-red-700">
           <AlertTriangle className="size-4" aria-hidden="true" />
           Player data could not be loaded
         </div>

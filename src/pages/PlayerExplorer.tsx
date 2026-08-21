@@ -366,7 +366,7 @@ export function PlayerExplorer() {
       {filtered.length === 0 ? (
         <EmptyState
           title="No players match these filters"
-          description="Try widening the age range or clearing a filter. The demonstration dataset holds 41 players, so narrow combinations will often return nothing."
+          description={`Try widening the age range or clearing a filter. The tracked pool holds ${players.length} players, so narrow combinations will often return nothing.`}
           action={
             <button
               type="button"
@@ -561,11 +561,11 @@ function PlayerTable({
                 <TableRow key={player.id} className="border-border/50">
                   <TableCell>
                     <div className="flex items-center gap-2.5">
-                      <PlayerAvatar name={player.name} size="sm" />
+                      <PlayerAvatar name={player.name} imageUrl={player.avatarUrl} size="sm" />
                       <div className="min-w-0">
                         <Link
                           to={`/players/${player.id}`}
-                          className="font-medium transition-colors hover:text-shamrock-200"
+                          className="font-medium transition-colors hover:text-shamrock-700"
                         >
                           {player.name}
                         </Link>
@@ -640,11 +640,11 @@ function PlayerGrid({ players }: { players: Player[] }) {
           <CardContent className="space-y-4 pt-6">
             <div className="flex items-start justify-between gap-3">
               <div className="flex min-w-0 items-start gap-2.5">
-                <PlayerAvatar name={player.name} />
+                <PlayerAvatar name={player.name} imageUrl={player.avatarUrl} />
                 <div className="min-w-0">
                   <Link
                     to={`/players/${player.id}`}
-                    className="font-medium transition-colors hover:text-shamrock-200"
+                    className="font-medium transition-colors hover:text-shamrock-700"
                   >
                     {player.name}
                   </Link>

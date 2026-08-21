@@ -43,19 +43,20 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        // Domain palette: restrained Irish green against neutral navy.
+        // Domain palette: bright Irish football green, inspired by the
+        // current FAI kit identity. Unofficial - not a brand asset.
         shamrock: {
-          50: '#eafaf1',
-          200: '#a7e3c2',
+          50: '#eaf7f1',
+          100: '#d3eee0',
+          200: '#a7e0c4',
+          300: '#7bcfa8',
           400: '#3fb277',
-          500: '#2e9b64',
-          600: '#217a4e',
-          700: '#18603d',
-        },
-        navy: {
-          800: '#141c2b',
-          900: '#0d1420',
-          950: '#080d16',
+          500: '#119463',
+          600: '#0c7a50',
+          700: '#00613d',
+          800: '#064d34',
+          900: '#073f2c',
+          950: '#042920',
         },
       },
       borderRadius: {
@@ -65,6 +66,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Barlow Condensed', 'Arial Narrow', 'sans-serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       keyframes: {

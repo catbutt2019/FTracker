@@ -27,9 +27,18 @@ import { HORIZONS } from '@/model/forecast'
 export function PlayerTrendChart({ player }: { player: Player }) {
   const observed = [...player.seasonScores]
     .reverse()
-    .map((season) => ({
+    .map((season, index, all) => ({
       label: season.season,
-      observed: season.shrunkScore,
+      // The most recent season (last after reversing) plots the player's
+      // blended currentPerformanceScore rather than that single season's own
+      // shrunkScore — the same substitution squad.ts makes for the identical
+      // reason. currentPerformanceScore blends several recency-weighted
+      // seasons and its own aggregate reliability, so it can legitimately
+      // differ from one season's individual shrunk score. Plotting the two
+      // different numbers at the same point produced a visible cliff right
+      // at the observed/projected join. Older seasons have no such blend to
+      // fall back on, so they keep showing their own shrunk score.
+      observed: index === all.length - 1 ? player.forecast.currentPerformanceScore : season.shrunkScore,
       projected: null as number | null,
       band: null as [number, number] | null,
       minutes: season.minutes,
@@ -84,7 +93,13 @@ export function PlayerTrendChart({ player }: { player: Player }) {
               strokeDasharray="2 4"
               label={{
                 value: 'Pool average',
-                position: 'insideLeft',
+                position: 'insideTopLeft',
+                // A player's own line often sits right on the y=50 reference
+                // line — a shrunk score built on weak evidence lands close to
+                // the pool average by construction. Nudging the label above
+                // the line keeps it legible instead of overlapping it like
+                // struck-through text.
+                dy: -18,
                 fill: 'hsl(var(--muted-foreground))',
                 fontSize: 10,
               }}
@@ -245,7 +260,7 @@ export function MetricPercentileChart({ metrics }: { metrics: MetricScore[] }) {
                     fill={
                       (metric.percentile as number) >= 50
                         ? 'hsl(var(--primary))'
-                        : 'hsl(215 20% 45%)'
+                        : 'hsl(151 9% 53%)'
                     }
                   />
                 ))}

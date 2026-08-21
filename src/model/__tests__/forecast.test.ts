@@ -3,8 +3,16 @@ import { changeProbabilities, classifyTrajectory, computeConfidence, confidenceL
 import { ageEffect, ageMultiplier, peakAgeFor } from '../ageCurve'
 import { buildCohort } from '../scoring'
 import { MODEL_CONFIG } from '../config'
-import { POSITIONS } from '@/types/domain'
-import { generateDemoPlayers } from '@/data/demo/generate'
+import { POSITIONS, type PlayerRaw } from '@/types/domain'
+import realPlayersFile from '../../../research/real-players.json'
+
+function realPlayers(): PlayerRaw[] {
+  // A fresh array each call (rather than reusing the same reference) keeps
+  // the determinism test below honest: it is checking that forecastPlayer
+  // produces the same output from equivalent input, not that it returns the
+  // same object.
+  return JSON.parse(JSON.stringify(realPlayersFile)) as PlayerRaw[]
+}
 
 const AS_OF = new Date('2026-08-20')
 
@@ -215,8 +223,8 @@ describe('exactAgeOn', () => {
   })
 })
 
-describe('forecastPlayer across the whole demonstration dataset', () => {
-  const raw = generateDemoPlayers()
+describe('forecastPlayer across the whole real-player dataset', () => {
+  const raw = realPlayers()
   const cohort = buildCohort(raw)
   const results = raw.map((player) => ({
     player,
@@ -316,14 +324,23 @@ describe('forecastPlayer across the whole demonstration dataset', () => {
   })
 
   it('assigns low confidence to players with minimal minutes', () => {
-    const fringe = results.filter((r) => r.seasonScores[0].minutesPercentage < 0.1)
+    // minutesPercentage alone is not a safe proxy for "barely played": some
+    // sources report a season's appearances and goals/assists but never
+    // publish a minutes figure, which reads as 0% minutes despite real
+    // playing-time evidence (see the appearances fallback in reliability()
+    // and computeConfidence()). Restrict this check to players who were
+    // genuinely fringe on both counts.
+    const fringe = results.filter(
+      (r) => r.seasonScores[0].minutesPercentage < 0.1 && r.player.seasons[0].appearances < 5,
+    )
+    expect(fringe.length).toBeGreaterThan(0)
     for (const { forecast, player } of fringe) {
       expect(forecast.predictionConfidence, player.name).not.toBe('high')
     }
   })
 
   it('is deterministic: two runs produce identical forecasts', () => {
-    const second = generateDemoPlayers()
+    const second = realPlayers()
     const secondCohort = buildCohort(second)
     const again = second.map((p) => forecastPlayer(p, secondCohort, AS_OF).forecast)
     expect(again.map((f) => f.currentPerformanceScore)).toEqual(

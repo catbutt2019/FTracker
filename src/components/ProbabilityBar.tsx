@@ -91,11 +91,11 @@ export function RangeBar({
         }`}
       >
         <div
-          className="absolute inset-y-1 rounded-sm bg-shamrock-600/45 ring-1 ring-inset ring-shamrock-400/50"
+          className="absolute inset-y-1 rounded-sm bg-shamrock-600/35 ring-1 ring-inset ring-shamrock-500/60"
           style={{ left: `${low}%`, width: `${Math.max(high - low, 0.8)}%` }}
         />
         <div
-          className="absolute inset-y-0.5 w-0.5 bg-shamrock-200"
+          className="absolute inset-y-0.5 w-0.5 bg-shamrock-900"
           style={{ left: `${median}%` }}
           title={`Projected midpoint ${median}`}
         />

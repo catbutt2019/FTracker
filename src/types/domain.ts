@@ -139,6 +139,28 @@ export interface SeasonRecord {
   injuryDays: number | null
 }
 
+/**
+ * Where a player is right now, independent of `seasons` — which only ever
+ * records *completed* seasons. A transfer window can move a player to a new
+ * club/league before a single minute has been played there, so the two are
+ * deliberately kept apart: `seasons` (and everything scored from it) never
+ * changes on transfer news alone, but the club shown in the UI should.
+ */
+export interface CurrentClub {
+  club: string
+  league: string
+  /** 0-100, same scale and lookup as SeasonRecord.leagueStrength. */
+  leagueStrength: number
+  /**
+   * True when this club/league differs from `seasons[0]` — i.e. a confirmed
+   * transfer, loan move or departure happened after the most recent season
+   * there is any performance data for.
+   */
+  changedSinceLastSeason: boolean
+  /** Free-text context on the move, when the research pass found one. */
+  transferNote: string | null
+}
+
 export interface PlayerRaw {
   id: string
   name: string
@@ -149,8 +171,23 @@ export interface PlayerRaw {
   secondaryPositions: Position[]
   /** Most recent season first. */
   seasons: SeasonRecord[]
+  /**
+   * Current club/league as of the research snapshot, which may already
+   * differ from `seasons[0]` (see `CurrentClub`). Scoring and forecasting
+   * never read this — only display and squad-composition aggregates do.
+   */
+  currentClub: CurrentClub
   internationalCaps: number
   internationalMinutes: number
+  /**
+   * A verified-source player photo, or null to fall back to the initials
+   * avatar. Selection happens at build time in build-real-players.mjs — only
+   * images the research pass marked "verified-from-named-source" ever reach
+   * this field. These are hotlinked third-party photos with rights status
+   * "prototype-only-rights-not-cleared"; fine for this prototype, not
+   * production-cleared.
+   */
+  avatarUrl?: string | null
   dataLastUpdated: string
 }
 

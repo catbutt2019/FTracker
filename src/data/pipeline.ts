@@ -38,10 +38,15 @@ export function assembleDataset(
       ...player,
       age: Math.floor(exactAge),
       exactAge: round(exactAge, 2),
-      club: latest.club,
-      league: latest.league,
+      // Display club/league come from `currentClub`, not `seasons[0]`: a
+      // transfer can move a player before there is a completed season of
+      // performance data at the new club, and the header shouldn't lag
+      // behind reality just because the score honestly does. The score
+      // itself is untouched — it is still built entirely from `seasons`.
+      club: player.currentClub.club,
+      league: player.currentClub.league,
       season: latest.season,
-      leagueStrength: latest.leagueStrength,
+      leagueStrength: player.currentClub.leagueStrength,
       clubStrength: latest.clubStrength,
       appearances: latest.appearances,
       starts: latest.starts,

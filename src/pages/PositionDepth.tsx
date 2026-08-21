@@ -50,7 +50,7 @@ export function PositionDepthPage() {
                 >
                   <a
                     href={`#${depth.position}`}
-                    className="min-w-[9.5rem] flex-1 text-sm font-medium transition-colors hover:text-shamrock-200"
+                    className="min-w-[9.5rem] flex-1 text-sm font-medium transition-colors hover:text-shamrock-700"
                   >
                     {depth.label}
                     <span className="ml-2 text-xs font-normal text-muted-foreground">
@@ -210,7 +210,7 @@ function PlayerGroup({
               >
                 <div className="flex items-start justify-between gap-2">
                   <span className="flex items-center gap-2">
-                    <PlayerAvatar name={player.name} size="sm" />
+                    <PlayerAvatar name={player.name} imageUrl={player.avatarUrl} size="sm" />
                     <span className="text-sm font-medium">{player.name}</span>
                   </span>
                   <span className="tabular text-sm">
