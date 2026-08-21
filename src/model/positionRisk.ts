@@ -74,7 +74,17 @@ function assessGroupRisk(
   }
 
   // 2. Depth: credible senior-ready cover beyond the required starters.
-  const credible = pool.filter((entry) => entry.score >= RISK_CONFIG.seniorReadyThreshold)
+  //
+  // Weighted, matching `weightedStrength` and `requiredStarters`. Filtering on
+  // the raw score instead would count a centre-back who is merely *cover* at
+  // left-back as full-strength senior-ready depth there — discounting his
+  // contribution to the group's strength score while still crediting him as a
+  // whole body in the depth count. Half of this dataset's full-back and winger
+  // pools are secondary-position players, so that inconsistency was the
+  // difference between "no depth risk" and "moderate" for both groups.
+  const credible = pool.filter(
+    (entry) => entry.score * entry.weight >= RISK_CONFIG.seniorReadyThreshold,
+  )
   const neededWithBuffer = requiredStartingSlots + RISK_CONFIG.depthBufferSlots
   let depthRisk: RiskLevel = 'none'
   if (credible.length < requiredStartingSlots) depthRisk = 'high'

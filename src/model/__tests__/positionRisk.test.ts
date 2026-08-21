@@ -157,6 +157,32 @@ describe('buildPositionalGroupOutlooks', () => {
     expect(midfield.risk.reasons.length).toBeGreaterThan(0)
   })
 
+  it('counts senior-ready depth at the secondary-position weight, not the raw score', () => {
+    // A player whose raw score clears the senior-ready threshold but whose
+    // *weighted* contribution does not is cover, not depth. 78 * 0.7 = 54.6,
+    // just under the threshold of 55, so this centre-back must not be credited
+    // as a senior-ready midfield body — while the three primaries, who do
+    // clear it, are.
+    //
+    // Regression guard: `depthRisk` previously filtered on `entry.score`,
+    // inconsistently with `weightedStrength` and `requiredStarters`, which both
+    // apply the weight. That let one discounted player be simultaneously worth
+    // 70% of a body for strength and 100% of a body for depth.
+    const midfield = [
+      player({ position: 'DM', score: 66 }),
+      player({ position: 'CM', score: 64 }),
+      player({ position: 'AM', score: 63 }),
+      player({ position: 'CB', score: 78, secondaryPositions: ['CM'] }),
+    ]
+    const outlooks = buildPositionalGroupOutlooks(balancedSquad(midfield))
+    const group = outlooks.find((o) => o.group === 'midfield')!
+
+    // Three required starters covered, but no credible fourth body, so the
+    // depth buffer of one is unmet: moderate, not none.
+    expect(group.risk.depthRisk).toBe('moderate')
+    expect(group.risk.reasons.join(' ')).toContain('3 players')
+  })
+
   it('reports "no risk" for a group only once every dimension genuinely clears its threshold', () => {
     // Strong, deep, non-declining, available, with two credible successors —
     // every one of the five dimensions must be individually clean for
