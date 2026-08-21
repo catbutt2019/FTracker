@@ -2,31 +2,42 @@
 
 Roughly three-quarters of the scoring model's designed weight is currently
 unpopulated. This file holds a ready-to-paste prompt for collecting the missing
-fields, plus the batch lists to paste with it.
+fields, plus the request lists to paste with it.
 
-Run it **one batch at a time**. A single request covering all 84 players
-produces either truncated output or invented numbers, which is worse than no
-data at all — see the null-honesty rules in the prompt.
+## Which file does ChatGPT need?
 
-## Batch order
+**None.** Do not upload a file. The prompt below is self-contained: the player
+ids, names, seasons and clubs are already in it, so an upload only invites the
+assistant to echo values back instead of researching them.
 
-Batches are ordered by how much scoring weight each one unlocks per player
-researched, not by squad importance.
+What ChatGPT **produces** is a new file, dropped into `research/`:
 
-| # | Group | Players | Weight currently unpopulated |
-|---|-------|---------|------------------------------|
-| 1 | Goalkeeper | 8 | 86% |
-| 2 | Defender | 26 | 76% |
-| 3 | Midfielder | 18 | 81% |
-| 4 | Creator (AM/W) | 22 | 72% |
-| 5 | Forward (ST) | 15 | 61% |
+| Request | Group | Save the reply as |
+|---------|-------|-------------------|
+| 1 | Goalkeeper (8) | `research/player-metrics-batch-5.json` |
+| 2 | Defender (26) | `research/player-metrics-batch-6.json` |
+| 3 | Midfielder (18) | `research/player-metrics-batch-7.json` |
+| 4 | Creator, AM/W (22) | `research/player-metrics-batch-8.json` |
+| 5 | Forward, ST (15) | `research/player-metrics-batch-9.json` |
+
+`scripts/build-real-players.mjs` discovers `player-metrics-batch-*.json` by
+pattern, so a new file is picked up with no code change. Run `node
+scripts/build-real-players.mjs` after adding one.
+
+Run **one request at a time**. A single request covering all 89 players produces
+either truncated output or invented numbers, which is worse than no data at all
+— see the null-honesty rules in the prompt.
+
+Requests are ordered by how much scoring weight each one unlocks per player
+researched, not by squad importance: goalkeeper 86% unpopulated, midfielder 81%,
+defender 76%, creator 72%, forward 61%.
 
 ## Ask for these five dates of birth first
 
 `scripts/build-real-players.mjs` drops any player with no usable date of birth,
 so five of the 89 players below never reach the model at all. Researching their
 metrics is wasted work until a birth date is found — and one of them sits in
-each batch, so it is worth clearing in a single request before starting:
+each request, so it is worth clearing in one go before starting:
 
 ```
 aaron-maguire       Aaron Maguire        GK  Tottenham Hotspur U21 / Hashtag United
@@ -39,25 +50,63 @@ kian-mcmahon-brown  Kian McMahon-Brown   ST  Burnley U18/U21
 Same null rule applies: an unfound birth date is `null`, never an estimate from
 an age or a youth-team year group.
 
-## Known mapping work on our side
+## No mapping work needed — use the model's own key names
 
-Some requested keys have no mapping in `scripts/build-real-players.mjs` yet, so
-supplying them is necessary but not sufficient — the build script needs a line
-adding for each. Marked **(needs mapping)** in the prompt below. Two notes:
+An earlier draft of this file asked for the key names used inside
+`research/irish-players-research-round-2.json` (`groundDuelWinPercentage`,
+`interceptionsPer90`, …) and flagged a dozen of them as needing a mapping line
+added to the build script. That was the wrong target.
 
-- `errorsLeadingToGoal` and `possessionsWonFinalThirdPer90` already exist in the
-  round-2 schema but are null for every player *and* unmapped.
-- The existing `goalsPrevented` key is mapped straight into the model's
-  `goalsPrevented90`, which is a per-90 metric. If a season total ever arrives
-  in that key it will be scored as a rate. The prompt therefore asks for
-  `goalsPreventedPer90` explicitly.
+The two inputs use different conventions, and only one of them needs mapping:
+
+- **Round-2 research file** — provider-style names, translated one by one in
+  `deriveLatestMetrics()`. Any name without a line there is silently ignored.
+- **Metrics batch files** — the *model's own* metric keys, spread straight into
+  `positionSpecificMetrics` with no translation at all.
+
+So by targeting a batch file, every field below lands with no code change. The
+key names in the request lists are therefore the model keys from
+`src/model/metrics.ts`, and they must be reproduced exactly; an unrecognised key
+is carried into the season record but never scored, so a typo fails silently.
+
+### Round-2 values win a conflict
+
+The build script merges the two sources as:
+
+```js
+{ ...(batch?.metrics ?? {}), ...(deriveLatestMetrics(p) ?? {}) }
+```
+
+Nulls are stripped before this, so a batch value fills any gap round 2 left —
+but where round 2 has a real number for the same key, **the batch value is
+discarded**. Each request list below marks the keys round 2 can already supply
+with `[R2]`.
+
+Those are still worth researching: across the squad, round 2 fills only 60 of
+the 235 `[R2]` slots it could — 26%. But the unmarked keys are the ones where a
+value is guaranteed to take effect, so if a request has to be cut short, cut the
+marked keys first.
+
+### Do not supply `goalInvolvement90`
+
+The build script computes it from that season's own appearances, minutes, goals
+and assists, and does so *after* merging your metrics, so any value supplied
+would be overwritten. Goals and assists are already covered by `seasonStats`.
+
+### One season only, and it must be the season given
+
+Unlike the research-file path, batch metrics have **no season guard**: they are
+attached to the player's `lastCompletedSeason` slot whichever season the file
+claims to describe. Researching 2024-25 for a player whose latest season is
+2025-26 does not produce a historical record — it silently mislabels 2024-25
+figures as current form. The season in each player list is the correct one.
 
 ---
 
 # THE PROMPT
 
-Copy everything below the line, replacing `{{GROUP}}`, `{{FIELD_LIST}}` and
-`{{PLAYER_LIST}}` from the batch sections that follow.
+Copy everything below the line, replacing `{{FIELD_LIST}}` and
+`{{PLAYER_LIST}}` from the request sections that follow.
 
 ---
 
@@ -79,7 +128,7 @@ scored as genuinely worst-in-class. So:
   have reliable minutes to divide by, return `null` rather than dividing by an
   assumed number of minutes.
 - If you are unsure whether a figure covers all competitions or just one, still
-  supply it, but say which in the `scope` field.
+  supply it, but say which in `notes`.
 - Do not interpolate from a prior season.
 
 I would rather receive a mostly-null response with five trustworthy numbers than
@@ -106,45 +155,57 @@ all of its parts.
   minutes is noise that will be ranked as though it were signal.
 - Prefer figures covering the player's full season. Where a player moved clubs
   mid-season and you can only find one club's figures, supply them and name that
-  club in `scope`.
+  club in `notes`.
 
 ## Sources
 
-For each player, list the URLs you actually used. Preferred: FBref,
-Transfermarkt, WhoScored, Sofascore, official league sites. If a value comes
-from only one source and you could not corroborate it, set
-`"confidence": "low"`.
+For each player, list in `sources` the URLs you actually used. Preferred: FBref,
+Transfermarkt, WhoScored, Sofascore, official league sites. If a value comes from
+only one source and you could not corroborate it, say so in `notes` — an
+uncorroborated number I know about is usable; one I do not is a trap.
 
 ## Output format
 
 Return **only** a JSON array, no prose before or after. One object per player,
 in the order given. Use exactly these key names — they are consumed by a build
-script and unrecognised keys are discarded.
+script, and a key it does not recognise is never scored, so a near-miss on a
+name fails silently rather than loudly.
 
 ```json
 [
   {
     "id": "<the id I gave you, unchanged>",
-    "fullName": "<the name I gave you, unchanged>",
-    "season": "<the season I gave you, unchanged>",
-    "scope": "<competition(s) and club(s) the metrics below cover>",
-    "minutes": null,
-    "appearances": null,
-    "starts": null,
+    "dateOfBirth": "YYYY-MM-DD or null",
+    "seasonUsed": "<the season I gave you, unchanged>",
+    "seasonStats": {
+      "appearances": null,
+      "starts": null,
+      "minutes": null,
+      "goals": null,
+      "assists": null
+    },
     "metrics": {
       "<field>": null
     },
-    "confidence": "high | medium | low",
     "sources": ["<url>", "<url>"],
-    "notes": "<anything that would mislead a reader who only saw the numbers>"
+    "notes": "<scope, confidence, and anything that would mislead a reader who only saw the numbers>"
   }
 ]
 ```
 
-`minutes`, `appearances` and `starts` are for the same scope as the metrics, and
-are how I check whether the 450-minute rule was met. Supply them where you can.
+Notes on the shape:
 
-## Fields for this batch
+- `seasonStats` covers the same competitions as `metrics`, and is how I check
+  whether the 450-minute rule below was met. Supply it where you can — these are
+  the easiest fields to source and they feed the model directly.
+- There is no separate `scope` or `confidence` field. Put both in `notes`, in
+  prose: which competitions and clubs the figures cover, and how confident you
+  are in each. Say so plainly if a number came from a single uncorroborated
+  source.
+- `dateOfBirth` only matters for the five players named below as missing one.
+  Leave it `null` otherwise; a value here never overrides the research file.
+
+## Fields for this request
 
 {{FIELD_LIST}}
 
@@ -154,85 +215,95 @@ are how I check whether the 450-minute rule was met. Supply them where you can.
 
 ---
 
-# BATCH FIELD LISTS
+# REQUEST FIELD LISTS
 
-## Batch 1 — Goalkeeper
+`[R2]` marks a key the round-2 research file can already supply. A value there
+only takes effect where round 2 left it null — true for most players, but not
+all. Keys without the marker are guaranteed to land.
+
+## Request 1 — Goalkeeper → `player-metrics-batch-5.json`
 
 ```
-savePercentage              Share of shots on target saved, 0-100.
-goalsPreventedPer90         Goals conceded vs. the number an average keeper would
-                            concede from the same shots, per 90. Positive = better
+savePercentage        [R2]  Share of shots on target saved, 0-100.
+goalsPrevented90      [R2]  Goals conceded vs. the number an average keeper would
+                            concede from the same shots, PER 90. Positive = better
                             than average. Also called post-shot xG minus goals
-                            allowed (PSxG-GA). If your source gives a season total,
-                            divide by minutes/90 and say so in notes.
-longBallAccuracyPercentage  Share of attempted long passes completed, 0-100.
-crossesClaimedPer90         Crosses caught or punched clear, per 90.        (needs mapping)
-passCompletionPercentage    Share of all attempted passes completed, 0-100. (needs mapping)
+                            allowed (PSxG-GA). Sources usually publish this as a
+                            season total: divide by minutes/90 and say so in notes.
+                            A total left undivided here is scored as a rate.
+longPassAccuracy      [R2]  Share of attempted long passes completed, 0-100.
+crossesClaimed90            Crosses caught or punched clear, per 90.
+passCompletion              Share of all attempted passes completed, 0-100.
 ```
 
-## Batch 2 — Defender (CB, LB, RB)
+## Request 2 — Defender, CB/LB/RB → `player-metrics-batch-6.json`
 
 ```
-groundDuelWinPercentage     Share of ground duels won, 0-100.
-aerialDuelWinPercentage     Share of aerial duels won, 0-100.
-tacklesPer90                Tackles attempted, per 90.
-interceptionsPer90          Interceptions only. Do NOT add blocks.
-clearancesPer90             Clearances, per 90.
-errorsLeadingToGoal         Count of errors directly leading to a goal or shot,
-                            as a SEASON TOTAL (not per 90).           (needs mapping)
-progressiveDistancePer90    Metres of forward progress from carries and passes,
-                            per 90, in hundreds of metres.            (needs mapping)
+duelSuccess           [R2]  Share of ground duels won, 0-100.
+aerialSuccess         [R2]  Share of aerial duels won, 0-100.
+tackles90             [R2]  Tackles attempted, per 90.
+interceptions90       [R2]  Interceptions only. Do NOT add blocks — see the
+                            second rule above. Blocks are not wanted separately
+                            either; too few players have them to rank.
+clearances90          [R2]  Clearances, per 90.
+progressiveDistance90       Metres of forward progress from carries and passes,
+                            per 90, expressed in HUNDREDS of metres. 340m/90
+                            is 3.4, not 340.
+errors90                    Mistakes directly conceding a shooting opportunity,
+                            PER 90 — not a season total. Lower is better; the
+                            model inverts it, so do not pre-invert it yourself.
 ```
 
-## Batch 3 — Midfielder (DM, CM)
+## Request 3 — Midfielder, DM/CM → `player-metrics-batch-7.json`
 
 ```
-passCompletionPercentage        Share of attempted passes completed, 0-100.
-progressivePassesPer90          Completed passes moving the ball significantly
-                                towards the opposition goal, per 90.  (needs mapping)
-pressuresPer90                  Occasions applying pressure to an opponent in
-                                possession, per 90.                   (needs mapping)
-possessionLostPer90             Times the player concedes possession, per 90.
-                                Lower is better.                      (needs mapping)
-tacklesPlusInterceptionsPer90   Combined. Only if you have BOTH parts.
-tacklesPer90                    Supply separately as well, if available.
-interceptionsPer90              Supply separately as well, if available.
+passCompletion        [R2]  Share of attempted passes completed, 0-100.
+defensiveActions90    [R2]  Tackles AND interceptions combined, per 90. Supply
+                            only if you have the provider's own combined figure,
+                            or both parts to add. One part alone is not a smaller
+                            composite, it is a different metric — leave it null.
+progressivePasses90         Completed passes moving the ball significantly
+                            towards the opposition goal, per 90.
+pressures90                 Occasions applying pressure to an opponent in
+                            possession, per 90.
+possessionLost90            Times the player concedes possession, per 90. Lower
+                            is better; the model inverts it, so supply the raw
+                            count, not an inverted or "retention" figure.
 ```
 
-## Batch 4 — Creator (AM, W)
+## Request 4 — Creator, AM/W → `player-metrics-batch-8.json`
 
 ```
-expectedAssistsPer90        xA per 90.
-keyPassesPer90              Passes leading directly to a shot, per 90.
-progressiveCarriesPer90     Carries moving the ball meaningfully towards the
+expectedAssists90     [R2]  xA per 90.
+chancesCreated90      [R2]  Passes leading directly to a shot, per 90. Usually
+                            published as "key passes".
+progressiveCarries90  [R2]  Carries moving the ball meaningfully towards the
                             opposition goal, per 90.
-touchesFinalThirdPer90      Touches and receptions in the attacking third,
-                            per 90.                                   (needs mapping)
-dribbleSuccessPercentage    Share of attempted take-ons that succeed,
-                            0-100.                                    (needs mapping)
+finalThirdEntries90         Touches and receptions in the attacking third, per 90.
+dribbleSuccess              Share of attempted take-ons that succeed, 0-100.
 ```
 
-## Batch 5 — Forward (ST)
+## Request 5 — Forward, ST → `player-metrics-batch-9.json`
 
 ```
-nonPenaltyGoalsPer90            Goals excluding penalties, per 90.     (needs mapping)
-nonPenaltyExpectedGoalsPer90    npxG per 90.
-shotsPer90                      Attempts on goal, per 90.
-touchesInBoxPer90               Touches inside the opposition penalty
-                                area, per 90.                         (needs mapping)
-shotConversionPercentage        Share of shots that become goals, 0-100.
+expectedGoals90       [R2]  Non-penalty xG per 90. Plain xG is acceptable if npxG
+                            is unavailable — say which in notes.
+shots90               [R2]  Attempts on goal, per 90.
+chanceConversion      [R2]  Share of shots that become goals, 0-100.
+nonPenaltyGoals90           Goals excluding penalties, per 90.
+boxTouches90                Touches inside the opposition penalty area, per 90.
 ```
 
 ---
 
-# BATCH PLAYER LISTS
+# REQUEST PLAYER LISTS
 
 Format: `id | name | position | season | club | league`
 
 Ordered fewest-existing-metrics first, so the earliest entries are where the
 model is currently most blind.
 
-## Batch 1 — Goalkeeper (8)
+## Request 1 — Goalkeeper (8)
 
 ```
 aaron-maguire      | Aaron Maguire            | GK | 2025-26 | Tottenham Hotspur U21 / Hashtag United | Premier League 2 / National League South
@@ -245,7 +316,7 @@ gavin-bazunu       | Gavin Bazunu             | GK | 2025-26 | Southampton / Sto
 josh-keeley        | Josh Keeley              | GK | 2025-26 | Luton Town              | EFL League One
 ```
 
-## Batch 2 — Defender (26)
+## Request 2 — Defender (26)
 
 ```
 alex-murphy         | Alex Murphy           | CB | 2025-26 | Newcastle United        | Premier League
@@ -276,7 +347,7 @@ james-abankwah      | James Abankwah        | CB | 2025-26 | Watford (loan)     
 nathan-collins      | Nathan Collins        | CB | 2025-26 | Brentford               | Premier League
 ```
 
-## Batch 3 — Midfielder (18)
+## Request 3 — Midfielder (18)
 
 ```
 bosun-lawal            | Bosun Lawal          | DM | 2025-26 | Stoke City              | EFL Championship
@@ -299,7 +370,7 @@ killian-phillips       | Killian Phillips     | CM | 2025-26 | St Mirren        
 jack-taylor            | Jack Taylor          | CM | 2025-26 | Ipswich Town            | EFL Championship
 ```
 
-## Batch 4 — Creator (22)
+## Request 4 — Creator (22)
 
 ```
 adam-brennan         | Adam Brennan          | AM | 2025    | UCD                     | League of Ireland First Division
@@ -326,7 +397,7 @@ aidomo-emakhu        | Aidomo Abraham Emakhu | W  | 2025-26 | Millwall / Oxford 
 finn-azaz            | Finn Azaz             | AM | 2025-26 | Middlesbrough / Southampton | EFL Championship
 ```
 
-## Batch 5 — Forward (15)
+## Request 5 — Forward (15)
 
 ```
 kian-mcmahon-brown | Kian McMahon-Brown   | ST | 2025-26 | Burnley U18/U21         | Academy competitions
@@ -348,21 +419,40 @@ evan-ferguson      | Evan Ferguson        | ST | 2025-26 | Brighton & Hove Albio
 
 ---
 
-# OPTIONAL BATCH 6 — historical seasons
+# DEFERRED — historical seasons (needs a code change first)
 
 Only 47% of season records carry any metric, and the gap widens going back:
 54/84 players for the most recent season, 29/83 one season back, 31/78 two back.
 The app computes a *trend* from those three points, so for most players an
 improving or declining label rests on comparing one measured season against two
-that fell back to a neutral score.
+that fell back to a neutral score. Filling prior seasons for players who already
+have current-season data would do more for trend credibility than adding new
+metric types.
 
-Filling prior seasons for players who already have current-season data would do
-more for trend credibility than adding new metric types. Use the same prompt,
-same fields, but ask for the **2024-25 and 2023-24** seasons, and add:
+**Do not commission this yet.** The build script has nowhere to put it. A batch
+entry is keyed by player id alone, and its `metrics` are attached
+unconditionally to that player's `lastCompletedSeason` slot:
+
+```js
+const lastSeason = buildSeasonRecord(p.lastCompletedSeason, batch?.seasonStats, lastSeasonMetrics, …)
+const previousSeason = buildSeasonRecord(p.previousSeason, null, null, …)
+const thirdSeason    = buildSeasonRecord(p.thirdMostRecentSeason, null, null, …)
+```
+
+The two older slots are passed `null` for both stats and metrics, and the
+`seasonUsed` field in a batch entry is never read. So a 2024-25 figure supplied
+today would not fill the 2024-25 record — it would overwrite, or be discarded
+against, the current-season one. The trend would move for the wrong reason,
+which is worse than a flat trend.
+
+Two changes are needed first: batch entries keyed by `id` *and* season, and
+`buildSeasonRecord` wired to look up the matching entry for each of the three
+slots. Once that exists, this request becomes the same prompt with the season
+column changed, plus:
 
 > For each player I have given you three seasons. Treat each season as a
-> separate object in the output array, with its own `scope`, `minutes` and
-> `sources`. Do not carry a value from one season into another. A season you
+> separate object in the output array, with its own `seasonUsed`, `seasonStats`
+> and `sources`. Do not carry a value from one season into another. A season you
 > cannot document is an object whose metrics are all `null` — that is a useful
 > answer, not a failed one.
 
