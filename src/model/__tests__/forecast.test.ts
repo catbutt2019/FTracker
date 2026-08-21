@@ -3,7 +3,7 @@ import { changeProbabilities, classifyTrajectory, computeConfidence, confidenceL
 import { ageEffect, ageMultiplier, peakAgeFor } from '../ageCurve'
 import { buildCohort } from '../scoring'
 import { MODEL_CONFIG } from '../config'
-import { POSITIONS, type PlayerRaw } from '@/types/domain'
+import { POSITIONS, POSITION_METRIC_GROUP, type PlayerRaw } from '@/types/domain'
 import realPlayersFile from '../../../research/real-players.json'
 
 function realPlayers(): PlayerRaw[] {
@@ -313,18 +313,65 @@ describe('forecastPlayer across the whole real-player dataset', () => {
   it('shrinks low-minute players toward the positional average', () => {
     // A null share means minutes were never published, which is not evidence
     // of a low minutes share — see SeasonRecord.minutes in types/domain.ts.
+    //
+    // `metricCoverage > 0` is required as well, and is not a loosening of this
+    // test. Shrinkage pulls an *observation* toward the mean; a season with no
+    // position-specific metric at all has no observation to pull, and
+    // `scoreSeason` now places it exactly at the group mean rather than at a
+    // placeholder 50 carrying a full league adjustment. Zero adjustment is the
+    // correct output there, and is asserted directly in the test below.
     const fringe = results.filter((r) => {
-      const share = r.seasonScores[0].minutesPercentage
-      return share !== null && share < 0.15
+      const { minutesPercentage, metricCoverage } = r.seasonScores[0]
+      return minutesPercentage !== null && minutesPercentage < 0.15 && metricCoverage > 0
     })
     expect(fringe.length).toBeGreaterThan(0)
-    for (const { forecast } of fringe) {
-      expect(Math.abs(forecast.regressionAdjustment)).toBeGreaterThan(0)
-      // Shrinkage always moves the score toward the mean, never away from it.
-      const towardMean =
-        Math.abs(forecast.currentPerformanceScore - forecast.observedScore) <=
-        Math.abs(forecast.observedScore - forecast.currentPerformanceScore) + 0.001
-      expect(towardMean).toBe(true)
+    for (const { player, forecast } of fringe) {
+      expect(Math.abs(forecast.regressionAdjustment), player.name).toBeGreaterThan(0)
+      // Shrinkage moves the score toward the group mean, never past it and
+      // never away from it. The previous form of this assertion compared
+      // `|a - b|` with `|b - a|`, which is true for all inputs and so tested
+      // nothing; this compares against the mean the score is shrinking toward.
+      const mean = cohort.groupMeans[POSITION_METRIC_GROUP[player.primaryPosition]]
+      expect(Math.abs(forecast.currentPerformanceScore - mean), player.name).toBeLessThanOrEqual(
+        Math.abs(forecast.observedScore - mean) + 0.001,
+      )
+    }
+  })
+
+  it('leaves a season with no measured metric at the group mean, unadjusted', () => {
+    // The counterpart to the test above, and the regression guard for the
+    // league-badge bug it describes. 28 of the 84 players in this dataset have
+    // no position-specific metric in any season. Every one of them used to
+    // score `50 + league bonus` — 59.1 in the Premier League against 49.2 in
+    // League One — so a third of the squad was ranked purely by the division
+    // their club plays in, above players with real evidence against them.
+    const unmeasured = results.filter((r) => r.seasonScores.every((s) => s.metricCoverage === 0))
+    expect(unmeasured.length).toBeGreaterThan(0)
+
+    for (const { player, seasonScores, forecast } of unmeasured) {
+      const mean = cohort.groupMeans[POSITION_METRIC_GROUP[player.primaryPosition]]
+      for (const season of seasonScores) {
+        expect(season.adjustedScore, `${player.name} ${season.season}`).toBeCloseTo(mean, 1)
+        expect(season.shrunkScore, `${player.name} ${season.season}`).toBeCloseTo(mean, 1)
+      }
+      // toBeCloseTo, not toBe(0): the subtraction that produces this can yield
+      // -0, which Object.is distinguishes from 0. The distinction is a float
+      // representation detail, not a difference in behaviour.
+      expect(forecast.regressionAdjustment, player.name).toBeCloseTo(0, 6)
+    }
+
+    // And the league is genuinely no longer doing the ranking: every unmeasured
+    // player in a given position group must land on the same score, whether
+    // that club is in the Premier League or the League of Ireland.
+    const byGroup = new Map<string, Set<number>>()
+    for (const { player, forecast } of unmeasured) {
+      const group = POSITION_METRIC_GROUP[player.primaryPosition]
+      const scores = byGroup.get(group) ?? new Set<number>()
+      scores.add(forecast.observedScore)
+      byGroup.set(group, scores)
+    }
+    for (const [group, scores] of byGroup) {
+      expect(scores.size, `${group} observed scores: ${[...scores].join(', ')}`).toBe(1)
     }
   })
 

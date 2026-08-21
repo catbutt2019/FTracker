@@ -203,23 +203,65 @@ describe('scoreSeason', () => {
     expect(sparse.metricCoverage).toBeLessThan(full.metricCoverage)
   })
 
+  const NO_METRICS = {
+    duelSuccess: null,
+    aerialSuccess: null,
+    interceptions90: null,
+    tackles90: null,
+    clearances90: null,
+    progressiveDistance90: null,
+    errors90: null,
+    goalInvolvement90: null,
+  }
+
   it('falls back to a neutral score when no metric at all is supplied', () => {
     const cohort = defenderCohort()
     const result = scoreSeason(
-      season({
-        positionSpecificMetrics: {
-          duelSuccess: null,
-          aerialSuccess: null,
-          interceptions90: null,
-          progressiveDistance90: null,
-          errors90: null,
-        },
-      }),
+      season({ positionSpecificMetrics: { ...NO_METRICS } }),
       'defender',
       cohort,
     )
     expect(result.rawScore).toBe(50)
     expect(result.metricCoverage).toBe(0)
+  })
+
+  it('never applies a league or club adjustment to a season with no metric', () => {
+    // The neutral 50 above is a placeholder for "nothing was measured", not an
+    // observation. A league adjustment corrects an observation for the standard
+    // of opposition it was achieved against, so applying it to the placeholder
+    // states that an unmeasured player is above average because his club is.
+    //
+    // This was live: it gave every unmeasured Premier League player 59.1 and
+    // every unmeasured League One player 49.2, ranking a third of the dataset
+    // purely by division — above players with real evidence against them.
+    const cohort = defenderCohort()
+    const scores = [30, 60, 93].map(
+      (leagueStrength) =>
+        scoreSeason(
+          season({ leagueStrength, positionSpecificMetrics: { ...NO_METRICS } }),
+          'defender',
+          cohort,
+        ).adjustedScore,
+    )
+
+    expect(new Set(scores).size, `league strength changed the score: ${scores.join(', ')}`).toBe(1)
+    expect(scores[0]).toBeCloseTo(cohort.groupMeans.defender, 1)
+
+    // Contrast: with even one metric present there *is* an observation, so the
+    // adjustment must apply. This is what keeps the assertion above a statement
+    // about missing data rather than an accidental disabling of league context.
+    const measured = [30, 93].map(
+      (leagueStrength) =>
+        scoreSeason(
+          season({
+            leagueStrength,
+            positionSpecificMetrics: { ...NO_METRICS, duelSuccess: 60 },
+          }),
+          'defender',
+          cohort,
+        ).adjustedScore,
+    )
+    expect(measured[1]).toBeGreaterThan(measured[0])
   })
 
   it('rates the same performance higher when it happens in a stronger league', () => {

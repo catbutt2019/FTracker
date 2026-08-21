@@ -170,22 +170,57 @@ export function scoreSeason(
     usedWeight += def.weight
   }
 
-  const rawScore = usedWeight > 0 ? weighted / usedWeight : 50
+  // `50` here is a placeholder for "nothing was measured", not a finding. It is
+  // deliberately never given a context adjustment below — see `measured`.
+  const measured = usedWeight > 0
+  const rawScore = measured ? weighted / usedWeight : 50
   const coverage = totalDefinedWeight > 0 ? usedWeight / totalDefinedWeight : 0
+
+  // `groupMeans` is empty during the provisional pass inside buildCohort, which
+  // only consumes `adjustedScore`, so the neutral 50 fallback is never surfaced.
+  const groupMean = cohort.groupMeans[group] ?? 50
 
   // Context adjustment. A percentile is relative to the Irish pool, not to the
   // standard of opposition, so a score earned in a stronger league is nudged up
   // and one earned in a weaker league nudged down, around a neutral midpoint.
-  const leagueDelta = ((season.leagueStrength - 60) / 40) * MODEL_CONFIG.leagueAdjustmentStrength * 100
-  const clubDelta = ((season.clubStrength - 55) / 45) * MODEL_CONFIG.clubAdjustmentStrength * 100
-  const adjustedScore = clamp(rawScore + leagueDelta * 0.5 + clubDelta * 0.5, 1, 99)
+  //
+  // It applies only where something was actually measured. A league adjustment
+  // is a correction *to an observation*; with no observation there is nothing to
+  // correct, and applying it to the placeholder above converts "we know nothing
+  // about this player" into "this player is above average, because his club is".
+  //
+  // That was not hypothetical. 28 of the 84 players in this dataset have no
+  // position-specific metric in any season, and every one of them scored
+  // exactly `50 + league bonus`: 59.1 in the Premier League, 54.1 in the
+  // Championship, 49.2 in League One. The league badge was therefore doing
+  // 100% of the discriminating work across a third of the squad, and it
+  // outranked real evidence — Matt Doherty and Alex Murphy, with nothing
+  // recorded, both placed above Liam Scales, whose season is 76% covered.
+  //
+  // With no measurement the honest score is the group mean: the arithmetic
+  // statement of "no information about this player either way". Note this is
+  // not a penalty. Absence of evidence stays strictly neutral here, exactly as
+  // it does in MATCHDAY_INVOLVEMENT — pushing unmeasured players *below* the
+  // mean would invent negative evidence, which is the same error in the
+  // opposite direction.
+  let adjustedScore: number
+  if (measured) {
+    const leagueDelta =
+      ((season.leagueStrength - 60) / 40) * MODEL_CONFIG.leagueAdjustmentStrength * 100
+    const clubDelta = ((season.clubStrength - 55) / 45) * MODEL_CONFIG.clubAdjustmentStrength * 100
+    adjustedScore = clamp(rawScore + leagueDelta * 0.5 + clubDelta * 0.5, 1, 99)
+  } else {
+    adjustedScore = clamp(groupMean, 1, 99)
+  }
 
-  // Single-season shrinkage. `groupMeans` is empty during the provisional pass
-  // inside buildCohort, which only consumes `adjustedScore`, so the neutral 50
-  // fallback there is never surfaced.
-  const groupMean = cohort.groupMeans[group] ?? 50
+  // Single-season shrinkage. Shrinkage moves an observed score toward the mean
+  // in proportion to how much it can be trusted; an unmeasured season is
+  // already *at* the mean, so there is nothing to move and `reliability` — which
+  // is about the weight of evidence — has no bearing on it.
   const seasonReliability = reliability(season.minutes, coverage, season.appearances)
-  const shrunkScore = groupMean + seasonReliability * (adjustedScore - groupMean)
+  const shrunkScore = measured
+    ? groupMean + seasonReliability * (adjustedScore - groupMean)
+    : groupMean
 
   return {
     season: season.season,
