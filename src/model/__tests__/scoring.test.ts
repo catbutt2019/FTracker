@@ -46,6 +46,7 @@ function player(overrides: Partial<PlayerRaw> = {}): PlayerRaw {
       league: 'Championship',
       leagueStrength: 60,
       changedSinceLastSeason: false,
+      unattached: false,
       transferNote: null,
     },
     seniorStatus: {

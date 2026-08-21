@@ -59,14 +59,54 @@ export interface Involvement {
   /** International minutes in the last 12 months. `null` when unpublished. */
   minutesLast12Months: number | null
   /**
-   * False when neither field was available, meaning `factor` is 1 because
-   * nothing is known — not because the player is averagely involved.
+   * How much club football he is actually playing, 0-1, or `null` when nothing
+   * is published either way. Only ever damps a bonus — see `clubWorkload`.
+   */
+  clubWorkload: number | null
+  /**
+   * False when neither international field was available, meaning `factor` is
+   * 1 because nothing is known — not because the player is averagely involved.
    */
   hasEvidence: boolean
 }
 
 function monthsBetween(from: Date, to: Date): number {
   return (to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24 * 30.4375)
+}
+
+/**
+ * How much club football the player is actually playing, 0-1, or `null` when
+ * nothing is published either way.
+ *
+ * Prefers a genuine rolling 12-month club figure, then falls back to the most
+ * recent completed season, then to that season's appearance count. The
+ * fallbacks are an approximation and worth being explicit about: a completed
+ * season is not the same window as the last twelve months. It is what the
+ * research pass actually supplies — `seniorStatus.clubMinutesLast12Months` is
+ * null for all 89 players today — and for a player who has stopped playing
+ * the two windows agree on the thing that matters.
+ *
+ * `appearances === 0` returns `null`, not `0`. The build script coerces a
+ * missing appearance count to 0, so a genuine "never came off the bench" and
+ * "the source published nothing" are indistinguishable at this point. Reading
+ * that as "played no football" would invent negative evidence; a player who
+ * really did sit out a season and has a published minutes figure is caught by
+ * the branch above anyway.
+ */
+function clubWorkload(player: Player): number | null {
+  const published = player.seniorStatus.clubMinutesLast12Months
+  if (published !== null) {
+    return clamp(published / MATCHDAY_INVOLVEMENT.fullClubMinutes, 0, 1)
+  }
+  const latest = player.seasons[0]
+  if (!latest) return null
+  if (latest.minutes !== null) {
+    return clamp(latest.minutes / MATCHDAY_INVOLVEMENT.fullClubMinutes, 0, 1)
+  }
+  if (latest.appearances > 0) {
+    return clamp(latest.appearances / MATCHDAY_INVOLVEMENT.fullClubAppearances, 0, 1)
+  }
+  return null
 }
 
 /**
@@ -102,12 +142,15 @@ function involvementOf(player: Player, asOf: Date): Involvement {
       ? null
       : clamp(seniorMinutesLast12Months / MATCHDAY_INVOLVEMENT.fullInvolvementMinutes, 0, 1)
 
+  const workload = clubWorkload(player)
+
   const signals = [currency, load].filter((value): value is number => value !== null)
   if (signals.length === 0) {
     return {
       factor: 1,
       monthsSinceLastCap: monthsSince,
       minutesLast12Months: seniorMinutesLast12Months,
+      clubWorkload: workload,
       hasEvidence: false,
     }
   }
@@ -115,10 +158,31 @@ function involvementOf(player: Player, asOf: Date): Involvement {
   // mean(signals) is 0-1; centre it on 0.5 so an averagely involved player is
   // unchanged, and scale to the permitted swing.
   const involvement = mean(signals)
+  const raw = 1 + MATCHDAY_INVOLVEMENT.maxSwing * (2 * involvement - 1)
+
+  // A bonus is damped by club game time; a penalty is not. The asymmetry is
+  // deliberate, because the two are different kinds of claim.
+  //
+  // The bonus is a forward-looking inference: "he has been picked recently,
+  // so he will be picked again". That inference depends on him still playing
+  // football, and decays when he stops — a 37-year-old with 18 club minutes
+  // last season is not a likely starter however current his last cap is. Left
+  // undamped this was the whole story behind Séamus Coleman, whose +10.6%
+  // involvement bonus lifted an entirely unmeasured 50.6 to an effective 56.0
+  // and put him at right-back ahead of Festy Ebosele, measured 3.2 higher.
+  //
+  // The penalty is a direct observation: "he has not been capped in a year".
+  // Club football does not make that less true, and letting good club form
+  // cancel it would smuggle ability back into a selection-likelihood signal —
+  // ability is already what the score itself measures. So club form can take
+  // an involvement bonus away, but never hand one out.
+  const factor = raw > 1 && workload !== null ? 1 + (raw - 1) * workload : raw
+
   return {
-    factor: round(1 + MATCHDAY_INVOLVEMENT.maxSwing * (2 * involvement - 1), 4),
+    factor: round(factor, 4),
     monthsSinceLastCap: monthsSince,
     minutesLast12Months: seniorMinutesLast12Months,
+    clubWorkload: workload === null ? null : round(workload, 3),
     hasEvidence: true,
   }
 }
@@ -128,7 +192,10 @@ export interface MatchdaySelection {
   /** Slots no available player could fill at all. */
   unfilled: Position[]
   strength: number
-  /** The same XI recomputed as if nobody were unavailable. */
+  /**
+   * The same XI recomputed as if nobody were injured or withdrawn. Free agents
+   * stay excluded here too — see `buildMatchdaySelection`.
+   */
   strengthAtFullAvailability: number
   /** Negative when absences cost strength. */
   strengthCostOfAbsences: number
@@ -221,6 +288,7 @@ function selectSlots(
         factor: 1,
         monthsSinceLastCap: null,
         minutesLast12Months: null,
+        clubWorkload: null,
         hasEvidence: false,
       }
       slots.push({
@@ -267,15 +335,24 @@ export function buildMatchdaySelection(
   // Researched availability first. Round 2 populated
   // `seniorStatus.availabilityStatus` from cited sources, so it outranks the
   // hand-maintained list and needs no human upkeep.
+  //
+  // Having no club counts here too. A free agent is not injured, but he is
+  // equally not pickable: he is not training with a team, playing competitive
+  // football, or accumulating any evidence at all. Note this is a statement
+  // about selectability only — `currentClub.unattached` is deliberately
+  // invisible to the ability and projection models, which continue to rate
+  // these players on what they did when they last played.
   const unavailable: MatchdayAbsence[] = []
   const seen = new Set<string>()
   for (const player of players) {
     const status = player.seniorStatus.availabilityStatus
-    if (status !== 'injured' && status !== 'unavailable') continue
+    const absent = status === 'injured' || status === 'unavailable'
+    if (!absent && !player.currentClub.unattached) continue
     seen.add(player.id)
     unavailable.push({
       player,
-      reason: status === 'injured' ? 'Injured' : 'Unavailable',
+      // Injury is the more specific fact when a player is both, so it wins.
+      reason: status === 'injured' ? 'Injured' : status === 'unavailable' ? 'Unavailable' : 'No club',
       recordedOn: null,
       source: 'researched',
     })
@@ -308,7 +385,13 @@ export function buildMatchdaySelection(
 
   const { slots, unfilled } = selectSlots(available, asOf)
   const strength = strengthOf(slots)
-  const strengthAtFullAvailability = strengthOf(selectSlots(players, asOf).slots)
+  // Free agents stay out of the full-availability counterfactual. "If nobody
+  // were unavailable" means "if nobody were injured or withdrawn" — a question
+  // about a squad recovering. Being clubless is not a condition anyone
+  // recovers from between now and kick-off, so putting free agents back in
+  // would inflate the baseline and misattribute the gap to absences.
+  const selectable = players.filter((p) => !p.currentClub.unattached)
+  const strengthAtFullAvailability = strengthOf(selectSlots(selectable, asOf).slots)
 
   return {
     slots,

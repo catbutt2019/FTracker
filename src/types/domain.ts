@@ -245,6 +245,21 @@ export interface CurrentClub {
    * there is any performance data for.
    */
   changedSinceLastSeason: boolean
+  /**
+   * True when the player has no club at all — a confirmed free agent, not a
+   * player who has already signed elsewhere but not yet played.
+   *
+   * Consumed by `buildMatchdaySelection`, which treats having no club as a
+   * reason a player cannot be picked, the same way an injury is. The ability
+   * and projection models ignore it entirely: being unattached says nothing
+   * about how good a player is, only about whether he is selectable.
+   *
+   * `false` rather than `null` when the research pass recorded no club status
+   * at all. An unknown contract situation is much more likely to be "quietly
+   * under contract" than "clubless", and defaulting to `true` would drop
+   * players out of the XI on missing data.
+   */
+  unattached: boolean
   /** Free-text context on the move, when the research pass found one. */
   transferNote: string | null
 }

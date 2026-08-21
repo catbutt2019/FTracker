@@ -34,6 +34,15 @@ function player(options: {
   availabilityStatus?: SeniorStatus['availabilityStatus']
   seniorMinutesLast12Months?: number | null
   lastSeniorAppearanceDate?: string | null
+  /** No club at all. See `CurrentClub.unattached`. */
+  unattached?: boolean
+  /**
+   * Club minutes in the most recent completed season. `null` by default — and
+   * with no season record either, `clubWorkload` returns null and the
+   * involvement bonus is undamped, so every test that predates the damper
+   * keeps testing exactly what it used to.
+   */
+  clubMinutes?: number | null
 }): Player {
   idCounter += 1
   const {
@@ -44,6 +53,8 @@ function player(options: {
     availabilityStatus = null,
     seniorMinutesLast12Months = null,
     lastSeniorAppearanceDate = null,
+    unattached = false,
+    clubMinutes = null,
   } = options
   return {
     id,
@@ -52,6 +63,16 @@ function player(options: {
     minutes: 2200,
     primaryPosition: position,
     secondaryPositions,
+    currentClub: {
+      club: unattached ? 'Unattached' : 'Test FC',
+      league: unattached ? 'Free agent' : 'Test League',
+      leagueStrength: 60,
+      changedSinceLastSeason: false,
+      unattached,
+      transferNote: null,
+    },
+    seasons:
+      clubMinutes === null ? [] : [{ season: '2025-26', minutes: clubMinutes, appearances: 0 }],
     seniorStatus: seniorStatus({
       availabilityStatus,
       seniorMinutesLast12Months,
@@ -324,6 +345,124 @@ describe('buildMatchdaySelection', () => {
       1 - MATCHDAY_INVOLVEMENT.maxSwing,
       4,
     )
+  })
+
+  it('does not pick a player who has no club', () => {
+    // A free agent is not injured, but he is not selectable either: no club
+    // means no training, no competitive football and no evidence accruing.
+    // Séamus Coleman, Robbie Brady and Will Smallbone are all in this state in
+    // the current dataset, and all three were previously eligible for the XI.
+    const squad = completeSquad().filter((p) => p.primaryPosition !== 'RB')
+    const clubless = player({ id: 'clubless', position: 'RB', score: 90, unattached: true })
+    const employed = player({ id: 'employed', position: 'RB', score: 50 })
+    const selection = buildMatchdaySelection([...squad, clubless, employed], [], AS_OF)
+
+    // 40 points better and still not picked, so this is an availability gate
+    // and not merely a scoring penalty that a good enough player could survive.
+    expect(selection.slots.find((s) => s.position === 'RB')?.player.id).toBe('employed')
+    const absence = selection.unavailable.find((u) => u.player.id === 'clubless')
+    expect(absence?.reason).toBe('No club')
+    expect(absence?.source).toBe('researched')
+  })
+
+  it('calls an unattached and injured player injured, not clubless', () => {
+    // Both are true; the injury is the more specific and more useful fact.
+    const injuredFreeAgent = player({
+      id: 'both',
+      position: 'ST',
+      score: 60,
+      unattached: true,
+      availabilityStatus: 'injured',
+    })
+    const selection = buildMatchdaySelection([...completeSquad(), injuredFreeAgent], [], AS_OF)
+
+    expect(selection.unavailable.filter((u) => u.player.id === 'both')).toHaveLength(1)
+    expect(selection.unavailable.find((u) => u.player.id === 'both')?.reason).toBe('Injured')
+  })
+
+  it('does not credit a free agent to the fully available baseline', () => {
+    // "If nobody were unavailable" is a question about a squad recovering from
+    // injury. Nobody recovers from being out of contract by kick-off, so
+    // counting a free agent in the baseline would invent a cost of absence
+    // that no return to fitness could ever recoup.
+    const squad = completeSquad().filter((p) => p.primaryPosition !== 'RB')
+    const clubless = player({ id: 'clubless', position: 'RB', score: 90, unattached: true })
+    const employed = player({ id: 'employed', position: 'RB', score: 50 })
+    const selection = buildMatchdaySelection([...squad, clubless, employed], [], AS_OF)
+
+    expect(selection.strengthAtFullAvailability).toBe(selection.strength)
+    expect(selection.strengthCostOfAbsences).toBe(0)
+  })
+
+  it('damps the involvement bonus for a player who is barely playing club football', () => {
+    // The Coleman case proper. Both these players have an identical, maximally
+    // current international record; they differ only in whether they are still
+    // playing. The one who is not must not be carried into the XI by a
+    // selection-history bonus that assumes he still is.
+    const idle = player({
+      id: 'idle',
+      position: 'RB',
+      score: 60,
+      seniorMinutesLast12Months: 810,
+      lastSeniorAppearanceDate: AS_OF,
+      clubMinutes: 18,
+    })
+    const playing = player({
+      id: 'playing',
+      position: 'GK',
+      score: 60,
+      seniorMinutesLast12Months: 810,
+      lastSeniorAppearanceDate: AS_OF,
+      clubMinutes: MATCHDAY_INVOLVEMENT.fullClubMinutes,
+    })
+    const selection = buildMatchdaySelection([idle, playing], [], AS_OF)
+
+    const idleFactor = selection.slots.find((s) => s.player.id === 'idle')!.involvement.factor
+    const playingFactor = selection.slots.find((s) => s.player.id === 'playing')!.involvement.factor
+
+    expect(playingFactor).toBeCloseTo(1 + MATCHDAY_INVOLVEMENT.maxSwing, 4)
+    // Scaled by 18/1800, so almost all of the bonus is gone but none of it is
+    // turned into a penalty — absence of club football is not evidence of
+    // being bad, only of being unlikely to be picked.
+    expect(idleFactor).toBeLessThan(playingFactor)
+    expect(idleFactor).toBeGreaterThanOrEqual(1)
+    expect(idleFactor).toBeCloseTo(1 + MATCHDAY_INVOLVEMENT.maxSwing * (18 / 1800), 4)
+  })
+
+  it('does not let club football soften an involvement penalty', () => {
+    // The asymmetry. A stale international record is a direct observation that
+    // club form cannot contradict; if playing well could cancel the penalty,
+    // ability would be entering the selection signal twice, having already
+    // been counted in the score itself.
+    const stale = player({
+      id: 'stale',
+      position: 'ST',
+      score: 60,
+      seniorMinutesLast12Months: 0,
+      lastSeniorAppearanceDate: '2000-01-01',
+      clubMinutes: 3000,
+    })
+    const selection = buildMatchdaySelection([stale], [], AS_OF)
+
+    expect(selection.slots[0].involvement.factor).toBeCloseTo(1 - MATCHDAY_INVOLVEMENT.maxSwing, 4)
+  })
+
+  it('leaves the involvement bonus intact when no club game time is published', () => {
+    // Most seasons in this dataset carry no minutes figure. Reading that
+    // silence as "played nothing" would quietly demote every player whose
+    // source happens not to publish minutes.
+    const noData = player({
+      id: 'no-data',
+      position: 'ST',
+      score: 60,
+      seniorMinutesLast12Months: 810,
+      lastSeniorAppearanceDate: AS_OF,
+      clubMinutes: null,
+    })
+    const selection = buildMatchdaySelection([noData], [], AS_OF)
+
+    expect(selection.slots[0].involvement.clubWorkload).toBeNull()
+    expect(selection.slots[0].involvement.factor).toBeCloseTo(1 + MATCHDAY_INVOLVEMENT.maxSwing, 4)
   })
 
   it('is deterministic across repeated calls', () => {

@@ -409,6 +409,33 @@ const CHANGED_CLUB_STATUSES = new Set([
 ])
 
 /**
+ * Research-file `currentClubStatus.status` values that mean the player has no
+ * club at all.
+ *
+ * Deliberately narrow. `academy-player` and `on-loan` are both attached to a
+ * club, and `pre-agreed-future-transfer` means a deal is signed — none of
+ * those are free agents. Only a confirmed free agent belongs here.
+ */
+const UNATTACHED_STATUSES = new Set(['free-agent'])
+
+/**
+ * Text fallback for records with no `currentClubStatus.status`.
+ *
+ * Not exercised by the current research file, where all 89 records carry an
+ * explicit status — it exists so a future record that omits the block is not
+ * silently assumed to be under contract.
+ *
+ * Both fields are checked because the free-text wording is inconsistent about
+ * where the fact lands: Coleman and Brady read `club: "unattached / free
+ * agent", league: "none"`, while Smallbone reads `club: "Unattached",
+ * league: "Free agent"`.
+ */
+function looksUnattached(club, league) {
+  const text = `${normalise(club ?? '')} ${normalise(league ?? '')}`
+  return text.includes('unattached') || text.includes('free agent')
+}
+
+/**
  * Current club/league, kept independent of the season history so a transfer
  * shows up immediately without waiting for (or fabricating) a season's worth
  * of performance data at the new club. See `CurrentClub` in src/types/domain.ts.
@@ -428,6 +455,13 @@ function buildCurrentClub(p) {
     league,
     leagueStrength: leagueStrength(league) ?? NEUTRAL_LEAGUE_STRENGTH,
     changedSinceLastSeason,
+    // The explicit status is authoritative when the research pass recorded
+    // one; the text check is a fallback, not a second opinion, so a record
+    // stating `under-contract` is never overridden by a club name that merely
+    // reads oddly.
+    unattached: status?.status
+      ? UNATTACHED_STATUSES.has(status.status)
+      : looksUnattached(club, league),
     transferNote: status?.latestTransferUpdate ?? p.recentTransfer ?? null,
   }
 }

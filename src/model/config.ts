@@ -247,6 +247,27 @@ export const MATCHDAY_INVOLVEMENT = {
    * genuine gap in ability.
    */
   maxSwing: 0.15,
+  /**
+   * Club minutes in 12 months treated as a full workload, for the purpose of
+   * damping the involvement bonus — see `clubWorkload` in matchdayXI.ts.
+   *
+   * 1800 is twenty 90s: deliberately not a full season. This figure marks the
+   * point at which a player counts as unambiguously *playing*, not the point
+   * at which he counts as a first choice, so it should saturate well before a
+   * rotated regular would be treated as barely involved.
+   */
+  fullClubMinutes: 1800,
+  /**
+   * The same threshold in appearances, used only when no minutes figure is
+   * published — the common case here: 19 of 89 players in this dataset have a
+   * minutes total, while 87 have appearances.
+   *
+   * 25 rather than a pro-rata equivalent of `fullClubMinutes`, because an
+   * appearance count cannot tell twenty starts from twenty late substitute
+   * cameos. A low bar is the cautious choice: it errs toward *not* damping a
+   * player the data cannot convict.
+   */
+  fullClubAppearances: 25,
 } as const
 
 /**
