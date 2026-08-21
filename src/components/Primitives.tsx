@@ -1,4 +1,4 @@
-import { AlertTriangle, HelpCircle, Inbox, Loader2 } from 'lucide-react'
+import { AlertTriangle, ChevronDown, HelpCircle, Inbox, Loader2 } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -20,6 +20,42 @@ export function InfoHint({ children, label }: { children: ReactNode; label?: str
       </TooltipTrigger>
       <TooltipContent className="max-w-xs text-xs leading-relaxed">{children}</TooltipContent>
     </Tooltip>
+  )
+}
+
+/**
+ * Progressive disclosure for a paragraph of explanation.
+ *
+ * Built on native `<details>`/`<summary>` rather than a Radix primitive: it is
+ * keyboard-operable and screen-reader-announced with no JavaScript, it works
+ * on a touch device without the hover problem `InfoHint` has, and the content
+ * stays findable by the browser's own in-page search even while collapsed.
+ *
+ * The rule for what belongs in here: mechanism, not meaning. A caveat that
+ * changes how you should read a number stays visible; the explanation of *why*
+ * that caveat holds can be a tap away. Anything a reader would be misled by
+ * missing must not be put behind this.
+ */
+export function Disclosure({
+  summary,
+  children,
+  className,
+}: {
+  summary: string
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <details className={cn('group', className)}>
+      <summary className="inline-flex cursor-pointer list-none items-center gap-1 font-medium text-foreground/80 transition-colors hover:text-foreground [&::-webkit-details-marker]:hidden">
+        {summary}
+        <ChevronDown
+          className="size-3 shrink-0 transition-transform group-open:rotate-180"
+          aria-hidden="true"
+        />
+      </summary>
+      <div className="pt-1.5">{children}</div>
+    </details>
   )
 }
 

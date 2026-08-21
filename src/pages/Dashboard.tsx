@@ -3,6 +3,7 @@ import { ArrowRight, Info } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import {
+  Disclosure,
   InfoHint,
   SectionHeading,
   StatCard,
@@ -33,22 +34,34 @@ export function Dashboard() {
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           Is the talent pool getting stronger?
         </h1>
+        {/* Trimmed to the claim itself. The justification that followed ("a
+            single number would imply a precision this model does not have")
+            is restated on the Projected range card. The five words asserting
+            the ranges exist stay here rather than moving to that card's
+            tooltip, which a touch reader cannot open at all. */}
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
           An estimate for the Republic of Ireland men's senior team, built from{' '}
           {outlook.poolSize} tracked players and {outlook.simulations.toLocaleString()} simulations
-          of how they might develop. Every figure on this page is a range, because a single number
-          would imply a precision this model does not have.
+          of how they might develop. Every figure here is a range.
         </p>
+        {/* The claim stays visible; only the reasoning behind it folds away. A
+            reader who skips the expander still cannot come away thinking this
+            page forecasts qualification, which is the one misreading that
+            would matter. */}
         <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
           <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
-          <p>
-            <span className="font-medium text-foreground">
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">
               A stronger talent pool is not the same thing as qualification.
-            </span>{' '}
-            There are no opponents and no competition format anywhere in this model, so it says
-            nothing about results or reaching a tournament. It describes the players available,
-            nothing more.
-          </p>
+            </p>
+            <Disclosure summary="Why">
+              <p className="max-w-3xl">
+                There are no opponents and no competition format anywhere in this model, so it says
+                nothing about results or reaching a tournament. It describes the players available,
+                nothing more.
+              </p>
+            </Disclosure>
+          </div>
         </div>
       </header>
 
@@ -262,6 +275,30 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
   return (
     <Card className="border-border bg-card">
       <CardContent className="space-y-6 pt-6">
+        {/* The eleven comes before its own scoreline. This card used to open
+            with two aggregate strength numbers and a paragraph about fixture
+            metadata, which put roughly 300px of abstraction between the
+            heading and the first footballer's name. The numbers mean more
+            once you can see the team they describe anyway. */}
+        <MatchdayPitch slots={selection.slots} unfilled={selection.unfilled} />
+
+        {selection.unfilled.length > 0 && (
+          <p className="text-xs leading-relaxed text-destructive">
+            No available player can fill:{' '}
+            {selection.unfilled.map((position) => POSITION_LABELS[position]).join(', ')}.
+          </p>
+        )}
+
+        {selection.unmatchedUnavailableIds.length > 0 && (
+          <p className="text-xs leading-relaxed text-destructive">
+            Unavailability recorded for unknown {selection.unmatchedUnavailableIds.length === 1 ? 'player' : 'players'}{' '}
+            {selection.unmatchedUnavailableIds.join(', ')} — the id matches nobody in the dataset, so
+            the absence has not been applied.
+          </p>
+        )}
+
+        <Separator />
+
         <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
           <div>
             <p className="text-xs uppercase tracking-wide text-muted-foreground">XI strength</p>
@@ -302,29 +339,10 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
           <div className="flex items-start gap-2 rounded-md border border-border bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
             <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
             <p>
-              No date, competition or venue is recorded for this fixture, so the eleven below is
+              No date, competition or venue is recorded for this fixture, so the eleven above is
               simply "strongest available now" rather than "strongest available on match day".
             </p>
           </div>
-        )}
-
-        <Separator />
-
-        <MatchdayPitch slots={selection.slots} unfilled={selection.unfilled} />
-
-        {selection.unfilled.length > 0 && (
-          <p className="text-xs leading-relaxed text-destructive">
-            No available player can fill:{' '}
-            {selection.unfilled.map((position) => POSITION_LABELS[position]).join(', ')}.
-          </p>
-        )}
-
-        {selection.unmatchedUnavailableIds.length > 0 && (
-          <p className="text-xs leading-relaxed text-destructive">
-            Unavailability recorded for unknown {selection.unmatchedUnavailableIds.length === 1 ? 'player' : 'players'}{' '}
-            {selection.unmatchedUnavailableIds.join(', ')} — the id matches nobody in the dataset, so
-            the absence has not been applied.
-          </p>
         )}
 
         <Separator />
