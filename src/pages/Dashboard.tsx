@@ -330,12 +330,11 @@ function MatchdayCard({ players, asOfDate }: { players: Player[]; asOfDate: stri
                   >
                     {entry.player.name}
                   </Link>
-                  <span className="text-xs text-muted-foreground">
-                    {entry.reason} ·{' '}
-                    {entry.source === 'researched'
-                      ? 'from the research pass'
-                      : `entered by hand, noted ${entry.recordedOn}`}
-                  </span>
+                  {/* The reason only. Where the absence came from — a research
+                      pass or a hand entry, and the date it was noted — is
+                      provenance for whoever maintains the dataset, not
+                      something a reader of the XI needs. */}
+                  <span className="text-xs text-muted-foreground">{entry.reason}</span>
                 </li>
               ))}
             </ul>
